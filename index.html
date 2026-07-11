@@ -23,6 +23,8 @@
   h1{font-size:30px;margin:0 0 6px;font-weight:800;letter-spacing:-.01em;text-align:center}
   h1 span{color:var(--accent)}
   .sub{text-align:center;color:var(--sub);font-size:14px;margin-bottom:36px}
+  .volume-label{font-size:12px;font-weight:800;letter-spacing:.06em;color:var(--accent);margin:22px 0 10px;text-transform:uppercase}
+  .volume-label:first-of-type{margin-top:0}
   .cards{display:flex;flex-direction:column;gap:14px}
   a.tile{
     display:flex;align-items:center;gap:16px;text-decoration:none;color:var(--ink);
@@ -42,10 +44,11 @@
 </head>
 <body>
 <div class="wrap">
-  <div class="brand">Yoonhwang Voca 1.0</div>
+  <div class="brand">Yoonhwang Voca</div>
   <h1>윤향 보카 <span>학습</span></h1>
-  <div class="sub">60개 레슨 · 8,085개 표제어</div>
+  <div class="sub">1.0 · 2.0 통합 학습</div>
 
+  <div class="volume-label">1.0 &nbsp;·&nbsp; 60개 레슨 · 8,085개 표제어</div>
   <div class="cards">
     <a class="tile" href="yoonhwang_flashcard.html">
       <div class="icon">🗂️</div>
@@ -56,6 +59,26 @@
       <div class="arrow">→</div>
     </a>
     <a class="tile" href="yoonhwang_quiz.html">
+      <div class="icon">✅</div>
+      <div>
+        <div class="t">퀴즈</div>
+        <div class="d">4지선다로 실력 확인</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+  </div>
+
+  <div class="volume-label">2.0 &nbsp;·&nbsp; 30개 레슨 · 4,895개 표제어</div>
+  <div class="cards">
+    <a class="tile" href="yoonhwang_flashcard2.html">
+      <div class="icon">🗂️</div>
+      <div>
+        <div class="t">플래시카드</div>
+        <div class="d">카드 뒤집으며 암기</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="tile" href="yoonhwang_quiz2.html">
       <div class="icon">✅</div>
       <div>
         <div class="t">퀴즈</div>
