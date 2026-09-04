@@ -1482,10 +1482,77 @@ function ghSave(){ try{ localStorage.setItem(GKEY, JSON.stringify(GH)); }catch(e
 function ghReady(){ return !!(GH.token && GH.owner && GH.repo); }
 
 // 로컬 기록을 하나로 묶기
+// ── 동기화 용량 최적화 ──────────────────────────────
+// STATS·BANK·PEN 은 단어 데이터(m/s/p/r ...)를 통째로 안고 있어 업로드가 1MB를 넘으면
+// GitHub Contents API가 422로 거부한다. 올릴 때만 진도 정보만 남기고,
+// 내려받은 뒤 data/ 의 단어 풀에서 다시 채워 넣는다. (로컬 저장분은 그대로 유지)
+// 단어 풀·키에서 복구되는 필드는 올리지 않는다
+var GH_HEAVY = ['m','s','p','r','type','pp','ug','uf','w','id','vol','day'];
+function ghSlimRec(rec){
+  if(!rec || typeof rec!=='object') return rec;
+  var o={};
+  for(var k in rec){
+    if(GH_HEAVY.indexOf(k)>=0) continue;
+    var v=rec[k];
+    if(v===0 || v===false || v===null || v===undefined || v==='') continue;  // 기본값은 생략
+    o[k]=v;
+  }
+  return o;
+}
+function ghSlimMap(m){
+  var o={};
+  for(var k in (m||{})) o[k]=ghSlimRec(m[k]);
+  return o;
+}
+// 단어 이름으로 원본 찾기 (풀이 아직 없으면 null)
+var _poolByName=null;
+function ghPoolFind(name){
+  var pool=(typeof _allPool!=='undefined'&&_allPool)||(typeof POOL!=='undefined'&&POOL&&POOL.all)||null;
+  if(!pool||!pool.length) return null;
+  if(!_poolByName || _poolByName._n!==pool.length){
+    _poolByName={_n:pool.length};
+    for(var i=0;i<pool.length;i++) _poolByName[String(pool[i].w).toLowerCase().trim()]=pool[i];
+  }
+  return _poolByName[String(name).toLowerCase().trim()]||null;
+}
+// 빠진 필드를 로컬 기존 기록 → 단어 풀 순으로 채움
+function ghFatten(rec, key, localRec){
+  if(!rec || typeof rec!=='object') return rec;
+  var src = localRec || ghPoolFind(rec.w || key);
+  if(src){
+    for(var i=0;i<GH_HEAVY.length;i++){
+      var f=GH_HEAVY[i];
+      if(rec[f]===undefined && src[f]!==undefined) rec[f]=src[f];
+    }
+    var BASE=['w','id','vol','day'];
+    for(var j=0;j<BASE.length;j++){
+      var g=BASE[j];
+      if(rec[g]===undefined && src[g]!==undefined) rec[g]=src[g];
+    }
+  }
+  if(rec.w===undefined) rec.w=key;
+  if(rec.wrong===undefined) rec.wrong=0;
+  if(rec.right===undefined) rec.right=0;
+  return rec;
+}
+function ghFattenMap(m, localMap){
+  for(var k in (m||{})) m[k]=ghFatten(m[k], k, (localMap||{})[k]);
+  return m;
+}
+// 풀이 늦게 로드되는 경우를 위해, 로드 후 한 번 더 채움
+function ghRefill(){
+  try{
+    ghFattenMap(STATS, null); statsSave&&statsSave();
+    if(BANK){ ghFattenMap(BANK.quiz,null); ghFattenMap(BANK.syn,null); bankSave&&bankSave(); }
+    ghFattenMap(PENLIST, null); penSave&&penSave();
+  }catch(e){}
+}
 function ghSnapshot(){
   return {v:1, t:Date.now(),
-    stats:STATS, bank:BANK, daily:DAILY,
-    pen:PENLIST, memo:MEMO, req:ROOTREQ, diary:DIARY, ses:SESSIONS};
+    stats:ghSlimMap(STATS),
+    bank:{quiz:ghSlimMap(BANK&&BANK.quiz), syn:ghSlimMap(BANK&&BANK.syn)},
+    daily:DAILY,
+    pen:ghSlimMap(PENLIST), memo:MEMO, req:ROOTREQ, diary:DIARY, ses:SESSIONS};
 }
 // 두 기록을 합치기 (양쪽에서 푼 것이 모두 남게)
 function ghMerge(local, remote){
@@ -1559,10 +1626,16 @@ function ghMerge(local, remote){
 }
 function ghApply(d){
   if(!d) return;
-  if(d.stats) { STATS=d.stats; statsSave(); }
-  if(d.bank)  { BANK=d.bank; bankSave(); }
+  // 압축본이 올 수 있으므로, 기존 로컬 기록 → 단어 풀 순으로 빠진 필드를 되채운다
+  if(d.stats) { var _ls=STATS||{}; STATS=ghFattenMap(d.stats, _ls); statsSave(); }
+  if(d.bank)  {
+    var _lb=BANK||{quiz:{},syn:{}};
+    d.bank.quiz=ghFattenMap(d.bank.quiz||{}, _lb.quiz||{});
+    d.bank.syn =ghFattenMap(d.bank.syn ||{}, _lb.syn ||{});
+    BANK=d.bank; bankSave();
+  }
   if(d.daily) { DAILY=d.daily; dailySave(); }
-  if(d.pen)   { PENLIST=d.pen; penSave(); }
+  if(d.pen)   { var _lp=PENLIST||{}; PENLIST=ghFattenMap(d.pen, _lp); penSave(); }
   if(d.memo)  { MEMO=d.memo; memoSave(); }
   if(d.req)   { ROOTREQ=d.req; rootReqSave(); }
   if(d.diary) { DIARY=d.diary; diarySave(); }
@@ -1580,6 +1653,39 @@ function ghApi(method, body){
 }
 function b64enc(s){ return btoa(unescape(encodeURIComponent(s))); }
 function b64dec(s){ return decodeURIComponent(escape(atob(s.replace(/\n/g,'')))); }
+// ── gzip 압축 (GitHub Contents API 1MB 제한 대응) ──
+// 브라우저가 지원하면 gzip 후 올리고, 받을 때 매직바이트(1f 8b)로 알아서 판별한다.
+// 지원 안 하면 예전처럼 평문 JSON으로 올린다 (기존 파일과도 호환).
+function bytesToB64(u8){
+  var s='', CH=0x8000;
+  for(var i=0;i<u8.length;i+=CH) s+=String.fromCharCode.apply(null, u8.subarray(i,i+CH));
+  return btoa(s);
+}
+function b64ToBytes(b64){
+  var bin=atob(String(b64).replace(/\n/g,''));
+  var u8=new Uint8Array(bin.length);
+  for(var i=0;i<bin.length;i++) u8[i]=bin.charCodeAt(i);
+  return u8;
+}
+function ghEncode(text){
+  if(typeof CompressionStream==='undefined') return Promise.resolve(b64enc(text));
+  try{
+    var cs=new CompressionStream('gzip');
+    var st=new Blob([new TextEncoder().encode(text)]).stream().pipeThrough(cs);
+    return new Response(st).arrayBuffer()
+      .then(function(buf){ return bytesToB64(new Uint8Array(buf)); })
+      .catch(function(){ return b64enc(text); });
+  }catch(e){ return Promise.resolve(b64enc(text)); }
+}
+function ghDecode(b64){
+  var u8;
+  try{ u8=b64ToBytes(b64); }catch(e){ return Promise.resolve(b64dec(b64)); }
+  if(!(u8.length>2 && u8[0]===0x1f && u8[1]===0x8b)) return Promise.resolve(b64dec(b64));  // 평문
+  if(typeof DecompressionStream==='undefined') return Promise.reject(new Error('이 브라우저는 압축 해제를 지원하지 않아요'));
+  var ds=new DecompressionStream('gzip');
+  var st=new Blob([u8]).stream().pipeThrough(ds);
+  return new Response(st).text();
+}
 
 // 원격에서 가져와 합치고, 다시 올리기
 function ghErrText(status, body){
@@ -1589,7 +1695,7 @@ function ghErrText(status, body){
   if(status===403) return '권한이 없어요 — 토큰 권한(Contents: Read and write)을 확인해 주세요 (403)';
   if(status===404) return '저장소를 찾을 수 없어요 — 사용자·저장소 이름을 확인해 주세요 (404)';
   if(status===409) return '다른 기기와 충돌했어요 (409)';
-  if(status===422) return '저장 형식 오류 (422)' + (b?' · '+b:'');
+  if(status===422) return '저장 파일이 너무 크거나 형식이 안 맞아요 (422)' + (b?' · '+b:'');
   return '오류 '+status + (b?' · '+b:'');
 }
 function ghSync(silent, _retry){
@@ -1601,14 +1707,17 @@ function ghSync(silent, _retry){
     if(!r.ok) return r.text().then(function(t){ throw new Error(ghErrText(r.status, t)); });
     return r.json();
   }).then(function(meta){
-    if(meta && meta.content){
-      GH.sha=meta.sha;
-      try{ remote=JSON.parse(b64dec(meta.content)); }catch(e){ remote=null; }
-    }
+    if(!(meta && meta.content)) return null;
+    GH.sha=meta.sha;
+    return ghDecode(meta.content)
+      .then(function(txt){ try{ remote=JSON.parse(txt); }catch(e){ remote=null; } })
+      .catch(function(){ remote=null; });
+  }).then(function(){
     var merged=ghMerge(ghSnapshot(), remote);
     ghApply(merged);
-    var body={message:'voca sync '+new Date().toISOString(),
-      content:b64enc(JSON.stringify(merged))};
+    return ghEncode(JSON.stringify(merged));
+  }).then(function(content){
+    var body={message:'voca sync '+new Date().toISOString(), content:content};
     if(GH.sha) body.sha=GH.sha;
     return ghApi('PUT', body);
   }).then(function(r){
@@ -2237,7 +2346,7 @@ setInterval(function(){
   }catch(e){}
 },1500);
 
-var APP_VER = '2026.08.08x';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
+var APP_VER = '2026.09.03';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
 var VER = APP_VER;  // 데이터 URL 캐시 키. 배포 때만 바뀌므로 브라우저 캐시가 제대로 재사용됨
 function loadJ(p){
   // 데이터 파일은 URL에 버전(v=)이 붙어 캐시가 자동 갱신되므로 브라우저 캐시를 허용한다.
@@ -2450,6 +2559,7 @@ function fetchAllItems(){
     });
   })).then(function(cs){
     var it=[]; cs.forEach(function(c){ it=it.concat(c); });
+    _allPool=it; try{ ghRefill(); }catch(e){}   // 풀 준비 직후 압축본 되채우기
     _allPool=it;
     hide();
     return it;
@@ -2528,6 +2638,7 @@ function start(){
       var cn=st.n===0?cw.length:Math.min(st.n,cw.length);
       try{
         startCopy(shuf(cw).slice(0,cn));
+        try{ ghRefill(); }catch(e){}
         // 동의어 어원 색인은 백그라운드에서 준비 (화면은 즉시 표시)
         setTimeout(function(){
           fetchAllItems().then(function(){ _rootByWord=null; renderFocus(CQ[cqi]); }).catch(function(){});
