@@ -978,9 +978,6 @@ button:disabled{background:#3a3a4a;color:#778;cursor:not-allowed}
   border-radius:4px;padding:1px 5px;vertical-align:middle;letter-spacing:.01em;white-space:nowrap}
 .hwat.hwsame{color:#4ecca3;background:#1e3a33}
 
-/* 선지가 길면(뜻 여러 개) 한 줄에 하나씩 — 칸 높이가 들쭉날쭉해지는 것 방지 */
-#ch.longopt{grid-template-columns:1fr!important}
-#ch.midopt{grid-template-columns:1fr 1fr!important}
 #ch .c{align-items:flex-start}
 #ch .c .onum{margin-top:1px}
 /* 단어가 dishearte/n 처럼 중간에서 잘리지 않게 */
@@ -2765,7 +2762,7 @@ setInterval(function(){
   }catch(e){}
 },1500);
 
-var APP_VER = '2026.09.14';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
+var APP_VER = '2026.09.15';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
 var VER = APP_VER;  // 데이터 URL 캐시 키. 배포 때만 바뀌므로 브라우저 캐시가 제대로 재사용됨
 function loadJ(p){
   // 데이터 파일은 URL에 버전(v=)이 붙어 캐시가 자동 갱신되므로 브라우저 캐시를 허용한다.
@@ -4620,19 +4617,8 @@ function tagOf(w){
   return w.src==='Y' ? (w.vol+'권 '+w.day+'강') : ('MVP'+w.src.slice(-1));
 }
 
-// 선지 길이에 따라 칸 배열을 바꾼다.
-// 뜻이 여러 개 달린 단어는 한 칸이 길어져서 2~3열로 두면 줄이 다 어긋난다.
-function chLayout(){
-  var box=$('ch'); if(!box) return;
-  var max=0;
-  var bs=box.querySelectorAll('button.c');
-  for(var i=0;i<bs.length;i++){
-    var t=(bs[i].innerText||'').replace(/\s+/g,' ').trim();
-    if(t.length>max) max=t.length;
-  }
-  box.classList.toggle('longopt', max>=34);   // 긴 선지가 하나라도 있으면 1열
-  box.classList.toggle('midopt',  max>=18 && max<34);
-}
+// 선지 칸 배열은 화면 넓이로만 정한다 (900px↑ 2열 · 1280px↑ 3열).
+// 글자 길이로 열 수를 바꾸지 않는다 — 긴 선지가 있으면 그 줄만 높아지고 배치는 그대로 유지된다.
 function draw(){
   if(fin) return;
   var q=Q[qi];
@@ -4671,7 +4657,6 @@ function draw(){
       b.onclick=(function(k){return function(){ toggle(k); };})(i);
       box.appendChild(b);
     });
-    chLayout();
     var sb=document.createElement('button');
     sb.id='sub'; sb.style.cssText='margin-top:6px;width:100%;padding:11px';
     sb.textContent='제출 (Enter)';
@@ -4687,7 +4672,6 @@ function draw(){
       b.onclick=(function(k){return function(){ pick(k); };})(i);
       box.appendChild(b);
     });
-    chLayout();
   }
 
   score();
@@ -4760,7 +4744,7 @@ function pick(i){
 
 // 모든 문제를 다 풀었으면 next 버튼을 '결과 보기'로 바꿔 노출
 function maybeShowFinishBtn(){
-  chLayout();   // 답 공개로 글자가 길어졌으니 칸 배열 다시 계산
+  // 정답 공개 후에는 칸 배열을 건드리지 않는다 — 문제 풀 때 보던 배치가 그대로 유지되어야 한다.
   var allDone = ans.every(function(a){return a!==null;});
   var nx=$('next');
   if(allDone && nx){
@@ -4831,7 +4815,7 @@ function replay(){
       else bs[i].classList.add('dim');
     }
   }
-  chLayout();   // 답 공개로 글자가 길어졌으니 칸 배열 다시 계산
+  // 정답 공개 후에는 칸 배열을 건드리지 않는다 — 문제 풀 때 보던 배치가 그대로 유지되어야 한다.
   $('fb').textContent = a.ok ? '✅ 정답!' : '❌ 오답';
 
   // 이번 선지에 나온 동의어를 기록해 두고, 해설에서 색으로 구분
