@@ -194,6 +194,16 @@ button:disabled{background:#3a3a4a;color:#778;cursor:not-allowed}
 .pbox.fold>.pbt{margin-bottom:0}
 .pbox.fold>.pbt:after{content:'펴기'}
 .pbox.fold>*:not(.pbt){display:none!important}
+/* 뜻 구별 박스는 접어도 갈래 이름은 남는다 — 거기서 원하는 갈래만 펼 수 있게.
+   박스 접기 = 그 안 갈래를 전부 접는 것이고, 갈래별로 따로 펼 수 있다. */
+.nzpanel.fold>.nzsec{display:block!important}
+.nzpanel.fold>.nzfoot{display:none!important}
+.nzpanel>.nzsec.secfold{background:none;border-left-color:#1d2946;padding-top:2px;padding-bottom:2px}
+.nzt{cursor:pointer;user-select:none;display:flex;align-items:center;gap:6px}
+.nzt:after{content:'▾';font-size:.85em;opacity:.5;margin-left:auto}
+.nzsec.secfold>.nzws,.nzsec.secfold>.nze{display:none}
+.nzsec.secfold>.nzt:after{content:'▸'}
+.nzpanel.fold>.nzsec>.nzt{padding:5px 2px;border-top:1px solid #1d2946}
 .pbox.mint{border-color:#2f7d6b;background:rgba(94,234,212,.045)}
 .pbox.mint>.pbt{color:#5eead4}
 .pbox.pink{border-color:#8a4670;background:rgba(244,114,182,.045)}
@@ -223,6 +233,9 @@ body.hasdock #qnav{display:none}
 .viewtog{display:block;margin:0 0 8px auto;background:#16213e;color:#8ab;
   border:1px solid #2a3a5c;border-radius:7px;padding:4px 12px;font-size:.8em;
   font-family:inherit;cursor:pointer}
+/* 보기 전환 · 전체 접기 버튼을 한 줄에 나란히 */
+.togrow{display:flex;justify-content:flex-end;gap:7px;margin:0 0 8px}
+.togrow .viewtog{display:inline-block;margin:0}
 .info.lite .r,.info.lite .relwrap,.info.lite .pwwrap,.info.lite .ex,
 .info.lite .repbox,.info.lite .nzone{display:none}
 .relm .ssd{font-style:normal;color:#8ab}
@@ -231,7 +244,7 @@ body.hasdock #qnav{display:none}
 .relat.sy{background:#2a2540;color:#b9a8d8;border-color:#4a3f6b}
 .ssmore{font-size:.85em;color:#7a8aa8;padding:6px 2px 0}
 .relrow b.wtap{cursor:pointer;border-bottom:1px dotted #3a4869}
-.rmates{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 10px 2px}
+.rmrow{margin-left:12px;border-left:2px solid #3a3218;padding-left:10px}
 .rmate{font-size:.9em;background:#1b2542;border:1px solid #2f4468;border-radius:6px;
   padding:3px 9px;color:#cfe0f5;cursor:pointer}
 .rmate:hover{border-color:#4ecca3}
@@ -288,10 +301,8 @@ body.hasdock #qnav{display:none}
 .pinbtn.pinned{background:#2a2410;border-color:#4ecca3;color:#4ecca3}
 .pinbtn:active{transform:scale(.96)}
 
-.repbox{margin-top:6px}
-.reptog{background:#2a2410;border:1px solid #4a3f1a;color:#f0c060;border-radius:8px;padding:6px 12px;font-size:.85em;cursor:pointer;width:100%;text-align:left}
-.reptog:active{transform:scale(.98)}
-.repbody{margin-top:5px;font-size:.9em;color:#f0c060;background:#221d0d;border-radius:8px;padding:8px 12px;line-height:1.6}
+.repbox{margin-top:6px;font-size:.9em;color:#f0c060;background:#221d0d;border-radius:8px;padding:8px 12px;line-height:1.6}
+.replab{color:#a08b4a;font-weight:700;margin-right:6px}
 .cmean{font-size:1.05em;color:#c9d4e0;margin:6px 0 4px;text-align:center}
 #canswers{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:10px 0}
 .cans{background:#16234a;border:1.5px solid #24325a;border-radius:10px;padding:8px 14px;font-size:1.05em;color:#8899bb;transition:all .2s}
@@ -556,9 +567,10 @@ body.hasdock #qnav{display:none}
 #canswers .canssub.main{color:#8ba0c0;font-style:normal}
 
 /* 긴 뜻 대비: 오른쪽 참고 영역은 전체 표시 + 필요시 스크롤 */
-#cmainline #cmean{max-height:150px;overflow-y:auto;line-height:1.55}
-#canswers .canssub{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-#cfocus .focuslabel{max-height:76px;overflow:hidden}
+#cmainline #cmean{max-height:none;overflow:visible;line-height:1.55}
+/* 뜻은 폰에서도 자르지 않는다 — 줄수 제한·높이 제한 모두 없앰 */
+#canswers .canssub{display:block;overflow:visible;white-space:normal}
+#cfocus .focuslabel{max-height:none;overflow:visible}
 
 /* ── 긴 뜻도 전부 보이게: 뜻은 상단 전체 폭, 왼쪽은 입력에만 집중 ── */
 @media(min-width:900px){
@@ -705,8 +717,12 @@ body.hasdock #qnav{display:none}
 .calrow{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:6px}
 .calh{text-align:center;font-size:.9em;color:#8ba0c0;padding:6px 0}
 .calh.sun{color:#e88}.calh.sat{color:#8ab}
-.calc{position:relative;aspect-ratio:1;border-radius:9px;background:#16264a;border:1px solid #22345e;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-height:52px}
+/* 정사각형으로 묶어두면 강 번호가 늘어나도 칸이 못 커진다 — 최소 크기만 두고 내용 따라 늘어나게 */
+.calc{position:relative;border-radius:9px;background:#16264a;border:1px solid #22345e;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+  min-height:52px;padding:4px 3px}
+.calc .cu{overflow-wrap:normal!important;word-break:normal!important}
+.calc .cu .nb{white-space:nowrap}
 .calc.empty{background:none;border:none}
 .calc .cd{font-size:.88em;color:#9fb4d6}
 .calc .cm{font-size:1.15em;line-height:1}
@@ -774,12 +790,20 @@ body.hasdock #qnav{display:none}
 
 /* 따라쓰기 어원 영역: 더 크고 위로 */
 #crefbox{margin-top:14px!important;padding-top:12px!important}
-#copyscr .croot{font-size:1.06em;line-height:1.8;padding:14px 16px}
+#copyscr .croot{font-size:1.32em;line-height:1.85;padding:16px 18px}
+#copyscr .crootlabel{font-size:.72em}
+/* 파생 단어 칸도 어원 칸과 같은 크기로 읽히게 */
+#copyscr #cderiv{font-size:1.2em;padding:14px 16px}
+#copyscr #cderiv .cdhead{font-size:.78em}
+#copyscr #cderiv .cdw b{font-size:1.06em}
+#copyscr #cderiv .cdm{font-size:.92em}
+#copyscr #cderiv .cds{font-size:.9em}
 .crootlabel{font-size:.9em;padding:3px 10px}
 .crootrep{font-size:1em;margin-top:9px}
 @media(min-width:900px){
   #crefbox{padding-left:22px!important}
-  #copyscr .croot{font-size:1.12em;line-height:1.85}
+  #copyscr .croot{font-size:1.38em;line-height:1.9}
+  #copyscr #cderiv{font-size:1.26em}
   #cmainline{margin-bottom:10px!important}
 }
 
@@ -919,8 +943,8 @@ body.hasdock #qnav{display:none}
 
 .simhead{margin-top:14px;padding-top:12px;border-top:1px solid #24325a;
   color:#9fb4d6;font-size:.95em;font-weight:600}
-#ch .c .simdot{display:inline-block;width:6px;height:6px;border-radius:50%;
-  background:#f472b6;margin-left:7px;vertical-align:2px;opacity:.85}
+#ch .c .simdot{display:inline-block;width:11px;height:11px;border-radius:50%;
+  background:#f472b6;border:2px solid #7a2f52;margin-left:7px;vertical-align:-1px;opacity:1}
 
 /* 정답 공개 후 뜻 표시 (안내 문구 자리) */
 #qscr .ask.meanshow{color:#c3d6f0;font-size:1.22em;font-weight:600;line-height:1.55;
@@ -960,8 +984,9 @@ body.hasdock #qnav{display:none}
 }
 
 /* 달력 칸: 완료한 강 번호 */
-.calc .cu{font-size:.62em;color:#7bdcb0;font-weight:700;line-height:1.2;
-  max-width:96%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* 강 번호는 자르지 않는다 — 줄을 바꿔 칸이 늘어나게 */
+.calc .cu{font-size:.62em;color:#7bdcb0;font-weight:700;line-height:1.25;
+  max-width:100%;white-space:normal;word-break:keep-all;overflow-wrap:anywhere}
 .calc.done .cu{color:#8fe0bb}
 .calc.half .cu,.calc.some .cu{color:#8fc7ae}
 @media(min-width:900px){ .calc .cu{font-size:.7em} }
@@ -1097,9 +1122,7 @@ body.hasdock #qnav{display:none}
   border:1px solid #3d4a75;border-radius:4px;padding:1px 5px;margin-right:6px;vertical-align:middle}
 
 .bgroup.derv{opacity:.92;border-left:3px solid #4a5a80;padding-left:8px}
-.copyitem.dervi::before,.ci.dervi::before{content:'파생';display:inline-block;font-size:.68em;font-weight:700;
-  color:#9fb4d6;background:#2b3558;border:1px solid #3d4a75;border-radius:4px;
-  padding:1px 5px;margin-right:6px;vertical-align:middle}
+/* (쓰이지 않던 '파생' 딱지 CSS 삭제 — 딱지는 이제 그 단어 이름을 그대로 적는다) */
 
 /* 구문 속 단어 */
 .pwwrap{margin-top:11px;padding:11px 13px;background:#152040;border:1px solid #26355c;border-radius:9px}
@@ -1122,9 +1145,19 @@ body.hasdock #qnav{display:none}
 .nzsec.nzhit{background:#152e28;border-left-color:#4ecca3}
 .nzt{font-size:.87em;color:#9fb4d6;font-weight:600;margin-bottom:3px}
 .nzsec.nzhit .nzt{color:#5fdcb0}
-.nzws{line-height:1.9}
-.nzw{color:#cfe0f5;font-size:.97em}
-.nzw.nzme{color:#5fdcb0;font-weight:700;background:#173d33;border-radius:5px;padding:1px 7px}
+.nzws{line-height:1.6}
+/* 한 단어 = 한 줄. 단어 / 출처 / 뜻 을 칸으로 갈라 놓는다 */
+.nzrow{display:grid;grid-template-columns:minmax(92px,auto) minmax(58px,auto) 1fr;
+  align-items:baseline;gap:0 10px;padding:4px 0;border-top:1px solid #1d2946}
+.nzrow:first-child{border-top:none}
+.nzrow.nzme{background:#153229;border-radius:6px;padding:4px 8px;border-top:none;margin:2px 0}
+.nzw{color:#e6eefb;font-size:1.02em;font-weight:600}
+.nzrow.nzme .nzw{color:#5fdcb0;font-weight:700}
+.nzmean{color:#9fb4d6;font-size:.9em;word-break:keep-all}
+@media(max-width:560px){
+  .nzrow{grid-template-columns:1fr auto;gap:0 8px}
+  .nzmean{grid-column:1/-1;margin-top:1px}
+}
 .nze{color:#8ba0bd;font-size:.85em;margin-top:4px}
 .nzfoot{font-size:.78em;color:#6b7a99;text-align:right;margin-top:4px}
 
@@ -1136,6 +1169,13 @@ body.hasdock #qnav{display:none}
 .sy.wtap{cursor:pointer;border-bottom:1px dotted #3a4869}
 .nzpanel,.wpanel{margin:8px 0 10px;padding:10px 12px;background:#141e3a;
   border:1px solid #26355c;border-radius:9px;display:block}
+/* 박스 제목 = 그 뜻 자체. 밑의 갈래 설명보다 확실히 크게 */
+.nzpanel>.pbt .nztitle{display:block;font-size:1.34em;font-weight:800;color:#ffd479;
+  line-height:1.35;word-break:keep-all;letter-spacing:-.01em}
+.nzpanel>.pbt .nzcount{display:block;margin-top:3px;font-size:.82em;font-weight:500;color:#8fa8c8}
+.nzpanel>.pbt{padding-bottom:8px;flex-wrap:wrap;align-items:flex-start}
+.nzpanel>.pbt>span{flex:1 1 100%}
+.nzpanel>.pbt:after{align-self:flex-start}
 .nzhead{font-size:.85em;color:#f0a500;font-weight:700;margin-bottom:7px}
 .nzmore{margin-top:6px;padding:6px 12px;background:#1b2542;color:#9fb4d6;
   border:1px solid #2c3a63;border-radius:7px;font-size:.85em;font-weight:600}
@@ -1146,6 +1186,39 @@ body.hasdock #qnav{display:none}
 .wpr em,.wpx em{font-style:normal;color:#f0a500;font-weight:700;margin-right:6px}
 .wprel{display:inline-block;margin-right:9px;color:#cfe0f5}
 
+/* 뜻 구별 박스 안 단어 딱지 — 어디서 온 단어인지 색으로 구분 */
+.nzat{display:inline-block;margin-left:5px;font-size:.74em;color:#8fa8c8;background:#202b48;
+  border-radius:4px;padding:1px 5px;vertical-align:1px;font-weight:600}
+.nzat-me{color:#0d2a22;background:#5fdcb0}                                  /* 이 단어 */
+.nzat-syn{color:#b9f0d8;background:#1d5643;border:1px solid #2f7d62}        /* 바로 위 선지 동의어 (초록) */
+.nzat-day{color:#a9cdf5;background:#1b3358;border:1px solid #2d5590}        /* 다른 강 표제어 (파랑) */
+.nzat-from{color:#c9b68f;background:#3a3222;border:1px solid #5c4f33}       /* 다른 단어 밑에만 실린 것 (갈색) */
+#cderiv{margin-top:14px;padding:10px 12px;background:#141e3a;border:1px solid #2c3a63;border-radius:9px}
+#cderiv .cdhead{font-size:.82em;color:#8fa8c8;font-weight:600;margin-bottom:7px}
+#cderiv .cdrow{padding:6px 0;border-top:1px solid #22304f}
+#cderiv .cdrow:first-of-type{border-top:none}
+#cderiv .cdw b{color:#e6eefb;font-size:1.02em}
+#cderiv .cdm{margin-left:8px;color:#a8bcd8;font-size:.9em}
+#cderiv .cds{margin-top:3px;font-size:.88em;color:#8ba0bd}
+#cderiv .cdsw{display:inline-block;margin-right:10px;color:#cfe0f5}
+#cderiv .cdsw em{font-style:normal;margin-left:5px;color:#8ba0bd;font-size:.92em}
+.msyn{background:#2a2113;border:1px solid #5c4a1f}
+.msyn .pbt{color:#f0c060}
+.msynsub{font-weight:500;font-size:.86em;color:#b09550}
+.msyn{margin:8px 0 12px}
+.msynwrap{display:flex;flex-wrap:wrap;gap:6px 10px}
+.msynrow{padding:4px 9px;background:#3a2e16;border:1px solid #574513;border-radius:8px;
+  display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:0 7px;max-width:100%}
+.msynrow b{color:#ffe0a0;font-size:1.04em}
+.msynd{color:#c8a862;font-size:.88em}
+.msynm{color:#a89168;font-size:.86em}
+.dwhy{display:block;margin-top:4px;font-size:.82em;color:#8ba0bd}
+.dwname{color:#cfe0f5;font-weight:700}
+.nzat-out{color:#98a2b3;background:#23262e;border:1px solid #3a3f4b}         /* 교재에 없는 단어 (회색) */
+.nzrest{background:#101a30;border-left-color:#2d5590}
+.nzsub{font-size:.82em;color:#8ba0bd}
+.wprelm{display:inline-block;margin-left:5px;font-size:.83em;color:#8ba0bd}
+.nzkey{display:flex;flex-wrap:wrap;gap:5px 10px;margin:0 0 7px;font-size:.76em;color:#7b8ba6}
 .nzone{display:inline-block;margin-left:9px;font-size:.82em;color:#7fbfa4;
   background:#16302a;border:1px solid #2a5a4a;border-radius:5px;padding:1px 8px;vertical-align:middle}
 
@@ -1244,7 +1317,7 @@ body.hasdock #qnav{display:none}
       <button data-m="write"><span class="t">동의어 쓰기</span><span class="d">서술형 · 동의어를 직접 입력</span></button>
       <button data-m="copy"><span class="t">따라쓰기</span><span class="d">가볍게 · 정답 보고 따라 입력</span></button>
       <button data-m="browse"><span class="t">동의어 훑어보기</span><span class="d">단어별 동의어 한눈에 보기</span></button>
-      <button data-m="roots"><span class="t">어근으로 묶기</span><span class="d">1,859개 어근 전체 · 검색</span></button>
+      <button data-m="roots"><span class="t">어근으로 묶기</span><span class="d">5,626개 어근 전체 · 검색</span></button>
       <button data-m="conf"><span class="t">헷갈리는 철자</span><span class="d">비슷하게 생긴 단어 나란히 비교</span></button>
     </div>
   </div>
@@ -1313,6 +1386,7 @@ body.hasdock #qnav{display:none}
     <div class="tag" id="tag"></div>
     <div class="wd" id="qw"></div>
     <div class="ask" id="ask"></div>
+    <div id="qmissed"></div>
     <div id="synmodebar"><button id="synmodetog" class="modetog">입력으로 풀기</button></div>
     <div class="ch" id="ch"></div>
     <div class="winrow" id="synwrap" style="display:none">
@@ -1320,8 +1394,8 @@ body.hasdock #qnav{display:none}
       <button id="synsubmit">제출</button>
     </div>
     <div class="fb" id="fb"></div>
-    <div class="info" id="info"></div>
     <div class="croot" id="qroot" style="display:none"></div>
+    <div class="info" id="info"></div>
   </div>
   <div class="nav" id="qnav">
     <button class="b2" id="prev">이전</button>
@@ -1499,6 +1573,7 @@ body.hasdock #qnav{display:none}
     <div id="crefbox">
       <div id="cmainline"><span id="cword"></span><span id="cmean"></span></div>
       <div class="croot" id="croot"></div>
+      <div id="cderiv"></div>
     </div>
     <div style="text-align:left;margin-top:14px">
       <button id="cpin" class="pinbtn">복습에 담기</button>
@@ -1580,14 +1655,7 @@ function mtoks(m){
   return r;
 }
 // 두 뜻이 너무 비슷한가 (Jaccard >= 0.5)
-function tooSimilar(a,b){
-  var A=mtoks(a), B=mtoks(b);
-  if(!A.n||!B.n) return false;
-  var inter=0;
-  for(var k in A.set) if(B.set[k]) inter++;
-  var uni=A.n+B.n-inter;
-  return uni>0 && (inter/uni) >= 0.5;
-}
+
 // 두 뜻이 같은 계열인가 (뜻 토큰이 하나라도 겹치면 true → 오답에서 제외)
 function shareMeaning(a,b){
   var A=mtoks(a), B=mtoks(b);
@@ -1596,20 +1664,7 @@ function shareMeaning(a,b){
   return false;
 }
 // (미사용) 뜻 관계 판정 - 함정 로직 제거로 더는 안 씀
-function meaningRel(a,b){
-  var A=mtoks(a), B=mtoks(b);
-  if(!A.n||!B.n) return 'unknown';
-  var inter=0;
-  for(var k in A.set) if(B.set[k]) inter++;
-  if(inter===0) return 'different';
-  var uni=A.n+B.n-inter;
-  var jac=inter/uni;
-  // 거의 동일: 자카드 매우 높거나, 한쪽이 다른쪽에 완전 포함되고 크기 비슷
-  if(jac>=0.8) return 'identical';
-  if((inter===A.n||inter===B.n) && Math.abs(A.n-B.n)<=1) return 'identical';
-  // 일부만 겹침 = 헷갈리는 함정
-  return 'similar';
-}
+
 
 function defOf(t){
   // lex.json 은 옛 축약 사전이라 뜻이 잘려 있다 (5,044개 중 4,003개).
@@ -1691,24 +1746,63 @@ var FOLD_KEY='voca_fold_v1', FOLDST={};
 function foldLoad(){
   try{ var r=localStorage.getItem(FOLD_KEY); if(r) FOLDST=JSON.parse(r)||{}; }catch(e){ FOLDST={}; }
 }
-function foldSet(title, folded){
-  var t=String(title||'').replace(/(접기|펴기)$/,'').trim();
+function foldKeyOf(bt){
+  if(!bt) return '';
+  var k=bt.getAttribute && bt.getAttribute('data-fk');
+  if(k) return String(k).trim();
+  return String(bt.textContent||'').replace(/(접기|펴기)$/,'').trim();
+}
+function foldSet(key, folded){
+  var t=String(key||'').trim();
   if(!t) return;
   if(folded) FOLDST[t]=1; else delete FOLDST[t];
   try{ localStorage.setItem(FOLD_KEY, JSON.stringify(FOLDST)); }catch(e){}
 }
-function foldIsClosed(title){
-  return !!FOLDST[String(title||'').trim()];
+function foldIsClosed(key){
+  return !!FOLDST[String(key||'').trim()];
+}
+// 화면에 있는 설명 박스를 한꺼번에 접거나 편다 (상태도 같이 기억)
+function foldAll(close){
+  var bs=document.querySelectorAll('.scr.on .pbox');
+  for(var i=0;i<bs.length;i++){
+    var bt=bs[i].querySelector(':scope>.pbt'); if(!bt) continue;
+    bs[i].classList.toggle('fold', !!close);
+    foldSet(foldKeyOf(bt), !!close);
+    var ss=bs[i].querySelectorAll('.nzsec>.nzt[data-sk]');
+    for(var j=0;j<ss.length;j++){
+      ss[j].parentNode.classList.toggle('secfold', !!close);
+      foldSet(ss[j].getAttribute('data-sk'), !!close);
+    }
+  }
+  foldAllBtnSync();
+}
+// '전체 접기 / 전체 펴기' 버튼 글자 맞추기
+function foldAllBtnSync(){
+  var b=document.getElementById('foldAllBtn'); if(!b) return;
+  var bs=document.querySelectorAll('.scr.on .pbox');
+  if(!bs.length){ b.style.display='none'; return; }
+  b.style.display='';
+  var open=0;
+  for(var i=0;i<bs.length;i++) if(!bs[i].classList.contains('fold')) open++;
+  b.textContent = open ? '전체 접기' : '전체 펴기';
+  b.setAttribute('data-close', open ? '1' : '0');
 }
 // 화면에 그린 뒤, 접어 두기로 한 박스는 접은 채로 보여 준다
 function foldApply(root){
   var bs=(root||document).querySelectorAll('.pbox');
   for(var i=0;i<bs.length;i++){
     var bt=bs[i].querySelector(':scope>.pbt'); if(!bt) continue;
-    var t=String(bt.textContent||'').replace(/(접기|펴기)$/,'').trim();
+    var t=foldKeyOf(bt);
     if(foldIsClosed(t)) bs[i].classList.add('fold');
     else bs[i].classList.remove('fold');
   }
+  // 갈래(작은 칸) 접기 상태도 같이 되살린다
+  var ss=(root||document).querySelectorAll('.nzsec>.nzt[data-sk]');
+  for(var j=0;j<ss.length;j++){
+    var sk=ss[j].getAttribute('data-sk');
+    ss[j].parentNode.classList.toggle('secfold', foldIsClosed(sk));
+  }
+  try{ foldAllBtnSync(); }catch(e){}
 }
 function synonlyLoad(){ loadJ('data/synonly.json').then(function(d){ SYNONLY=d||{}; }).catch(function(){ SYNONLY={}; }); }
 function synonlyNote(word, sense){
@@ -1764,32 +1858,50 @@ function phraseWordHTML(w){
 }
 
 // 이 단어의 뜻들 중 '같은 뜻 다른 단어'가 있는 것
-function nuanceOf(w){
-  if(!NUANCE || !w) return [];
-  var out=[], seen={};
-  String(w.m||'').split(' / ').forEach(function(d){
-    d=d.trim();
-    if(!d || seen[d]) return;
-    var g=NUANCE[d];
-    if(!g || !g.g || g.g.length<2) return;   // 소그룹이 1개뿐이면 구별할 게 없음
-    seen[d]=1;
-    out.push({d:d, g:g.g, c:g.c});
-  });
-  // 뜻이 많은 단어(mean은 11개)는 블록이 너무 길어진다.
-  // 이 단어가 '구별되는 쪽'에 든 뜻을 먼저, 그 다음 소그룹이 많은 순으로 3개까지만.
-  var me=String(w.w).toLowerCase().trim();
-  out.forEach(function(n){
-    var hit=false;
-    n.g.forEach(function(g){
-      if((g.w||[]).some(function(t){return String(t).toLowerCase().trim()===me;})
-         && (g.w||[]).length<n.g.length*3) hit=true;
+
+// 답이 공개되면 이 단어의 뜻마다 '뜻 구별'을 바로 펼쳐서 보여 준다.
+// 같은 뜻으로 적힌 단어는 어느 강 것이든 여기 다 들어 있고, 갈래별 구별 설명도 함께 나온다.
+function nuanceHTML(w){
+  if(!w || !w.p || !w.p.length) return '';
+  // 이 단어와 같은 뜻으로 적힌 다른 단어들을 뜻별로 나눠 담는다.
+  // (예전 '뜻이 같은 단어' 박스에 따로 뜨던 것 — 이제 뜻 구별 안으로 합친다)
+  var byD={};
+  try{
+    (sameSenseOf(w)||[]).forEach(function(c){
+      var k=String(c.d).trim();
+      (byD[k]=byD[k]||[]).push(c);
     });
-    n._p = (hit?1000:0) + n.g.length;
+  }catch(e){}
+  var out='', seen={}, used={};
+  for(var i=0;i<w.p.length;i++){
+    var d=String(w.p[i].d||'').trim();
+    if(!d || seen[d]) continue; seen[d]=1;
+    // 이 뜻의 교재 동의어(바로 위 선지에 나온 것)를 먼저 넣는다
+    var extra=[], seenX={};
+    (w.p[i].s||[]).forEach(function(t){
+      var k=String(t).toLowerCase().trim();
+      if(seenX[k]) return; seenX[k]=1;
+      extra.push({w:t, d:d, from:''});
+    });
+    // 뜻이 'A / B' 처럼 붙어 있을 수 있으니 쪼개서 다 찾는다
+    d.split(/[\/;]/).forEach(function(pt){
+      pt=pt.trim(); if(!pt) return;
+      (byD[pt]||[]).forEach(function(c){
+        var k=String(c.w).toLowerCase().trim();
+        if(!used[k] && !seenX[k]){ used[k]=1; seenX[k]=1; extra.push(c); }
+      });
+    });
+    out += nuancePanel(d, w, extra);
+  }
+  // 어느 뜻 줄에도 안 붙은 나머지는 마지막에 한 박스로 모아 준다
+  var left=[];
+  for(var k2 in byD) byD[k2].forEach(function(c){
+    var k=String(c.w).toLowerCase().trim();
+    if(!used[k]){ used[k]=1; left.push(c); }
   });
-  out.sort(function(a,b){ return b._p-a._p; });
-  return out.slice(0,3);
+  if(left.length) out += nuancePanel(null, w, left);
+  return out;
 }
-function nuanceHTML(w){ return ''; }   // 더 이상 아래에 통째로 깔지 않는다
 
 function nuanceHas(sense){
   var g=NUANCE && NUANCE[String(sense).trim()];
@@ -1806,40 +1918,84 @@ function nuanceTagHTML(sense, myWord){
   return '';
 }   // 더 이상 아래에 통째로 깔지 않는다
 
-// 뜻(갈래) 하나를 눌렀을 때 그 자리에서 펴지는 내용.
-// 1단계: 이 단어가 속한 갈래만.  2단계: '나머지 보기'를 누르면 전체.
-function nuancePanel(sense, myWord){
-  if(!NUANCE) return '';
-  var g=NUANCE[String(sense).trim()];
-  if(!g || !g.g || g.g.length<2) return '';
-  var me=String(myWord||'').toLowerCase().trim();
-  var tot=0; g.g.forEach(function(x){ tot+=(x.w||[]).length; });
-  var mine=null, rest=[];
-  g.g.forEach(function(x){
-    if(!mine && (x.w||[]).some(function(t){return String(t).toLowerCase().trim()===me;})) mine=x;
-    else rest.push(x);
-  });
-  function sec(x, hit){
-    var ws=(x.w||[]).map(function(t){
-      var on=String(t).toLowerCase().trim()===me;
-      return '<span class="nzw'+(on?' nzme':'')+'">'+esc(t)+'</span>';
-    }).join('<span class="sep">·</span>');
-    return '<div class="nzsec'+(hit?' nzhit':'')+'"><div class="nzt">'+esc(x.t)+'</div>'
-         + '<div class="nzws">'+ws+'</div>'
-         + (x.e?'<div class="nze">'+esc(x.e)+'</div>':'')+'</div>';
+// 답이 공개된 뒤 뜻 하나마다 펴져서 뜨는 박스.
+// 갈래별 구별 설명 + 그 뜻으로 적힌 단어 전부. 단어마다 어디서 온 것인지 딱지를 붙인다.
+//   이 단어 / 동의어(바로 위 선지) / N권 M강(다른 강 표제어) / X 동의어(다른 단어 밑에만 실림)
+function nuancePanel(sense, w, extra){
+  var me=String((w&&w.w)||'').toLowerCase().trim();
+  var g = (sense && NUANCE) ? NUANCE[String(sense).trim()] : null;
+  if(g && (!g.g || g.g.length<2)) g=null;
+  extra = extra || [];
+  if(!g && !extra.length) return '';
+
+  // 바로 위 선지에 나온 동의어
+  var ownSyn={};
+  ((w&&w.p)||[]).forEach(function(p){ (p.s||[]).forEach(function(t){ ownSyn[String(t).toLowerCase().trim()]=1; }); });
+  ((w&&w.s)||[]).forEach(function(t){ ownSyn[String(t).toLowerCase().trim()]=1; });
+
+  // 단어마다 어디서 온 것인지 딱지를 붙인다
+  function mark(t, from){
+    var k=String(t).toLowerCase().trim();
+    if(k===me) return '<span class="nzat nzat-me">이 단어</span>';
+    if(ownSyn[k]) return '<span class="nzat nzat-syn">동의어</span>';
+    var a=hwAt(t);
+    if(a) return '<span class="nzat nzat-day">'+esc(a.tag)+'</span>';
+    if(from) return '<span class="nzat nzat-from">'+esc(from)+' 동의어</span>';
+    return '<span class="nzat nzat-out">교재에 없음</span>';   // 뜻을 가르려고 클로드가 끌어온 단어
   }
-  var head='<div class="nzhead">"'+esc(sense)+'" 로 적힌 단어 '+tot+'개</div>';
-  var body = mine ? sec(mine,true) : '';
-  var more = rest.map(function(x){ return sec(x,false); }).join('');
-  var btn = rest.length
-    ? '<button class="nzmore" onclick="var b=this.parentNode.querySelector(\'.nzrest\');'
-      + 'b.style.display=b.style.display===\'block\'?\'none\':\'block\';'
-      + 'this.textContent=b.style.display===\'block\'?\'접기\':\'더 보기\';">'
-      + '더 보기</button>'
-      + '<div class="nzrest" style="display:none">'+more+'</div>'
-    : '';
-  return '<div class="nzpanel pbox mint"><div class="pbt">뜻 구별</div>'+head+body+btn
-    +'<div class="nzfoot">\u203b 클로드 정리 \u00b7 교재에 없는 설명</div></div>';
+  // 한 단어 = 한 줄.  [영어단어] [어디 것인지] [그 단어의 뜻]  칸을 갈라 적는다.
+  function row(t, from, sub){
+    var on=String(t).toLowerCase().trim()===me;
+    var om=synOwnMean(t) || (LEX && LEX[String(t).toLowerCase().trim()]) || '';
+    return '<div class="nzrow'+(on?' nzme':'')+'">'
+         + '<span class="nzw">'+esc(t)+'</span>'
+         + mark(t, from)
+         + (om?'<span class="nzmean">'+esc(om)+'</span>':'')
+         + (sub?'<span class="nzsub">'+esc(sub)+'</span>':'')
+         + '</div>';
+  }
+
+  var inGroup={}, body='', tot=0;
+  if(g){
+    g.g.forEach(function(x){ (x.w||[]).forEach(function(t){ inGroup[String(t).toLowerCase().trim()]=1; }); });
+    tot = 0; for(var kk in inGroup) tot++;
+    var mine=null, rest=[];
+    g.g.forEach(function(x){
+      if(!mine && (x.w||[]).some(function(t){return String(t).toLowerCase().trim()===me;})) mine=x;
+      else rest.push(x);
+    });
+    var sec=function(x, hit){
+      var ws=(x.w||[]).map(function(t){ return row(t, '', ''); }).join('');
+      // 갈래 제목을 누르면 그 갈래만 접히고 펴진다. 이름으로 기억하므로 다음 문제에도 이어진다.
+      return '<div class="nzsec'+(hit?' nzhit':'')+'">'
+           + '<div class="nzt" data-sk="sec:'+esc(String(x.t).trim())+'">'+esc(x.t)+'</div>'
+           + '<div class="nzws">'+ws+'</div>'
+           + (x.e?'<div class="nze">'+esc(x.e)+'</div>':'')+'</div>';
+    };
+    body = (mine ? sec(mine,true) : '') + rest.map(function(x){ return sec(x,false); }).join('');
+  }
+
+  // 갈래에 안 들어간 나머지 — 하나도 자르지 않고 다 보여 준다
+  var more=extra.filter(function(c){ return !inGroup[String(c.w).toLowerCase().trim()]; });
+  var tail='';
+  if(more.length){
+    tot += more.length;
+    var rows=more.map(function(c){ return row(c.w, c.from, c.sub||''); }).join('');
+    var rtl = (g?'같은 뜻으로 적힌 나머지 단어':'같은 뜻으로 적힌 단어');
+    tail = '<div class="nzsec nzrest"><div class="nzt" data-sk="sec:'+esc(rtl)+'">'+rtl+'</div>'
+         + '<div class="nzws">'+rows+'</div></div>';
+  }
+
+  // 제목은 '뜻 구별' 같은 딱지가 아니라 그 뜻 자체를 크게 적는다.
+  // (뜻마다 박스가 따로 뜨므로 이게 곧 그 박스의 이름이 된다)
+  var ttl = sense ? ('<span class="nztitle">'+esc(sense)+'</span>'
+                     +'<span class="nzcount">교재에서 이 뜻으로 적힌 단어 '+tot+'개</span>')
+                  : ('<span class="nztitle">같은 뜻으로 적힌 단어</span>'
+                     +'<span class="nzcount">'+tot+'개</span>');
+  var fk  = sense ? ('nz:'+String(sense).trim()) : 'nz:같은뜻';
+  var foot = g ? '<div class="nzfoot">※ 갈래 설명은 클로드 정리 · 교재에 없는 설명</div>' : '';
+  return '<div class="nzpanel pbox mint"><div class="pbt" data-fk="'+esc(fk)+'">'+ttl+'</div>'
+    + body + tail + foot + '</div>';
 }
 
 // 선지·동의어 단어 하나를 눌렀을 때 뜨는 짧은 카드 (1단계) + 어원·관련 (2단계)
@@ -1870,18 +2026,16 @@ function wordPanel(name){
   if(R && R.x && R.x.length){
     var seen={}, rows=[];
     R.x.forEach(function(e){
-      if(seen[e.w]||rows.length>=6) return; seen[e.w]=1;
+      if(seen[e.w]) return; seen[e.w]=1;   // 6개까지만 자르던 것 해제 — 전부 보여 준다
       var ea=hwAt(e.w);
-      rows.push('<span class="wprel">'+esc(e.w)+(ea?'<span class="hwat">'+esc(ea.tag)+'</span>':'')+'</span>');
+      rows.push('<span class="wprel">'+esc(e.w)
+        +(ea?'<span class="hwat">'+esc(ea.tag)+'</span>':'')
+        +'<span class="wprelm">'+esc(relMean(e.w,''))+'</span></span>');
     });
     if(rows.length) extra+='<div class="wpx"><em>같이 묶임</em> '+rows.join(' ')+'</div>';
   }
-  if(extra){
-    h+='<button class="nzmore" onclick="var b=this.parentNode.querySelector(\'.wpx2\');'
-      +'b.style.display=b.style.display===\'block\'?\'none\':\'block\';'
-      +'this.textContent=b.style.display===\'block\'?\'\\u25be 접기\':\'\\u25b8 어원 \\u00b7 관련 단어\';">'
-      +'어원 · 관련 단어</button><div class="wpx2" style="display:none">'+extra+'</div>';
-  }
+  // 어원·관련 단어는 바로 보여 준다 (버튼 뒤에 숨겨 두면 어원이 없는 것처럼 보인다)
+  h += extra;
   return h+'</div>';
 }
 
@@ -1930,9 +2084,9 @@ function renderPairs(w, hl){
     var on = (hl && p.d===hl);
     var der = isDeriv(p);
     out += '<div class="pr'+(on?' hl':'')+(der?' derv':'')+'">'
-         + '<span class="pd'+(nuanceHas(p.d)?' nztap':'')+'"'
+         + '<span class="pd"'
          + ' data-sense="'+esc(p.d)+'" data-me="'+esc(w.w)+'">'
-         + (der?'<span class="dtag">파생</span>':'')+esc(p.d)+'</span>'
+         + (der?'<span class="dtag">'+dervTag(p,w)+'</span><b class="dwname">'+esc(dervWord(p))+'</b> '+esc(dervMean(p)):esc(p.d))+'</span>'
          + nuanceTagHTML(p.d, w.w)
          + '<span class="ps">'+synHTML(p.s, w.w)+'</span></div>';
   });
@@ -2382,7 +2536,7 @@ function memoSet(w, txt){
   else MEMO[k]={t:txt, u:Date.now()};
   memoSave();
 }
-function memoList(){ var o=[]; for(var k in MEMO) o.push({w:k, t:MEMO[k].t}); return o; }
+
 // 메모 입력 UI (어원을 씨앗으로 제공)
 function memoBox(w, hostId){
   var host=$(hostId); if(!host||!w) return;
@@ -2568,15 +2722,7 @@ function statsRight(w, mode){
   statsSave();
 }
 // 복습 대상: due(다음 복습 시각)가 지난 단어들, 급한 순
-function srsDue(){
-  var now=Date.now(), o=[];
-  for(var k in STATS){
-    var r=STATS[k];
-    if(r.due && r.due<=now && r.wrong>0) o.push(r);
-  }
-  o.sort(function(a,b){ return a.due-b.due; });
-  return o;
-}
+
 function statsList(){
   var o=[];
   for(var k in STATS) o.push(STATS[k]);
@@ -2832,7 +2978,10 @@ function calDraw(){
         else ns.push(String(d.units[uu]).replace('mvp','M'));
       }
       ns.sort(function(a,b){ return a-b; });
-      ustr='<span class="cu">'+ns.join('·')+'강</span>';
+      // 줄바꿈은 가운뎃점 뒤에서만 (숫자 중간이나 '강' 앞에서 끊기지 않게)
+      var _last=ns.pop();
+      ustr='<span class="cu">'+(ns.length?ns.join('·\u200B')+'·\u200B':'')
+          +'<span class="nb">'+_last+'강</span></span>';
     }
     h+='<div class="'+cls+'" data-day="'+k+'"><span class="cd">'+day+'</span>'
       +(mark?'<span class="cm">'+mark+'</span>':'')
@@ -2993,7 +3142,7 @@ setInterval(function(){
   }catch(e){}
 },1500);
 
-var APP_VER = '2026.09.25';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
+var APP_VER = '2026.10.21';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
 var VER = APP_VER;  // 데이터 URL 캐시 키. 배포 때만 바뀌므로 브라우저 캐시가 제대로 재사용됨
 function loadJ(p){
   // 데이터 파일은 URL에 버전(v=)이 붙어 캐시가 자동 갱신되므로 브라우저 캐시를 허용한다.
@@ -3110,7 +3259,6 @@ function startBoot(){
     try{ foldLoad(); }catch(e){}
     try{ penLoad(); }catch(e){}
     try{ similarLoad(); }catch(e){}
-    try{ synetyLoad(); }catch(e){}
     try{ hwLoad(); }catch(e){}
     try{ pwordLoad(); }catch(e){}
     try{ memoLoad(); }catch(e){}
@@ -3138,6 +3286,7 @@ function startBoot(){
     setTimeout(function(){
       try{ relateLoad(); }catch(e){}
       try{ nuanceLoad(); }catch(e){}
+      try{ synetyLoad(); }catch(e){}
       try{ synonlyLoad(); }catch(e){}
       try{ confwLoad(); }catch(e){}
       try{ rootallLoad(); }catch(e){}
@@ -3363,7 +3512,7 @@ function drawBrowse(list){
       if(!p.s||!p.s.length) return;
       var _d=isDeriv(p);
       groups+='<div class="bgroup'+(_d?' derv':'')+'"><div class="bd">'
-            + (_d?'<span class="dtag">파생</span>':'')+esc(p.d)+'</div>'
+            + (_d?'<span class="dtag">'+dervTag(p,w)+'</span><b class="dwname">'+esc(dervWord(p))+'</b> '+esc(dervMean(p)):esc(p.d))+'</div>'
             + '<div class="bs">'+p.s.map(esc).join(' · ')+'</div></div>';
     });
     var h='<div class="h"><span class="bword">'+esc(w.w)+'</span>'
@@ -3533,16 +3682,12 @@ function repWordsFor(r){
 
 // 대표 단어 접이식 표시 (앞면 정보는 그대로, 대표만 펼치기)
 function repToggleHTML(reps){
-  var id='rep'+(Math.random().toString(36).slice(2,8));
-  return '<div class="repbox">'
-    +'<button class="reptog" onclick="toggleRep(this)">어근 대표 단어 보기</button>'
-    +'<div class="repbody" style="display:none">'+reps.map(esc).join(', ')+'</div></div>';
+  // 눌러야 나오게 하지 않는다 — 어근 대표 단어를 그 자리에 바로 적는다
+  if(!reps || !reps.length) return '';
+  return '<div class="repbox"><span class="replab">어근 대표 단어</span> '
+    + reps.map(esc).join(', ') + '</div>';
 }
-function toggleRep(btn){
-  var body=btn.nextElementSibling;
-  if(body.style.display==='none'){ body.style.display='block'; btn.innerHTML='어근 대표 단어 접기'; }
-  else{ body.style.display='none'; btn.innerHTML='어근 대표 단어 보기'; }
-}
+
 
 // ========== 약점 단어 통계 ==========
 var stFilter='all';
@@ -3590,7 +3735,7 @@ function drawStats(){
     var solved = x.right>=x.wrong;
     var d=document.createElement('div');
     d.className='sw'+(solved?' solved':'');
-    var meaning=(x.m||'').split(' / ').slice(0,2).join(' / ');
+    var meaning=String(x.m||'');   // 뜻은 자르지 않는다 — 전부 보여 준다
     d.innerHTML='<div class="swl"><div class="swe">'+esc(x.w)+'</div><div class="swm">'+esc(meaning)+'</div></div>'
       + '<div class="swc"><span class="wc">✗'+x.wrong+'</span>'+(x.right?' <span class="rc">✓'+x.right+'</span>':'')+'</div>';
     box.appendChild(d);
@@ -3768,16 +3913,59 @@ function rootOfWord(name){
   return '';
 }
 // 동의어의 어근 (어근대표단어 연결용)
-function rootKeyOfWord(name){
-  var k=String(name).toLowerCase().trim();
-  if(SYNETY && SYNETY[k] && SYNETY[k].k) return SYNETY[k].k;
-  return '';
-}
+
 
 // ========== 관련 단어 (교차참조 · 파생형 · 어근) ==========
 var RELATE=null;
 function relateLoad(){
   loadJ('data/relate.json').then(function(d){ RELATE=d||{}; }).catch(function(){ RELATE={}; });
+}
+// 이 단어의 어원 줄에서 어근을 직접 뽑는다
+function rootsOfWordR(r){
+  if(!r || String(r).charAt(0)==='[') return [];
+  var head=String(r).split('\u2192')[0], out=[], seen={};
+  head.split('+').forEach(function(p){
+    var m=p.replace(/^\s+/,'').match(/^-?([a-zA-Z]+)\(([^)]*)\)/);
+    if(!m) return;
+    var k=m[1].toLowerCase();
+    if(seen[k]) return; seen[k]=1;
+    out.push({r:k, g:m[2].trim()});
+  });
+  return out;
+}
+// 철자가 같은 어근이 여럿이면 뜻이 맞는 무리를 고른다 (terr(earth) 와 terr(frighten))
+function _gEng(g){ return String(g||'').split('/')[0].trim().toLowerCase().replace(/[^a-z ]/g,''); }
+function _gKor(g){ var p=String(g||'').split('/');
+  if(p.length>1) return p.slice(1).join('/').trim();
+  return /[a-zA-Z]/.test(g||'') ? '' : String(g||'').trim(); }
+function rootGroupOf(rt, gloss){
+  if(!ROOTALL){ rootallLoad().then(function(){}); return null; }
+  rt=String(rt).toLowerCase().trim();
+  var cand=[], i;
+  for(i=0;i<ROOTALL.length;i++) if(ROOTALL[i].r===rt) cand.push(ROOTALL[i]);
+  if(!cand.length) return null;
+  for(i=0;i<cand.length;i++){
+    var gs=String(cand[i].g||'').split(' \u00b7 ');
+    for(var j=0;j<gs.length;j++){
+      if(_gEng(gloss) && _gEng(gloss)===_gEng(gs[j])) return cand[i];
+      if(_gKor(gloss) && _gKor(gloss)===_gKor(gs[j])) return cand[i];
+    }
+  }
+  return null;   // 뜻이 맞는 무리가 없으면 아무거나 보여 주지 않는다
+}
+function rootMatesHTML2(g, selfW){
+  var me=String(selfW).toLowerCase().trim();
+  var ws=(g.w||[]).filter(function(x){ return String(x.w).toLowerCase().trim()!==me; });
+  return ws.map(function(x){
+    var a=hwAt(x.w);
+    return '<div class="relrow rmrow"><b>'+esc(x.w)+'</b>'
+      + (a?'<span class="relat">'+esc(a.tag)+'</span><span class="relrole">#'+a.id+'</span>':'')
+      + '<span class="relm">'+esc(relMean(x.w, x.m))+'</span></div>';
+  }).join('');
+}
+// 뜻이 아니라 문법 기능만 적힌 어근인가 (명사형·형용사형·동사형 …)
+function isGramRoot(g){
+  return /(형용사형|명사형|동사형|부사형|복수형|비교급|최상급|과거형|어형 변화|지소사|~하는 사람|하는 사람|~한 상태|접미사|접두사)/.test(String(g||''));
 }
 function relateOf(name){
   if(!RELATE) return null;
@@ -3833,34 +4021,10 @@ function sameSenseOf(w){
   return out;
 }
 // 같은 어근을 쓰는 단어들 — 눌러서 뜻·강을 바로 볼 수 있게
-function rootMatesHTML(root, gloss, selfW){
-  if(!ROOTALL){ rootallLoad().then(function(){ }); return ''; }
-  var rt=String(root).toLowerCase().trim(), me=String(selfW).toLowerCase().trim();
-  var g=null;
-  for(var i=0;i<ROOTALL.length;i++){
-    if(ROOTALL[i].r!==rt) continue;
-    if(!g || (gloss && ROOTALL[i].g.indexOf(gloss)>=0)) g=ROOTALL[i];
-  }
-  if(!g||!g.w||!g.w.length) return '';
-  var ws=g.w.filter(function(x){ return String(x.w).toLowerCase().trim()!==me; });
-  if(!ws.length) return '';
-  return '<div class="rmates">'+ws.slice(0,24).map(function(x){
-    return '<span class="rmate wtap" data-w="'+esc(x.w)+'">'+esc(x.w)+'</span>';
-  }).join('')+(ws.length>24?'<span class="rmore">+'+(ws.length-24)+'</span>':'')+'</div>';
-}
-function sameSenseHTML(w){
-  var L=sameSenseOf(w);
-  if(!L.length) return '';
-  var rows=L.slice(0,14).map(function(c){
-    return '<div class="relrow"><b class="wtap" data-w="'+esc(c.w)+'">'+esc(c.w)+'</b>'
-      + (c.at ? '<span class="relat">'+esc(c.at.tag)+'</span><span class="relrole">#'+c.at.id+'</span>'
-              : '<span class="relat sy">'+esc(c.from)+' 동의어</span>')
-      + '<span class="relm"><em class="ssd">'+esc(c.d)+'</em>'
-      + (c.sub?'<span class="sssub">'+esc(c.sub)+'</span>':'')+'</span></div>';
-  }).join('');
-  return '<div class="relsec pbox mint"><div class="pbt">뜻이 같은 단어</div>'+rows
-    + (L.length>14?'<div class="ssmore">더 보기</div>':'')+'</div>';
-}
+
+// 같은 뜻으로 적힌 단어는 이제 '뜻 구별' 박스가 갈래별로 다 보여 준다.
+// (예전 '뜻이 같은 단어' 박스의 죽은 코드는 지웠다. 14줄까지만 자르던 것도 함께 사라짐)
+function sameSenseHTML(w){ return ''; }
 
 // 관련 단어에 붙는 뜻 — relate.json에 저장된 값은 26자에서 잘려 있으므로
 // 항상 원본 단어 데이터에서 전체 뜻을 가져온다 (교재를 고치면 여기도 자동 반영)
@@ -3885,17 +4049,28 @@ function relateHTML(w){
              + (fa ? '<span class="relrole">#'+fa.id+'</span>' : '')
              + '<span class="relm">'+esc(relMean(f.w, f.m))+'</span></div>';
     }
-    parts += '<div class="relsec pbox gold"><div class="pbt">형태가 갈린 같은 낱말</div>'+rows2+'</div>';
+    parts += '<div class="relsec pbox gold"><div class="pbt">같은 단어의 파생 단어</div>'+rows2+'</div>';
   }
-  if(R.k && R.k.length){
+  // 어근은 relate.json 에 박힌 옛 묶음을 믿지 않고, 이 단어의 어원 줄에서 직접 읽는다.
+  // (relate.json 은 terrible 의 terr 를 earth 무리로 적어 놔서 Mediterranean 이 딸려 나왔다)
+  var _ks = rootsOfWordR(w.r);
+  if(!_ks.length && R.k && R.k.length) _ks = R.k.map(function(x){ return {r:x.r, g:x.g}; });
+  // 진짜 어근 먼저, 문법 기능만 하는 접사는 뒤로
+  _ks.sort(function(a,b){ return (isGramRoot(a.g)?1:0)-(isGramRoot(b.g)?1:0); });
+  if(_ks.length){
     var rows3='';
-    for(var m=0;m<R.k.length;m++){
-      var k=R.k[m];
+    for(var m=0;m<_ks.length;m++){
+      var k=_ks[m];
+      var gp=rootGroupOf(k.r, k.g);
+      if(!gp) continue;
+      // 접두사(im-, ab-)·접미사(-ible, -us)는 어근이 아니다. 진짜 어근만 보여 준다.
+      if(gp.t!=='r') continue;
       rows3 += '<div class="relrow"><b>'+esc(k.r)+'</b>'
              + '<span class="relat">'+esc(k.g||'')+'</span>'
-             + '<span class="relm">같은 어근 '+k.n+'개</span></div>'
-             + rootMatesHTML(k.r, k.g, w.w);
+             + '<span class="relm">'+((gp.n-1)>0 ? '같은 어근 '+(gp.n-1)+'개' : '이 뜻으로는 이 단어뿐')+'</span></div>'
+             + rootMatesHTML2(gp, w.w);
     }
+    if(!rows3) return parts ? '<div class="relwrap open"><div class="relbody">'+parts+'</div></div>' : '';
     parts += '<div class="relsec pbox gold"><div class="pbt">어근</div>'+rows3+'</div>';
   }
   if(!parts) return '';
@@ -3925,19 +4100,16 @@ function synSense(w, syn){
       var arr=ps[i].s||[];
       for(var j=0;j<arr.length;j++){
         if(String(arr[j]).toLowerCase().trim()===key){
-          var d=String(ps[i].d||'').trim();
-          if(d.length>26) d=d.slice(0,25)+'…';
-          return d;
+          // 파생 갈래는 '이름'과 '뜻'이 칸으로 나뉘어 있다 — 뜻만 돌려준다
+          if(isDeriv(ps[i])) return String(ps[i].dm||ps[i].d||'').trim();
+          return String(ps[i].d||'').trim();   // 뜻은 자르지 않는다 — 전부 보여 준다
         }
       }
     }
   }
   // ② 갈래로 보여줄 게 없으면 동의어 자체의 뜻을 보여준다
   var om=synOwnMean(syn);
-  if(om){
-    if(om.length>26) om=om.slice(0,25)+'…';
-    return om;
-  }
+  if(om) return om;   // 뜻은 자르지 않는다 — 전부 보여 준다
   return '';
 }
 
@@ -3952,14 +4124,7 @@ function startCopy(list){
 }
 // 따라쓰기 어원 상자 그리기 (메인 단어 기준)
 // 긴 뜻은 첫 갈래만 짧게 (전체는 오른쪽 참고 영역에서 확인)
-function shortMean(m, max){
-  m=String(m||'').trim();
-  if(!m) return '';
-  if(m.length<=(max||34)) return m;
-  var first=m.split('/')[0].trim();
-  if(first.length<=(max||34)) return first+' …';
-  return first.slice(0,(max||34)-1)+'…';
-}
+
 
 // 현재 차례 항목 하나만 크게 표시 + 진행 점
 // 현재 차례 칩이 목록 밖에 있으면 보이도록 스크롤
@@ -3995,7 +4160,20 @@ function renderFocus(w){
       var sd=synSense(w, items[cur]);
       label = sd || (LEX && LEX[String(items[cur]).toLowerCase().trim()] ? String(LEX[String(items[cur]).toLowerCase().trim()]).split('/')[0].trim() : '동의어');
       // 표제어 본인 동의어가 끝나면 여기부터는 파생어 것 — 라벨에 표시해서 헷갈리지 않게
-      if(w._cown && cur>=w._cown) label='[파생] '+label;
+      // 표제어 본인 동의어가 끝나면 여기부터는 교재가 표제어 밑에 같이 실어 둔
+      // 다른 형태 단어의 동의어다. '파생'이라는 말 대신 그 단어 이름을 그대로 적는다.
+      if(w._cown && cur>=w._cown){
+        var _dv=derivOwnerOf(w, items[cur]);
+        var _hd=String(w.w).split('=')[0].trim();
+        // ① 지금 쓸 단어 자체의 뜻이 있으면 그것을 앞에 놓는다 (없으면 파생형 뜻이라도)
+        var _own=synOwnMean(items[cur]);
+        // ② 왜 이 단어가 여기 나왔는지 한 줄로
+        var _why = _dv ? (_hd+'의 파생 단어 '+_dv+'의 동의어')
+                       : (_hd+'의 파생 단어의 동의어');
+        label = (_own ? _own : label)
+              + '<span class="dwhy">'+esc(_why)
+              + (_own ? '' : '')+'</span>';
+      }
     }
   } else if(w._cmode==='sentence'){
     label = (cur===0) ? w.m : (cur===1 ? '예문' : '동의어');
@@ -4009,7 +4187,7 @@ function renderFocus(w){
   box.innerHTML =
     '<div class="focusitem'+(isSent?' sent':'')+'" data-w="'+esc(items[cur])+'">'
     +'<div class="focustxt">'+esc(items[cur])+(hasRoot?'<span class="rootdot">어원</span>':'')+counter+'</div>'
-    +'<div class="focuslabel">'+esc(label)+'</div></div>'
+    +'<div class="focuslabel">'+(/<span class="dwhy">/.test(label)?label:esc(label))+'</div></div>'
     // 시선 이동 없이 참고할 수 있게, 바로 아래에 메인 단어+뜻을 작게
     + (isMain ? ''    // 첫 항목은 라벨에 이미 뜻이 나오므로 생략
               : '<div class="focusmain"><b>'+esc(mw)+'</b> · '+esc(w.m)+'</div>');
@@ -4149,7 +4327,7 @@ function drawCopy(){
   //  - 그 외 → 한국어 뜻
   var mode, items, blankHTML=null, blankAns=null;
   if(w.type==='phrase' && w.ex && w.ex.en){
-    var syns=ownSyns(w).concat(derivSyns(w));   // 표제어 것 먼저, 파생어 것은 뒤에
+    var syns=ownSyns(w);   // 파생 쪽 동의어는 따라 쓰지 않는다 — 아래 '파생 단어' 칸에 따로 적는다
     var sp=phraseSpan(w.w, w.ex.en);
     if(sp){
       // 구문 자리를 빈칸으로: 그 부분만 입력하면 됨
@@ -4163,16 +4341,19 @@ function drawCopy(){
       mode='sentence';
       items=[mainW, w.ex.en].concat(syns);  // 위치를 못 찾으면: 구문 → 예문 → 동의어
     }
-  } else if(w.s && w.s.length){
+  } else if(ownSyns(w).length){
     mode='syns';
-    // ① 단어 자체 → ② 표제어 본인의 동의어 → ③ 파생어의 동의어
-    items=[mainW].concat(ownSyns(w)).concat(derivSyns(w));
-    w._cown = 1 + ownSyns(w).length;   // 여기까지가 표제어 본인 것
+    // ① 단어 자체 → ② 표제어 본인의 동의어.  파생 쪽은 따라쓰기에 넣지 않는다.
+    // 교재에 실린 것이니 없애지는 않고, 아래 '파생 단어' 칸에 별도 정보로 적어 둔다.
+    items=[mainW].concat(ownSyns(w));
+    w._cown = items.length;
   } else {
     // 동의어가 없는 항목: 뜻은 위에 이미 보이므로 단어만 따라 쓴다 (중복 방지)
     mode='meaning';
     items=[mainW];
   }
+  // 교재가 이 단어 밑에 같이 실은 '파생 단어'는 손으로 쓰지 않고 여기 따로 적어 둔다
+  renderCopyDeriv(w);
   w._cmode=mode;
   w._call=items;
   w._cnorm=items.map(normSyn);
@@ -4678,21 +4859,7 @@ function startPinned(){
 }
 
 // ---- 간격반복 복습: due 지난 단어들 출제 ----
-function startSrs(){
-  var due=srsDue();
-  if(!due.length){ msg('복습할 단어가 없습니다','err'); return; }
-  var _sg=$('srsGo'); if(_sg) _sg.disabled=true;
-  msg('불러오는 중…','load');
-  buildFullPool().then(function(){
-    if(POOL.all.length<4) throw new Error('선지를 만들 단어가 부족합니다');
-    SRC='bank';
-    if(_sg) _sg.disabled=false;
-    launch(shuf(due));
-  }).catch(function(e){
-    if(_sg) _sg.disabled=false;
-    msg('❌ '+e.message,'err');
-  });
-}
+
 
 // ---- 동의어 매칭: 정답 동의어 + 오답(다른 단어의 동의어) ----
 // 역방향: 동의어를 보여주고 원래 단어를 맞히기
@@ -4734,6 +4901,38 @@ function buildRev(w, pool){
 // 901개를 하나씩 검수해서 표제어와 1:1이 아닌 888개에 nq=1 을 달아뒀다.
 // nq가 달린 갈래의 동의어는 문제로 내지 않는다. 해설에는 그대로 다 보여준다.
 function isDeriv(pr){ return !!(pr && pr.nq); }
+// 이런 줄의 뜻은 '파생형 단어 이름 + 그 단어의 뜻' 이 한 칸에 들어 있다.
+//   d = "inactivity 활동하지 않음 / 활발치 못함"
+// 앞의 영어 낱말만 떼어내서 '누구 것인지' 이름을 그대로 보여 준다.
+// ('파생'이라는 말은 무슨 뜻인지 알 수 없어서 쓰지 않는다)
+function dervWord(pr){
+  if(!isDeriv(pr)) return '';
+  return String((pr&&pr.dw)||'').trim();      // 데이터에 칸이 따로 있다
+}
+// 그 파생형 단어의 뜻 (이름을 뺀 나머지)
+function dervMean(pr){
+  if(!isDeriv(pr)) return '';
+  return String((pr&&pr.dm)||(pr&&pr.d)||'').trim();
+}
+// 화면에 붙일 딱지 글자 — "inactivity 것" / 이름을 못 찾으면 "다른 단어 것"
+// 이 동의어가 어느 파생형 밑에 실려 있는지 (예: inertia → inactivity)
+function derivOwnerOf(w, syn){
+  var key=String(syn).toLowerCase().trim();
+  var ps=(w&&w.p)||[];
+  for(var i=0;i<ps.length;i++){
+    if(!isDeriv(ps[i])) continue;
+    var arr=ps[i].s||[];
+    for(var j=0;j<arr.length;j++)
+      if(String(arr[j]).toLowerCase().trim()===key) return dervWord(ps[i]);
+  }
+  return '';
+}
+// 딱지에 그 단어 이름을 이미 적었으니, 뜻 글자 앞에 또 붙은 같은 이름은 뺀다
+
+function dervTag(pr, w){
+  var head=String((w&&w.w)||'').trim();
+  return head ? esc(head)+'의 파생 단어' : '파생 단어';
+}
 function ownPairs(w){
   var ps=(w.p&&w.p.length)?w.p:null;
   if(!ps) return null;
@@ -4741,6 +4940,28 @@ function ownPairs(w){
   return own.length ? own : null;
 }
 // 파생어 갈래에만 붙은 동의어 (표제어 것과 겹치지 않는 것)
+// 따라쓰기 화면 아래 '교재가 같이 실은 파생 단어' 칸
+// 손으로 쓰게 하지 않고 눈으로만 보게 한다. 누구 것인지 이름을 밝힌다.
+function renderCopyDeriv(w){
+  var box=document.getElementById('cderiv'); if(!box) return;
+  var rows=[], head=String(w.w).split('=')[0].trim();
+  (w.p||[]).forEach(function(p){
+    if(!isDeriv(p)) return;
+    var dw=dervWord(p), dm=dervMean(p), ss=(p.s||[]);
+    rows.push('<div class="cdrow"><div class="cdw"><b>'+esc(dw)+'</b>'
+      + '<span class="cdm">'+esc(dm)+'</span></div>'
+      + (ss.length ? '<div class="cds">동의어 '
+          + ss.map(function(t){
+              var om=synOwnMean(t);
+              return '<span class="cdsw">'+esc(t)+(om?'<em>'+esc(om)+'</em>':'')+'</span>';
+            }).join('') + '</div>' : '')
+      + '</div>');
+  });
+  if(!rows.length){ box.innerHTML=''; box.style.display='none'; return; }
+  box.innerHTML='<div class="cdhead">교재가 '+esc(head)+' 밑에 같이 실은 파생 단어</div>'
+    + rows.join('');
+  box.style.display='';
+}
 function derivSyns(w){
   var own={}, o=[], seen={};
   (w.p||[]).forEach(function(pr){ if(!isDeriv(pr)) (pr.s||[]).forEach(function(t){
@@ -4763,6 +4984,47 @@ function ownSyns(w){
   }
   return (w.s||[]).slice();
 }
+// 이번 문제 선지에 나오지 않은 동의어를 답 공개 화면 맨 위에 모아 보여 준다.
+// (동의어가 많은 단어는 한 문제에 다 못 싣는다. 스크롤 안 해도 눈에 들어오게 맨 위)
+function missedSynHTML(q){
+  if(!q || q.kind!=='syn' || !q.w) return '';
+  var shown={};
+  (q.opts||[]).forEach(function(o){ shown[String(o.t).toLowerCase().trim()]=1; });
+  var rows=[], seen={};
+  (q.w.p||[]).forEach(function(pr){
+    if(isDeriv(pr)) return;
+    (pr.s||[]).forEach(function(t){
+      var k=String(t).toLowerCase().trim();
+      if(!k || shown[k] || seen[k]) return; seen[k]=1;
+      rows.push({t:t, d:String(pr.d||'').trim()});
+    });
+  });
+  if(!rows.length){
+    (q.w.s||[]).forEach(function(t){
+      var k=String(t).toLowerCase().trim();
+      if(!k || shown[k] || seen[k]) return; seen[k]=1;
+      rows.push({t:t, d:''});
+    });
+  }
+  if(!rows.length) return '';
+  var tot=0, sn={};
+  (q.w.p||[]).forEach(function(pr){ if(!isDeriv(pr)) (pr.s||[]).forEach(function(t){
+    sn[String(t).toLowerCase().trim()]=1; }); });
+  for(var k2 in sn) tot++;
+  if(!tot) tot=(q.w.s||[]).length;
+  return '<div class="msyn pbox amber"><div class="pbt" data-fk="msyn">이번 문제에 안 나온 동의어 '
+    + rows.length + '개 <span class="msynsub">(전체 '+tot+'개 중)</span></div>'
+    + '<div class="msynwrap">' + rows.map(function(r){
+        var om=synOwnMean(r.t);
+        var nd=String(r.d||'').replace(/\s+/g,''), nm=String(om||'').replace(/\s+/g,'');
+        if(nm && nd && (nm===nd || nm.indexOf(nd)===0)) om='';   // 같은 말을 두 번 적지 않는다
+        return '<div class="msynrow"><b>'+esc(r.t)+'</b>'
+          + (r.d?'<span class="msynd">'+esc(r.d)+'</span>':'')
+          + (om?'<span class="msynm">'+esc(om)+'</span>':'')
+          + hwTagHTML(r.t, q.w.w) + '</div>';
+      }).join('') + '</div>'
+    + '</div>';
+}
 function buildSyn(w){
   var pairs = ownPairs(w) || [{d:w.m, s:ownSyns(w)}];
 
@@ -4783,17 +5045,19 @@ function buildSyn(w){
   // 같은 단어를 다시 만날수록 정답(동의어)을 더 많이 보여준다.
   // 선지는 최대 9개, 오답은 최소 3개 → 정답은 최대 6개.
   // 화면이 좁으면(휴대폰) 선지를 7개까지만 — 스크롤 없이 한눈에 들어오게
-  var MAXOPT = (typeof window!=='undefined' && window.innerWidth < 700) ? 7 : 9;
   var MINWRONG=3;
   var rec = STATS[w.w];
-  var prevShown = (rec && rec.shown) || 0;      // 지난번에 보여준 정답 수
+  var prevShown = (rec && rec.shown) || 0;      // 지난번까지 보여준 정답 수
   var want;
   if(!prevShown) want = Math.min(3, all.length);          // 처음엔 3개(또는 있는 만큼)
-  else want = Math.min(prevShown + 2, all.length);         // 다시 만나면 +2
-  want = Math.min(want, MAXOPT - MINWRONG);                // 정답 상한 6개
+  else want = Math.min(prevShown + 4, all.length);         // 다시 만나면 +4
+  // 정답 개수에 천장을 두지 않는다. 반복해서 만나면 결국 동의어 전부가 선지로 나온다.
+  // (처음 3개로 시작하므로 첫 문제가 어려워지지는 않는다)
+  // 아직 한 번도 안 푼 단어는 STATS 기록이 없어 여기서 적을 곳이 없다.
+  // 그래서 문제에 적어 두고, 채점할 때 기록으로 옮긴다 (그래야 2회차가 3개로 멈추지 않는다)
   var right = shuf(all).slice(0, want);
-  // 다음번을 위해 이번에 보여준 개수 기록
-  if(rec){ rec.shown = right.length; }
+  var MAXOPT = right.length + 6;   // 오답은 3~6개
+
 
   var seen={};
   seen[w.w.toLowerCase()]=1;
@@ -4848,7 +5112,8 @@ function buildSyn(w){
       def:  ok ? '' : defOf(t)                                      // 오답: 그 단어 자체의 뜻
     };
   });
-  return {w:w, opts:opts, need:right.length, kind:'syn'};
+  // 이번에 보여준 정답 수 · 이 단어의 동의어 총수 (채점할 때 기록으로 옮긴다)
+  return {w:w, opts:opts, need:right.length, kind:'syn', shown:right.length, total:all.length};
 }
 
 function buildQuiz(w){
@@ -4952,6 +5217,7 @@ function draw(){
   $('fb').textContent='';
   $('info').classList.remove('on');
   $('info').innerHTML='';
+  try{ var _m0=$('qmissed'); if(_m0){ _m0.innerHTML=''; _m0.style.display='none'; } }catch(e){}
   if($('qroot')){ $('qroot').style.display='none'; $('qroot').innerHTML=''; }
   if($('syninput')) $('syninput').value='';     // 새 문제에선 입력창 비우기
   $('prog').firstElementChild.style.width=(qi/Q.length*100)+'%';
@@ -5019,6 +5285,7 @@ function submitSyn(){
     if(o.ok!==picked) ok=false;
   });
   ans[qi]={sel:chosen, ok:ok};
+  synShownSave(q);       // 이번에 몇 개까지 봤는지 기록
   if(!ok){
     wrongs.push({w:q.w, mine:chosen.map(function(i){return q.opts[i].t;}).join(', '), kind:'syn'});
     bankAdd('syn', q.w);
@@ -5028,10 +5295,34 @@ function submitSyn(){
     statsRight(q.w, 'syn');
   }
   bankSave();
+  requeueSyn(q);         // 동의어를 아직 다 못 봤으면 이번 회독 안에서 한 번 더
   replay();
   score();
   maybeShowFinishBtn();
   sessionSave();
+}
+
+// 이번 문제에서 정답으로 보여준 동의어 개수를 그 단어 기록에 옮긴다.
+// (buildSyn 시점에는 아직 STATS 기록이 없는 단어가 있어서 여기서 한다)
+function synShownSave(q){
+  if(!q || q.kind!=='syn' || !q.w) return;
+  var r=statsEnsure(q.w);
+  r.shown = Math.max(r.shown||0, q.shown||0);
+  statsSave();
+}
+// 동의어가 많아 한 문제에 다 못 실은 단어는, 같은 회독 안에서 뒤쪽에 다시 넣는다.
+// 그래야 한 번 도는 동안 그 단어의 동의어를 전부 문제로 만난다.
+function requeueSyn(q){
+  if(!q || q.kind!=='syn' || !q.w) return;
+  if(SRC==='retry') return;                       // 오답 다시 풀기에서는 늘리지 않는다
+  var r=STATS[q.w.w];
+  var seenN=(r&&r.shown)||0;
+  if(!q.total || seenN>=q.total) return;          // 이미 다 봤다
+  var gap=6+Math.floor(Math.random()*5);          // 바로 다음이 아니라 6~10문제 뒤에
+  var at=Math.min(Q.length, qi+gap);
+  Q.splice(at,0,buildSyn(q.w));
+  ans.splice(at,0,null);
+  try{ $('cnt').textContent=(qi+1)+' / '+Q.length; }catch(e){}
 }
 
 function pick(i){
@@ -5105,7 +5396,7 @@ function replay(){
       // 어원은 선지 99.9%에 있어 표시할 값어치가 없다 → 표시 안 함 (누르면 나오는 건 그대로)
       if(rootOfWord(o.t)) bs[i].classList.add('hasroot');
       // 철자가 비슷한 단어가 있으면 작은 점 하나만
-      if((CONF&&CONF[o.t])||similarOf(o.t).length) meta += '<span class="simdot"></span>';
+      if((CONFW&&CONFW[o.t])||(CONF&&CONF[o.t])||similarOf(o.t).length) meta += '<span class="simdot"></span>';
       // 답 공개 뒤에만 '몇 강 몇 번' 표시 (풀기 전엔 힌트가 되므로 안 붙임)
       meta += hwTagHTML(o.t, q.w && q.w.w);
       bs[i].innerHTML = (num?num.outerHTML:'') + body
@@ -5148,7 +5439,9 @@ function replay(){
     }
   }
   var w=q.w, h='';
-  h += '<button class="viewtog" onclick="viewToggle()"></button>';
+  h += '<div class="togrow">'
+     + '<button class="viewtog foldall" id="foldAllBtn" onclick="foldAll(this.getAttribute(\'data-close\')===\'1\')"></button>'
+     + '<button class="viewtog" onclick="viewToggle()"></button></div>';
   h += srcNote(w);                    // MVP는 책 인쇄면과 대조를 못 했다는 표시
   h += synonlyBox(q);                 // 선지 중 동의어로만 나온 뜻이 있으면 설명
   h += (q.kind==='syn') ? renderPairs(w, null) : renderFlat(w);
@@ -5175,6 +5468,9 @@ function replay(){
     +'<div id="qmemobox"></div>';
   $('info').innerHTML=h;
   $('info').classList.add('on');
+  // 이번 문제에 안 나온 동의어는 선지 위(문제 단어 바로 밑)에 — 스크롤 없이 바로 보이게
+  try{ var _ms=$('qmissed'); if(_ms){ _ms.innerHTML=missedSynHTML(q); _ms.style.display=_ms.innerHTML?'':'none';
+        foldApply(_ms); } }catch(e){}   // 이 칸도 접은 상태를 기억한다
   try{ foldApply($('info')); }catch(e){}   // 접어 두기로 한 박스는 접은 채로
   viewApply();
   dockSync();
@@ -5387,7 +5683,7 @@ function drawCard(){
   var cs=$('cs'), cr=$('cr');
   var _own=ownSyns(w), _der=derivSyns(w);
   if(_own.length||_der.length){
-    cs.textContent=_own.join(', ') + (_der.length ? '   [파생] '+_der.join(', ') : '');
+    cs.textContent=_own.join(', ') + (_der.length ? '   (다른 형태 쪽) '+_der.join(', ') : '');
     cs.style.display='';
   } else cs.style.display='none';
   if(w.r){ cr.textContent=w.r; cr.style.display=''; } else cr.style.display='none';
@@ -5433,7 +5729,7 @@ function viewApply(){
   var box=$('info'); if(!box) return;
   var lite=viewLite();
   box.classList.toggle('lite', lite);
-  var b=box.querySelector('.viewtog');
+  var b=box.querySelector('.viewtog:not(.foldall)');
   if(b) b.textContent = lite ? '자세히 보기' : '간단히 보기';
 }
 function viewToggle(){
@@ -5654,11 +5950,36 @@ $('syncGo').addEventListener('click',function(){ ghSync(false); });
 // 답 확인 뒤에 뜻·단어를 누르면 그 자리에서 펴진다
 // 박스 제목을 누르면 그 박스만 접힌다
 document.addEventListener('click',function(e){
+  // 갈래 제목: 그 갈래만 접기/펴기 (여러 갈래를 동시에 펴 둘 수 있다)
+  var st=e.target.closest && e.target.closest('.nzsec>.nzt[data-sk]');
+  if(st){
+    var sbox=st.parentNode;
+    sbox.classList.toggle('secfold');
+    foldSet(st.getAttribute('data-sk'), sbox.classList.contains('secfold'));
+    // 갈래를 하나라도 펴면 그 박스는 '펴진' 것으로 친다 (제목 글자도 맞춘다)
+    var pbox=sbox.closest('.pbox');
+    if(pbox){
+      var anyOpen=!!pbox.querySelector('.nzsec:not(.secfold)');
+      pbox.classList.toggle('fold', !anyOpen);
+      var pbt=pbox.querySelector(':scope>.pbt');
+      if(pbt) foldSet(foldKeyOf(pbt), !anyOpen);
+    }
+    try{ foldAllBtnSync(); }catch(e){}
+    e.stopPropagation(); return;
+  }
   var bt=e.target.closest && e.target.closest('.pbox>.pbt');
   if(bt){
     var box=bt.parentNode;
-    box.classList.toggle('fold');
-    foldSet(bt.textContent, box.classList.contains('fold'));   // 접은 상태를 기억해 둔다
+    var close=!box.classList.contains('fold');
+    box.classList.toggle('fold', close);
+    foldSet(foldKeyOf(bt), close);                            // 접은/편 상태를 기억해 둔다
+    // 뜻 구별 박스는 안에 갈래가 있다 — 박스를 접으면 갈래도 다 접고, 펴면 다 편다
+    var ss=box.querySelectorAll('.nzsec>.nzt[data-sk]');
+    for(var si=0;si<ss.length;si++){
+      ss[si].parentNode.classList.toggle('secfold', close);
+      foldSet(ss[si].getAttribute('data-sk'), close);
+    }
+    try{ foldAllBtnSync(); }catch(e){}
     e.stopPropagation(); return;
   }
 });
@@ -5884,18 +6205,16 @@ document.addEventListener('click',function(e){
         +'<div class="reqrow"><button class="reqbtn'+(on?' on':'')+'" data-req="'+esc(nm)+'">'
         +(on?'어원 요청됨 (누르면 취소)':'어원 요청에 담기')+'</button></div>';
     }
-    // 비슷하게 생긴 단어도 함께
-    var sm=similarOf(nm);
-    if(sm.length){
-      h+='<div class="simhead">👀 비슷하게 생긴 단어</div><div class="simlist">';
-      for(var s2=0;s2<sm.length;s2++){
-        var it2=sm[s2];
-        h+='<div class="simrow'+(it2.same?' same':'')+'">'
-          +'<span class="sw">'+esc(it2.w)+'</span>'
-          +'<span class="sm">'+esc(it2.m)+'</span>'
-          +'<span class="su">'+(it2.vol?it2.vol+'권 '+it2.day+'강':'')+(it2.same?' · 이 강':'')+'</span></div>';
-      }
-      h+='</div>';
+    // 헷갈리는 철자 — 문제 단어를 눌렀을 때와 똑같이 보여 준다
+    if(CONFW && CONFW[nm] && !CONF){
+      // 설명 본체(2MB)는 이때 받는다. 받고 나서 다시 그린다.
+      box.innerHTML=h+'<div class="pbox pink"><div class="pbt">헷갈리는 철자</div>불러오는 중…</div>';
+      box.style.display='';
+      confLoad().then(function(){ if($('qscr').classList.contains('on')) rb.click(); });
+      return;
+    }
+    if((CONF&&CONF[nm]) || similarOf(nm).length){
+      h+=simPanelHTML(nm);
     }
     box.innerHTML=h;
     box.style.display='';
