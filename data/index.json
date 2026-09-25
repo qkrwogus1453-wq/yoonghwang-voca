@@ -3,559 +3,559 @@
   "key": "v1d01",
   "label": "1권 1강",
   "order": 101,
-  "n": 105,
-  "words": 91,
-  "syn": 78,
-  "root": 91
+  "n": 137,
+  "words": 119,
+  "syn": 106,
+  "root": 117
  },
  {
   "key": "v1d02",
   "label": "1권 2강",
   "order": 102,
-  "n": 114,
-  "words": 95,
-  "syn": 74,
-  "root": 95
+  "n": 139,
+  "words": 118,
+  "syn": 97,
+  "root": 118
  },
  {
   "key": "v1d03",
   "label": "1권 3강",
   "order": 103,
-  "n": 133,
-  "words": 121,
-  "syn": 97,
-  "root": 121
+  "n": 152,
+  "words": 138,
+  "syn": 114,
+  "root": 138
  },
  {
   "key": "v1d04",
   "label": "1권 4강",
   "order": 104,
-  "n": 118,
-  "words": 97,
-  "syn": 81,
-  "root": 97
+  "n": 141,
+  "words": 120,
+  "syn": 104,
+  "root": 120
  },
  {
   "key": "v1d05",
   "label": "1권 5강",
   "order": 105,
-  "n": 100,
-  "words": 65,
-  "syn": 51,
-  "root": 65
+  "n": 112,
+  "words": 76,
+  "syn": 62,
+  "root": 76
  },
  {
   "key": "v1d06",
   "label": "1권 6강",
   "order": 106,
-  "n": 163,
-  "words": 80,
-  "syn": 61,
-  "root": 80
+  "n": 172,
+  "words": 89,
+  "syn": 70,
+  "root": 87
  },
  {
   "key": "v1d07",
   "label": "1권 7강",
   "order": 107,
-  "n": 149,
-  "words": 120,
-  "syn": 92,
-  "root": 120
+  "n": 164,
+  "words": 134,
+  "syn": 106,
+  "root": 133
  },
  {
   "key": "v1d08",
   "label": "1권 8강",
   "order": 108,
-  "n": 143,
-  "words": 102,
-  "syn": 79,
-  "root": 102
+  "n": 149,
+  "words": 107,
+  "syn": 84,
+  "root": 107
  },
  {
   "key": "v1d09",
   "label": "1권 9강",
   "order": 109,
-  "n": 139,
-  "words": 111,
-  "syn": 82,
-  "root": 111
+  "n": 153,
+  "words": 124,
+  "syn": 95,
+  "root": 124
  },
  {
   "key": "v1d10",
   "label": "1권 10강",
   "order": 110,
-  "n": 127,
-  "words": 117,
-  "syn": 91,
-  "root": 117
+  "n": 136,
+  "words": 123,
+  "syn": 97,
+  "root": 122
  },
  {
   "key": "v1d11",
   "label": "1권 11강",
   "order": 111,
-  "n": 129,
-  "words": 92,
-  "syn": 67,
-  "root": 92
+  "n": 152,
+  "words": 114,
+  "syn": 89,
+  "root": 112
  },
  {
   "key": "v1d12",
   "label": "1권 12강",
   "order": 112,
-  "n": 106,
-  "words": 99,
-  "syn": 88,
-  "root": 99
+  "n": 117,
+  "words": 109,
+  "syn": 98,
+  "root": 109
  },
  {
   "key": "v1d13",
   "label": "1권 13강",
   "order": 113,
-  "n": 116,
-  "words": 102,
-  "syn": 78,
-  "root": 102
+  "n": 131,
+  "words": 115,
+  "syn": 91,
+  "root": 115
  },
  {
   "key": "v1d14",
   "label": "1권 14강",
   "order": 114,
-  "n": 139,
-  "words": 117,
-  "syn": 85,
-  "root": 117
+  "n": 145,
+  "words": 123,
+  "syn": 91,
+  "root": 123
  },
  {
   "key": "v1d15",
   "label": "1권 15강",
   "order": 115,
-  "n": 121,
-  "words": 104,
-  "syn": 92,
-  "root": 104
+  "n": 140,
+  "words": 123,
+  "syn": 111,
+  "root": 123
  },
  {
   "key": "v1d16",
   "label": "1권 16강",
   "order": 116,
-  "n": 120,
-  "words": 113,
-  "syn": 98,
-  "root": 113
+  "n": 143,
+  "words": 136,
+  "syn": 121,
+  "root": 136
  },
  {
   "key": "v1d17",
   "label": "1권 17강",
   "order": 117,
-  "n": 122,
-  "words": 119,
-  "syn": 104,
-  "root": 119
+  "n": 147,
+  "words": 142,
+  "syn": 127,
+  "root": 142
  },
  {
   "key": "v1d18",
   "label": "1권 18강",
   "order": 118,
-  "n": 138,
-  "words": 102,
-  "syn": 80,
-  "root": 102
+  "n": 150,
+  "words": 114,
+  "syn": 92,
+  "root": 114
  },
  {
   "key": "v1d19",
   "label": "1권 19강",
   "order": 119,
-  "n": 125,
-  "words": 119,
-  "syn": 93,
-  "root": 119
+  "n": 148,
+  "words": 139,
+  "syn": 113,
+  "root": 139
  },
  {
   "key": "v1d20",
   "label": "1권 20강",
   "order": 120,
-  "n": 128,
-  "words": 123,
-  "syn": 96,
-  "root": 123
+  "n": 153,
+  "words": 144,
+  "syn": 117,
+  "root": 144
  },
  {
   "key": "v1d21",
   "label": "1권 21강",
   "order": 121,
-  "n": 118,
-  "words": 111,
-  "syn": 94,
-  "root": 111
+  "n": 145,
+  "words": 138,
+  "syn": 121,
+  "root": 138
  },
  {
   "key": "v1d22",
   "label": "1권 22강",
   "order": 122,
-  "n": 139,
-  "words": 108,
-  "syn": 83,
-  "root": 108
+  "n": 150,
+  "words": 118,
+  "syn": 93,
+  "root": 118
  },
  {
   "key": "v1d23",
   "label": "1권 23강",
   "order": 123,
-  "n": 134,
-  "words": 108,
-  "syn": 89,
-  "root": 108
+  "n": 144,
+  "words": 118,
+  "syn": 99,
+  "root": 116
  },
  {
   "key": "v1d24",
   "label": "1권 24강",
   "order": 124,
-  "n": 138,
-  "words": 120,
-  "syn": 98,
-  "root": 120
+  "n": 151,
+  "words": 132,
+  "syn": 110,
+  "root": 130
  },
  {
   "key": "v1d25",
   "label": "1권 25강",
   "order": 125,
-  "n": 153,
-  "words": 59,
-  "syn": 41,
-  "root": 59
+  "n": 159,
+  "words": 65,
+  "syn": 47,
+  "root": 65
  },
  {
   "key": "v1d26",
   "label": "1권 26강",
   "order": 126,
-  "n": 141,
-  "words": 100,
-  "syn": 77,
-  "root": 100
+  "n": 153,
+  "words": 110,
+  "syn": 87,
+  "root": 109
  },
  {
   "key": "v1d27",
   "label": "1권 27강",
   "order": 127,
-  "n": 142,
-  "words": 101,
-  "syn": 72,
-  "root": 101
+  "n": 154,
+  "words": 112,
+  "syn": 83,
+  "root": 112
  },
  {
   "key": "v1d28",
   "label": "1권 28강",
   "order": 128,
-  "n": 145,
-  "words": 108,
-  "syn": 68,
-  "root": 108
+  "n": 149,
+  "words": 111,
+  "syn": 71,
+  "root": 111
  },
  {
   "key": "v1d29",
   "label": "1권 29강",
   "order": 129,
-  "n": 146,
-  "words": 89,
-  "syn": 73,
-  "root": 89
+  "n": 153,
+  "words": 95,
+  "syn": 79,
+  "root": 95
  },
  {
   "key": "v1d30",
   "label": "1권 30강",
   "order": 130,
-  "n": 135,
-  "words": 109,
-  "syn": 92,
-  "root": 109
+  "n": 147,
+  "words": 120,
+  "syn": 103,
+  "root": 120
  },
  {
   "key": "v1d31",
   "label": "1권 31강",
   "order": 131,
-  "n": 129,
-  "words": 129,
-  "syn": 115,
-  "root": 129
+  "n": 150,
+  "words": 149,
+  "syn": 135,
+  "root": 149
  },
  {
   "key": "v1d32",
   "label": "1권 32강",
   "order": 132,
-  "n": 125,
-  "words": 107,
-  "syn": 87,
-  "root": 107
+  "n": 139,
+  "words": 120,
+  "syn": 100,
+  "root": 120
  },
  {
   "key": "v1d33",
   "label": "1권 33강",
   "order": 133,
-  "n": 150,
-  "words": 103,
-  "syn": 77,
-  "root": 103
- },
- {
-  "key": "v1d34",
-  "label": "1권 34강",
-  "order": 134,
-  "n": 129,
-  "words": 94,
-  "syn": 67,
-  "root": 94
- },
- {
-  "key": "v1d35",
-  "label": "1권 35강",
-  "order": 135,
-  "n": 152,
-  "words": 94,
-  "syn": 66,
-  "root": 94
- },
- {
-  "key": "v1d36",
-  "label": "1권 36강",
-  "order": 136,
-  "n": 139,
-  "words": 132,
-  "syn": 84,
-  "root": 132
- },
- {
-  "key": "v1d37",
-  "label": "1권 37강",
-  "order": 137,
-  "n": 136,
-  "words": 124,
-  "syn": 89,
-  "root": 124
- },
- {
-  "key": "v1d38",
-  "label": "1권 38강",
-  "order": 138,
-  "n": 127,
+  "n": 155,
   "words": 108,
   "syn": 82,
   "root": 108
  },
  {
+  "key": "v1d34",
+  "label": "1권 34강",
+  "order": 134,
+  "n": 143,
+  "words": 107,
+  "syn": 80,
+  "root": 104
+ },
+ {
+  "key": "v1d35",
+  "label": "1권 35강",
+  "order": 135,
+  "n": 157,
+  "words": 98,
+  "syn": 70,
+  "root": 98
+ },
+ {
+  "key": "v1d36",
+  "label": "1권 36강",
+  "order": 136,
+  "n": 151,
+  "words": 142,
+  "syn": 94,
+  "root": 142
+ },
+ {
+  "key": "v1d37",
+  "label": "1권 37강",
+  "order": 137,
+  "n": 149,
+  "words": 136,
+  "syn": 101,
+  "root": 136
+ },
+ {
+  "key": "v1d38",
+  "label": "1권 38강",
+  "order": 138,
+  "n": 141,
+  "words": 121,
+  "syn": 95,
+  "root": 121
+ },
+ {
   "key": "v1d39",
   "label": "1권 39강",
   "order": 139,
-  "n": 147,
-  "words": 87,
-  "syn": 70,
-  "root": 87
+  "n": 158,
+  "words": 98,
+  "syn": 81,
+  "root": 98
  },
  {
   "key": "v1d40",
   "label": "1권 40강",
   "order": 140,
-  "n": 98,
-  "words": 71,
-  "syn": 51,
-  "root": 71
+  "n": 101,
+  "words": 74,
+  "syn": 54,
+  "root": 74
  },
  {
   "key": "v1d41",
   "label": "1권 41강",
   "order": 141,
-  "n": 43,
-  "words": 39,
-  "syn": 26,
-  "root": 39
+  "n": 44,
+  "words": 40,
+  "syn": 27,
+  "root": 40
  },
  {
   "key": "v1d42",
   "label": "1권 42강",
   "order": 142,
-  "n": 139,
-  "words": 115,
-  "syn": 97,
-  "root": 115
+  "n": 165,
+  "words": 138,
+  "syn": 120,
+  "root": 138
  },
  {
   "key": "v1d43",
   "label": "1권 43강",
   "order": 143,
-  "n": 136,
-  "words": 112,
-  "syn": 76,
-  "root": 112
+  "n": 144,
+  "words": 117,
+  "syn": 81,
+  "root": 117
  },
  {
   "key": "v1d44",
   "label": "1권 44강",
   "order": 144,
-  "n": 126,
-  "words": 117,
-  "syn": 95,
-  "root": 117
+  "n": 147,
+  "words": 137,
+  "syn": 115,
+  "root": 137
  },
  {
   "key": "v1d45",
   "label": "1권 45강",
   "order": 145,
-  "n": 135,
-  "words": 119,
-  "syn": 98,
-  "root": 119
+  "n": 150,
+  "words": 133,
+  "syn": 112,
+  "root": 133
  },
  {
   "key": "v1d46",
   "label": "1권 46강",
   "order": 146,
-  "n": 143,
-  "words": 99,
-  "syn": 82,
-  "root": 99
+  "n": 150,
+  "words": 103,
+  "syn": 86,
+  "root": 103
  },
  {
   "key": "v1d47",
   "label": "1권 47강",
   "order": 147,
-  "n": 252,
-  "words": 236,
-  "syn": 188,
-  "root": 236
+  "n": 291,
+  "words": 272,
+  "syn": 224,
+  "root": 272
  },
  {
   "key": "v1d48",
   "label": "1권 48강",
   "order": 148,
-  "n": 144,
-  "words": 117,
-  "syn": 86,
-  "root": 117
+  "n": 153,
+  "words": 126,
+  "syn": 95,
+  "root": 126
  },
  {
   "key": "v1d49",
   "label": "1권 49강",
   "order": 149,
-  "n": 133,
-  "words": 119,
-  "syn": 83,
-  "root": 119
+  "n": 146,
+  "words": 130,
+  "syn": 94,
+  "root": 130
  },
  {
   "key": "v1d50",
   "label": "1권 50강",
   "order": 150,
-  "n": 150,
-  "words": 116,
-  "syn": 85,
-  "root": 116
+  "n": 159,
+  "words": 122,
+  "syn": 91,
+  "root": 122
  },
  {
   "key": "v1d51",
   "label": "1권 51강",
   "order": 151,
-  "n": 138,
-  "words": 120,
-  "syn": 85,
-  "root": 120
+  "n": 147,
+  "words": 126,
+  "syn": 91,
+  "root": 126
  },
  {
   "key": "v1d52",
   "label": "1권 52강",
   "order": 152,
-  "n": 135,
-  "words": 101,
-  "syn": 78,
-  "root": 101
+  "n": 146,
+  "words": 109,
+  "syn": 86,
+  "root": 109
  },
  {
   "key": "v1d53",
   "label": "1권 53강",
   "order": 153,
-  "n": 136,
-  "words": 126,
-  "syn": 99,
-  "root": 126
+  "n": 150,
+  "words": 138,
+  "syn": 111,
+  "root": 137
  },
  {
   "key": "v1d54",
   "label": "1권 54강",
   "order": 154,
-  "n": 128,
-  "words": 58,
-  "syn": 45,
-  "root": 58
+  "n": 137,
+  "words": 65,
+  "syn": 52,
+  "root": 65
  },
  {
   "key": "v1d55",
   "label": "1권 55강",
   "order": 155,
-  "n": 146,
-  "words": 110,
-  "syn": 71,
-  "root": 110
+  "n": 156,
+  "words": 119,
+  "syn": 80,
+  "root": 119
  },
  {
   "key": "v1d56",
   "label": "1권 56강",
   "order": 156,
-  "n": 142,
-  "words": 126,
-  "syn": 97,
-  "root": 126
+  "n": 153,
+  "words": 134,
+  "syn": 105,
+  "root": 134
  },
  {
   "key": "v1d57",
   "label": "1권 57강",
   "order": 157,
-  "n": 164,
-  "words": 134,
-  "syn": 97,
-  "root": 134
+  "n": 177,
+  "words": 147,
+  "syn": 110,
+  "root": 147
  },
  {
   "key": "v1d58",
   "label": "1권 58강",
   "order": 158,
-  "n": 154,
-  "words": 148,
-  "syn": 113,
-  "root": 148
+  "n": 165,
+  "words": 157,
+  "syn": 122,
+  "root": 157
  },
  {
   "key": "v1d59",
   "label": "1권 59강",
   "order": 159,
-  "n": 136,
-  "words": 120,
-  "syn": 94,
-  "root": 120
+  "n": 153,
+  "words": 135,
+  "syn": 109,
+  "root": 135
  },
  {
   "key": "v1d60",
   "label": "1권 60강",
   "order": 160,
-  "n": 147,
-  "words": 94,
-  "syn": 61,
-  "root": 94
+  "n": 152,
+  "words": 98,
+  "syn": 65,
+  "root": 98
  },
  {
   "key": "v2d01",
   "label": "2권 1강",
   "order": 201,
-  "n": 158,
-  "words": 116,
-  "syn": 57,
-  "root": 116
+  "n": 161,
+  "words": 119,
+  "syn": 60,
+  "root": 119
  },
  {
   "key": "v2d02",
   "label": "2권 2강",
   "order": 202,
-  "n": 168,
-  "words": 113,
-  "syn": 50,
-  "root": 113
+  "n": 170,
+  "words": 115,
+  "syn": 52,
+  "root": 115
  },
  {
   "key": "v2d03",
@@ -570,64 +570,64 @@
   "key": "v2d04",
   "label": "2권 4강",
   "order": 204,
-  "n": 168,
-  "words": 109,
-  "syn": 53,
-  "root": 109
+  "n": 171,
+  "words": 111,
+  "syn": 55,
+  "root": 111
  },
  {
   "key": "v2d05",
   "label": "2권 5강",
   "order": 205,
-  "n": 164,
-  "words": 124,
-  "syn": 51,
-  "root": 124
+  "n": 166,
+  "words": 125,
+  "syn": 52,
+  "root": 125
  },
  {
   "key": "v2d06",
   "label": "2권 6강",
   "order": 206,
-  "n": 167,
-  "words": 119,
-  "syn": 70,
-  "root": 119
+  "n": 170,
+  "words": 122,
+  "syn": 73,
+  "root": 122
  },
  {
   "key": "v2d07",
   "label": "2권 7강",
   "order": 207,
-  "n": 157,
-  "words": 128,
-  "syn": 72,
-  "root": 128
+  "n": 162,
+  "words": 131,
+  "syn": 75,
+  "root": 131
  },
  {
   "key": "v2d08",
   "label": "2권 8강",
   "order": 208,
-  "n": 162,
-  "words": 112,
-  "syn": 55,
-  "root": 112
+  "n": 163,
+  "words": 113,
+  "syn": 56,
+  "root": 113
  },
  {
   "key": "v2d09",
   "label": "2권 9강",
   "order": 209,
-  "n": 163,
-  "words": 132,
-  "syn": 77,
-  "root": 132
+  "n": 167,
+  "words": 136,
+  "syn": 81,
+  "root": 136
  },
  {
   "key": "v2d10",
   "label": "2권 10강",
   "order": 210,
-  "n": 160,
-  "words": 119,
-  "syn": 65,
-  "root": 119
+  "n": 161,
+  "words": 120,
+  "syn": 66,
+  "root": 120
  },
  {
   "key": "v2d11",
@@ -642,10 +642,10 @@
   "key": "v2d12",
   "label": "2권 12강",
   "order": 212,
-  "n": 168,
-  "words": 99,
-  "syn": 46,
-  "root": 99
+  "n": 171,
+  "words": 100,
+  "syn": 47,
+  "root": 100
  },
  {
   "key": "v2d13",
@@ -660,10 +660,10 @@
   "key": "v2d14",
   "label": "2권 14강",
   "order": 214,
-  "n": 161,
-  "words": 127,
-  "syn": 77,
-  "root": 127
+  "n": 162,
+  "words": 128,
+  "syn": 78,
+  "root": 128
  },
  {
   "key": "v2d15",
@@ -678,64 +678,64 @@
   "key": "v2d16",
   "label": "2권 16강",
   "order": 216,
-  "n": 163,
-  "words": 115,
-  "syn": 58,
-  "root": 115
+  "n": 167,
+  "words": 118,
+  "syn": 61,
+  "root": 118
  },
  {
   "key": "v2d17",
   "label": "2권 17강",
   "order": 217,
-  "n": 163,
-  "words": 140,
-  "syn": 72,
-  "root": 140
+  "n": 166,
+  "words": 143,
+  "syn": 75,
+  "root": 143
  },
  {
   "key": "v2d18",
   "label": "2권 18강",
   "order": 218,
-  "n": 167,
-  "words": 98,
-  "syn": 42,
-  "root": 98
+  "n": 170,
+  "words": 101,
+  "syn": 45,
+  "root": 101
  },
  {
   "key": "v2d19",
   "label": "2권 19강",
   "order": 219,
-  "n": 161,
-  "words": 129,
-  "syn": 64,
-  "root": 129
+  "n": 163,
+  "words": 131,
+  "syn": 66,
+  "root": 130
  },
  {
   "key": "v2d20",
   "label": "2권 20강",
   "order": 220,
-  "n": 162,
-  "words": 124,
-  "syn": 67,
-  "root": 124
+  "n": 167,
+  "words": 127,
+  "syn": 70,
+  "root": 127
  },
  {
   "key": "v2d21",
   "label": "2권 21강",
   "order": 221,
-  "n": 160,
-  "words": 115,
-  "syn": 56,
-  "root": 115
+  "n": 162,
+  "words": 116,
+  "syn": 57,
+  "root": 116
  },
  {
   "key": "v2d22",
   "label": "2권 22강",
   "order": 222,
-  "n": 154,
-  "words": 136,
-  "syn": 75,
-  "root": 136
+  "n": 158,
+  "words": 139,
+  "syn": 78,
+  "root": 139
  },
  {
   "key": "v2d23",
@@ -750,7 +750,7 @@
   "key": "v2d24",
   "label": "2권 24강",
   "order": 224,
-  "n": 153,
+  "n": 155,
   "words": 110,
   "syn": 43,
   "root": 110
@@ -759,19 +759,19 @@
   "key": "v2d25",
   "label": "2권 25강",
   "order": 225,
-  "n": 157,
-  "words": 129,
-  "syn": 66,
-  "root": 129
+  "n": 159,
+  "words": 131,
+  "syn": 68,
+  "root": 131
  },
  {
   "key": "v2d26",
   "label": "2권 26강",
   "order": 226,
-  "n": 166,
-  "words": 129,
-  "syn": 54,
-  "root": 129
+  "n": 167,
+  "words": 130,
+  "syn": 55,
+  "root": 130
  },
  {
   "key": "v2d27",
@@ -822,9 +822,9 @@
   "key": "mvp2",
   "label": "MVP2 단독",
   "order": 1002,
-  "n": 540,
-  "words": 538,
-  "syn": 507,
-  "root": 538
+  "n": 541,
+  "words": 539,
+  "syn": 508,
+  "root": 539
  }
 ]
