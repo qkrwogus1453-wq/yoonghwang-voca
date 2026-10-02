@@ -2403,7 +2403,22 @@ function bankLoad(){
   }catch(e){ BANK={quiz:{}, syn:{}}; }
 }
 function bankSave(){
-  try{ localStorage.setItem(BKEY, JSON.stringify(BANK)); }catch(e){}
+  lsSet(BKEY, JSON.stringify({quiz:slimLocalMap(BANK.quiz), syn:slimLocalMap(BANK.syn)}));
+}
+// ── 이 기기 저장 공간 절약 ──
+// 단어 기록·담긴 단어·손글씨 목록에 단어 내용(동의어·갈래·어원·예문)까지 통째로 저장하던 것을,
+// 진도(맞음·틀림·시각·담김)와 뜻만 남기고 저장한다. 빠진 내용은 단어 파일을 불러오면 다시 채워진다
+// (동기화에서 쓰던 방식과 같음 — fetchAllItems → ghRefill/refreshStored).
+var LOCAL_DROP=['s','p','r','type','pp','ug','uf','ex'];
+function slimLocalMap(m){
+  var o={};
+  for(var k in (m||{})){
+    var rec=m[k]; if(!rec || typeof rec!=='object'){ o[k]=rec; continue; }
+    var r={};
+    for(var f in rec){ if(LOCAL_DROP.indexOf(f)>=0) continue; var v=rec[f]; if(v===undefined||v===null||v==='') continue; r[f]=v; }
+    o[k]=r;
+  }
+  return o;
 }
 
 // ---------- 장기 오답 통계 (맞혀도 기록 유지) ----------
@@ -2490,7 +2505,7 @@ function ghFattenMap(m, localMap){
 //   풀이 준비되면 저장된 기록의 '내용'만 최신 데이터로 덮어쓴다.
 //   진도(맞음/틀림/연속/시각/즐겨찾기)는 절대 건드리지 않는다.
 // (id/vol/day는 갱신하지 않는다 — 1·2권에 같은 단어가 있을 때 기록의 출처 강이 바뀌면 안 되니까)
-var WORDF=['m','s','p','r','type','pp','ug','uf'];
+var WORDF=['m','s','p','r','type','pp','ug','uf','ex'];
 var _refreshChanged=false;
 function refreshRec(rec, key){
   if(!rec || typeof rec!=='object') return rec;
@@ -2972,7 +2987,7 @@ function syncSoon(){
 // ── 단어 메모 (내가 만든 설명) ──
 var MKEY='voca_memo_v1', MEMO={};
 function memoLoad(){ try{ var r=localStorage.getItem(MKEY); if(r) MEMO=JSON.parse(r)||{}; }catch(e){ MEMO={}; } }
-function memoSave(){ try{ localStorage.setItem(MKEY, JSON.stringify(MEMO)); }catch(e){} }
+function memoSave(){ lsSet(MKEY, JSON.stringify(MEMO)); }
 function memoGet(w){ var m=MEMO[String(w)]; return m?m.t:''; }
 function memoSet(w, txt){
   var k=String(w);
@@ -3010,7 +3025,7 @@ var PKEY='voca_pen_v1', PENLIST={};
 function penLoad(){
   try{ var r=localStorage.getItem(PKEY); if(r) PENLIST=JSON.parse(r)||{}; }catch(e){ PENLIST={}; }
 }
-function penSave(){ try{ localStorage.setItem(PKEY, JSON.stringify(PENLIST)); }catch(e){} }
+function penSave(){ lsSet(PKEY, JSON.stringify(slimLocalMap(PENLIST))); }
 function isPen(w){ return !!PENLIST[String(w.w)]; }
 function penToggle(w){
   var k=String(w.w);
@@ -3030,7 +3045,7 @@ function penBtnUI(id, w){
 // ── 날짜별 다이어리 메모 ──
 var JKEY='voca_diary_v1', DIARY={};
 function diaryLoad(){ try{ var r=localStorage.getItem(JKEY); if(r) DIARY=JSON.parse(r)||{}; }catch(e){ DIARY={}; } }
-function diarySave(){ try{ localStorage.setItem(JKEY, JSON.stringify(DIARY)); }catch(e){} }
+function diarySave(){ lsSet(JKEY, JSON.stringify(DIARY)); }
 function diaryGet(k){ var d=DIARY[k]; return d?{todo:d.todo||'', done:d.done||''}:{todo:'',done:''}; }
 function diarySet(k, todo, done, checks){
   todo=String(todo||'').trim(); done=String(done||'').trim();
@@ -3068,7 +3083,7 @@ function dayKey(d){
 function dailyLoad(){
   try{ var r=localStorage.getItem(DKEY); if(r) DAILY=JSON.parse(r)||{}; }catch(e){ DAILY={}; }
 }
-function dailySave(){ try{ localStorage.setItem(DKEY, JSON.stringify(DAILY)); }catch(e){} }
+function dailySave(){ lsSet(DKEY, JSON.stringify(DAILY)); }
 // 이 강을 1회독 끝냈는가 — 그 강 단어를 전부 동의어 매칭으로 풀었고 남은 오답이 없으면
 function unitCleared(key){
   var arr = (typeof CACHE!=='undefined') && CACHE[key];
@@ -3120,7 +3135,7 @@ var DAILY_GOAL=400;
 
 function statsSave(){
   if(typeof syncSoon==='function') syncSoon();
-  lsSet(SKEY, JSON.stringify(STATS));
+  lsSet(SKEY, JSON.stringify(slimLocalMap(STATS)));
 }
 // 간격반복(SRS): 연속 정답 단계별로 복습 간격을 늘림 (분 단위)
 var SRS_STEPS=[0, 1440, 4320, 10080, 21600, 43200]; // 0분,1일,3일,7일,15일,30일
@@ -3324,7 +3339,13 @@ function penPick(limit, unitKey){
 }
 var PEN_UNIT=null;
 var PEN_RANDOM=false;   // 전체 범위에서 랜덤으로 뽑기
+// 손글씨 목록은 어원·동의어도 보여 주므로, 저장분에서 뺀 내용을 먼저 채운 뒤 그린다
 function penDraw(){
+  if(typeof _allPool!=='undefined' && _allPool) return _penDraw();
+  $('penlist').innerHTML='<div class="done">불러오는 중…</div>';
+  fetchAllItems(true).then(_penDraw, _penDraw);
+}
+function _penDraw(){
   var res=penPick(20, PEN_UNIT);
   var box=$('penlist');
   var total=res.hard.length+res.mine.length;
@@ -3596,7 +3617,7 @@ setInterval(function(){
   }catch(e){}
 },1500);
 
-var APP_VER = '2026.12.05';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
+var APP_VER = '2026.12.06';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
 var VER = APP_VER;  // 데이터 URL 캐시 키. 배포 때만 바뀌므로 브라우저 캐시가 제대로 재사용됨
 function loadJ(p){
   // 데이터 파일은 URL에 버전(v=)이 붙어 캐시가 자동 갱신되므로 브라우저 캐시를 허용한다.
@@ -3809,6 +3830,9 @@ function startBoot(){
       }
     }catch(e){}
     if(ghReady()) setTimeout(function(){ ghSync(true); }, 800);
+    setTimeout(function(){ try{ storageSlimOnce(); }catch(e){} }, 1500);
+    // 저장분에서 뺀 단어 내용(동의어·어원 등)을 뒤에서 조용히 다시 채운다
+    setTimeout(function(){ try{ fetchAllItems(true).catch(function(){}); }catch(e){} }, 4000);
     // 동의어 뜻 사전 (없어도 앱은 동작)
     loadJ('data/lex.json').then(function(d){ LEX=d||{}; }).catch(function(){ LEX={}; });
     // 무거운 부가 데이터(관련단어 2.5MB · 뜻구별 1.3MB · 어근 0.36MB)는 첫 화면이 뜬 뒤에 받는다.
@@ -3918,15 +3942,18 @@ function fetchItems(){
 
 // 오답 선지용 전체 단어 풀 (모든 강). 한 번 로드 후 캐시 재사용
 var _allPool=null;
-function fetchAllItems(){
+var _allLoading=null, _allQuiet=false;
+function fetchAllItems(quiet){
   if(_allPool) return Promise.resolve(_allPool);
+  if(_allLoading){ if(!quiet) _allQuiet=false; return _allLoading; }   // 이미 불러오는 중이면 그걸 함께 기다림
+  _allQuiet=!!quiet;
   var allKeys=IDX.map(function(d){return d.key;});
   var doneN=0, total=allKeys.length;
-  msg('전체 단어 준비 중… 0/'+total,'load');
-  return Promise.all(allKeys.map(function(k){
+  if(!_allQuiet) msg('전체 단어 준비 중… 0/'+total,'load');
+  return _allLoading=Promise.all(allKeys.map(function(k){
     return getDay(k).then(function(r){
       doneN++;
-      msg('전체 단어 준비 중… '+doneN+'/'+total,'load');
+      if(!_allQuiet) msg('전체 단어 준비 중… '+doneN+'/'+total,'load');
       return r;
     });
   })).then(function(cs){
@@ -3935,9 +3962,10 @@ function fetchAllItems(){
     try{ ghRefill(); }catch(e){}       // 압축본 되채우기
     try{ refreshStored(); }catch(e){}  // 저장된 기록의 단어 내용을 최신 데이터로 갱신
     _allPool=it;
-    hide();
+    _allLoading=null;
+    if(!_allQuiet) hide();
     return it;
-  });
+  }, function(e){ _allLoading=null; throw e; });
 }
 // 오답 풀(POOL)을 전체 단어로 채움. 정답 대상 리스트는 별도로 유지
 function buildFullPool(){
@@ -4966,7 +4994,7 @@ var ROOTREQ={};
 function rootReqLoad(){
   try{ var r=localStorage.getItem(RQKEY); if(r) ROOTREQ=JSON.parse(r)||{}; }catch(e){ ROOTREQ={}; }
 }
-function rootReqSave(){ try{ localStorage.setItem(RQKEY, JSON.stringify(ROOTREQ)); }catch(e){} }
+function rootReqSave(){ lsSet(RQKEY, JSON.stringify(ROOTREQ)); }
 function rootReqAdd(word, mainWord){
   var k=String(word).toLowerCase().trim();
   if(!k) return false;
@@ -5481,6 +5509,16 @@ function sesRepair(d){
   if(typeof d.qi!=='number' || d.qi<0 || d.qi>=d.Q.length) d.qi=0;
   return d;
 }
+// 처음 한 번: 동기화로 지금 기록을 올려 둔 뒤, 이 기기 저장분을 작게 다시 쓴다
+function storageSlimOnce(){
+  try{ if(localStorage.getItem('voca_slim_v1')) return; }catch(e){ return; }
+  function doSlim(){
+    try{ ['voca_session_v1','voca_session_v2'].forEach(function(k){ localStorage.removeItem(k); }); }catch(e){}
+    try{ statsSave(); bankSave(); penSave(); dailySave(); sessionsSave(); }catch(e){}
+    lsSet('voca_slim_v1', String(Date.now()));
+  }
+  if(ghReady()) ghSync(true).then(doSlim, doSlim); else doSlim();
+}
 function sessionsLoad(){ try{ var r=localStorage.getItem(SESMAP); if(r) SESSIONS=JSON.parse(r)||{}; }catch(e){ SESSIONS={}; }
   sesDelLoad();
   // 예전에 따로 두던 '마지막 세션' 사본은 강별 보관으로 옮기고 지운다 (같은 걸 두 번 저장하던 것 — 저장 공간 절약)
@@ -5903,7 +5941,7 @@ var KBOOK='y';       // 'y' 윤황보카만 · 'ym' MVP까지
 var KOST=null;       // 뜻별로 몇 개까지 봤는지 (동의어 매칭과 같은 방식)
 var KOKEY='voca_ko_v1';
 function koLoad(){ try{ KOST=JSON.parse(localStorage.getItem(KOKEY)||'{}'); }catch(e){ KOST={}; } if(!KOST) KOST={}; }
-function koSave(){ try{ localStorage.setItem(KOKEY, JSON.stringify(KOST)); }catch(e){} }
+function koSave(){ lsSet(KOKEY, JSON.stringify(KOST)); }
 function koRec(sense){ if(!KOST) koLoad(); return KOST[sense] || (KOST[sense]={shown:0, sh:[]}); }
 
 // 한 뜻에 딸린 단어를 모은다. 어느 강 누구 밑에 적힌 것인지도 같이 담는다.
@@ -6644,7 +6682,7 @@ function pinAsk(w, btnId){
 //  · 빼도 기록(on:0)은 남긴다 → 동기화할 때 다른 기기에서 다시 살아나지 않게 (단어마다 최신 것이 이김)
 var CMPKEY='voca_cmp_v1', CMP={};
 function cmpLoad(){ try{ var r=localStorage.getItem(CMPKEY); if(r) CMP=JSON.parse(r)||{}; }catch(e){ CMP={}; } }
-function cmpSave(){ try{ localStorage.setItem(CMPKEY, JSON.stringify(CMP)); }catch(e){} }
+function cmpSave(){ lsSet(CMPKEY, JSON.stringify(CMP)); }
 function _pad2(n){ n=parseInt(n,10)||0; return (n<10?'0':'')+n; }
 function cmpUnitOf(w){
   if(!w) return '';
