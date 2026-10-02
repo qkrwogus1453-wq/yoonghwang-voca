@@ -873,6 +873,15 @@ body.hasdock #qnav{display:none}
 .syncmsg.ok{color:#6ee7b7}
 .syncmsg.err{color:#f08080}
 .syncmsg.load{color:#e0b968}
+.sdot{font-size:.85em;margin-left:6px;opacity:.85}
+.sdot.ok{color:#6ee7b7}.sdot.err{color:#ff8a8a;opacity:1;font-weight:700}.sdot.load{color:#e0b968}
+.syncerr{color:#ff9a9a}
+.syncdiag{margin:0 0 14px;padding:12px 14px;border-radius:12px;border:1px solid #2a4a6a;background:#0f1d2e;font-size:.93em;line-height:1.7}
+.syncdiag .dr{display:flex;gap:10px;border-bottom:1px dashed rgba(255,255,255,.07);padding:2px 0}
+.syncdiag .dk{color:#8fa6c4;min-width:132px;flex:none}
+.syncdiag .dv{color:#e8f0fc;word-break:break-all}
+.syncdiag .dv.bad{color:#ff9a9a}.syncdiag .dv.good{color:#6ee7b7}
+.syncdiag .dbtns{display:flex;gap:8px;margin-top:10px;justify-content:flex-end}
 
 .pinrow .pk{color:#f0a500;font-size:.88em;font-weight:700;white-space:nowrap;
   background:#2a2410;padding:4px 10px;border-radius:20px}
@@ -1010,6 +1019,9 @@ body.hasdock #qnav{display:none}
 .resrow .rsm{color:#9fb4d6;font-size:.9em}
 .resrow .rsp{margin-left:auto;color:#f0a500;font-weight:700}
 .resrow .rst{color:#7f93b4;font-size:.85em;white-space:nowrap;min-width:56px;text-align:right}
+.resrow .rsx{flex:none;margin-left:2px;padding:2px 9px;border-radius:7px;border:1px solid rgba(255,255,255,.12);background:transparent;color:#8a9bbb;font-size:.95em;line-height:1.6;cursor:pointer}
+.resrow .rsx:active{background:#3a2030;color:#ff8fa3}
+.resmore{text-align:center;color:#9fb4d6;font-size:.9em;padding:4px 0;cursor:pointer}
 @media(min-width:900px){ .resrow{font-size:1.05em} .resrow .rsu{min-width:120px} }
 
 /* 어근 누르기 */
@@ -1361,7 +1373,7 @@ body.hasdock #qnav{display:none}
 <body>
 
 <h1>📚 편입 보카</h1>
-<p class="sub">윤황보카 + MVP · 14,102개 <span id="vbadge" style="opacity:.5;font-size:.85em"></span></p>
+<p class="sub">윤황보카 + MVP · 14,102개 <span id="vbadge" style="opacity:.5;font-size:.85em"></span> <span id="syncDot" class="sdot"></span></p>
 
 <div id="msg" class="load">불러오는 중…</div>
 
@@ -1370,6 +1382,7 @@ body.hasdock #qnav{display:none}
     <div class="t" id="syncT"></div>
     <div class="r">
       <button id="syncGo">지금 동기화</button>
+      <button class="clr" id="syncChk">점검</button>
       <button class="clr" id="syncSet">설정</button>
     </div>
     <div id="syncPanel" style="display:none">
@@ -1389,6 +1402,7 @@ body.hasdock #qnav{display:none}
     </div>
   </div>
 
+  <div id="syncDiag" class="syncdiag" style="display:none"></div>
   <div class="bank today" id="todayBank">
     <div class="t" id="todayT"></div>
     <div class="tbar"><div class="tfill" id="todayFill"></div></div>
@@ -1412,7 +1426,7 @@ body.hasdock #qnav{display:none}
     <div id="resumeList"></div>
     <div class="r">
       <button id="resumeGo">이어서 풀기</button>
-      <button class="clr" id="resumeClr">새로 시작</button>
+      <button class="clr" id="resumeClr">전부 지우기</button>
     </div>
   </div>
   <div class="bank" id="bank">
@@ -1778,12 +1792,14 @@ function show(id){
     id='setup'; target=$('setup');
     if(!target) return;
   }
+  if(id!=='qscr'){ try{ curClear(); }catch(e){} }   // 퀴즈 화면을 떠나면 '풀던 화면' 기억을 지운다
   SCREENS.forEach(function(s){ var el=$(s); if(el) el.classList.remove('on'); });
   target.classList.add('on');
   try{ dockApply(); }catch(e){}
   __lastStep='화면표시:'+id;
   window.scrollTo(0,0);
   // 홈으로 돌아올 땐 배너·라벨을 항상 최신으로 (새로고침 없이 반영)
+  if(id==='setup' && _verPending){ _verPending=''; try{ checkVersion(); }catch(e){} }   // 미뤄 둔 새 버전 적용
   if(id==='setup'){
     try{
       if(typeof bankUI==='function') bankUI();
@@ -2404,7 +2420,7 @@ var GH={token:'', owner:'qkrwogus1453-wq', repo:'voca-data', path:'progress.json
 function ghLoad(){
   try{ var r=localStorage.getItem(GKEY); if(r){ var d=JSON.parse(r); for(var k in d) GH[k]=d[k]; } }catch(e){}
 }
-function ghSave(){ try{ localStorage.setItem(GKEY, JSON.stringify(GH)); }catch(e){} }
+function ghSave(){ lsSet(GKEY, JSON.stringify(GH)); }
 function ghReady(){ return !!(GH.token && GH.owner && GH.repo); }
 
 // 로컬 기록을 하나로 묶기
@@ -2513,6 +2529,7 @@ function ghSlimSes(m){
     var d=m[k]; if(!d||!d.Q||!d.Q.length) continue;
     if((d.ts||0)<lim) continue;                                         // 30일 넘게 손 안 댄 것
     if(!(d.ans||[]).some(function(a){ return a===null; })) continue;    // 다 푼 것
+    if(!sesOk(d)) continue;                                             // 문제 수·답 수가 어긋난 기록은 올리지 않는다
     var c={}; for(var f in d) c[f]=d[f];
     c.Q=d.Q.map(function(q){
       var qq={}; for(var g in q){ var v=q[g]; if(v===null||v===''||v===false) continue; qq[g]=v; }
@@ -2528,7 +2545,7 @@ function ghSnapshot(){
     stats:ghSlimMap(STATS),
     bank:{quiz:ghSlimMap(BANK&&BANK.quiz), syn:ghSlimMap(BANK&&BANK.syn)},
     daily:DAILY,
-    pen:ghSlimMap(PENLIST), memo:MEMO, req:ROOTREQ, diary:DIARY, ses:ghSlimSes(SESSIONS), cmp:CMP, ord:ORDPOS,
+    pen:ghSlimMap(PENLIST), memo:MEMO, req:ROOTREQ, diary:DIARY, ses:ghSlimSes(SESSIONS), sdel:SESDEL, cmp:CMP, ord:ORDPOS,
     oset:{v:ORDER, t:ORDER_T}};
 }
 // 두 기록을 합치기 (양쪽에서 푼 것이 모두 남게)
@@ -2622,6 +2639,13 @@ function ghMerge(local, remote){
     }
   })();
   // 세션: 같은 강이면 최신 것만, 다른 강이면 둘 다 유지
+  // 지운 세션 표시: 양쪽을 합치고, 같은 강이면 나중에 지운 시각
+  out.sdel={};
+  (function(){
+    var a=local.sdel||{}, b=remote.sdel||{};
+    for(var k in a) out.sdel[k]=a[k];
+    for(var k2 in b) if(!out.sdel[k2] || b[k2]>out.sdel[k2]) out.sdel[k2]=b[k2];
+  })();
   out.ses={};
   (function(){
     var s={}, a=local.ses||{}, b=remote.ses||{};
@@ -2629,6 +2653,10 @@ function ghMerge(local, remote){
     for(var k2 in b) s[k2]=1;
     for(var k3 in s){
       var x=a[k3], y=b[k3];
+      var dt=out.sdel[k3]||0;                          // 지운 뒤에 다시 시작한 것만 남긴다
+      if(x && (x.ts||0)<=dt) x=null;
+      if(y && (y.ts||0)<=dt) y=null;
+      if(!x && !y) continue;
       if(!x){ out.ses[k3]=y; continue; }
       if(!y){ out.ses[k3]=x; continue; }
       out.ses[k3] = ((x.ts||0)>=(y.ts||0)) ? x : y;   // 최신 시각 승
@@ -2656,9 +2684,18 @@ function ghApplyRun(d){
   if(d.memo)  { MEMO=d.memo; memoSave(); }
   if(d.req)   { ROOTREQ=d.req; rootReqSave(); }
   if(d.diary) { DIARY=d.diary; diarySave(); }
+  if(d.sdel)  {   // 다른 기기에서 지운 세션은 여기서도 지운다
+    for(var dk in d.sdel){ if(!SESDEL[dk] || d.sdel[dk]>SESDEL[dk]) SESDEL[dk]=d.sdel[dk]; }
+    for(var dk2 in SESSIONS){ if(SESDEL[dk2] && (SESSIONS[dk2].ts||0)<=SESDEL[dk2]) delete SESSIONS[dk2]; }
+    sesDelSave(); }
   if(d.ses)   {   // 받아 온 것으로 덮지 않고 합친다 (보낼 때 뺀 오래된 기록이 이 기기에서 지워지지 않게)
-    for(var sk in d.ses){ var rs=d.ses[sk], ls=SESSIONS[sk]; if(!ls || (rs && (rs.ts||0)>(ls.ts||0))) SESSIONS[sk]=rs; }
+    for(var sk in d.ses){ var rs=d.ses[sk], ls=SESSIONS[sk];
+      if(rs){ try{ sesRepair(rs); }catch(e){} }
+      if(!rs || !sesOk(rs)) continue;
+      if(SESDEL[sk] && (rs.ts||0)<=SESDEL[sk]) continue;
+      if(!ls || (rs.ts||0)>(ls.ts||0)) SESSIONS[sk]=rs; }
     sessionsSave(); }
+  if(d.ses || d.sdel){ try{ if($('setup').classList.contains('on')) resumeUI(); }catch(e){} }
   if(d.oset && (d.oset.t||0)>ORDER_T){ ORDER_T=d.oset.t||0; orderApply(d.oset.v); }
   if(d.ord)   { ORDPOS=d.ord; try{ localStorage.setItem('voca_ordpos', JSON.stringify(ORDPOS)); }catch(e){} try{ ordStat(); }catch(e){} }
   if(d.cmp)   { CMP=d.cmp; cmpSave(); try{ cmpBtnSync(); if(cmpIsOpen()) cmpDraw(); }catch(e){} }
@@ -2774,12 +2811,16 @@ function ghSyncRun(silent, _retry){
   if(!ghReady()){ if(!silent) syncMsg('토큰을 먼저 등록해 주세요','err'); return Promise.resolve(false); }
   if(!silent) syncMsg('동기화 중…','load');
   var remote=null;
+  syncDot('load');
+  var _etag='';
   return ghApi('GET').then(function(r){
     if(r.status===404){ GH.sha=''; return null; }        // 아직 파일 없음 → 새로 만듦
     if(!r.ok) return r.text().then(function(t){ throw new Error(ghErrText(r.status, t)); });
+    try{ _etag=r.headers.get('ETag')||''; }catch(e){}
     return r.json();
   }).then(function(meta){
     if(!meta) return null;
+    if(meta.size) GH.rsize=meta.size;
     // ★ sha는 내용을 읽을 수 있든 없든 무조건 먼저 챙긴다.
     //    (안 그러면 PUT에 sha가 빠져서 422 "sha wasn't supplied"가 계속 난다)
     if(meta.sha) GH.sha=meta.sha;
@@ -2809,7 +2850,7 @@ function ghSyncRun(silent, _retry){
     if(GH.sha) body.sha=GH.sha;
     return ghApi('PUT', body);
   }).then(function(r){
-    if(r==='same') return {same:true};
+    if(r==='same'){ if(_etag) GH.etag=_etag; return {same:true}; }
     if(!r) return false;
     if(!r.ok){
       // sha 충돌(409/422)이면 최신 sha를 다시 받아 재시도 (최대 3번, 조금 기다렸다가)
@@ -2824,8 +2865,9 @@ function ghSyncRun(silent, _retry){
     return r.json();
   }).then(function(j){
     if(j===true || j===false) return j;                  // 재시도 결과 그대로
-    if(j && j.content) GH.sha=j.content.sha;
-    GH.last=Date.now(); ghSave();
+    if(j && j.content){ GH.sha=j.content.sha; GH.etag=''; }   // 내가 올렸으니 다음 확인 때 새로 받는다
+    GH.last=Date.now(); GH.lastErr=''; GH.lastErrT=0; ghSave();
+    syncDot();
     if(!silent) syncMsg('동기화 완료 · '+new Date().toLocaleTimeString(),'ok');
     syncUI();
     return true;
@@ -2834,6 +2876,8 @@ function ghSyncRun(silent, _retry){
     if(String(m).indexOf('Failed to fetch')>=0 || String(m).indexOf('NetworkError')>=0)
       m='인터넷 연결을 확인해 주세요';
     syncMsg('❌ '+m,'err');                                // 자동 저장 실패도 표시
+    GH.lastErr=m; GH.lastErrT=Date.now(); ghSave();
+    syncDot(); try{ syncUI(); }catch(e){}
     return false;
   });
 }
@@ -2858,9 +2902,63 @@ function syncUI(){
     return;
   }
   var when = GH.last ? new Date(GH.last).toLocaleString() : '아직 없음';
-  $('syncT').textContent='☁️ 동기화 · 마지막: '+when;
+  if(GH.lastErr && (GH.lastErrT||0)>(GH.last||0)){
+    $('syncT').innerHTML='☁️ 동기화 · 마지막 성공: '+esc(when)+'<br><span class="syncerr">⚠ 실패 ('+esc(new Date(GH.lastErrT).toLocaleTimeString())+'): '+esc(GH.lastErr)+'</span>';
+  } else $('syncT').textContent='☁️ 동기화 · 마지막: '+when;
+  syncDot();
   $('syncGo').style.display='';
   box.classList.add('on');
+}
+// 머리글의 작은 동기화 표시: ☁ 시각(성공) / ☁ 실패 / ☁ …(진행 중)
+function syncDot(state){
+  var el=$('syncDot'); if(!el) return;
+  if(!ghReady()){ el.textContent=''; el.className='sdot'; return; }
+  if(state==='load'){ el.textContent='☁ …'; el.className='sdot load'; return; }
+  if(GH.lastErr && (GH.lastErrT||0)>(GH.last||0)){ el.textContent='☁ 동기화 실패'; el.className='sdot err'; return; }
+  if(GH.last){ var d=new Date(GH.last); el.textContent='☁ '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0'); el.className='sdot ok'; return; }
+  el.textContent='☁ 아직'; el.className='sdot';
+}
+// 켜 둔 동안 다른 기기에서 바뀐 게 있는지 가볍게 확인 (바뀐 게 없으면 GitHub이 '그대로'라고만 답해 거의 공짜)
+function ghPeek(){
+  if(!ghReady() || !GH.auto || _syncing || _syncTimer) return;
+  if(document.visibilityState!=='visible') return;
+  if(!GH.etag){ ghSync(true); return; }
+  fetch('https://api.github.com/repos/'+GH.owner+'/'+GH.repo+'/contents/'+GH.path, {cache:'no-store', headers:{
+    'Authorization':'Bearer '+GH.token, 'Accept':'application/vnd.github+json', 'X-GitHub-Api-Version':'2022-11-28', 'If-None-Match':GH.etag }})
+  .then(function(r){ if(r.status===304) return; ghSync(true); })
+  .catch(function(){});
+}
+setInterval(ghPeek, 120000);
+// 저장 공간 사용량 (대략): 사파리는 이 앱에 보통 5MB 정도를 준다
+function lsUsage(){
+  var NAME={voca_stats_v1:'단어 기록(틀린·맞힌)', voca_sessions_v1:'풀던 문제', voca_bank_v1:'담긴 단어', voca_pen_v1:'손글씨 목록', voca_memo_v1:'내 메모', voca_daily_v1:'날짜별 기록', voca_gh_v1:'동기화 설정', voca_ordpos:'이어 풀 위치'};
+  var tot=0, items=[];
+  try{ for(var i=0;i<localStorage.length;i++){ var k=localStorage.key(i); var n=(k.length+(localStorage.getItem(k)||'').length)*2; tot+=n; items.push({k:k, n:n}); } }catch(e){}
+  items.sort(function(a,b){ return b.n-a.n; });
+  return {tot:tot, top:items.slice(0,3).map(function(x){ return (NAME[x.k]||x.k)+' '+(x.n/1048576).toFixed(2)+'MB'; })};
+}
+function syncDiag(){
+  var box=$('syncDiag'); if(!box) return;
+  var u=lsUsage(), mb=u.tot/1048576;
+  var ses=0; try{ ses=sessionsList().length; }catch(e){}
+  var standalone=(window.navigator.standalone===true) || (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
+  function row(k,v,cls){ return '<div class="dr"><span class="dk">'+k+'</span><span class="dv '+(cls||'')+'">'+esc(v)+'</span></div>'; }
+  var h='<b>☁️ 동기화 점검</b> <span style="color:#8fa6c4;font-size:.88em">— 이 화면을 그대로 캡처해서 보내 주시면 원인을 찾을 수 있어요</span>';
+  h+=row('이 화면', standalone?'홈 화면에 추가한 앱':'사파리(브라우저) 탭');
+  h+=row('앱 버전', APP_VER);
+  h+=row('토큰 등록', GH.token?'있음':'없음 — 이 화면에서 따로 등록해야 해요', GH.token?'good':'bad');
+  h+=row('저장소', (GH.owner||'?')+' / '+(GH.repo||'?'));
+  h+=row('자동 동기화', GH.auto?'켜짐':'꺼짐', GH.auto?'good':'bad');
+  h+=row('마지막 성공', GH.last?new Date(GH.last).toLocaleString():'아직 없음', GH.last?'':'bad');
+  h+=row('마지막 실패', (GH.lastErr && (GH.lastErrT||0)>(GH.last||0)) ? new Date(GH.lastErrT).toLocaleString()+' · '+GH.lastErr : '없음', (GH.lastErr && (GH.lastErrT||0)>(GH.last||0))?'bad':'good');
+  h+=row('저장 공간 사용', mb.toFixed(2)+'MB / 약 5MB'+(u.top.length?' (큰 것: '+u.top.join(', ')+')':''), mb>4?'bad':(mb>3?'':'good'));
+  h+=row('저장 실패', LS_FAIL||'없음', LS_FAIL?'bad':'good');
+  h+=row('원격 기록 파일', GH.rsize ? (GH.rsize/1024).toFixed(0)+'KB' : '모름');
+  h+=row('풀던 문제 기록', ses+'개');
+  h+='<div class="dbtns"><button class="memobtn" id="diagSync">지금 동기화 해 보기</button><button class="memobtn" id="diagClose">닫기</button></div>';
+  box.innerHTML=h; box.style.display='block';
+  $('diagClose').onclick=function(){ box.style.display='none'; };
+  $('diagSync').onclick=function(){ $('diagSync').textContent='동기화 중…'; ghSync(false).then(function(){ syncDiag(); }); };
 }
 // 기록이 바뀌면 잠시 뒤 자동 업로드
 var _syncTimer=null;
@@ -2868,7 +2966,7 @@ function syncSoon(){
   if(!ghReady() || !GH.auto) return;
   if(_ghApplying) return;          // 받아 온 기록을 반영하는 중에 생긴 저장은 '새 기록'이 아니다
   clearTimeout(_syncTimer);
-  _syncTimer=setTimeout(function(){ _syncTimer=null; ghSync(true); }, 20000);
+  _syncTimer=setTimeout(function(){ _syncTimer=null; ghSync(true); }, 3000);
 }
 
 // ── 단어 메모 (내가 만든 설명) ──
@@ -3022,7 +3120,7 @@ var DAILY_GOAL=400;
 
 function statsSave(){
   if(typeof syncSoon==='function') syncSoon();
-  try{ localStorage.setItem(SKEY, JSON.stringify(STATS)); }catch(e){}
+  lsSet(SKEY, JSON.stringify(STATS));
 }
 // 간격반복(SRS): 연속 정답 단계별로 복습 간격을 늘림 (분 단위)
 var SRS_STEPS=[0, 1440, 4320, 10080, 21600, 43200]; // 0분,1일,3일,7일,15일,30일
@@ -3420,25 +3518,29 @@ function unitNameOf(key){
   for(var i=0;i<IDX.length;i++){ if(IDX[i].key===key) return IDX[i].label; }
   return key||'';
 }
+var _resAll=false;
+function resumeModeName(m){
+  return ({syn:'동의어 매칭', quiz:'사지선다', ko:'뜻 → 영어', write:'동의어 쓰기', copy:'따라쓰기', rev:'역방향 확인'})[m] || '퀴즈';
+}
+function resumeLabel(d){ return resumeModeName(d.src==='rev'?'rev':d.mode)+(d.src==='retry'?' · 오답':d.src==='bank'?' · 담긴 단어':''); }
 function resumeUI(){
   var box=$('resumeBank');
   var list=sessionsList();
-  if(!list.length){
-    var d0=sessionHas();
-    if(!d0){ box.classList.remove('on'); return; }
-    list=[d0];
-  }
+  if(!list.length){ box.classList.remove('on'); if($('resumeList')) $('resumeList').innerHTML=''; return; }
+  var LIM=4, show=_resAll ? list : list.slice(0, LIM);
   var h='';
-  for(var i=0;i<list.length && i<4;i++){
-    var d=list[i];
+  for(var i=0;i<show.length;i++){
+    var d=show[i];
     var done=d.ans.filter(function(a){return a!==null;}).length;
-    var modeName = d.mode==='syn'?'동의어 매칭':d.mode==='quiz'?'사지선다':'퀴즈';
-    h+='<div class="resrow" data-sk="'+esc((d.mode||'syn')+'|'+(d.key||'')+'|'+(d.cum?'c':'s'))+'">'
+    var sk=sesKeyOf(d);
+    h+='<div class="resrow" data-sk="'+esc(sk)+'">'
       +'<span class="rsu">'+esc(unitNameOf(d.key))+'</span>'
-      +'<span class="rsm">'+modeName+'</span>'
+      +'<span class="rsm">'+resumeLabel(d)+'</span>'
       +'<span class="rsp">'+done+'/'+d.Q.length+'</span>'
-      +'<span class="rst">'+agoText(d.ts)+'</span></div>';
+      +'<span class="rst">'+agoText(d.ts)+'</span>'
+      +'<button class="rsx" data-del="'+esc(sk)+'" title="이 기록 지우기">✕</button></div>';
   }
+  if(list.length>LIM) h+='<div class="resmore">'+(_resAll ? '▴ 접기' : '▾ '+(list.length-LIM)+'개 더 보기')+'</div>';
   $('resumeT').innerHTML='▶ 풀던 문제가 있어요';
   var lst=$('resumeList');
   if(lst){ lst.innerHTML=h; }
@@ -3494,7 +3596,7 @@ setInterval(function(){
   }catch(e){}
 },1500);
 
-var APP_VER = '2026.12.04';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
+var APP_VER = '2026.12.05';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
 var VER = APP_VER;  // 데이터 URL 캐시 키. 배포 때만 바뀌므로 브라우저 캐시가 제대로 재사용됨
 function loadJ(p){
   // 데이터 파일은 URL에 버전(v=)이 붙어 캐시가 자동 갱신되므로 브라우저 캐시를 허용한다.
@@ -3566,12 +3668,22 @@ function rootFromHTML(w){
   return (w && w.rfrom) ? '<span class="rfrom">'+esc(w.rfrom)+'의 어원</span> ' : '';
 }
 
-function checkVersion(){
+var _verPending='';
+// 문제를 풀거나 쓰는 중인지 (이때는 새 버전이 있어도 바로 새로 열지 않는다)
+function busyScreen(){
+  try{ return ['qscr','writescr','copyscr','cardscr','penscr'].some(function(id){ var el=$(id); return el && el.classList.contains('on'); }) && !fin; }catch(e){ return false; }
+}
+function checkVersion(defer){
   // 매번 유니크한 타임스탬프로 요청 → 사파리가 어떤 경우에도 캐시 못 씀
   return fetch('data/ver.json?t='+Date.now(), {cache:'no-store'}).then(function(r){
     if(!r.ok) throw new Error('ver');
     return r.json();
   }).then(function(d){
+    if(d && d.v && d.v !== APP_VER && defer && busyScreen()){
+      // 풀던 중이면 새로 열지 않고 알려만 둔다 → 홈으로 가면 그때 적용
+      if(!_verPending){ _verPending=d.v; msg('새 버전이 있어요 · 홈으로 가면 적용돼요','ok'); setTimeout(function(){ if($('msg').textContent.indexOf('새 버전이 있어요')>=0) hide(); }, 4000); }
+      return true;
+    }
     if(d && d.v && d.v !== APP_VER){
       // 현재 URL에 이미 이 버전 쿼리가 붙어 있으면 재시도 안 함(무한 방지)
       var cur = new URLSearchParams(location.search).get('app');
@@ -3621,7 +3733,7 @@ function recheckVersion(){
   var now = Date.now();
   if(now - _lastVerCheck < 60000) return;   // 1분에 한 번만
   _lastVerCheck = now;
-  checkVersion();  // 새 버전이면 내부에서 location.replace로 새 HTML 로드
+  checkVersion(true);  // 새 버전이면 새 HTML 로드 — 단, 풀던 중이면 홈으로 갈 때까지 미룬다
 }
 window.addEventListener('pageshow', function(e){
   if(e.persisted) recheckVersion();          // bfcache에서 복원된 경우
@@ -3629,7 +3741,7 @@ window.addEventListener('pageshow', function(e){
 document.addEventListener('visibilitychange', function(){
   if(document.visibilityState==='visible'){
     recheckVersion();
-    try{ if(ghReady() && GH.auto && Date.now()-(GH.last||0) > 60000) ghSync(true); }catch(e){}
+    try{ if(ghReady() && GH.auto && Date.now()-(GH.last||0) > 10000) ghSync(true); }catch(e){}
   } else {
     syncFlush();
   }
@@ -3690,6 +3802,12 @@ function startBoot(){
     todayUI();
     syncUI();
     refreshUnitLabels();
+    // 풀던 중에 페이지가 다시 열렸으면(아이패드 메모리 정리·새 버전 적용) 홈 대신 풀던 문제로 돌아간다
+    try{
+      if(BOOTCUR && BOOTCUR.k && SESSIONS[BOOTCUR.k] && Date.now()-(BOOTCUR.t||0) < 12*3600000){
+        if(sessionResume(BOOTCUR.k)) setTimeout(function(){ msg('↩ 풀던 문제로 돌아왔어요','ok'); setTimeout(function(){ if($('msg').textContent.indexOf('풀던 문제로')>=0) hide(); }, 2500); }, 1800);
+      }
+    }catch(e){}
     if(ghReady()) setTimeout(function(){ ghSync(true); }, 800);
     // 동의어 뜻 사전 (없어도 앱은 동작)
     loadJ('data/lex.json').then(function(d){ LEX=d||{}; }).catch(function(){ LEX={}; });
@@ -5341,83 +5459,129 @@ function launch(list, opts){
 var SESKEY='voca_session_v2';
 var SESMAP='voca_sessions_v1';      // 강별 세션 보관 (기기 간 동기화 대상)
 var SESSIONS={};
+// 지운 기록 표시 (기기 간 동기화용): {세션키: 지운 시각}. 이 시각보다 옛 세션은 다른 기기에서 와도 되살리지 않는다.
+var SDKEY='voca_sesdel', SESDEL={};
+function sesDelLoad(){ try{ var r=localStorage.getItem(SDKEY); if(r) SESDEL=JSON.parse(r)||{}; }catch(e){ SESDEL={}; }
+  var lim=Date.now()-40*86400000; for(var k in SESDEL) if((SESDEL[k]||0)<lim) delete SESDEL[k]; }
+function sesDelSave(){ lsSet(SDKEY, JSON.stringify(SESDEL)); }
+function sesDelMark(k){ SESDEL[k]=Date.now(); sesDelSave(); }
+// 세션이 쓸 수 있는 상태인지 (문제 수 = 답 수, 안 푼 문제가 남음)
+function sesOk(d){ return !!(d && d.Q && d.Q.length && d.ans && d.ans.length===d.Q.length && d.ans.some(function(a){return a===null;})); }
+// 문제 수와 답 수가 어긋난 옛 기록을 바로잡는다 (남는 답은 버리고, 모자라면 안 푼 것으로)
+function sesRepair(d){
+  if(!d || !d.Q || !d.ans) return d;
+  if(d.ans.length>d.Q.length) d.ans=d.ans.slice(0, d.Q.length);
+  while(d.ans.length<d.Q.length) d.ans.push(null);
+  // 문제 종류와 답 모양이 안 맞으면 (여러 개 고르기 문제에 하나 고른 답 등) 그 문제는 다시 풀게
+  for(var i=0;i<d.Q.length;i++){
+    var a=d.ans[i], q=d.Q[i]; if(!a || !q) continue;
+    var multi=(q.kind==='syn'||q.kind==='ko');
+    if(multi !== Array.isArray(a.sel)) d.ans[i]=null;
+  }
+  if(typeof d.qi!=='number' || d.qi<0 || d.qi>=d.Q.length) d.qi=0;
+  return d;
+}
 function sessionsLoad(){ try{ var r=localStorage.getItem(SESMAP); if(r) SESSIONS=JSON.parse(r)||{}; }catch(e){ SESSIONS={}; }
-  try{ var gone=0; for(var k in SESSIONS){ var d=SESSIONS[k]; if(!d||!d.Q||!d.Q.length||!(d.ans||[]).some(function(a){return a===null;})){ delete SESSIONS[k]; gone++; } } if(gone) sessionsSave(); }catch(e){} }
-function sessionsSave(){ try{ localStorage.setItem(SESMAP, JSON.stringify(SESSIONS)); }catch(e){} }
-function sesKeyOf(d){ return (d.mode||'syn')+'|'+(d.key||'')+'|'+(d.cum?'c':'s'); }
+  sesDelLoad();
+  // 예전에 따로 두던 '마지막 세션' 사본은 강별 보관으로 옮기고 지운다 (같은 걸 두 번 저장하던 것 — 저장 공간 절약)
+  try{ var raw=localStorage.getItem(SESKEY); if(raw){ var d0=JSON.parse(raw); if(d0&&d0.Q){ var k0=sesKeyOf(d0); if(!SESSIONS[k0] || (SESSIONS[k0].ts||0)<(d0.ts||0)) SESSIONS[k0]=d0; } localStorage.removeItem(SESKEY); } }catch(e){}
+  try{ var gone=0; for(var k in SESSIONS){ var d=SESSIONS[k]; if(d) sesRepair(d); if(!sesOk(d) || (SESDEL[k] && (d.ts||0)<=SESDEL[k])){ delete SESSIONS[k]; gone++; } } if(gone) sessionsSave(); }catch(e){} }
+function sessionsSave(){ lsSet(SESMAP, JSON.stringify(SESSIONS)); }
+// 저장 공간이 꽉 차 저장에 실패하면 알린다 (조용히 실패하면 기록이 어긋나거나 사라짐)
+var _lsFailT=0, LS_FAIL='';
+function lsSet(k, v){
+  try{ localStorage.setItem(k, v); return true; }
+  catch(e){
+    LS_FAIL=new Date().toLocaleString()+' · '+k;
+    if(Date.now()-_lsFailT>60000){ _lsFailT=Date.now(); try{ __showErr('저장 공간이 꽉 차서 기록을 저장하지 못했어요 — 홈의 동기화 「점검」에서 사용량을 확인해 주세요'); }catch(e2){} }
+    return false;
+  }
+}
+// 오답 다시 풀기·역방향·담긴 단어처럼 따로 시작한 것은 그 강의 본 진행과 따로 보관한다 (서로 덮어쓰지 않게)
+function sesKeyOf(d){ var src=d.src||'normal'; return (d.mode||'syn')+'|'+(d.key||'')+'|'+(d.cum?'c':'s')+(src!=='normal'?'|'+src:''); }
 // 안 푼 문제가 남은 세션들만 (최근 순)
 function sessionsList(){
   var o=[];
   for(var k in SESSIONS){
     var d=SESSIONS[k];
-    if(!d||!d.Q||!d.Q.length) continue;
-    var undone=(d.ans||[]).some(function(a){return a===null;});
-    if(undone) o.push(d);
+    if(sesOk(d)) o.push(d);
   }
   o.sort(function(a,b){ return (b.ts||0)-(a.ts||0); });
   return o;
 }
+// 빈 값은 빼고 저장 (저장 공간 절약)
+function _slim(o){ var r={}; for(var k in o){ var v=o[k]; if(v===null||v===undefined||v===''||v===false) continue; r[k]=v; } return r; }
 function sessionSave(){
   if(fin || !Q.length){ sessionClear(); return; }
   try{
     // Q의 각 문제를 재구성 가능한 형태로 직렬화
     var qd = Q.map(function(q){
-      return {
+      return _slim({
         wid: q.w.id, wkey: q.w.w,
         opts: q.opts.map(function(o){
-          var oo={t:o.t, ok:o.ok, sense:o.sense||'', def:o.def||'', srcw:o.srcw||''};
+          if(typeof o==='string') return o;
+          var oo=_slim({t:o.t, ok:o.ok, sense:o.sense, def:o.def, srcw:o.srcw});
           if(o.item) oo.item=o.item;               // 뜻 → 영어: 정답 단어가 나온 자리
           return oo;
         }),
         // 동의어를 몇 개까지 냈는지 · 다시 나온 문제인지 · 뜻 → 영어의 뜻 글자 (이어하기에서 빠지던 것)
-        shown:(q.shown!==undefined?q.shown:null), total:(q.total!==undefined?q.total:null),
-        rightList:(q.rightList||null), again:!!q.again, why:(q.why||null),
-        sense:(q.sense||null), prompt:(q.prompt||null),
-        ans: (q.ans!==undefined?q.ans:null),
-        need: (q.need!==undefined?q.need:null),
-        isPhrase: (q.isPhrase!==undefined?q.isPhrase:null),
+        shown:q.shown, total:q.total,
+        rightList:q.rightList, again:!!q.again, why:q.why,
+        sense:q.sense, prompt:q.prompt,
+        ans:q.ans, need:q.need, isPhrase:q.isPhrase,
         kind: q.kind
-      };
+      });
     });
-    var data={ mode:st.mode, key:st.key, cum:st.cum, src:SRC, qi:qi, ans:ans, wrongs:wrongs, Q:qd, ts:Date.now() };
-    localStorage.setItem(SESKEY, JSON.stringify(data));
-    SESSIONS[sesKeyOf(data)]=data;      // 강별로도 보관 (기기 간 동기화)
+    // ★ 답 목록은 복사해서 넣는다 — 화면에서 푸는 답 목록과 저장된 기록이 한 몸이 되면
+    //   저장이 한 번 실패했을 때 '옛 문제 목록 + 늘어난 답 목록'이 섞여 남는다 (49강 오류의 원인)
+    var data={ mode:st.mode, key:st.key, cum:st.cum, src:SRC, qi:qi, ans:ans.slice(), wrongs:wrongs.slice(), Q:qd, ts:Date.now() };
+    var k=sesKeyOf(data);
+    SESSIONS[k]=data;                    // 강별로 보관 (기기 간 동기화)
     sessionsSave();
+    curSet(k);                           // 페이지가 다시 열려도 이 문제로 돌아오게
     if(typeof syncSoon==='function') syncSoon();
   }catch(e){}
 }
 function sessionClear(){
-  try{ localStorage.removeItem(SESKEY); }catch(e){}
   try{
-    var k=(st.mode||'syn')+'|'+(st.key||'')+'|'+(st.cum?'c':'s');
-    if(SESSIONS[k]){ delete SESSIONS[k]; sessionsSave(); if(typeof syncSoon==='function') syncSoon(); }
+    var k=sesKeyOf({mode:st.mode, key:st.key, cum:st.cum, src:SRC});
+    if(SESSIONS[k]){ delete SESSIONS[k]; sesDelMark(k); sessionsSave(); if(typeof syncSoon==='function') syncSoon(); }
   }catch(e){}
+  curClear();
+}
+// 목록에서 하나 지우기 (지운 사실도 기록해서 다른 기기·동기화로 되살아나지 않게)
+function sessionDelete(k){
+  if(!SESSIONS[k]) return;
+  delete SESSIONS[k]; sesDelMark(k); sessionsSave();
+  if(CUR && CUR.k===k) curClear();
+  if(typeof syncSoon==='function') syncSoon();
 }
 function sessionHas(){
   var list=sessionsList();
-  if(list.length) return list[0];       // 가장 최근 세션
-  try{
-    var raw=localStorage.getItem(SESKEY);
-    if(!raw) return null;
-    var d=JSON.parse(raw);
-    if(!d||!d.Q||!d.Q.length) return null;
-    var undone=d.ans.some(function(a){return a===null;});
-    if(!undone) return null;
-    return d;
-  }catch(e){ return null; }
+  return list.length ? list[0] : null;  // 가장 최근 세션
 }
+// ── 풀던 화면 기억: 아이패드가 페이지를 다시 열어도(메모리 정리·새 버전) 홈 대신 풀던 문제로 ──
+var CURKEY='voca_cur', CUR=null;
+try{ CUR=JSON.parse(localStorage.getItem(CURKEY)||'null'); }catch(e){ CUR=null; }
+var BOOTCUR=CUR;                         // 이번에 열리기 직전에 풀던 것
+function curSet(k){ CUR={k:k, t:Date.now()}; lsSet(CURKEY, JSON.stringify(CUR)); }
+function curClear(){ CUR=null; try{ localStorage.removeItem(CURKEY); }catch(e){} }
+var _resTok=0;
 function sessionResume(sesKey){
-  var d = sesKey ? SESSIONS[sesKey] : sessionHas();
-  if(!d) return false;
+  var d0 = sesKey ? SESSIONS[sesKey] : sessionHas();
+  if(!d0) return false;
+  // 저장된 기록을 통째로 복사해서 쓴다 (푸는 동안 저장 기록이 함께 바뀌지 않게)
+  var d; try{ d=sesRepair(JSON.parse(JSON.stringify(d0))); }catch(e){ return false; }
+  if(!sesOk(d)) return false;
+  var tok=++_resTok;                     // 이어서 풀기를 두 번 눌러도 마지막 것 하나만
   MOPUP=false;
   st.mode=d.mode; st.key=d.key; st.cum=d.cum; SRC=d.src||'normal';
-  // 저장된 진도의 단어 데이터를 먼저 확보 (해설용 뜻/어원)
-  Promise.all(keys().map(getDay)).then(function(){
-    Q = d.Q.map(function(qd){
-      var w = findWordById(qd.wid, qd.wkey);
-      var q = { w:w, opts:(qd.opts||[]).map(function(o){
-        if(typeof o==='string') return fixOCR(o);
-        if(o && o.t!==undefined) o.t=fixOCR(o.t);
+  function build(full){
+    return d.Q.map(function(qd){
+      var q = { w:findWordById(qd.wid, qd.wkey), opts:(qd.opts||[]).map(function(o){
+        if(typeof o==='string') return full?fixOCR(o):o;
+        if(o && o.t!==undefined && full) o.t=fixOCR(o.t);
+        if(o && o.ok===undefined) o.ok=false;
         return o;
       }), kind:qd.kind };
       if(qd.ans!==null && qd.ans!==undefined) q.ans=qd.ans;
@@ -5426,21 +5590,21 @@ function sessionResume(sesKey){
       _qdRestore(q, qd);
       return q;
     });
+  }
+  // 저장된 진도의 단어 데이터를 먼저 확보 (해설용 뜻/어원)
+  Promise.all(keys().map(getDay)).then(function(){
+    if(tok!==_resTok) return;
+    Q=build(true);
     qi=d.qi; ans=d.ans; wrongs=d.wrongs||[]; fin=false;
     hide();
     show('qscr');
     draw();
+    curSet(sesKeyOf(d));
     if(st.mode==='ko') _koResumeIdx();
   }).catch(function(){
+    if(tok!==_resTok) return;
     // 로드 실패해도 저장된 opts로 최소 진행
-    Q = d.Q.map(function(qd){
-      var q0={ w:findWordById(qd.wid, qd.wkey), opts:qd.opts, kind:qd.kind,
-               ans:(qd.ans!==null&&qd.ans!==undefined?qd.ans:undefined),
-               need:(qd.need!==null&&qd.need!==undefined?qd.need:undefined),
-               isPhrase:(qd.isPhrase!==null&&qd.isPhrase!==undefined?qd.isPhrase:undefined) };
-      _qdRestore(q0, qd);
-      return q0;
-    });
+    Q=build(false);
     qi=d.qi; ans=d.ans; wrongs=d.wrongs||[]; fin=false;
     hide(); show('qscr'); draw();
   });
@@ -6270,7 +6434,7 @@ function replay(){
     bs[i].onclick=null;
     bs[i].classList.remove('sel');
     if(q.kind==='ko'){
-      var ko=q.opts[i], kpicked=a.sel.indexOf(i)>=0;
+      var ko=q.opts[i], kpicked=(Array.isArray(a.sel)?a.sel:[]).indexOf(i)>=0;
       var knum=bs[i].querySelector('.onum');
       var kbody='<span class="otxt">'+esc(ko.t)+'</span>';
       var kmeta='';
@@ -6286,7 +6450,7 @@ function replay(){
       bs[i].setAttribute('data-qw', ko.t);
       bs[i].classList.add('rootable');
     } else if(q.kind==='syn'){
-      var picked=a.sel.indexOf(i)>=0;
+      var picked=(Array.isArray(a.sel)?a.sel:[]).indexOf(i)>=0;
       // 정답: 위에 '메인 단어의 어느 뜻' / 오답: 옆에 '그 단어의 뜻'
       var o=q.opts[i];
       // 본문은 첫 줄 전체를 쓰고, 부가 정보(뜻·어원·혼동·강번호)는 아랫줄로 내린다.
@@ -6742,6 +6906,7 @@ function finish(){
   if(fin) return;
   fin=true;
   sessionClear();
+  try{ if(ghReady() && GH.auto){ clearTimeout(_syncTimer); _syncTimer=null; setTimeout(function(){ ghSync(true); }, 500); } }catch(e){}   // 한 강을 끝내면 바로 올린다
   var o=0;
   ans.forEach(function(a){ if(a&&a.ok) o++; });
   var p=Math.round(o/Q.length*100);
@@ -6966,13 +7131,27 @@ $('brhome').addEventListener('click',function(){ show('setup'); });
 $('rthome').addEventListener('click',function(){ show('setup'); });
 $('sthome').addEventListener('click',function(){ show('setup'); });
 $('resumeList').addEventListener('click',function(e){
+  var x=e.target.closest('.rsx');
+  if(x){
+    e.stopPropagation();
+    var k=x.getAttribute('data-del'), d=SESSIONS[k];
+    if(!d) { resumeUI(); return; }
+    if(!confirm(unitNameOf(d.key)+' '+resumeLabel(d)+' 기록을 지울까요?')) return;
+    sessionDelete(k); resumeUI(); return;
+  }
+  if(e.target.closest('.resmore')){ _resAll=!_resAll; resumeUI(); return; }
   var r=e.target.closest('.resrow'); if(!r) return;
   sessionResume(r.getAttribute('data-sk'));
 });
 $('resumeGo').addEventListener('click',function(){
   if(!sessionResume()){ msg('이어 풀 퀴즈가 없습니다','err'); resumeUI(); }
 });
-$('resumeClr').addEventListener('click',function(){ sessionClear(); resumeUI(); });
+$('resumeClr').addEventListener('click',function(){
+  var list=sessionsList(); if(!list.length){ resumeUI(); return; }
+  if(!confirm('풀던 기록 '+list.length+'개를 모두 지울까요?')) return;
+  list.forEach(function(d){ sessionDelete(sesKeyOf(d)); });
+  _resAll=false; resumeUI();
+});
 $('statsView').addEventListener('click',function(){ stFilter='all'; document.querySelectorAll('.stf').forEach(function(b){b.classList.toggle('on',b.dataset.f==='all');}); drawStats(); show('statsscr'); });
 $('statsClr').addEventListener('click',function(){
   var n=statsList().length;
@@ -7128,6 +7307,7 @@ $('penClr').addEventListener('click',function(){
   PENLIST={}; penSave(); penDraw();
 });
 $('syncGo').addEventListener('click',function(){ ghSync(false); });
+$('syncChk').addEventListener('click',function(){ var b=$('syncDiag'); if(b && b.style.display==='block'){ b.style.display='none'; return; } syncDiag(); });
 // 답 확인 뒤에 뜻·단어를 누르면 그 자리에서 펴진다
 // 박스 제목을 누르면 그 박스만 접힌다
 document.addEventListener('click',function(e){
