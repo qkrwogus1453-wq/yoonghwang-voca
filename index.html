@@ -1008,6 +1008,9 @@ body.hasdock #qnav{display:none}
   max-width:100%;white-space:normal;word-break:keep-all;overflow-wrap:anywhere}
 .calc.done .cu{color:#8fe0bb}
 .calc.half .cu,.calc.some .cu{color:#8fc7ae}
+.calc .cu.cunew{color:#c9d5ec;font-weight:600}
+.calc .cu.cudone{color:#7bdcb0}
+.calc .cu{display:block;text-align:center}
 @media(min-width:900px){ .calc .cu{font-size:.7em} }
 
 /* 이어서 풀기 목록 */
@@ -2664,6 +2667,7 @@ function ghMerge(local, remote){
   out.ses={};
   (function(){
     var s={}, a=local.ses||{}, b=remote.ses||{};
+    try{ sesRekey(a); sesRekey(b); }catch(e){}
     for(var k in a) s[k]=1;
     for(var k2 in b) s[k2]=1;
     for(var k3 in s){
@@ -2704,6 +2708,7 @@ function ghApplyRun(d){
     for(var dk2 in SESSIONS){ if(SESDEL[dk2] && (SESSIONS[dk2].ts||0)<=SESDEL[dk2]) delete SESSIONS[dk2]; }
     sesDelSave(); }
   if(d.ses)   {   // 받아 온 것으로 덮지 않고 합친다 (보낼 때 뺀 오래된 기록이 이 기기에서 지워지지 않게)
+    try{ sesRekey(d.ses); }catch(e){}
     for(var sk in d.ses){ var rs=d.ses[sk], ls=SESSIONS[sk];
       if(rs){ try{ sesRepair(rs); }catch(e){} }
       if(!rs || !sesOk(rs)) continue;
@@ -3434,25 +3439,13 @@ function calDraw(){
     }
     if(k===todayK) cls+=' today';
     if(diaryHas(k)) cls+=' hasnote';
-    // 그날 끝낸 강 번호를 작게 (예: 5·6·7강)
+    // 그날 새로 나간 강(새 단어를 푼 강)과 오답까지 다 잡은 강(✓, 초록)을 작게 (예: 1권 48·49강)
     var ustr='';
-    if(d && d.units && d.units.length){
-      // 권별로 나눠 적는다 — 2권 12강이 1권 12강처럼 보이지 않게
-      var byv={};
-      for(var uu=0; uu<d.units.length; uu++){
-        var mm=String(d.units[uu]).match(/^v(\d)d(\d+)$/);
-        if(mm) (byv[mm[1]]=byv[mm[1]]||[]).push(parseInt(mm[2]));
-        else (byv.M=byv.M||[]).push(String(d.units[uu]).replace('mvp','MVP'));
-      }
-      var parts=[];
-      ['1','2','M'].forEach(function(v){
-        var ns=byv[v]; if(!ns||!ns.length) return;
-        if(v!=='M') ns.sort(function(a,b){ return a-b; });
-        var _last=ns.pop();
-        var body=(ns.length?ns.join('·\u200B')+'·\u200B':'')+'<span class="nb">'+_last+(v==='M'?'':'강')+'</span>';
-        parts.push('<span class="cuv">'+(v==='M'?'':v+'권 ')+body+'</span>');
-      });
-      ustr='<span class="cu">'+parts.join('')+'</span>';
+    if(d){
+      var doneU=(d.units||[]).slice();
+      var newU=Object.keys(d.nu||{}).filter(function(u){ return d.nu[u]>0 && doneU.indexOf(u)<0; });   // 같은 날 다 잡은 강은 ✓ 줄에만
+      if(newU.length) ustr+='<span class="cu cunew">'+calUnitsHTML(newU)+'</span>';
+      if(doneU.length) ustr+='<span class="cu cudone">'+calUnitsHTML(doneU,'✓ ')+'</span>';
     }
     h+='<div class="'+cls+'" data-day="'+k+'"><span class="cd">'+day+'</span>'
       +(mark?'<span class="cm">'+mark+'</span>':'')
@@ -3546,14 +3539,14 @@ function resumeModeName(m){
 function resumeLabel(d){ return resumeModeName(d.src==='rev'?'rev':d.mode)+(d.src==='retry'?' · 오답':d.src==='bank'?' · 담긴 단어':''); }
 function resumeUI(){
   var box=$('resumeBank');
-  var list=sessionsList();
+  var list=sessionsEntries();
   if(!list.length){ box.classList.remove('on'); if($('resumeList')) $('resumeList').innerHTML=''; return; }
   var LIM=4, show=_resAll ? list : list.slice(0, LIM);
   var h='';
   for(var i=0;i<show.length;i++){
-    var d=show[i];
+    var d=show[i].d;
     var done=d.ans.filter(function(a){return a!==null;}).length;
-    var sk=sesKeyOf(d);
+    var sk=show[i].k;
     h+='<div class="resrow" data-sk="'+esc(sk)+'">'
       +'<span class="rsu">'+esc(unitNameOf(d.key))+'</span>'
       +'<span class="rsm">'+resumeLabel(d)+'</span>'
@@ -3617,7 +3610,7 @@ setInterval(function(){
   }catch(e){}
 },1500);
 
-var APP_VER = '2026.12.06';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
+var APP_VER = '2026.12.08';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
 var VER = APP_VER;  // 데이터 URL 캐시 키. 배포 때만 바뀌므로 브라우저 캐시가 제대로 재사용됨
 function loadJ(p){
   // 데이터 파일은 URL에 버전(v=)이 붙어 캐시가 자동 갱신되므로 브라우저 캐시를 허용한다.
@@ -5519,8 +5512,21 @@ function storageSlimOnce(){
   }
   if(ghReady()) ghSync(true).then(doSlim, doSlim); else doSlim();
 }
+// 12.04까지는 오답 다시 풀기·담긴 단어 기록도 강 이름만으로 저장했다 → 지금 이름 규칙으로 옮긴다
+// (같은 이름이 이미 있으면 더 최근 것을 남김). 바뀐 게 있으면 true
+function sesRekey(m){
+  var moved=false;
+  for(var k in (m||{})){
+    var d=m[k]; if(!d || typeof d!=='object') continue;
+    var nk=sesKeyOf(d); if(nk===k) continue;
+    if(!m[nk] || (m[nk].ts||0)<(d.ts||0)) m[nk]=d;
+    delete m[k]; moved=true;
+  }
+  return moved;
+}
 function sessionsLoad(){ try{ var r=localStorage.getItem(SESMAP); if(r) SESSIONS=JSON.parse(r)||{}; }catch(e){ SESSIONS={}; }
   sesDelLoad();
+  try{ if(sesRekey(SESSIONS)) sessionsSave(); }catch(e){}
   // 예전에 따로 두던 '마지막 세션' 사본은 강별 보관으로 옮기고 지운다 (같은 걸 두 번 저장하던 것 — 저장 공간 절약)
   try{ var raw=localStorage.getItem(SESKEY); if(raw){ var d0=JSON.parse(raw); if(d0&&d0.Q){ var k0=sesKeyOf(d0); if(!SESSIONS[k0] || (SESSIONS[k0].ts||0)<(d0.ts||0)) SESSIONS[k0]=d0; } localStorage.removeItem(SESKEY); } }catch(e){}
   try{ var gone=0; for(var k in SESSIONS){ var d=SESSIONS[k]; if(d) sesRepair(d); if(!sesOk(d) || (SESDEL[k] && (d.ts||0)<=SESDEL[k])){ delete SESSIONS[k]; gone++; } } if(gone) sessionsSave(); }catch(e){} }
@@ -5539,12 +5545,16 @@ function lsSet(k, v){
 function sesKeyOf(d){ var src=d.src||'normal'; return (d.mode||'syn')+'|'+(d.key||'')+'|'+(d.cum?'c':'s')+(src!=='normal'?'|'+src:''); }
 // 안 푼 문제가 남은 세션들만 (최근 순)
 function sessionsList(){
+  return sessionsEntries().map(function(x){ return x.d; });
+}
+// 저장된 이름(k)과 기록(d)을 함께 — 목록의 지우기·이어 풀기는 이 이름을 그대로 쓴다
+function sessionsEntries(){
   var o=[];
   for(var k in SESSIONS){
     var d=SESSIONS[k];
-    if(sesOk(d)) o.push(d);
+    if(sesOk(d)) o.push({k:k, d:d});
   }
-  o.sort(function(a,b){ return (b.ts||0)-(a.ts||0); });
+  o.sort(function(a,b){ return (b.d.ts||0)-(a.d.ts||0); });
   return o;
 }
 // 빈 값은 빼고 저장 (저장 공간 절약)
@@ -5637,7 +5647,7 @@ function sessionResume(sesKey){
     hide();
     show('qscr');
     draw();
-    curSet(sesKeyOf(d));
+    curSet(sesKey || sesKeyOf(d));
     if(st.mode==='ko') _koResumeIdx();
   }).catch(function(){
     if(tok!==_resTok) return;
@@ -7185,9 +7195,9 @@ $('resumeGo').addEventListener('click',function(){
   if(!sessionResume()){ msg('이어 풀 퀴즈가 없습니다','err'); resumeUI(); }
 });
 $('resumeClr').addEventListener('click',function(){
-  var list=sessionsList(); if(!list.length){ resumeUI(); return; }
+  var list=sessionsEntries(); if(!list.length){ resumeUI(); return; }
   if(!confirm('풀던 기록 '+list.length+'개를 모두 지울까요?')) return;
-  list.forEach(function(d){ sessionDelete(sesKeyOf(d)); });
+  list.forEach(function(x){ sessionDelete(x.k); });
   _resAll=false; resumeUI();
 });
 $('statsView').addEventListener('click',function(){ stFilter='all'; document.querySelectorAll('.stf').forEach(function(b){b.classList.toggle('on',b.dataset.f==='all');}); drawStats(); show('statsscr'); });
@@ -7490,6 +7500,24 @@ function unitRowsHTML(label, map, cls){
   for(var i=0;i<ks.length;i++)
     chips+='<span class="duchip">'+esc(unitLabelOf(ks[i]))+' <b>'+map[ks[i]]+'</b>개</span>';
   return '<div class="dunits '+cls+'"><span class="dulab">'+esc(label)+' '+tot+'개</span>'+chips+'</div>';
+}
+// 강 키 목록을 '1권 5·6·7강 / 2권 3강 / MVP1' 처럼 — 권별로 나눠 적는다 (2권 12강이 1권 12강처럼 보이지 않게)
+function calUnitsHTML(list, pre){
+  var byv={};
+  for(var uu=0; uu<list.length; uu++){
+    var mm=String(list[uu]).match(/^v(\d)d(\d+)$/);
+    if(mm) (byv[mm[1]]=byv[mm[1]]||[]).push(parseInt(mm[2]));
+    else (byv.M=byv.M||[]).push(String(list[uu]).replace('mvp','MVP'));
+  }
+  var parts=[];
+  ['1','2','M'].forEach(function(v){
+    var ns=byv[v]; if(!ns||!ns.length) return;
+    if(v!=='M') ns.sort(function(a,b){ return a-b; });
+    var _last=ns.pop();
+    var body=(ns.length?ns.join('·\u200B')+'·\u200B':'')+'<span class="nb">'+_last+(v==='M'?'':'강')+'</span>';
+    parts.push('<span class="cuv">'+(!parts.length&&pre?pre:'')+(v==='M'?'':v+'권 ')+body+'</span>');
+  });
+  return parts.join('');
 }
 function dayOpen(k){
   DAY_KEY=k;
