@@ -260,6 +260,17 @@ body.hasdock #qnav{display:none}
 .relat.sy{background:#2a2540;color:#b9a8d8;border-color:#4a3f6b}
 .ssmore{font-size:.85em;color:#7a8aa8;padding:6px 2px 0}
 .relrow b.wtap{cursor:pointer;border-bottom:1px dotted #3a4869}
+.fmline{font-size:.88em;line-height:1.7;margin:6px 0 4px;color:#cbd6ee}
+.fmline em{font-style:normal;font-size:.82em;color:#8aa0b8;border:1px solid #3d5270;border-radius:6px;padding:0 5px;margin-right:6px}
+.fmline .fmw{cursor:pointer;white-space:nowrap;color:#e8ecf5}
+.fmline .fmw b{border-bottom:1px dotted #6f86b3;font-weight:600}
+.fmline .fmw .hwat{font-weight:400}
+.fmline .fmsep{color:#5d6f93;margin:0 4px}
+.srtog{display:flex;gap:6px;margin:0 0 8px}
+.srtog button{flex:1;padding:6px;border-radius:8px;border:1px solid #2a4a80;background:#0f3460;color:#cbd6ee;font-size:.9em}
+.srtog button.on{background:#e94560;border-color:#e94560;color:#fff}
+.srfam{border:1px solid #2a3a63;border-radius:10px;padding:6px 8px;margin:6px 0}
+.srfh{font-weight:700;color:#ffd28a;font-size:.92em;margin:2px 0 4px}
 .rmrow{margin-left:12px;border-left:2px solid #3a3218;padding-left:10px}
 .rmate{font-size:.9em;background:#1b2542;border:1px solid #2f4468;border-radius:6px;
   padding:3px 9px;color:#cfe0f5;cursor:pointer}
@@ -430,6 +441,23 @@ body.hasdock #qnav{display:none}
 
 /* 동의어 매칭 입력 모드 */
 #synmodebar{text-align:right;margin-bottom:10px}
+.misbtn.ready{border-color:#f0a500!important;color:#ffd479!important}
+.misrow{padding:9px 2px;border-bottom:1px solid #22325a}
+.misrow b{color:#e8f0fc;font-size:1.05em}
+.misrow .mism{color:#b9c3dc;font-size:.9em;margin-top:2px}
+.misrow .misq{color:#8fa8cc;font-size:.82em;margin-top:2px}
+.misst{font-size:.78em;border:1px solid #3d5270;border-radius:6px;padding:0 6px;margin-left:6px;color:#9fb4d6}
+.misst.done{border-color:#2e7d6a;color:#4ecca3}
+.misbar{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 10px}
+.misbar button{background:#1b2b50;border:1.5px solid #2f4270;color:#cfe0f5;border-radius:10px;padding:9px 12px;font-weight:600;cursor:pointer}
+.misset{color:#8fa8cc;font-size:.86em;margin:2px 0 8px}
+.misset input{width:56px;padding:3px 6px;margin:0 3px}
+.chip.wpend{cursor:pointer;opacity:.9;border-style:dashed}
+.chip.wbad{text-decoration:line-through}
+.modetog.againtog{border-color:#2e7d6a;color:#4ecca3;margin-right:8px}
+.modetog.againtog.done{opacity:.65;cursor:default}
+.qety{font-size:.86em;line-height:1.4;margin:-2px 0 8px;color:#b9c3dc}
+.qety .qetyl{font-size:.78em;color:#8aa0b8;border:1px solid #3d5270;border-radius:6px;padding:0 5px;margin-right:6px;vertical-align:1px}
 .modetog{background:#1b2b50;border:1.5px solid #2f4270;color:#9fb4d6;border-radius:20px;
   padding:8px 16px;font-size:.92em;font-weight:600;cursor:pointer}
 .modetog.on{background:#22335c;border-color:#f0a500;color:#ffd479}
@@ -723,6 +751,17 @@ body.hasdock #qnav{display:none}
 .bank.today{border-color:#2f5a45!important;background:#132a22!important}
 .bank.today .t{color:#9fe0c0}
 .bank.today .t b{color:#6ee7b7;font-size:1.2em}
+.rvline{margin:8px 0 2px;padding:7px 10px;border-radius:8px;background:#1b3329;color:#cfeee0;font-size:.92em;line-height:1.5;cursor:pointer}
+.rvline b{color:#f0c27b}
+.rvline .rvsub{display:block;color:#9fc7b4;font-size:.9em}
+.rvline .rvbar{height:5px;border-radius:3px;background:#0e1f18;margin-top:5px;overflow:hidden}
+.rvline .rvbar i{display:block;height:100%;background:#f0c27b}
+.rvset{margin:4px 0;padding:8px 10px;border-radius:8px;background:#10241c;color:#cfeee0;font-size:.88em}
+.rvset label{display:inline-block;margin:3px 8px 3px 0}
+.rvset input{background:#0b1a14;color:#e8f5ee;border:1px solid #2f5a45;border-radius:6px;padding:3px 6px;font-size:1em}
+.rvset input[type=number]{width:3.2em}
+.rvset button{margin:4px 6px 0 0;padding:4px 10px;border-radius:6px;border:1px solid #2f5a45;background:#163428;color:#cfeee0}
+.calc .cu.curev{color:#f0c27b}
 .tbar{height:9px;background:#0d1f19;border-radius:6px;overflow:hidden;margin:10px 0}
 .tfill{height:100%;background:#3a8f6f;border-radius:6px;transition:width .4s}
 .tfill.done{background:#4ecca3;box-shadow:0 0 12px rgba(78,204,163,.5)}
@@ -1024,6 +1063,11 @@ body.hasdock #qnav{display:none}
 .resrow .rst{color:#7f93b4;font-size:.85em;white-space:nowrap;min-width:56px;text-align:right}
 .resrow .rsx{flex:none;margin-left:2px;padding:2px 9px;border-radius:7px;border:1px solid rgba(255,255,255,.12);background:transparent;color:#8a9bbb;font-size:.95em;line-height:1.6;cursor:pointer}
 .resrow .rsx:active{background:#3a2030;color:#ff8fa3}
+#fswap .stat{color:#9fb0c8}
+.revswap{display:inline-flex;align-items:center;gap:6px;color:#c9d6ec;font-size:.9em;padding:4px 8px;cursor:pointer}
+.revswap input{width:18px;height:18px}
+.swapnote2{margin-bottom:8px;color:#e8f0fc}
+.swapof{font-size:.8em;color:#9fb0c8;margin-left:6px;font-weight:400}
 .resmore{text-align:center;color:#9fb4d6;font-size:.9em;padding:4px 0;cursor:pointer}
 @media(min-width:900px){ .resrow{font-size:1.05em} .resrow .rsu{min-width:120px} }
 
@@ -1039,6 +1083,10 @@ body.hasdock #qnav{display:none}
 .rtlist .rtrow b{color:#e8eef8}
 .rtlist .rtm{color:#b8c4d8;font-size:.95em}
 .rtlist .rtempty{color:#9fb0c8}
+.rwcard .rwrel{color:#c3b1f5;font-size:.88em;margin-left:auto}
+.rwcard .rwbody{margin-top:2px}
+.rwcard .rwr{margin-top:4px;color:#c3b1f5}
+.rtap.rwlk{border-bottom-style:solid}
 .rtsub{margin-top:8px;border-top:1px dashed rgba(240,165,0,.25);padding-top:6px}
 .rtsubh{cursor:pointer;color:#e0c890;font-weight:700;font-size:.95em;padding:3px 0;user-select:none}
 .rtsubh .rtn{font-weight:400;margin-left:6px;color:#9fb0c8}
@@ -1078,19 +1126,19 @@ body.hasdock #qnav{display:none}
 @media(max-width:480px){
   #dockbar{gap:4px;padding:7px 6px calc(22px + env(safe-area-inset-bottom, 0px))}
   #dockbar button{padding:9px 10px}
-  #dockbar #dockPin,#dockbar #dockCmp{padding:7px 8px;font-size:.78em}
+  #dockbar #dockPin,#dockbar #dockCmp,#dockbar #dockWb{padding:7px 8px;font-size:.78em}
   #dockbar #dockCnt{min-width:34px;font-size:.74em}
   #dockbar #dockHide{padding:6px 6px;font-size:.72em}
 }
 @media(max-width:370px){
   #dockbar{gap:3px;padding:7px 4px calc(22px + env(safe-area-inset-bottom, 0px))}
   #dockbar button{padding:9px 8px}
-  #dockbar #dockPin,#dockbar #dockCmp{padding:6px 6px;font-size:.74em}
+  #dockbar #dockPin,#dockbar #dockCmp,#dockbar #dockWb{padding:6px 6px;font-size:.74em}
   #dockbar #dockCnt{min-width:30px}
   #dockbar #dockHide{padding:6px 5px}
 }
 /* 따라쓰기 넓은 화면은 칸 배치(grid)라 떠 있는 버튼 대신 첫 줄 오른쪽 끝에 놓는다 */
-@media(min-width:900px){ #copyscr #cmpC{grid-column:1/-1;grid-row:1;justify-self:end;align-self:start;float:none;margin:0;position:relative;z-index:2} }
+@media(min-width:900px){ #copyscr .qbtnrow{grid-column:1/-1;grid-row:1;justify-self:end;align-self:start;float:none;margin:0;position:relative;z-index:2} }
 #cmpBox{position:fixed;inset:0;z-index:9998;display:none}
 #cmpBox.on{display:block}
 #cmpBox .cmpwrap{position:absolute;inset:0;background:rgba(6,10,20,.72);display:flex;align-items:flex-start;
@@ -1123,6 +1171,119 @@ body.hasdock #qnav{display:none}
 #cmpBox details.cmpmore>summary::before{content:'\25B8 '}
 #cmpBox details.cmpmore[open]>summary::before{content:'\25BE '}
 #cmpBox .wpanel{margin-top:4px}
+.ovbox{position:fixed;inset:0;z-index:9998;display:none}
+#srIn{width:100%;box-sizing:border-box;font-size:1.1em;padding:11px 13px;margin-bottom:8px}
+.srrow{padding:9px 2px;border-bottom:1px solid #22325a;cursor:pointer}
+.srrow b{color:#e8f0fc;font-size:1.06em}
+.srrow.on b{color:#ffd479}
+.srm{color:#b9c3dc;font-size:.9em;margin-top:2px}
+.srof{color:#9fb4d6}
+.srcard{margin:4px 0 10px}
+.ovbox.on{display:block}
+.ovbox .cmpwrap{position:absolute;inset:0;background:rgba(6,10,20,.72);display:flex;align-items:flex-start;
+  justify-content:center;padding:max(18px, env(safe-area-inset-top, 0px)) 12px 18px}
+.ovbox .cmpcard{background:#12203f;border:1px solid #2a3a60;border-radius:16px;width:100%;max-width:760px;
+  max-height:calc(100vh - 36px);display:flex;flex-direction:column;overflow:hidden}
+.ovbox .cmphead{display:flex;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid #22325a}
+.ovbox .cmpttl{font-weight:700;color:#e8f0fc;font-size:1.05em;flex:1}
+.ovbox .cmpttl span{color:#8fa8cc;font-weight:500;font-size:.88em;margin-left:6px}
+.ovbox .cmpx{background:#1b2b50;border:1px solid #2f4270;color:#b9c9e0;border-radius:9px;padding:8px 14px;
+  font-family:inherit;font-size:.92em;cursor:pointer}
+.ovbox .cmpbody{overflow-y:auto;overscroll-behavior:contain;padding:12px 16px 18px}
+.ovbox .cmplab{color:#8fa8cc;font-size:.84em;margin:2px 0 7px}
+.ovbox .cmpchips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+.ovbox .cmpchip{background:#16213e;border:1px solid #2f4270;color:#c9d6ec;border-radius:16px;padding:7px 13px;
+  font-family:inherit;font-size:.95em;cursor:pointer}
+.ovbox .cmpchip.on{background:#1d3566;border-color:#7fb4ff;color:#fff}
+.ovbox .cmpchip.on::before{content:'\2713 ';color:#7fb4ff}
+.ovbox .cmpempty{color:#7a8aa8;font-size:.92em;padding:10px 2px}
+.ovbox .cmpitem{border-top:1px solid #22325a;padding:12px 0 6px}
+.ovbox .cmpitem:first-of-type{border-top:0}
+.ovbox .cmpwt{display:flex;align-items:baseline;flex-wrap:wrap;gap:7px;margin-bottom:4px}
+.ovbox .cmpwt b{font-size:1.25em;color:#fff}
+.ovbox .cmpdel{margin-left:auto;background:none;border:1px solid #3a3a5c;color:#8fa4c2;border-radius:8px;
+  padding:4px 10px;font-family:inherit;font-size:.8em;cursor:pointer}
+.ovbox .info{display:block;margin-top:4px}
+.ovbox details.cmpmore{margin-top:6px}
+.ovbox details.cmpmore>summary{cursor:pointer;color:#8fa8cc;font-size:.86em;padding:4px 0;list-style:none}
+.ovbox details.cmpmore>summary::-webkit-details-marker{display:none}
+.ovbox details.cmpmore>summary::before{content:'\25B8 '}
+.ovbox details.cmpmore[open]>summary::before{content:'\25BE '}
+.ovbox .wpanel{margin-top:4px}
+/* 뜻 상자: 일부 조각에만 맞는 단어 */
+.fitonly{display:inline-block;margin-right:6px;font-size:.9em;color:#cdb6ff;border:1px solid #6d58a8;background:#211a38;border-radius:7px;padding:0 7px;font-weight:600}
+/* 최종 정리 */
+.hwat.same{background:#241c3d!important;color:#cdb6ff!important;border:1px solid #6d58a8!important}
+.finnote{display:block;width:100%;margin-top:6px;font-size:.8em;line-height:1.45;font-weight:500;text-align:left;font-style:normal}
+.finnote.s{color:#cdb6ff}
+.finnote.n{color:#f0b27a}
+.againtag.fintag{background:#241c3d;color:#cdb6ff;border-color:#6d58a8}
+/* 구문 동의어 설명 */
+.phm{color:#cdb6ff;font-weight:600;margin-left:4px}
+.phk{margin-top:9px;font-size:.88em;color:#a9bcd6}
+.phrow{margin-top:4px}
+.phrow b{color:#fff}
+.phkm{color:#c7d6ea;margin-left:6px}
+.phx{margin-top:7px;font-size:.86em;color:#8fa8cc}
+.phfoot{margin-top:6px;font-size:.76em;color:#7f8fb0}
+.wpanel .phm{display:block;margin:4px 0 0}
+/* 비교 목록: 보기 전환 · 직접 입력 */
+.ovbox .cmpview{display:flex;border:1px solid #2a4a7a;border-radius:9px;overflow:hidden;margin-bottom:10px}
+.ovbox .cmpview button{flex:1;background:transparent;border:0;color:#889;padding:8px;font-family:inherit;font-weight:600;cursor:pointer}
+.ovbox .cmpview button.on{background:#e94560;color:#fff}
+.ovbox .cmpinrow{display:flex;gap:8px;margin-bottom:12px}
+.ovbox .cmpinrow input{flex:1;min-width:0;background:#0f1a36;border:1px solid #2f4270;color:#eee;border-radius:9px;padding:10px 12px;font-size:1em;font-family:inherit}
+.ovbox .cmpadd{background:#1b2b50;border:1px solid #2f4270;color:#b9c9e0;border-radius:9px;padding:8px 14px;font-family:inherit;cursor:pointer}
+.hwat.cmpu{background:#1f2a44;color:#9fb4d6}
+/* 오늘 복습 */
+#dueGo{background:#f0a500;color:#1a1a2e;font-weight:700}
+/* 품사 표시 (정답 공개 후) */
+.wpos{display:inline-flex;gap:4px;margin-right:8px;vertical-align:.12em}
+.wvt{font-size:.62em;font-style:normal;color:#a7c7a0;border:1px solid #3e6a48;border-radius:6px;padding:0 5px;align-self:center;white-space:nowrap}
+.wpos i{font-style:normal;font-size:.72em;font-weight:700;padding:1px 7px;border-radius:7px;border:1px solid;line-height:1.35;letter-spacing:0}
+.wpos i.n{color:#9cc4ff;border-color:#4d76b8;background:#15264a}
+.wpos i.v{color:#ffbf75;border-color:#a0702e;background:#2c2312}
+.wpos i.a{color:#5fdcb3;border-color:#2f8a6c;background:#11302a}
+.wpos i.d{color:#cdb6ff;border-color:#7a5fbf;background:#241c3d}
+.wpos i.e{color:#ccc;border-color:#666;background:#222}
+.ovbox .wpos{margin:0 2px 0 4px}
+/* 내 단어장 */
+.wbbtn{border-color:#b9a4f0!important;color:#d4c6ff!important;background:#1f1a3a!important}
+.wbbtn.has{border-color:#d4c6ff!important;color:#efe9ff!important}
+#dockbar #dockWb{border-radius:20px;font-weight:600;font-size:.9em;padding:9px 16px;margin-right:auto}
+#dockbar #dockCmp{margin-right:0}
+@media(max-width:480px){
+  #dockbar{gap:3px;padding-left:4px;padding-right:4px}
+  #dockbar #dockPin,#dockbar #dockCmp,#dockbar #dockWb{padding:6px 6px;font-size:.74em}
+  #dockbar #dockPrev,#dockbar #dockNext{padding:8px 9px}
+  #dockbar #dockCnt{min-width:28px;font-size:.7em}
+  #dockbar #dockHide{padding:5px 4px;font-size:.68em}
+}
+@media(max-width:370px){ #dockbar #dockWb{padding:6px 6px;font-size:.74em} }
+.qbtnrow{float:right;display:flex;gap:6px;margin:-4px 0 4px 10px}
+.qbtnrow .cmpnear{float:none;margin:0}
+.ovbox .cmpchip .cnum{display:inline-block;min-width:1.2em;color:#8fa8cc;font-size:.8em;margin-right:5px}
+.ovbox .cmpchip .ctag{color:#8fa8cc;font-size:.78em;margin-left:5px}
+.ovbox .wbitem{border-top:1px solid #22325a;padding:12px 0 6px}
+.ovbox .wbitem:first-of-type{border-top:0}
+.ovbox .wbm{color:#b9c6dc;font-size:.95em;margin:3px 0 0}
+.ovbox .wbitem details>summary{cursor:pointer;color:#8fa8cc;font-size:.86em;padding:5px 0 2px;list-style:none}
+.ovbox .wbitem details>summary::-webkit-details-marker{display:none}
+.ovbox .wbitem details>summary::before{content:'\25B8 '}
+.ovbox .wbitem details[open]>summary::before{content:'\25BE '}
+/* 강별 어근 목록 */
+#lrOpen{color:#ffc857;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;cursor:pointer}
+.ovbox .lrg{border-top:1px solid #22325a;padding:11px 0 9px}
+.ovbox .lrg:first-of-type{border-top:0}
+.ovbox .lrh{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.ovbox .lrn{color:#f0a500;font-weight:700;font-size:1.08em}
+.ovbox .lrgl{color:#c9d6ec}
+.ovbox .lrall{margin-left:auto;background:none;border:1px solid #2f4270;color:#8fa8cc;border-radius:8px;padding:3px 10px;font-family:inherit;font-size:.82em;cursor:pointer}
+.ovbox .lrws{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
+.ovbox .lrw{background:#16213e;border:1px solid #2f4270;color:#c9d6ec;border-radius:16px;padding:6px 12px;font-family:inherit;font-size:.93em;cursor:pointer}
+.ovbox .lrw.on{background:#1d3566;border-color:#7fb4ff;color:#fff}
+.ovbox .lrcard{margin-top:8px}
+.ovbox .lrtot{margin-top:8px}
 /* 담기 선택 팝업 */
 #pinAskBox{position:fixed;inset:0;z-index:9999}
 #pinAskBox .pkwrap{position:absolute;inset:0;background:rgba(6,10,20,.72);
@@ -1199,6 +1360,10 @@ body.hasdock #qnav{display:none}
 .c .ometa{flex:1 1 100%;display:flex;align-items:center;gap:7px;margin-top:6px;
   padding-top:5px;border-top:1px solid rgba(255,255,255,.07)}
 .c .ometa .od{margin-left:0;display:inline-block;flex:0 1 auto;min-width:0}
+/* 사지선다 정답 공개 후: 오답 뜻이 어느 영어 단어 것인지 — 크고 밝게 */
+.c .ometa .od.odw{font-size:1.12em;font-weight:700;color:#eef4ff!important;letter-spacing:.2px}
+.c.no .ometa .od.odw{color:#ffc4c4!important}
+.c .ometa .od.odw::before,.c .ometa .od.odw::after{content:''}
 .c .ometa .hwat{margin-left:auto;align-self:center}
 .c .ometa .rootdot,.c .ometa .simdot{margin-left:2px}
 @media(max-width:899px){
@@ -1409,15 +1574,20 @@ body.hasdock #qnav{display:none}
   <div class="bank today" id="todayBank">
     <div class="t" id="todayT"></div>
     <div class="tbar"><div class="tfill" id="todayFill"></div></div>
+    <div class="rvline" id="rvLine" style="display:none"></div>
+    <div class="rvset" id="rvSet" style="display:none"></div>
     <div class="r">
       <button id="calGo">달력</button>
       <button class="clr" id="penHomeGo">손으로 쓸 단어</button>
+      <button class="clr wbbtn" id="wbHomeGo">내 단어장</button>
+      <button class="clr misbtn" id="misHomeGo">잘못 고른 단어</button>
     </div>
   </div>
 
   <div class="bank srs" id="srsBank" style="display:none">
     <div class="t" id="srsT"></div>
     <div class="r">
+      <button id="dueGo" class="duebtn">오늘 복습</button>
       <button id="weakGo">약점 단어만</button>
       <button id="pinGo">담아둔 것만</button>
       <button class="clr" id="pinView">목록</button>
@@ -1467,9 +1637,11 @@ body.hasdock #qnav{display:none}
       <button data-m="write"><span class="t">동의어 쓰기</span><span class="d">서술형 · 동의어를 직접 입력</span></button>
       <button data-m="copy"><span class="t">따라쓰기</span><span class="d">가볍게 · 정답 보고 따라 입력</span></button>
       <button data-m="browse"><span class="t">동의어 훑어보기</span><span class="d">단어별 동의어 한눈에 보기</span></button>
-      <button data-m="roots"><span class="t">어근으로 묶기</span><span class="d">5,626개 어근 전체 · 검색</span></button>
+      <button data-m="roots"><span class="t">어근으로 묶기</span><span class="d">5,829개 어근 전체 · 검색</span></button>
+      <button data-m="forms"><span class="t">형태로 묶기</span><span class="d">agitate · agitated · agitation처럼 형태만 바뀐 단어 모아 보기 · 검색</span></button>
       <button data-m="conf"><span class="t">헷갈리는 철자</span><span class="d">누르면 바로 열림 · 비슷하게 생긴 단어 나란히 비교</span></button>
       <button data-m="ko"><span class="t">뜻 → 영어</span><span class="d">한글 뜻 보고 해당하는 영어 단어 모두 고르기</span></button>
+      <button data-m="syn" data-fin="1"><span class="t">최종 정리</span><span class="d">교재 동의어 + 같은 뜻 단어까지 · 비슷하지만 다른 단어 구별</span></button>
     </div>
   </div>
 
@@ -1528,6 +1700,16 @@ body.hasdock #qnav{display:none}
     <div class="stat" id="ostat"></div>
   </div>
 
+  <div class="fld" id="fswap" style="display:none">
+    <label>문제 자리</label>
+    <div class="seg" id="swseg">
+      <button data-s="0" class="on">표제어만</button>
+      <button data-s="1">반반</button>
+      <button data-s="2">동의어 위주</button>
+    </div>
+    <div class="stat" id="swstat"></div>
+  </div>
+
   <button id="go" style="width:100%;padding:15px;font-size:1.12em">시작</button>
 </div>
 
@@ -1556,12 +1738,13 @@ body.hasdock #qnav{display:none}
   <div id="bar"></div>
   <div id="prog"><i></i></div>
   <div class="box">
-    <button id="cmpQ" class="cmpbtn cmpnear">비교 목록</button>
+    <div class="qbtnrow"><button id="srchQ" class="cmpbtn cmpnear srchbtn">🔍 검색</button><button id="cmpQ" class="cmpbtn cmpnear">비교 목록</button><button id="wbQ" class="cmpbtn cmpnear wbbtn">내 단어장</button></div>
     <div class="tag" id="tag"></div>
     <div class="wd" id="qw"></div>
+    <div id="qety" class="qety" style="display:none"></div>
     <div class="ask" id="ask"></div>
     <div id="qmissed"></div>
-    <div id="synmodebar"><button id="synmodetog" class="modetog">입력으로 풀기</button></div>
+    <div id="synmodebar"><button id="againQ" class="modetog againtog" style="display:none">↻ 이번 회차에 다시</button><button id="synmodetog" class="modetog">입력으로 풀기</button></div>
     <div class="ch" id="ch"></div>
     <div class="winrow" id="synwrap" style="display:none">
       <input id="syninput" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="동의어를 입력하고 Enter">
@@ -1584,6 +1767,7 @@ body.hasdock #qnav{display:none}
 <div id="dockbar">
   <button id="dockPin">복습에 담기</button>
   <button id="dockCmp" class="cmpbtn">비교 목록</button>
+  <button id="dockWb" class="cmpbtn wbbtn">내 단어장</button>
   <button id="dockPrev">이전</button>
   <span id="dockCnt"></span>
   <button id="dockNext">다음</button>
@@ -1602,6 +1786,7 @@ body.hasdock #qnav{display:none}
       <button class="b2" id="again">새로 풀기</button>
       <button class="b2" id="wbtn">오답 보기</button>
       <button id="revGo" style="display:none">역방향 확인</button>
+      <label id="revSwap" class="revswap" style="display:none"><input type="checkbox" id="revSwapChk"> 동의어도 랜덤으로</label>
       <button class="b2" id="penGo2" style="display:none">손으로 쓸 단어</button>
       <button class="b2" id="penbtn2">손으로 쓸 단어</button>
       <button class="b2" id="home">처음으로</button>
@@ -1715,16 +1900,16 @@ body.hasdock #qnav{display:none}
     <button id="cmpW" class="cmpbtn cmpnear">비교 목록</button>
     <div class="tag" id="wtag"></div>
     <div class="wd" id="wword"></div>
-    <div class="ask">동의어를 입력하고 Enter (아는 만큼, 하나씩)</div>
+    <div class="ask">아는 동의어를 하나씩 입력하고 Enter · 다 쓰면 「제출」 (빈칸에서 Enter도 제출)</div>
     <div id="wgot"></div>
     <div class="winrow">
       <input id="winput" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="영어 동의어 입력">
-      <button id="wsubmit">확인</button>
+      <button id="wsubmit">추가</button>
     </div>
     <div class="fb" id="wfb"></div>
     <div id="winfo" class="info"></div>
     <div class="nav">
-      <button class="b2" id="wskip">모르겠어요 · 정답 보기</button>
+      <button class="b2" id="wskip">제출 · 채점</button>
       <button id="wnext" style="display:none">다음</button>
     </div>
   </div>
@@ -1738,7 +1923,7 @@ body.hasdock #qnav{display:none}
 
 <div class="scr" id="copyscr">
   <div class="qcard">
-    <button id="cmpC" class="cmpbtn cmpnear">비교 목록</button>
+    <div class="qbtnrow"><button id="cmpC" class="cmpbtn cmpnear">비교 목록</button><button id="wbC" class="cmpbtn cmpnear wbbtn">내 단어장</button></div>
     <div class="tag" id="ctag"></div>
     <div class="ask" id="cask" style="display:none"></div>
     <div id="cfocus"></div>
@@ -1779,7 +1964,45 @@ var st={mode:'syn', key:null, cum:false, set:0, n:50, target:'word'};
 var MOPUP=false;      // 미풀이 정리 모드
 var SYN_TYPING=false;   // 동의어 매칭 입력 모드
 var Q=[], qi=0, ans=[], wrongs=[], fin=false, sel={};
-var SRC='normal';   // normal | retry | bank
+var SRC='normal';   // normal | retry | bank | fin | due
+// 최종 정리: FINMODE = 시작 화면에서 고른 상태 · FINRUN = 지금 푸는 시행이 최종 정리인지
+var FINMODE=false, FINRUN=false, FINDATA=null;
+function finLoad(){
+  if(FINDATA) return Promise.resolve(FINDATA);
+  return loadJ('data/fin.json').then(function(d){ FINDATA=d||{}; return FINDATA; }).catch(function(){ FINDATA={}; return FINDATA; });
+}
+// 최종 정리 문제: 교재 동의어 문제에 '같은 뜻'(정답)과 '비슷하지만 다름'(오답)을 2개씩까지 섞는다
+function buildFinQ(w){
+  var q=buildSyn(w, {});
+  if(!q || q.kind!=='syn') return q;
+  q.isFin=true;
+  var F=FINDATA && FINDATA[String(w.w).toLowerCase().trim()];
+  if(!F) return q;
+  var have={};
+  q.opts.forEach(function(o){ have[String(o.t).toLowerCase().trim()]=1; });
+  try{ ownSyns(w).forEach(function(t){ have[String(t).toLowerCase().trim()]=1; }); }catch(e){}   // 교재 동의어(다른 뜻 줄 포함)는 넣지 않는다
+  have[String(w.w).toLowerCase().trim()]=1;
+  var S=[], N=[];
+  for(var d in F){
+    (F[d].s||[]).forEach(function(x){ S.push({t:x[0], n:x[1], d:d}); });
+    (F[d].n||[]).forEach(function(x){ N.push({t:x[0], n:x[1], d:d}); });
+  }
+  function pick(arr, k){ var o=[], seen={}; shuf(arr).forEach(function(x){ var key=String(x.t).toLowerCase().trim(); if(o.length>=k || have[key] || seen[key]) return; seen[key]=1; o.push(x); }); return o; }
+  S=pick(S, 2); S.forEach(function(x){ have[String(x.t).toLowerCase().trim()]=1; });
+  N=pick(N, 2);
+  if(!S.length && !N.length) return q;
+  // 선지가 너무 많아지지 않게 보통 오답을 줄인다 (보통 오답은 최소 2개 남김, 전체 10개 이내)
+  var add=S.length+N.length, wrongI=[];
+  q.opts.forEach(function(o,i){ if(!o.ok) wrongI.push(i); });
+  var cut=Math.max(0, Math.min(q.opts.length+add-10, wrongI.length-2));
+  var drop={}; shuf(wrongI).slice(0,cut).forEach(function(i){ drop[i]=1; });
+  var opts=q.opts.filter(function(o,i){ return !drop[i]; });
+  S.forEach(function(x){ opts.push({t:x.t, ok:true, sense:x.d, def:'', fin:'S', fn:x.n}); });
+  N.forEach(function(x){ opts.push({t:x.t, ok:false, sense:'', def:defOf(x.t)||'', fin:'N', fn:x.n}); });
+  q.opts=shuf(opts);
+  q.need=q.opts.filter(function(o){ return o.ok; }).length;
+  return q;
+}
 var BANK={quiz:{}, syn:{}};   // 즉각 복습용 누적 오답: mode -> {word: item}
 var STATS={};   // 장기 통계: word -> {w, m, s, p, r, id, vol, day, type, wrong, right}
 var CI=0;
@@ -1931,15 +2154,82 @@ function hwTagHTML(name, selfW){
 }
 // ── 구문 속 단어 뜻 · 뜻 구별(뉘앙스) ─────────────────────────
 var PWORD=null, NUANCE=null;
-function pwordLoad(){ loadJ('data/phraseword.json').then(function(d){ PWORD=d||{}; }).catch(function(){ PWORD={}; }); }
+// 교재 동의어 중 표제어가 아닌 구문의 설명 (phrsyn.json — 클로드 정리)  { 소문자 구문: {m, k:[{w,m}], x} }
+var PHRSYN=null;
+var PHRW2=null;   // 구문 속 단어 중 교재 밖 단어의 짧은 뜻 (phrword2.json — 클로드 정리)
+function phrsynLoad(){ if(PHRSYN) return; PHRSYN={}; loadJ('data/phrsyn.json').then(function(d){ PHRSYN=d||{}; }).catch(function(){});
+  loadJ('data/phrword2.json').then(function(d){ PHRW2=d||{}; }).catch(function(){ PHRW2={}; }); }
+var _PHSTOP={}; 'a an the of to in on at by for with from and or but as be is are was were been being one oneself someone something somebody sb sth up down out off over into onto upon about after before than that this these those it its his her their my your our who whom which what not no so very more most much many all any some each own'.split(' ').forEach(function(w){ _PHSTOP[w]=1; });
+// 구문 속 단어마다 뜻 한 줄: 교재 단어면 교재 뜻, 아니면 정리해 둔 뜻
+function phrWordRows(nm, skip){
+  var seen={}, rows='';
+  (String(nm).toLowerCase().match(/[a-z][a-z'\-]*/g)||[]).forEach(function(w){
+    if(_PHSTOP[w] || w.length<3 || seen[w] || (skip && skip[w])) return; seen[w]=1;
+    var tg=hwTags(w), m='', sub='';
+    var cx=phrCtx(nm, w);                          // 그 구문 안에서 맞는 뜻만
+    if(cx && cx.x) return;
+    if(tg) m=relMean(w,'');
+    if(!m && PWORD && PWORD[w]) m=PWORD[w].m||'';
+    if(!m && PHRW2 && PHRW2[w]){ m=PHRW2[w].m||''; sub=PHRW2[w].pm||''; }
+    if(cx && cx.m){ m=cx.m; sub=''; if(cx.o) tg=''; }
+    if(!m) return;
+    rows+='<div class="phrow"><b>'+esc(w)+'</b><span class="hwat">'+esc(tg||'교재 밖')+'</span><span class="phkm">'+esc(m)+(sub?' · '+esc(sub):'')+'</span></div>';
+  });
+  return rows;
+}
+function phrsynHTML(nm, inPanel){
+  if(!PHRSYN) return '';
+  var e=PHRSYN[String(nm).toLowerCase().trim()]; if(!e) return '';
+  var h=(inPanel?'<div class="wpanel pbox sky"><div class="wptop"><b>'+esc(nm)+'</b><span class="hwat">교재 동의어 구문</span></div>'
+                 :'<span class="crootlabel">'+esc(nm)+'</span>')
+    +'<span class="phm">'+esc(e.m||'')+'</span>';
+  var _sk={}, _kr='';
+  if(e.k && e.k.length){
+    _kr=e.k.map(function(k){
+      _sk[String(k.w).toLowerCase()]=1;
+      var tg=hwTags(k.w);
+      return '<div class="phrow"><b>'+esc(k.w)+'</b><span class="hwat">'+esc(tg||'교재 밖')+'</span><span class="phkm">'+esc(k.m||'')+'</span></div>';
+    }).join('');
+  }
+  var _rest=phrWordRows(nm, _sk);
+  if(_kr || _rest) h+='<div class="phk">이 표현 속 단어</div>'+_kr+_rest;
+  if(e.x) h+='<div class="phx">'+esc(e.x)+'</div>';
+  h+='<div class="phfoot">※ 클로드 정리 · 교재에 없는 설명</div>';
+  return h+(inPanel?'</div>':'');
+}
+var PHRCTX=null;   // 구문마다 그 구문 안에서 맞는 단어 뜻 (phrctx.json — 클로드 확인) {구문: {단어: {m, o:교재 뜻 아님, x:안 띄움}}}
+function pwordLoad(){ formsLoad(); loadJ('data/phraseword.json').then(function(d){ PWORD=d||{}; }).catch(function(){ PWORD={}; });
+  loadJ('data/phrctx.json').then(function(d){ PHRCTX=d||{}; }).catch(function(){ PHRCTX={}; }); }
+// 이 구문 안에서 단어 w의 뜻 확인 결과 (없으면 null)
+// ── 형태 바뀐 단어 (agitate · agitated · agitation) — forms.json: 교재 파생 줄 + 어원 줄에서 어미만 붙은 파생 ──
+var FORMS=null, FORMIDX=null;
+function formsLoad(){ if(FORMS) return Promise.resolve(FORMS);
+  return loadJ('data/forms.json').then(function(d){ FORMS=(d&&d.f)||[]; FORMIDX={}; FORMS.forEach(function(f,i){ f.forEach(function(w){ FORMIDX[w]=i; }); }); return FORMS; })
+    .catch(function(){ FORMS=[]; FORMIDX={}; return FORMS; }); }
+function formsOf(name){ if(!FORMIDX) return null; var i=FORMIDX[String(name||'').toLowerCase().trim()]; return (i===undefined)?null:FORMS[i]; }
+function formTag(w){ var a=hwAll(w); if(a.length) return a[0].tag;
+  var it=(typeof ghPoolFind==='function')?ghPoolFind(w):null; if(it && it.dv){ var b=hwAll(it.dv); return (b.length?b[0].tag+' ':'')+it.dv+' 밑'; } return ''; }
+function formsLineHTML(name){
+  var f=formsOf(name); if(!f) return '';
+  var me=String(name).toLowerCase().trim();
+  var o=f.filter(function(w){ return w!==me; });
+  if(!o.length) return '';
+  return '<div class="fmline"><em>형태 바뀐 단어</em>'+o.map(function(w){ var t=formTag(w);
+    return '<span class="wtap fmw" data-w="'+esc(w)+'"><b>'+esc(w)+'</b>'+(t?' <span class="hwat">'+esc(t)+'</span>':'')+'</span>'; }).join('<span class="fmsep">·</span>')+'</div>';
+}
+function phrCtx(ph, w){ var e=PHRCTX && PHRCTX[String(ph).toLowerCase().trim()]; return (e && e[String(w).toLowerCase()]) || null; }
 function nuanceLoad(){ loadJ('data/nuance.json').then(function(d){ NUANCE=d||{}; }).catch(function(){ NUANCE={}; });
   loadJ('data/nzbox.json').then(function(d){ NZBOX=d||{}; }).catch(function(){ NZBOX={}; });
+  loadJ('data/nzfit.json').then(function(d){ NZFIT=d||{}; }).catch(function(){ NZFIT={}; });
   loadJ('data/nzleft.json').then(function(d){ NZLEFT=d||{}; }).catch(function(){ NZLEFT={}; }); }
 // 뜻 박스를 교재 뜻 조각 기준으로 나눈 것 (nzbox.json)
 //   F: 조각 · a: 조각이 전부 적힌 단어 · f: 조각별로 그 조각만 적힌 단어
 //   o: 한글 표현은 다르지만 같은 뜻 · x: 교재엔 그 조각이 적혔지만 이 박스 뜻과 달라서 뺀 단어
 //   단어마다 n(차이 한 줄) / why(뺀 이유) — 클로드 정리
 var NZBOX=null;
+// 뜻 상자에서 일부 조각에만 맞는 단어 / 어느 조각에도 안 맞는 단어 (nzfit.json — 클로드 정리)
+//   { 상자: { 단어: {f:[맞는 조각], y:이유} | {x:뺀 이유} } }
+var NZFIT=null;
 // 나머지 뜻 박스 (nzleft.json) — 표제어 뜻 중 동의어 줄에 안 들어간 뜻.  key = 소문자 표제어 + '|' + 표제어 뜻 전체,  s = 박스 제목
 var NZLEFT=null;
 function nzLeftKey(w){ return String((w&&w.w)||'').toLowerCase().trim()+'|'+String((w&&w.m)||'').trim(); }
@@ -1977,7 +2267,8 @@ function nzBoxPanel(sense, w, BB){
     if(!om){ var ow=ownerOf(t); if(ow) om=ow.d; }
     return '<div class="nzrow'+(on?' nzme':'')+'"><span class="nzw">'+esc(t)+'</span>'+mark(t)
       +(om?'<span class="nzmean">'+(synOwnMean(t)?esc(om):mm(t, om))+'</span>':'')
-      +((x.n||x.why)?'<span class="nzsub">'+esc(x.n||x.why)+'</span>':'')+'</div>';
+      +(x._fo ? '<span class="nzsub"><span class="fitonly">'+x._fo.map(function(z){ return '「'+esc(z)+'」'; }).join('')+'만</span>'+esc(x._fy||x.n||'')+'</span>'
+          : ((x.n||x.why)?'<span class="nzsub">'+esc(x.n||x.why)+'</span>':''))+'</div>';
   }
   function sec(title, list, cls, key){
     if(!list || !list.length) return '';
@@ -1986,7 +2277,19 @@ function nzBoxPanel(sense, w, BB){
       +list.map(row).join('')+'</div></div>';
   }
   // 조각이 하나뿐이면 「그 조각만 적힌」 칸이 따로 없다 → f 에 담긴 단어도 맨 위 칸에 함께 보여 준다
-  var aList=(B.a||[]).slice();
+  var aList=(B.a||[]).slice(), xList=(B.x||[]).slice();
+  // 일부 조각에만 맞는 단어는 「~만」 표시, 어느 조각에도 안 맞는 단어는 아래 「뜻이 달라서 뺀 단어」로
+  var FT=(NZFIT && NZFIT[sense]) || null;
+  if(FT){
+    var keepA=[];
+    aList.forEach(function(x){
+      var ft=FT[x.w];
+      if(ft && ft.x){ xList.push({w:x.w, why:ft.x}); return; }
+      if(ft && ft.f){ keepA.push({w:x.w, n:x.n, _fo:ft.f, _fy:ft.y}); return; }
+      keepA.push(x);
+    });
+    aList=keepA;
+  }
   if(F.length<=1){ for(var fk in (B.f||{})) aList=aList.concat(B.f[fk]||[]); }
   var body='', tot=aList.length+(B.o||[]).length;
   var q=F.map(function(z){return '「'+z+'」';}).join('');
@@ -1994,7 +2297,7 @@ function nzBoxPanel(sense, w, BB){
   body+=sec(aTitle, aList, 'nzb-a', 'a:'+sense);
   if(F.length>1) F.forEach(function(z){ var L=(B.f||{})[z]||[]; tot+=L.length; body+=sec('「'+z+'」만 적힌 단어', L, 'nzb-f', 'f:'+z); });
   body+=sec('한글 표현은 다르지만 같은 뜻인 단어', B.o, 'nzb-o', 'o:'+sense);
-  body+=sec('뜻이 달라서 뺀 단어 — 교재엔 같은 글자가 적혀 있지만 쓰임이 다름', B.x, 'nzb-x', 'x:'+sense);
+  body+=sec('뜻이 달라서 뺀 단어 — 교재엔 같은 글자가 적혀 있지만 쓰임이 다름', xList, 'nzb-x', 'x:'+sense);
   var ttl='<span class="nztitle">'+esc(sense)+'</span><span class="nzcount">같은 뜻 '+tot+'개</span>';
   return '<div class="nzpanel nzbx pbox mint"><div class="pbt" data-fk="'+esc('nz:'+sense)+'">'+ttl+'</div>'+body
     +'<div class="nzfoot">※ 같은 뜻인지 판단과 한 줄 설명은 클로드 정리 · 교재에 없는 설명</div></div>';
@@ -2107,7 +2410,12 @@ function phraseWordsOf(w){
     if(!t || t.length<3 || seen[t]) return;
     seen[t]=1;
     var e=PWORD[t];
-    if(e && e.m) out.push({w:t, m:e.m, note:e.note||'', at:e.at||''});
+    if(e && e.m){
+      var cx=phrCtx(w.w, t);                       // 그 구문 안에서 맞는 뜻만
+      if(cx && cx.x) return;
+      if(cx && cx.m) out.push({w:t, m:cx.m, note:'', at:(cx.o?'교재 밖':(e.at||''))});
+      else out.push({w:t, m:e.m, note:e.note||'', at:e.at||''});
+    }
   });
   return out;
 }
@@ -2303,12 +2611,13 @@ function wordPanel(name){
   var m = (it && it.m) || (LEX && LEX[String(name).toLowerCase().trim()]) || '';
   var r = rootOfWord(name);
   var R = relateOf(name);
-  if(!m && !r && !R) return '';
+  if(!m && !r && !R) return phrsynHTML(name, true);
   var h='<div class="wpanel pbox sky"><div class="wptop"><b>'+esc(name)+'</b>'
       + hwAll(name).map(function(x){ return '<span class="hwat">'+esc(x.tag)+' #'+x.id+'</span>'; }).join('')+'</div>';
   if(m) h+='<div class="wpm">'+((it && it.m)?esc(m):mm(name, m))+'</div>';
   var extra='';
   if(r) extra+='<div class="wpr"><em>어원</em> '+rootLinkHTML(r, name)+'</div>';
+  extra+=formsLineHTML(name);
   if(R && R.x && R.x.length){
     var seen={}, rows=[];
     R.x.forEach(function(e){
@@ -2407,6 +2716,7 @@ function bankLoad(){
 }
 function bankSave(){
   lsSet(BKEY, JSON.stringify({quiz:slimLocalMap(BANK.quiz), syn:slimLocalMap(BANK.syn)}));
+  if(typeof syncSoon==='function') syncSoon();
 }
 // ── 이 기기 저장 공간 절약 ──
 // 단어 기록·담긴 단어·손글씨 목록에 단어 내용(동의어·갈래·어원·예문)까지 통째로 저장하던 것을,
@@ -2563,19 +2873,27 @@ function ghSnapshot(){
     stats:ghSlimMap(STATS),
     bank:{quiz:ghSlimMap(BANK&&BANK.quiz), syn:ghSlimMap(BANK&&BANK.syn)},
     daily:DAILY,
-    pen:ghSlimMap(PENLIST), memo:MEMO, req:ROOTREQ, diary:DIARY, ses:ghSlimSes(SESSIONS), sdel:SESDEL, cmp:CMP, ord:ORDPOS,
+    pen:ghSlimMap(PENLIST), memo:MEMO, req:ROOTREQ, diary:DIARY, ses:ghSlimSes(SESSIONS), sdel:SESDEL, cmp:CMP, ord:ORDPOS, dels:DELS, wb:WB, mis:MIS, rvr:RVR,
     oset:{v:ORDER, t:ORDER_T}};
 }
 // 두 기록을 합치기 (양쪽에서 푼 것이 모두 남게)
 function ghMerge(local, remote){
   if(!remote) return local;
   var out={v:1, t:Date.now(), stats:{}, bank:{quiz:{},syn:{}}, daily:{}, pen:{}, memo:{}, req:{}};
+  // 지운 기록 표시는 양쪽을 합친다 (같은 것이면 나중 시각)
+  var DL=delsMerge(local.dels, remote.dels);
+  out.dels=DL;
+  var _clr=DL.all.stats||0;   // 약점 기록을 통째로 비운 시각 — 그 전 기록은 합치지 않는다
+  function _alive(r){ return r && (!_clr || Math.max(r.last||0, r.pinT||0)>_clr); }
   // STATS: 횟수는 큰 값, 시각/상태는 최신 것
   var ks={};
   for(var k in (local.stats||{})) ks[k]=1;
   for(var k2 in (remote.stats||{})) ks[k2]=1;
   for(var w in ks){
     var a=(local.stats||{})[w], b=(remote.stats||{})[w];
+    if(!_alive(a)) a=null;
+    if(!_alive(b)) b=null;
+    if(!a && !b) continue;
     if(!a){ out.stats[w]=b; continue; }
     if(!b){ out.stats[w]=a; continue; }
     var newer = ((a.last||a.due||0) >= (b.last||b.due||0)) ? a : b;
@@ -2585,24 +2903,41 @@ function ghMerge(local, remote){
     m.right = Math.max(a.right||0, b.right||0);
     m.streak = newer.streak||0;
     m.due = Math.max(a.due||0, b.due||0);
-    m.pinned = (a.pinned||b.pinned) ? 1 : 0;
+    if(a.ls||b.ls) m.ls = Math.max(a.ls||0, b.ls||0);
+    // 담기/빼기: 나중에 바꾼 쪽이 이긴다 (예전 기록엔 시각이 없어서 그때만 둘 중 하나라도 담겼으면 담김)
+    if(a.pinT||b.pinT){ var pw=((a.pinT||0)>=(b.pinT||0))?a:b; m.pinned=pw.pinned?1:0; m.pinT=pw.pinT||0; m.pinNow=pw.pinNow?1:0; }
+    else m.pinned = (a.pinned||b.pinned) ? 1 : 0;
     if(a.seen_syn||b.seen_syn) m.seen_syn=1;
     if(a.seen_quiz||b.seen_quiz) m.seen_quiz=1;
     out.stats[w]=m;
   }
-  // BANK: 합집합
+  // BANK: 합집합 — 단, 한 기기에서 뺀 것은 뺀 시각보다 나중에 다시 들어간 게 아니면 되살리지 않는다
   ['quiz','syn'].forEach(function(mode){
     var la=(local.bank||{})[mode]||{}, rb=(remote.bank||{})[mode]||{};
     for(var x in la) out.bank[mode][x]=la[x];
-    for(var y in rb) if(!out.bank[mode][y]) out.bank[mode][y]=rb[y];
+    for(var y in rb){ var cx=out.bank[mode][y]; if(!cx || (rb[y]&&(rb[y].at||0)>(cx.at||0))) out.bank[mode][y]=rb[y]; }
+    out.bank[mode]=delsFilter(out.bank[mode], DL[mode==='syn'?'bs':'bq'], function(it){ return it&&it.at; });
   });
-  // DAILY: 날짜별로 큰 값
+  // DAILY: 날짜별로 — 숫자는 큰 값, 강 목록은 합집합 (예전엔 syn·copy만 남기고 나머지(새로 나간 강·회독 강·푼 문제 수)를 버렸다)
   var ds={};
   for(var d1 in (local.daily||{})) ds[d1]=1;
   for(var d2 in (remote.daily||{})) ds[d2]=1;
   for(var dk in ds){
-    var la2=(local.daily||{})[dk]||{syn:0,copy:0}, rb2=(remote.daily||{})[dk]||{syn:0,copy:0};
-    out.daily[dk]={syn:Math.max(la2.syn||0, rb2.syn||0), copy:Math.max(la2.copy||0, rb2.copy||0)};
+    var la2=(local.daily||{})[dk]||{}, rb2=(remote.daily||{})[dk]||{}, od={}, fs={};
+    for(var f1 in la2) fs[f1]=1;
+    for(var f2 in rb2) fs[f2]=1;
+    for(var fk in fs){
+      var va=la2[fk], vb=rb2[fk];
+      if(va===undefined){ od[fk]=vb; continue; }
+      if(vb===undefined){ od[fk]=va; continue; }
+      if(typeof va==='number' || typeof vb==='number') od[fk]=Math.max(+va||0, +vb||0);
+      else if(Array.isArray(va) || Array.isArray(vb)){ var ua=(Array.isArray(va)?va:[]).slice(); (Array.isArray(vb)?vb:[]).forEach(function(z){ if(ua.indexOf(z)<0) ua.push(z); }); od[fk]=ua; }
+      else if(va && typeof va==='object'){ var uo={}; for(var q1 in va) uo[q1]=va[q1]; for(var q2 in (vb||{})){ var x1=uo[q2], x2=vb[q2]; uo[q2]=(typeof x1==='number'||typeof x2==='number')?Math.max(+x1||0,+x2||0):(x1!==undefined?x1:x2); } od[fk]=uo; }
+      else od[fk]=va;
+    }
+    if(od.syn===undefined) od.syn=0;
+    if(od.copy===undefined) od.copy=0;
+    out.daily[dk]=od;
   }
   // pen/memo/req: 합집합 (memo는 최신 것)
   function mergeMap(a,b,byTime){
@@ -2617,9 +2952,9 @@ function ghMerge(local, remote){
     }
     return o;
   }
-  out.pen=mergeMap(local.pen, remote.pen);
-  out.memo=mergeMap(local.memo, remote.memo, true);
-  out.req=mergeMap(local.req, remote.req);
+  out.pen=delsFilter(mergeMap(local.pen, remote.pen), DL.pen, function(it){ return it&&it.t; });
+  out.memo=delsFilter(mergeMap(local.memo, remote.memo, true), DL.memo, function(it){ return it&&it.u; });
+  out.req=delsFilter(mergeMap(local.req, remote.req), DL.req, function(it){ return it&&it.t; });
   out.diary=mergeMap(local.diary, remote.diary, true);
   // 비교 목록: 강별 · 단어별로 마지막에 바꾼 쪽이 이긴다 (뺀 것도 기록이 있어 되살아나지 않음)
   out.cmp={};
@@ -2640,6 +2975,13 @@ function ghMerge(local, remote){
       out.cmp[uk]=o;
     }
   })();
+  // 내 단어장: 단어별로 마지막에 바꾼 쪽 (뺀 것도 기록이 있어 되살아나지 않음)
+  out.wb=wbMerge(local.wb, remote.wb);
+  out.mis=misMerge(local.mis, remote.mis);
+  // 복습 회독 설정: 권마다 나중에 바꾼 쪽
+  out.rvr={};
+  (function(){ var a=local.rvr||{}, b=remote.rvr||{}, ks={}; for(var k in a) ks[k]=1; for(var k2 in b) ks[k2]=1;
+    for(var k3 in ks){ var x=a[k3], y=b[k3]; out.rvr[k3] = (!y || (x && (x.u||0)>=(y.u||0))) ? x : y; } })();
   // 랜덤/순서대로 설정: 나중에 바꾼 쪽
   (function(){ var a=local.oset, b=remote.oset; out.oset = (!b || (a && (a.t||0)>=(b.t||0))) ? a : b; })();
   // 순서대로 이어서 풀 자리: 범위마다 나중에 바꾼 쪽
@@ -2703,22 +3045,39 @@ function ghApplyRun(d){
   if(d.memo)  { MEMO=d.memo; memoSave(); }
   if(d.req)   { ROOTREQ=d.req; rootReqSave(); }
   if(d.diary) { DIARY=d.diary; diarySave(); }
+  if(d.dels)  { for(var dc in DELS) DELS[dc]=d.dels[dc]||{}; try{ localStorage.setItem(DELKEY, JSON.stringify(DELS)); }catch(e){} }
   if(d.sdel)  {   // 다른 기기에서 지운 세션은 여기서도 지운다
     for(var dk in d.sdel){ if(!SESDEL[dk] || d.sdel[dk]>SESDEL[dk]) SESDEL[dk]=d.sdel[dk]; }
     for(var dk2 in SESSIONS){ if(SESDEL[dk2] && (SESSIONS[dk2].ts||0)<=SESDEL[dk2]) delete SESSIONS[dk2]; }
     sesDelSave(); }
   if(d.ses)   {   // 받아 온 것으로 덮지 않고 합친다 (보낼 때 뺀 오래된 기록이 이 기기에서 지워지지 않게)
     try{ sesRekey(d.ses); }catch(e){}
+    var _curK=(CUR&&CUR.k)||'', _ahead=false;
+    var _onQ=false; try{ _onQ=$('qscr').classList.contains('on') && !fin; }catch(e){}
     for(var sk in d.ses){ var rs=d.ses[sk], ls=SESSIONS[sk];
       if(rs){ try{ sesRepair(rs); }catch(e){} }
       if(!rs || !sesOk(rs)) continue;
       if(SESDEL[sk] && (rs.ts||0)<=SESDEL[sk]) continue;
-      if(!ls || (rs.ts||0)>(ls.ts||0)) SESSIONS[sk]=rs; }
-    sessionsSave(); }
+      if(!ls || (rs.ts||0)>(ls.ts||0)){
+        SESSIONS[sk]=rs;
+        // 지금 이 화면에서 푸는 것과 같은 기록인데 다른 기기에서 더 많이 풀었으면 → 그 자리까지 불러온다
+        // (안 그러면 이 기기의 옛 진도로 저장해서 다른 기기에서 푼 것을 덮어 버린다)
+        if(_onQ && sk===_curK){
+          var na=0, nb=0;
+          (rs.ans||[]).forEach(function(x){ if(x!==null) na++; });
+          (ans||[]).forEach(function(x){ if(x!==null) nb++; });
+          if(na>nb) _ahead=true;
+        }
+      } }
+    sessionsSave();
+    if(_ahead){ setTimeout(function(){ try{ if(sessionResume(_curK)) msg('↩ 다른 기기에서 푼 데까지 불러왔어요','ok'); }catch(e){} }, 0); } }
   if(d.ses || d.sdel){ try{ if($('setup').classList.contains('on')) resumeUI(); }catch(e){} }
   if(d.oset && (d.oset.t||0)>ORDER_T){ ORDER_T=d.oset.t||0; orderApply(d.oset.v); }
   if(d.ord)   { ORDPOS=d.ord; try{ localStorage.setItem('voca_ordpos', JSON.stringify(ORDPOS)); }catch(e){} try{ ordStat(); }catch(e){} }
   if(d.cmp)   { CMP=d.cmp; cmpSave(); try{ cmpBtnSync(); if(cmpIsOpen()) cmpDraw(); }catch(e){} }
+  if(d.mis)   { MIS=d.mis; try{ localStorage.setItem(MISKEY, JSON.stringify(MIS)); }catch(e){} try{ misBtnSync(); if(misIsOpen()) misDraw(); }catch(e){} }
+  if(d.rvr)   { RVR=d.rvr; try{ localStorage.setItem(RVKEY, JSON.stringify(RVR)); }catch(e){} _rvDirty=true; try{ rvUI(); refreshUnitLabels(); }catch(e){} }
+  if(d.wb)    { WB=d.wb; try{ localStorage.setItem(WBKEY, JSON.stringify(WB)); }catch(e){} try{ wbBtnSync(); if(wbIsOpen()) wbDraw(); }catch(e){} }
   // 동기화로 받은 기록에도 옛 단어 내용이 섞여 있을 수 있으니 풀 기준으로 갱신
   if(typeof _allPool!=='undefined' && _allPool){ try{ refreshStored(); }catch(e){} }
 }
@@ -2980,6 +3339,30 @@ function syncDiag(){
   $('diagClose').onclick=function(){ box.style.display='none'; };
   $('diagSync').onclick=function(){ $('diagSync').textContent='동기화 중…'; ghSync(false).then(function(){ syncDiag(); }); };
 }
+// ── 지운 기록 표시 (기기 간 동기화용) ──
+// 합칠 때 '양쪽 합집합'으로 하면 한 기기에서 지운 것이 다른 기기 기록 때문에 되살아난다.
+// 그래서 지운 시각을 남겨 두고, 그보다 먼저 들어간 것은 합칠 때 뺀다.
+//   bq/bs: 오답(사지선다/동의어) · pen: 손글씨 · memo: 메모 · req: 어원 요청 · all: 통째로 비운 시각
+var DELKEY='voca_dels_v1', DELS={bq:{},bs:{},pen:{},memo:{},req:{},all:{}};
+function delsLoad(){
+  try{ var r=localStorage.getItem(DELKEY); if(r){ var d=JSON.parse(r)||{}; for(var c in DELS) DELS[c]=d[c]||{}; } }catch(e){}
+  var lim=Date.now()-60*86400000;
+  for(var c2 in DELS){ if(c2==='all') continue; for(var k in DELS[c2]) if((DELS[c2][k]||0)<lim) delete DELS[c2][k]; }
+}
+function delsSave(){ lsSet(DELKEY, JSON.stringify(DELS)); if(typeof syncSoon==='function') syncSoon(); }
+function delMark(cat, k){ if(!DELS[cat]) DELS[cat]={}; DELS[cat][String(k)]=Date.now(); delsSave(); }
+function delUnmark(cat, k){ if(DELS[cat] && DELS[cat][String(k)]){ delete DELS[cat][String(k)]; delsSave(); } }
+function delsMerge(a, b){
+  var o={bq:{},bs:{},pen:{},memo:{},req:{},all:{}};
+  [a||{}, b||{}].forEach(function(x){ for(var c in o){ var m=x[c]||{}; for(var k in m){ if(!o[c][k] || m[k]>o[c][k]) o[c][k]=m[k]; } } });
+  return o;
+}
+// 지운 시각보다 먼저 들어간 것은 뺀다 (tf: 그 항목이 들어간 시각을 읽는 함수)
+function delsFilter(map, tomb, tf){
+  var o={};
+  for(var k in (map||{})){ var it=map[k]; var td=(tomb||{})[k]||0; if(td && (tf(it)||0)<=td) continue; o[k]=it; }
+  return o;
+}
 // 기록이 바뀌면 잠시 뒤 자동 업로드
 var _syncTimer=null;
 function syncSoon(){
@@ -2992,13 +3375,13 @@ function syncSoon(){
 // ── 단어 메모 (내가 만든 설명) ──
 var MKEY='voca_memo_v1', MEMO={};
 function memoLoad(){ try{ var r=localStorage.getItem(MKEY); if(r) MEMO=JSON.parse(r)||{}; }catch(e){ MEMO={}; } }
-function memoSave(){ lsSet(MKEY, JSON.stringify(MEMO)); }
+function memoSave(){ lsSet(MKEY, JSON.stringify(MEMO)); if(typeof syncSoon==='function') syncSoon(); }
 function memoGet(w){ var m=MEMO[String(w)]; return m?m.t:''; }
 function memoSet(w, txt){
   var k=String(w);
   txt=String(txt||'').trim();
-  if(!txt) delete MEMO[k];
-  else MEMO[k]={t:txt, u:Date.now()};
+  if(!txt){ if(MEMO[k]){ delete MEMO[k]; delMark('memo', k); } }
+  else { MEMO[k]={t:txt, u:Date.now()}; delUnmark('memo', k); }
   memoSave();
 }
 
@@ -3030,12 +3413,12 @@ var PKEY='voca_pen_v1', PENLIST={};
 function penLoad(){
   try{ var r=localStorage.getItem(PKEY); if(r) PENLIST=JSON.parse(r)||{}; }catch(e){ PENLIST={}; }
 }
-function penSave(){ lsSet(PKEY, JSON.stringify(slimLocalMap(PENLIST))); }
+function penSave(){ lsSet(PKEY, JSON.stringify(slimLocalMap(PENLIST))); if(typeof syncSoon==='function') syncSoon(); }
 function isPen(w){ return !!PENLIST[String(w.w)]; }
 function penToggle(w){
   var k=String(w.w);
-  if(PENLIST[k]){ delete PENLIST[k]; }
-  else { PENLIST[k]={w:w.w, m:w.m, r:w.r, s:w.s, id:w.id, vol:w.vol, day:w.day, t:Date.now()}; }
+  if(PENLIST[k]){ delete PENLIST[k]; delMark('pen', k); }
+  else { PENLIST[k]={w:w.w, m:w.m, r:w.r, s:w.s, id:w.id, vol:w.vol, day:w.day, t:Date.now()}; delUnmark('pen', k); }
   penSave();
   return !!PENLIST[k];
 }
@@ -3088,7 +3471,7 @@ function dayKey(d){
 function dailyLoad(){
   try{ var r=localStorage.getItem(DKEY); if(r) DAILY=JSON.parse(r)||{}; }catch(e){ DAILY={}; }
 }
-function dailySave(){ lsSet(DKEY, JSON.stringify(DAILY)); }
+function dailySave(){ lsSet(DKEY, JSON.stringify(DAILY)); if(typeof syncSoon==='function') syncSoon(); }
 // 이 강을 1회독 끝냈는가 — 그 강 단어를 전부 동의어 매칭으로 풀었고 남은 오답이 없으면
 function unitCleared(key){
   var arr = (typeof CACHE!=='undefined') && CACHE[key];
@@ -3139,6 +3522,7 @@ function dailyUnitCount(w, isNew){
 var DAILY_GOAL=400;
 
 function statsSave(){
+  _rvDirty=true;
   if(typeof syncSoon==='function') syncSoon();
   lsSet(SKEY, JSON.stringify(slimLocalMap(STATS)));
 }
@@ -3165,6 +3549,7 @@ function statsWrong(w, mode){
   var r=statsEnsure(w);
   r.wrong++;
   if(mode==='syn'){
+    r.ls=Date.now();                    // 동의어 매칭으로 마지막에 푼 시각 (복습 회독 진도용)
     r.cyc=(r.cyc||0)+1;                // 이번 사이클에서 틀린 횟수 (20개 선별용)
     dailyAdd('q');                      // 푼 문제 수 (재풀이 포함)
     if(!r.seen_syn) dailyAdd('syn');    // 처음 푼 단어일 때만 새 진도에 더한다
@@ -3178,6 +3563,7 @@ function statsRight(w, mode){
   var r=statsEnsure(w);
   r.right++;
   if(mode==='syn'){
+    r.ls=Date.now();                    // 동의어 매칭으로 마지막에 푼 시각 (복습 회독 진도용)
     dailyAdd('q');
     if(!r.seen_syn) dailyAdd('syn');    // 처음 푼 단어일 때만 새 진도에 더한다
     dailyUnitCount(w, !r.seen_syn);     // 강별로 새 진도/복습 나눠 세기
@@ -3227,14 +3613,17 @@ function unitLabel(d){
   if(u.seen===0) return base;  // 아직 안 푼 강
   var badge = u.done ? ' ✅' : ' ·'+Math.round(u.seen/u.total*100)+'%';
   var accS = (u.acc!==null) ? ' 정답'+u.acc+'%' : '';
-  return base + badge + accS;
+  return base + badge + accS + rvUnitTag(d.key);
 }
 function bankAdd(mode, w){
   if(mode!=='quiz' && mode!=='syn') return;
-  BANK[mode][w.w] = w;
+  var rec={}; for(var f in w) rec[f]=w[f];
+  rec.at=Date.now();                         // 들어간 시각 (다른 기기에서 뺀 기록과 비교)
+  BANK[mode][w.w] = rec;
+  delUnmark(mode==='syn'?'bs':'bq', w.w);
 }
 function bankDel(mode, w){
-  if(BANK[mode]) delete BANK[mode][w.w];
+  if(BANK[mode] && BANK[mode][w.w]){ delete BANK[mode][w.w]; delMark(mode==='syn'?'bs':'bq', w.w); }
 }
 function bankList(mode){
   var o=[];
@@ -3258,6 +3647,7 @@ function bankListUnit(mode){
   return o;
 }
 function bankUI(){
+  try{ misBtnSync(); }catch(e){}
   // 플래시카드·따라쓰기는 자체 오답이 없으므로 동의어 매칭 기준으로 보여준다
   var m = (st.mode==='card'||st.mode==='copy'||st.mode==='browse'||st.mode==='roots'||st.mode==='conf'||st.mode==='write')
           ? 'syn' : st.mode;
@@ -3397,6 +3787,100 @@ function seenSynCount(){
   return n;
 }
 
+// ── 복습 회독 진도 (재현님 요청: 2권 진도 나가면서 1권 복습 — 강 순서대로) ──
+// 권마다 「몇 회독째, 언제부터」를 정해 두고, 그 뒤에 동의어 매칭으로 푼 단어를 강별로 센다.
+var RVKEY='voca_rvround_v1', RVR={}, _rvDirty=true, _rvCache={};
+try{ RVR=JSON.parse(localStorage.getItem(RVKEY)||'{}')||{}; }catch(e){ RVR={}; }
+function rvSave(){ lsSet(RVKEY, JSON.stringify(RVR)); _rvDirty=true; if(typeof syncSoon==='function') syncSoon(); }
+function rvLast(r){ return r ? (r.ls || (r.seen_syn ? (r.last||0) : 0)) : 0; }
+// 기본 시작: 그 권의 새 단어를 마지막으로 푼 날의 다음날 0시
+function rvDefaultStart(vol){
+  var last='';
+  for(var k in DAILY){ var nu=DAILY[k]&&DAILY[k].nu; if(!nu) continue;
+    for(var u in nu){ if(nu[u]>0 && u.indexOf('v'+vol+'d')===0 && k>last) last=k; } }
+  if(!last) return 0;
+  var p=last.split('-'); return new Date(+p[0], +p[1]-1, +p[2]+1).getTime();
+}
+// 그 권을 1회독 거의 끝냈으면(90% 이상) 2회독을 기본으로 켠다
+function rvAutoCfg(vol){
+  var key='v'+vol; if(RVR[key]) return RVR[key];
+  var tot=0, seen=0;
+  (IDX||[]).forEach(function(d){ if(String(d.key).indexOf(key+'d')===0) tot+=(d.n|0); });
+  for(var k in STATS){ var r=STATS[k]; if(r && r.vol===vol && r.seen_syn) seen++; }
+  if(!tot || seen < tot*0.9) return null;
+  var t=rvDefaultStart(vol); if(!t) return null;
+  RVR[key]={n:2, t:t, u:0}; rvSave();
+  return RVR[key];
+}
+function rvProg(vol){
+  if(_rvDirty){ _rvCache={}; _rvDirty=false; }
+  if(vol in _rvCache) return _rvCache[vol];
+  var c=RVR['v'+vol]; if(!c || !c.t){ _rvCache[vol]=null; return null; }
+  var cnt={};
+  for(var k in STATS){ var r=STATS[k]; if(!r || r.vol!==vol) continue; if(rvLast(r)>=c.t) cnt[r.day]=(cnt[r.day]||0)+1; }
+  var units=[], doneN=0, wn=0, wt=0, next=null, byKey={};
+  (IDX||[]).forEach(function(d){
+    var m=String(d.key).match(/^v(\d)d(\d+)$/); if(!m || +m[1]!==vol) return;
+    var day=+m[2], tot=d.n|0, n=Math.min(cnt[day]||0, tot), done=tot>0 && n>=tot;
+    var u={key:d.key, day:day, n:n, total:tot, done:done};
+    units.push(u); byKey[d.key]=u; wn+=n; wt+=tot;
+    if(done) doneN++; else if(!next) next=u;
+  });
+  var res={vol:vol, round:c.n||2, t:c.t, units:units, byKey:byKey, done:doneN, total:units.length, next:next, wn:wn, wt:wt};
+  _rvCache[vol]=res;
+  return res;
+}
+function rvAll(){ var out=[]; [1,2].forEach(function(v){ if(!RVR['v'+v]) rvAutoCfg(v); var p=rvProg(v); if(p) out.push(p); }); return out; }
+// 드롭다운 강 이름 뒤: 이번 회독에서 다 풀었으면 「2회독✓」, 푸는 중이면 「2회독 41/129」
+function rvUnitTag(key){
+  var m=String(key).match(/^v(\d)d/); if(!m) return '';
+  var p=rvProg(+m[1]); if(!p) return '';
+  var u=p.byKey[key]; if(!u) return '';
+  if(u.done) return ' · '+p.round+'회독✓';
+  return u.n ? ' · '+p.round+'회독 '+u.n+'/'+u.total : '';
+}
+function rvDate(t){ var d=new Date(t); return (d.getMonth()+1)+'/'+d.getDate(); }
+function rvUI(){
+  var el=$('rvLine'); if(!el) return;
+  var ps=rvAll();
+  if(!ps.length){ el.style.display='none'; return; }
+  var today=(DAILY[dayKey()]||{}).rv||{};
+  var h='';
+  ps.forEach(function(p){
+    // 한 권을 다 돌았으면 다음 회독으로 넘어간다
+    if(p.total && p.done>=p.total){ var c=RVR['v'+p.vol]; c.n=(c.n||2)+1; c.t=Date.now(); c.u=Date.now(); rvSave(); p=rvProg(p.vol); }
+    var tn=0; for(var u in today){ if(u.indexOf('v'+p.vol+'d')===0) tn+=today[u]; }
+    var pct=p.wt?Math.round(p.wn/p.wt*100):0;
+    h+='<div class="rvone" data-v="'+p.vol+'">🔁 '+p.vol+'권 <b>'+p.round+'회독</b> · '+p.done+' / '+p.total+'강 끝 · '+pct+'%'
+      +'<span class="rvsub">'+(p.next?'다음: '+p.next.day+'강 ('+p.next.n+' / '+p.next.total+')':'')
+      +(tn?' · 오늘 복습 '+tn+'개':'')+' · '+rvDate(p.t)+'부터 센 것</span>'
+      +'<div class="rvbar"><i style="width:'+pct+'%"></i></div></div>';
+  });
+  el.innerHTML=h; el.style.display='';
+}
+function rvSetOpen(vol){
+  var box=$('rvSet'); if(!box) return;
+  if(box.style.display!=='none' && box.dataset.v==String(vol)){ box.style.display='none'; return; }
+  var c=RVR['v'+vol]||{n:2,t:Date.now()}; var d=new Date(c.t);
+  var ds=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
+  box.dataset.v=vol;
+  box.innerHTML='<div>'+vol+'권 복습 진도 — 이 날부터 동의어 매칭으로 푼 단어를 셉니다</div>'
+    +'<label>몇 회독째 <input type="number" min="2" max="20" id="rvN" value="'+(c.n||2)+'"></label>'
+    +'<label>시작한 날 <input type="date" id="rvT" value="'+ds+'"></label>'
+    +'<div><button id="rvOk">저장</button><button id="rvNo">닫기</button></div>';
+  box.style.display='';
+  $('rvOk').onclick=function(){
+    var n=parseInt($('rvN').value,10)||2, v=$('rvT').value.split('-');
+    if(v.length===3){ RVR['v'+vol]={n:Math.max(2,n), t:new Date(+v[0],+v[1]-1,+v[2]).getTime(), u:Date.now()}; rvSave(); }
+    box.style.display='none'; rvUI(); try{ refreshUnitLabels(); }catch(e){}
+  };
+  $('rvNo').onclick=function(){ box.style.display='none'; };
+}
+document.addEventListener('click', function(e){
+  var t=e.target && e.target.closest && e.target.closest('.rvone');
+  if(t) rvSetOpen(+t.dataset.v);
+});
+
 // ── 오늘 진행 배너 ──
 function todayUI(){
   var box=$('todayBank'); if(!box) return;
@@ -3410,6 +3894,7 @@ function todayUI(){
   $('todayFill').style.width=pct+'%';
   $('todayFill').className='tfill'+(done?' done':'');
   box.classList.add('on');
+  try{ rvUI(); }catch(e){}
 }
 // ── 달력 ──
 var CAL_Y=null, CAL_M=null;
@@ -3446,6 +3931,9 @@ function calDraw(){
       var newU=Object.keys(d.nu||{}).filter(function(u){ return d.nu[u]>0 && doneU.indexOf(u)<0; });   // 같은 날 다 잡은 강은 ✓ 줄에만
       if(newU.length) ustr+='<span class="cu cunew">'+calUnitsHTML(newU)+'</span>';
       if(doneU.length) ustr+='<span class="cu cudone">'+calUnitsHTML(doneU,'✓ ')+'</span>';
+      // 그날 복습한 강(새 단어 없이 다시 푼 강) — 🔁
+      var revU=Object.keys(d.rv||{}).filter(function(u){ return d.rv[u]>0 && !(d.nu&&d.nu[u]>0) && doneU.indexOf(u)<0; });
+      if(revU.length) ustr+='<span class="cu curev">'+calUnitsHTML(revU,'🔁 ')+'</span>';
     }
     h+='<div class="'+cls+'" data-day="'+k+'"><span class="cd">'+day+'</span>'
       +(mark?'<span class="cm">'+mark+'</span>':'')
@@ -3503,11 +3991,13 @@ function srsUI(){
   var box=$('srsBank');
   var pins=pinnedList();
   var weak=weakList(1);
-  if(!weak.length && !pins.length){ box.classList.remove('on'); box.style.display='none'; return; }
+  var dues=dueList();
+  if(!weak.length && !pins.length && !dues.length){ box.classList.remove('on'); box.style.display='none'; return; }
   var t='';
+  if(dues.length) t+='⏰ 지금 복습할 때가 된 단어 '+dues.length+'개';
   if(weak.length){
     var w2=weakList(2).length;
-    t+='🔥 계속 걸리는 단어 '+weak.length+'개';
+    t+=(t?'  ·  ':'')+'🔥 계속 걸리는 단어 '+weak.length+'개';
     if(w2) t+=' (2회 이상 '+w2+'개)';
   }
   if(pins.length) t+=(t?'  ·  ':'')+'🔖 담아둔 단어 '+pins.length+'개';
@@ -3516,6 +4006,7 @@ function srsUI(){
   if(pg){ pg.style.display = pins.length?'':'none'; pg.textContent='담아둔 것만 ('+pins.length+')'; }
   if(pv) pv.style.display = (pins.length||weak.length)?'':'none';
   if(wg){ wg.style.display = weak.length?'':'none'; wg.textContent='약점 단어만 ('+weak.length+')'; }
+  var dg=$('dueGo'); if(dg){ dg.style.display = dues.length?'':'none'; dg.textContent='오늘 복습 '+dues.length; }
   var pl=$('pinList'); if(pl){ pl.style.display='none'; pl.innerHTML=''; }
   box.style.display='';
   box.classList.add('on');
@@ -3536,7 +4027,7 @@ var _resAll=false;
 function resumeModeName(m){
   return ({syn:'동의어 매칭', quiz:'사지선다', ko:'뜻 → 영어', write:'동의어 쓰기', copy:'따라쓰기', rev:'역방향 확인'})[m] || '퀴즈';
 }
-function resumeLabel(d){ return resumeModeName(d.src==='rev'?'rev':d.mode)+(d.src==='retry'?' · 오답':d.src==='bank'?' · 담긴 단어':''); }
+function resumeLabel(d){ if(d.fin && d.src!=='retry') return '최종 정리'; return resumeModeName(d.src==='rev'?'rev':d.mode)+(d.src==='retry'?(d.fin?' · 최종 정리 오답':' · 오답'):d.src==='bank'?' · 담긴 단어':d.src==='due'?' · 오늘 복습':d.src==='mis'?' · 잘못 고른 단어':''); }
 function resumeUI(){
   var box=$('resumeBank');
   var list=sessionsEntries();
@@ -3610,7 +4101,7 @@ setInterval(function(){
   }catch(e){}
 },1500);
 
-var APP_VER = '2026.12.08';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
+var APP_VER = '2026.12.27';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
 var VER = APP_VER;  // 데이터 URL 캐시 키. 배포 때만 바뀌므로 브라우저 캐시가 제대로 재사용됨
 function loadJ(p){
   // 데이터 파일은 URL에 버전(v=)이 붙어 캐시가 자동 갱신되므로 브라우저 캐시를 허용한다.
@@ -3798,7 +4289,12 @@ function startBoot(){
     try{ similarLoad(); }catch(e){}
     try{ hwLoad(); }catch(e){}
     try{ pwordLoad(); }catch(e){}
+    try{ phrsynLoad(); }catch(e){}
     try{ memoLoad(); }catch(e){}
+    try{ delsLoad(); }catch(e){}
+    try{ wbLoad(); }catch(e){}
+    try{ misLoad(); }catch(e){}
+    try{ wposLoad(); }catch(e){}
     try{ cmpLoad(); }catch(e){}
     try{ ghLoad(); }catch(e){}
     try{ diaryLoad(); }catch(e){}
@@ -3895,7 +4391,7 @@ function stat(){
   var n=0,w=0,sy=0,r=0;
   ds.forEach(function(d){n+=d.n;w+=d.words;sy+=d.syn;r+=d.root;});
   var pre = st.cum ? '📖 <b>누적</b> — ' : '';
-  $('dstat').innerHTML = pre+'<b>'+n+'</b>개 · 단어 '+w+' · 동의어 '+sy+' · 어원 '+r;
+  $('dstat').innerHTML = pre+'<b>'+n+'</b>개 · 단어 '+w+' · 동의어 '+sy+' · '+(st.cum ? '어원 '+r : '<span id="lrOpen">어원 '+r+' ›</span>');
   $('cum').style.background = st.cum ? '#e94560' : '#0f3460';
 
   // 플래시카드 세트 옵션
@@ -3903,6 +4399,7 @@ function stat(){
   $('fset').style.display = isCard ? '' : 'none';
   $('fnum').style.display = isCard ? 'none' : '';
   try{ $('ford').style.display = (['syn','quiz','write','copy'].indexOf(st.mode)>=0) ? '' : 'none'; ordStat(); }catch(e){}
+  try{ swapUI(); }catch(e){}
   if(isCard){
     var base = st.target==='phrase' ? (n-w) : (st.target==='both' ? n : w);
     var sel=$('sset'); sel.innerHTML='';
@@ -3960,6 +4457,23 @@ function fetchAllItems(quiet){
     return it;
   }, function(e){ _allLoading=null; throw e; });
 }
+// 오답 선지 풀 채우기 (단어는 단어끼리, 표현은 표현끼리)
+function _setPool(items){
+  if(!items || !items.length) return;
+  POOL={
+    words: items.filter(function(x){return x.type==='word';}),
+    phrases: items.filter(function(x){return x.type==='phrase';}),
+    all: items.slice()
+  };
+}
+// 풀이 비어 있으면(이어 풀기 직후 등) 지금 불러 둔 단어로 채운다
+function _ensurePool(){
+  if(POOL && POOL.all && POOL.all.length) return;
+  var it=[];
+  if(typeof _allPool!=='undefined' && _allPool && _allPool.length) it=_allPool;
+  else for(var k in CACHE) it=it.concat(CACHE[k]||[]);
+  _setPool(it);
+}
 // 오답 풀(POOL)을 전체 단어로 채움. 정답 대상 리스트는 별도로 유지
 function buildFullPool(){
   return fetchAllItems().then(function(all){
@@ -3974,7 +4488,8 @@ function buildFullPool(){
 
 function start(){
   __lastAction='시작클릭(mode='+st.mode+',target='+st.target+',n='+st.n+',cum='+st.cum+')';
-  SRC='normal';
+  FINRUN = !!(FINMODE && st.mode==='syn');
+  SRC = FINRUN ? 'fin' : 'normal';
   if(!IDX){ msg('❌ 데이터가 아직 준비되지 않았습니다. 새로고침 해주세요.','err'); return; }
   $('go').disabled=true;
   msg('불러오는 중…','load');
@@ -4068,11 +4583,12 @@ function start(){
 
     if(st.mode==='ko'){
       // 문제로 낼 뜻은 '지금 고른 진도'에서 뽑고, 정답으로 칠 범위는 스위치가 정한다
-      var mine=koIndex(words, KBOOK);
+      KBOOK_RUN=koBookFor(words);
+      var mine=koIndex(words, KBOOK_RUN);
       var senses=Object.keys(mine);
       if(!senses.length) throw new Error('이 범위에 낼 수 있는 뜻이 없습니다');
       buildFullPool().then(function(){
-        KOALL=koIndex(_allPool, KBOOK);
+        KOALL=koIndex(_allPool, KBOOK_RUN);
         KOIDX=(KSCOPE==='all') ? KOALL : mine;
         var kn=st.n===0?senses.length:Math.min(st.n, senses.length);
         var picked=shuf(senses).slice(0, kn);
@@ -4100,7 +4616,7 @@ function start(){
     var picked=pickOrder(target, n);
     if(st.mode==='syn') cycleReset(picked);   // 새 사이클 시작
     // 오답 선지 풀을 전체 단어로 확장 (매번 다양한 보기 + 보기 부족 방지)
-    buildFullPool().then(function(){
+    Promise.all([buildFullPool(), FINRUN ? finLoad() : null]).then(function(){
       launch(picked);
     }).catch(function(){ launch(picked); });
   }).catch(function(e){
@@ -4140,8 +4656,39 @@ function drawBrowse(list){
 
 // ========== 어근으로 묶어보기 (전체 어근 + 검색) ==========
 var ROOTALL=null, RTTYPE='r', _rtLimit=60;
+// 어원 줄 속에 영어 단어를 통째로 쓴 자리 → 그 단어의 교재 카드로 연결 (클로드 분류)
+//   키: '단어|형태소|괄호 뜻' (모두 소문자, 괄호 뜻은 그대로) → [연결할 표제어, 관계(반대/같은 뜻/파생)]
+var RWLINK=null;
+function rwlinkLoad(){
+  if(RWLINK) return Promise.resolve(RWLINK);
+  return loadJ('data/rwlink.json').then(function(d){ RWLINK=d||{}; return RWLINK; }).catch(function(){ RWLINK={}; return RWLINK; });
+}
+function rwLinkOf(me, part, gloss){
+  if(!RWLINK || !me) return null;
+  return RWLINK[String(me).toLowerCase().trim()+'|'+String(part).toLowerCase()+'|'+gloss] || null;
+}
+var RWREL={'반대':'반대말','같은 뜻':'품사만 다른 같은 뜻','파생':'이 단어에서 나온 말','같은 뿌리':'뿌리가 같은 말'};
+// 연결된 단어 카드 (뜻 · 교재 위치 · 그 단어의 어원 — 어원 조각을 또 누를 수 있음)
+function rwLinkCardHTML(hw, rel, part, me){
+  var h='<div class="rtlist rwcard" data-rt="'+esc(String(part).toLowerCase())+'" data-lk="'+esc(hw)+'">'
+    + '<div class="rth"><b>'+esc(hw)+'</b>'
+    + hwAll(hw).map(function(x){ return '<span class="hwat">'+esc(x.tag)+' #'+x.id+'</span>'; }).join('')
+    + (rel ? '<span class="rwrel">'+esc(me)+'과(와) '+esc(RWREL[rel]||rel)+'</span>' : '')
+    + '</div><div class="rwbody">불러오는 중…</div></div>';
+  return h;
+}
+function rwLinkFill(card, hw){
+  var locs=hwAll(hw); var unit=locs.length?_cmpKeyOfLoc(locs[0]):'';
+  _cmpEntry(hw, unit).then(function(e){
+    var b=card.querySelector('.rwbody'); if(!b) return;
+    if(!e){ b.innerHTML='<span class="rtempty">교재에서 이 단어 정보를 찾지 못했어요</span>'; return; }
+    b.innerHTML='<div class="rtm">'+esc(e.m||'')+'</div>'
+      + (e.r ? '<div class="r rwr">'+rootLinkHTML(e.r, e.w)+'</div>' : '<div class="rtempty">이 단어는 어원 줄이 없어요</div>');
+  });
+}
 function rootallLoad(){
   if(ROOTALL) return Promise.resolve(ROOTALL);
+  rwlinkLoad();
   return loadJ('data/rootall.json').then(function(d){ ROOTALL=d||[]; return ROOTALL; })
     .catch(function(){ ROOTALL=[]; return ROOTALL; });
 }
@@ -4153,7 +4700,8 @@ function drawRoots(q){
   box.innerHTML='';
   if(!ROOTALL.length){ box.innerHTML='<div class="done">어근 데이터를 불러오지 못했습니다</div>'; return; }
   q=(q||'').toLowerCase().trim();
-  var list=ROOTALL;
+  // 철자만 다른 같은 뿌리(원래 언어 형태 등)로 이어 둔 무리(x)는 어원 조각을 눌렀을 때만 쓰고 목록에는 안 띄운다
+  var list=ROOTALL.filter(function(g){ return !g.x; });
   if(RTTYPE) list=list.filter(function(g){ return g.t===RTTYPE; });
   var hitWord=null;
   if(q){
@@ -4423,7 +4971,7 @@ function drawStats(){
 }
 
 // ========== 동의어 쓰기 (서술형) ==========
-var WQ=[], wqi=0, wgot=[], wdone=false;
+var WQ=[], wqi=0, wgot=[], wdone=false, wpend=[];
 // 예문에서 구문이 나타난 위치 찾기 (빈칸 처리용). 불규칙/시제 변형까지 대응
 var _IRR={be:['was','were','been','is','are','am'],become:['became'],blow:['blew','blown'],
  "break":['broke','broken'],bring:['brought'],build:['built'],buy:['bought'],"catch":['caught'],
@@ -4644,11 +5192,13 @@ function _gEng(g){ return String(g||'').split('/')[0].trim().toLowerCase().repla
 function _gKor(g){ var p=String(g||'').split('/');
   if(p.length>1) return p.slice(1).join('/').trim();
   return /[a-zA-Z]/.test(g||'') ? '' : String(g||'').trim(); }
-function rootGroupOf(rt, gloss){
+function rootGroupOf(rt, gloss, suf){
   if(!ROOTALL){ rootallLoad().then(function(){}); return null; }
   rt=String(rt).toLowerCase().trim();
   var cand=[], i;
   for(i=0;i<ROOTALL.length;i++) if(ROOTALL[i].r===rt) cand.push(ROOTALL[i]);
+  // 접미사(-en)와 접두사·어근(en-)이 같은 철자·같은 뜻이면 해당 쪽 무리를 먼저 본다
+  if(suf!==undefined) cand.sort(function(a,b){ return ((a.t==='s')===!!suf ? 0 : 1) - ((b.t==='s')===!!suf ? 0 : 1); });
   if(!cand.length) return null;
   for(i=0;i<cand.length;i++){
     var gs=String(cand[i].g||'').split(' \u00b7 ').concat(cand[i].al||[]);
@@ -4676,25 +5226,44 @@ function isGramRoot(g){
 // 어원 줄을 그리되, 진짜 어근 부분(spect(look/보다) 같은)은 누를 수 있게 만든다
 function rootLinkHTML(rr, me){
   rr=String(rr||'');
-  if(!rr || rr.charAt(0)==='[') return esc(rr);
+  if(!rr) return '';
+  // [라틴어] 같은 출처 표시는 그대로 두고, 뒤의 조각만 누를 수 있게 한다
+  var pre='', mt=rr.match(/^(\[[^\]]*\]\s*)/);
+  if(mt){ pre=mt[1]; rr=rr.slice(pre.length); }
   var cut=rr.indexOf('→');
   var head=cut>=0 ? rr.slice(0,cut) : rr, rest=cut>=0 ? rr.slice(cut) : '';
-  var parts=head.split('+');
+  // + 와 ← 로 나눈다 (구분자는 그대로 둔다). 괄호 안의 + · ← 는 뜻 설명이라 나누지 않는다
+  var parts=[], buf='', dep=0;
+  for(var ci=0; ci<head.length; ci++){
+    var ch=head.charAt(ci);
+    if(ch==='(') dep++;
+    else if(ch===')' && dep>0) dep--;
+    if(dep===0 && (ch==='+' || ch==='←')){ parts.push(buf); parts.push(ch); buf=''; }
+    else buf+=ch;
+  }
+  parts.push(buf);
   var out=parts.map(function(p){
-    var m=p.match(/^(\s*)(-?)([a-zA-Z]+)(\(([^)]*)\))([\s\S]*)$/);
+    if(p==='+' || p==='←') return esc(p);
+    // 앞에 '라틴어 ' 같은 한글 설명이 붙은 조각도 조각으로 본다
+    var m=p.match(/^(\s*(?:[가-힣][가-힣 ]*\s)?)(-?)([a-zA-Z]+)(\(([^)]*)\))([\s\S]*)$/);
     if(!m) return esc(p);
+    var lk=null; try{ lk=rwLinkOf(me, m[3], m[5]); }catch(e){}
+    if(lk){
+      return esc(m[1]) + '<span class="rtap rwlk" data-rt="'+esc(m[3].toLowerCase())+'" data-g="'+esc(m[5])+'" data-me="'+esc(me||'')+'" data-lk="'+esc(lk[0])+'" data-rel="'+esc(lk[1]||'')+'">'
+           + esc(m[2]+m[3]+m[4]) + '</span>' + esc(m[6]);
+    }
     var gp=null;
-    try{ gp=rootGroupOf(m[3], m[5]); }catch(e){}
+    try{ gp=rootGroupOf(m[3], m[5], m[2]==='-'); }catch(e){}
     if(!gp || isGramRoot(m[5]) || isGramRoot(gp.g)) return esc(p);   // 문법 기능만 하는 접사(형용사형 등)는 제외
-    return esc(m[1]) + '<span class="rtap" data-rt="'+esc(m[3].toLowerCase())+'" data-g="'+esc(m[5])+'" data-me="'+esc(me||'')+'">'
+    return esc(m[1]) + '<span class="rtap" data-rt="'+esc(m[3].toLowerCase())+'" data-g="'+esc(m[5])+'" data-me="'+esc(me||'')+'"'+(m[2]==='-'?' data-suf="1"':'')+'>'
          + esc(m[2]+m[3]+m[4]) + '</span>' + esc(m[6]);
   });
-  return '<span class="rtline">'+out.join('+')+esc(rest)+'</span>';
+  return '<span class="rtline">'+esc(pre)+out.join('')+esc(rest)+'</span>';
 }
 // 그 어근으로 된 교재 단어 목록 (처음엔 30개, 나머지는 더 보기)
-function rootListHTML(rt, g, me, all){
+function rootListHTML(rt, g, me, all, suf){
   var gp=null;
-  try{ gp=rootGroupOf(rt, g); }catch(e){}
+  try{ gp=rootGroupOf(rt, g, suf); }catch(e){}
   if(!gp) return '';
   var mek=String(me||'').toLowerCase().trim();
   var ws=(gp.w||[]).filter(function(x){ return String(x.w).toLowerCase().trim()!==mek; });
@@ -4987,12 +5556,12 @@ var ROOTREQ={};
 function rootReqLoad(){
   try{ var r=localStorage.getItem(RQKEY); if(r) ROOTREQ=JSON.parse(r)||{}; }catch(e){ ROOTREQ={}; }
 }
-function rootReqSave(){ lsSet(RQKEY, JSON.stringify(ROOTREQ)); }
+function rootReqSave(){ lsSet(RQKEY, JSON.stringify(ROOTREQ)); if(typeof syncSoon==='function') syncSoon(); }
 function rootReqAdd(word, mainWord){
   var k=String(word).toLowerCase().trim();
   if(!k) return false;
-  if(ROOTREQ[k]) { delete ROOTREQ[k]; rootReqSave(); return false; }   // 다시 누르면 취소
-  ROOTREQ[k]={w:word, from:mainWord||'', t:Date.now()};
+  if(ROOTREQ[k]) { delete ROOTREQ[k]; delMark('req', k); rootReqSave(); return false; }   // 다시 누르면 취소
+  ROOTREQ[k]={w:word, from:mainWord||'', t:Date.now()}; delUnmark('req', k);
   rootReqSave();
   return true;
 }
@@ -5352,22 +5921,45 @@ function startWrite(list){
   drawWrite();
 }
 function normSyn(s){ return String(s).toLowerCase().replace(/[^a-z]/g,''); }
+// 시작 화면 '문제 자리' 줄: 동의어 매칭·동의어 쓰기일 때만, 모드마다 따로 기억
+function swapUI(){
+  var f=$('fswap'); if(!f) return;
+  var m=st.mode;
+  if(m!=='syn' && m!=='write'){ f.style.display='none'; return; }
+  f.style.display='';
+  if(m==='syn' && FINMODE){ f.style.display='none'; return; }   // 최종 정리는 표제어로만
+  var v=(typeof SWAP[m]==='number') ? SWAP[m] : (SWAP[m]?2:0);
+  $('swseg').querySelectorAll('button').forEach(function(b){ b.classList.toggle('on', parseInt(b.dataset.s,10)===v); });
+  $('swstat').textContent = v===1
+    ? '반반: 문제의 절반은 표제어, 절반은 같은 뜻 줄의 동의어가 문제로 나와요'
+    : v===2
+    ? '동의어 위주: 표제어와 동의어 중 아무거나 — 동의어가 많은 단어는 대부분 동의어가 문제로 나와요. 예: 「맡기다」 relegate · commit · consign → 문제 consign → 정답 relegate, commit'
+    : '표제어가 문제로 나와요 (지금까지와 같음)';
+}
 function drawWrite(){
   var w=WQ[wqi];
-  wgot=[]; wdone=false;
+  wgot=[]; wdone=false; wpend=[];
   // 이 단어의 전체 동의어 목록 (정답 셋)
   var all=[];
   var pairs=ownPairs(w) || [{d:w.m,s:ownSyns(w)}];
   pairs.forEach(function(p){ (p.s||[]).forEach(function(t){
     if(all.map(normSyn).indexOf(normSyn(t))<0) all.push(t);
   });});
+  // 문제 자리 섞기: 같은 뜻 줄의 한 단어를 문제로, 그 줄 나머지(표제어 포함)를 정답으로
+  var SW = SWAP.write ? pickSwap(w, false, SWAP.write===1) : null;
+  if(SW){
+    var a2=[];
+    [w.w].concat(SW.line).forEach(function(t){ if(normSyn(t)!==normSyn(SW.t) && a2.map(normSyn).indexOf(normSyn(t))<0) a2.push(t); });
+    if(a2.length) all=a2; else SW=null;
+  }
+  w._swap=SW;
   w._all=all; w._norm=all.map(normSyn);
   w._deriv=derivSyns(w);          // 파생어 동의어는 채점 대상 아님 (해설에만)
 
   $('wbar').innerHTML='<div id="bar"><span class="tag">'+tagOf(w)+' · #'+w.id+'</span>'
     + '<div id="prog"><div style="width:'+((wqi)/WQ.length*100)+'%"></div></div></div>';
-  $('wtag').textContent='';
-  $('wword').textContent=w.w;
+  $('wtag').textContent = w._wagain ? '다 못 맞혀서 다시 나온 문제' : '';
+  $('wword').textContent=SW ? SW.t : w.w;
   $('wgot').innerHTML='';
   $('winput').value='';
   $('winput').disabled=false;
@@ -5379,28 +5971,49 @@ function drawWrite(){
   try{ cmpBtnSync(); }catch(e){}
   setTimeout(function(){ $('winput').focus(); },50);
 }
+// 쓰기: Enter는 써 둔 목록에만 쌓고(채점 안 함), 「제출」을 눌러야 한꺼번에 채점한다
 function writeSubmit(){
+  if(wdone) return;
+  var v=$('winput').value.trim();
+  if(!v){ writeGrade(); return; }                 // 빈칸에서 Enter = 제출
+  $('winput').value='';
+  var nv=normSyn(v);
+  if(!nv) return;
+  if(wpend.map(normSyn).indexOf(nv)>=0){ $('wfb').textContent='이미 썼어요'; $('wfb').style.color='#889'; return; }
+  wpend.push(v);
+  wPendDraw();
+  $('wfb').textContent=wpend.length+'개 썼어요 · 다 쓰면 「제출」';
+  $('wfb').style.color='#9fb4d6';
+}
+function wPendDraw(){
+  $('wgot').innerHTML=wpend.map(function(t,i){ return '<span class="chip wpend" data-i="'+i+'" title="누르면 지워요">'+esc(t)+' ×</span>'; }).join('');
+}
+function writeGrade(){
   if(wdone) return;
   var w=WQ[wqi];
   var v=$('winput').value.trim();
-  if(!v) return;
-  $('winput').value='';
-  var nv=normSyn(v);
-  var idx=w._norm.indexOf(nv);
-  if(idx<0){
-    // 오답: 목록에 없음
-    flashChip(v, true);
-    $('wfb').textContent='❌ 목록에 없어요';
-    $('wfb').style.color='#e94560';
-    return;
-  }
-  var already=wgot.map(normSyn).indexOf(nv)>=0;
-  if(already){ $('wfb').textContent='이미 입력했어요'; $('wfb').style.color='#889'; return; }
-  wgot.push(w._all[idx]);
-  flashChip(w._all[idx], false);
-  $('wfb').textContent='✅ 맞아요! ('+wgot.length+'/'+w._all.length+')';
-  $('wfb').style.color='#4ecca3';
-  if(wgot.length>=w._all.length){ writeReveal(true); }
+  if(v){ $('winput').value=''; if(wpend.map(normSyn).indexOf(normSyn(v))<0) wpend.push(v); }
+  var bad=0; wgot=[];
+  var h=wpend.map(function(t){
+    var idx=w._norm.indexOf(normSyn(t));
+    if(idx>=0 && wgot.indexOf(w._all[idx])<0){ wgot.push(w._all[idx]); return '<span class="chip">'+esc(w._all[idx])+'</span>'; }
+    bad++; return '<span class="chip miss wbad">'+esc(t)+'</span>';
+  }).join('');
+  $('wgot').innerHTML=h;
+  var all=wgot.length>=w._all.length && !bad;
+  writeReveal(all);
+  $('wfb').textContent = all ? '🎉 전부 맞혔어요!' : ('맞힘 '+wgot.length+' / '+w._all.length+(bad?' · 틀림 '+bad:'')+' — 몇 문제 뒤에 다시 나와요');
+  $('wfb').style.color = all ? '#4ecca3' : '#f0a500';
+  if(!all) writeRequeue(w);
+}
+// 다 못 맞히면 이번 회차 안에서 6~14문제 뒤에 다시 (오답 기록에는 넣지 않음 — 쓰기는 연습용)
+function writeRequeue(w){
+  var left=WQ.length-(wqi+1), between=6+Math.floor(Math.random()*9), at;
+  if(between<=left) at=wqi+1+between; else if(left>=6) at=wqi+1+6+Math.floor(Math.random()*(left-6+1)); else at=WQ.length;
+  var c={}; for(var k in w){ if(k.charAt(0)!=='_' || k==='_wagain') c[k]=w[k]; }
+  c._wagain=true;
+  WQ.splice(at,0,c);
+  $('wcnt').textContent=(wqi+1)+' / '+WQ.length;
 }
 function flashChip(t, miss){
   var c=document.createElement('span');
@@ -5417,7 +6030,9 @@ function writeReveal(allGot){
   $('wnext').style.display='';
   if(allGot){ $('wfb').textContent='🎉 전부 맞혔어요!'; $('wfb').style.color='#4ecca3'; }
   else { $('wfb').textContent='정답을 확인하세요'; $('wfb').style.color='#f0a500'; }
-  var h=renderPairs(w,null);
+  var h='';
+  if(w._swap) h+='<div class="swapnote2"><b>'+esc(w._swap.t)+'</b> · '+esc(w._swap.d)+'<span class="swapof">('+esc(w.w)+'의 동의어)</span></div>';
+  h+=renderPairs(w,null);
   if(w.pp) h+=prepHTML(w);
   if(w.r){
     h+='<div class="r" style="margin-top:7px">'+rootLinkHTML(w.r, w.w)+'</div>';
@@ -5452,7 +6067,7 @@ function launch(list, opts){
     var pool = POOL.all && POOL.all.length ? POOL.all : list;
     Q = [];
     for(var i=0;i<list.length;i++){
-      var q = buildRev(list[i], pool);
+      var q = SWAP.rev ? (buildSyn(list[i], {swap:true, noHead:true}) || buildRev(list[i], pool)) : buildRev(list[i], pool);
       if(q) Q.push(q);
     }
     if(!Q.length){ msg('역방향으로 낼 수 있는 문제가 없습니다','err'); show('setup'); return; }
@@ -5464,7 +6079,8 @@ function launch(list, opts){
     // 동의어 있으면 동의어 매칭, 없으면 뜻 맞추기로 섞어서 출제
     Q = list.map(function(w){
       var hasSyn = (w.p && w.p.some(function(pr){return pr.s&&pr.s.length;})) || (w.s&&w.s.length);
-      return hasSyn ? buildSyn(w) : buildQuiz(w);
+      if(FINRUN) return hasSyn ? buildFinQ(w) : buildQuiz(w);
+      return hasSyn ? buildSyn(w, {swap:!!SWAP.syn, half:SWAP.syn===1}) : buildQuiz(w);
     });
   } else {
     Q = list.map(buildQuiz);
@@ -5560,6 +6176,7 @@ function sessionsEntries(){
 // 빈 값은 빼고 저장 (저장 공간 절약)
 function _slim(o){ var r={}; for(var k in o){ var v=o[k]; if(v===null||v===undefined||v===''||v===false) continue; r[k]=v; } return r; }
 function sessionSave(){
+  if(SRC==='mis') return;                                // 잘못 고른 단어 퀴즈는 이어 풀기 기록을 남기지 않는다
   if(fin || !Q.length){ sessionClear(); return; }
   try{
     // Q의 각 문제를 재구성 가능한 형태로 직렬화
@@ -5568,21 +6185,22 @@ function sessionSave(){
         wid: q.w.id, wkey: q.w.w,
         opts: q.opts.map(function(o){
           if(typeof o==='string') return o;
-          var oo=_slim({t:o.t, ok:o.ok, sense:o.sense, def:o.def, srcw:o.srcw});
+          var oo=_slim({t:o.t, ok:o.ok, sense:o.sense, def:o.def, srcw:o.srcw, fin:o.fin, fn:o.fn, mis:o.mis});
           if(o.item) oo.item=o.item;               // 뜻 → 영어: 정답 단어가 나온 자리
           return oo;
         }),
         // 동의어를 몇 개까지 냈는지 · 다시 나온 문제인지 · 뜻 → 영어의 뜻 글자 (이어하기에서 빠지던 것)
         shown:q.shown, total:q.total,
-        rightList:q.rightList, again:!!q.again, why:q.why,
+        rightList:q.rightList, again:!!q.again, why:q.why, ua:q._ua?1:undefined,
         sense:q.sense, prompt:q.prompt,
         ans:q.ans, need:q.need, isPhrase:q.isPhrase,
+        swap:q.swap, swo:q.swo, isFin:q.isFin,
         kind: q.kind
       });
     });
     // ★ 답 목록은 복사해서 넣는다 — 화면에서 푸는 답 목록과 저장된 기록이 한 몸이 되면
     //   저장이 한 번 실패했을 때 '옛 문제 목록 + 늘어난 답 목록'이 섞여 남는다 (49강 오류의 원인)
-    var data={ mode:st.mode, key:st.key, cum:st.cum, src:SRC, qi:qi, ans:ans.slice(), wrongs:wrongs.slice(), Q:qd, ts:Date.now() };
+    var data={ mode:st.mode, key:st.key, cum:st.cum, src:SRC, qi:qi, ans:ans.slice(), wrongs:wrongs.slice(), Q:qd, ts:Date.now(), fin:FINRUN?1:0 };
     var k=sesKeyOf(data);
     SESSIONS[k]=data;                    // 강별로 보관 (기기 간 동기화)
     sessionsSave();
@@ -5623,7 +6241,8 @@ function sessionResume(sesKey){
   if(!sesOk(d)) return false;
   var tok=++_resTok;                     // 이어서 풀기를 두 번 눌러도 마지막 것 하나만
   MOPUP=false;
-  st.mode=d.mode; st.key=d.key; st.cum=d.cum; SRC=d.src||'normal';
+  st.mode=d.mode; st.key=d.key; st.cum=d.cum; SRC=d.src||'normal'; FINRUN=!!d.fin;
+  if(FINRUN) finLoad();
   function build(full){
     return d.Q.map(function(qd){
       var q = { w:findWordById(qd.wid, qd.wkey), opts:(qd.opts||[]).map(function(o){
@@ -5640,9 +6259,25 @@ function sessionResume(sesKey){
     });
   }
   // 저장된 진도의 단어 데이터를 먼저 확보 (해설용 뜻/어원)
-  Promise.all(keys().map(getDay)).then(function(){
+  Promise.all(keys().map(getDay)).then(function(cs){
     if(tok!==_resTok) return;
+    // 오답 선지 풀도 다시 채운다 — 비어 있으면 다시 나온 문제에 오답 선지가 하나도 안 붙는다 (선지 1개 오류)
+    try{ var it=[]; (cs||[]).forEach(function(c){ it=it.concat(c||[]); }); _setPool(it); }catch(e){}
     Q=build(true);
+    // 이미 저장된 '오답 선지 없이 정답만 있는 문제'(안 푼 것)는 지금 다시 만든다
+    try{
+      for(var qi2=0;qi2<Q.length;qi2++){
+        var q2=Q[qi2];
+        if(d.ans[qi2]!==null || !q2 || (q2.kind!=='syn' && q2.kind!=='quiz') || !q2.opts || !q2.opts.length) continue;
+        if(!q2.opts.every(function(o){ return o && o.ok; })) continue;
+        if(!q2.w || !q2.w.m) continue;
+        if(q2.kind==='syn' && !((q2.w.p&&q2.w.p.length)||(q2.w.s&&q2.w.s.length))) continue;
+        var nq2=(q2.kind==='syn') ? buildSyn(q2.w, q2.swo||{}) : buildQuiz(q2.w);
+        if(!nq2 || !nq2.opts || nq2.opts.every(function(o){ return o.ok; })) continue;
+        if(q2.again){ nq2.again=true; nq2.why=q2.why; }
+        Q[qi2]=nq2;
+      }
+    }catch(e){}
     qi=d.qi; ans=d.ans; wrongs=d.wrongs||[]; fin=false;
     hide();
     show('qscr');
@@ -5665,16 +6300,21 @@ function _qdRestore(q, qd){
   if(qd.rightList) q.rightList=qd.rightList;
   if(qd.again) q.again=true;
   if(qd.why) q.why=qd.why;
+  if(qd.ua) q._ua=true;
   if(qd.sense) q.sense=qd.sense;
   if(qd.prompt) q.prompt=qd.prompt;
+  if(qd.swap) q.swap=qd.swap;
+  if(qd.swo) q.swo=qd.swo;
+  if(qd.isFin) q.isFin=true;
 }
 // 뜻 → 영어 이어하기: 다시 내기·오답 거르기에 쓰는 뜻 색인을 다시 만든다
 function _koResumeIdx(){
   try{
     var items=[]; keys().forEach(function(k){ items=items.concat(CACHE[k]||[]); });
-    var mine=koIndex(filterTarget(items), KBOOK);
+    KBOOK_RUN=koBookFor(filterTarget(items));
+    var mine=koIndex(filterTarget(items), KBOOK_RUN);
     buildFullPool().then(function(){
-      KOALL=koIndex(_allPool, KBOOK);
+      KOALL=koIndex(_allPool, KBOOK_RUN);
       KOIDX=(KSCOPE==='all') ? KOALL : mine;
     }).catch(function(){});
   }catch(e){}
@@ -5716,6 +6356,7 @@ function retryWrong(){
 
 // 누적 오답 풀기
 function startBank(unitOnly){
+  FINRUN=false;
   var m=(st.mode==='card'||st.mode==='copy'||st.mode==='browse'||st.mode==='roots'||st.mode==='conf'||st.mode==='write')
         ? 'syn' : st.mode;
   var list = unitOnly ? bankListUnit(m) : bankList(m);
@@ -5740,6 +6381,7 @@ function startBank(unitOnly){
 
 // ---- 약점 단어(20개 목록에 든 것)만 출제 ----
 function startWeak(){
+  FINRUN=false;
   var list=weakList(1);
   if(!list.length){ msg('아직 약점 단어가 없습니다','err'); return; }
   $('weakGo').disabled=true;
@@ -5758,6 +6400,7 @@ function startWeak(){
 
 // ---- 내가 담아둔 단어만 출제 ----
 function startPinned(){
+  FINRUN=false;
   var list=pinnedList();
   if(!list.length){ msg('담아둔 단어가 없습니다','err'); return; }
   $('pinGo').disabled=true;
@@ -5774,7 +6417,31 @@ function startPinned(){
   });
 }
 
-// ---- 간격반복 복습: due 지난 단어들 출제 ----
+// ---- 간격반복 복습: 다시 볼 때가 된 단어 (틀린 적 있고, 다음 복습 시각이 지난 것) ----
+function dueList(){
+  var now=Date.now(), o=[];
+  for(var k in STATS){ var r=STATS[k]; if(r && r.due && (r.wrong||0)>0 && r.due<=now) o.push(r); }
+  o.sort(function(a,b){ return (a.due||0)-(b.due||0); });
+  return o;
+}
+function startDue(){
+  var list=dueList();
+  if(!list.length){ msg('지금 복습할 단어가 없어요','err'); return; }
+  if(st.mode!=='syn'){ var mb=document.querySelector('#mseg button[data-m="syn"]'); if(mb) mb.click(); }
+  FINRUN=false;
+  $('dueGo').disabled=true;
+  msg('불러오는 중…','load');
+  buildFullPool().then(function(){
+    if(POOL.all.length<4) throw new Error('선지를 만들 단어가 부족합니다');
+    SRC='due';
+    $('dueGo').disabled=false;
+    hide();
+    launch(list);
+  }).catch(function(e){
+    $('dueGo').disabled=false;
+    msg('❌ '+e.message,'err');
+  });
+}
 
 
 // ---- 동의어 매칭: 정답 동의어 + 오답(다른 단어의 동의어) ----
@@ -5906,6 +6573,7 @@ function missedSynHTML(q){
   if(!q || q.kind!=='syn' || !q.w) return '';
   var shown={};
   (q.opts||[]).forEach(function(o){ shown[String(o.t).toLowerCase().trim()]=1; });
+  if(q.swap) shown[String(q.swap.t).toLowerCase().trim()]=1;   // 문제 자리에 나온 동의어도 '나온 것'
   var rows=[], seen={};
   (q.w.p||[]).forEach(function(pr){
     if(isDeriv(pr)) return;
@@ -5948,6 +6616,11 @@ function missedSynHTML(q){
 // 표제어든 동의어든 가리지 않고 정답으로 친다.
 var KSCOPE='unit';   // 'unit' 이 강에서 · 'all' 교재 전체에서
 var KBOOK='y';       // 'y' 윤황보카만 · 'ym' MVP까지
+var KBOOK_RUN='y';   // 이번 시행에 실제로 쓰는 범위 — MVP 강만 고르면 '윤황보카만'이어도 MVP를 넣는다 (안 그러면 낼 뜻이 0개)
+function koBookFor(words){
+  if(KBOOK==='y' && words && words.length && !words.some(function(x){ return !x.src || x.src==='Y'; })) return 'ym';
+  return KBOOK;
+}
 var KOST=null;       // 뜻별로 몇 개까지 봤는지 (동의어 매칭과 같은 방식)
 var KOKEY='voca_ko_v1';
 function koLoad(){ try{ KOST=JSON.parse(localStorage.getItem(KOKEY)||'{}'); }catch(e){ KOST={}; } if(!KOST) KOST={}; }
@@ -6017,7 +6690,7 @@ function buildKo(sense, srcW){
   right.forEach(function(x){ ban[x.t.toLowerCase().trim()]=1; });
   var pool=(POOL && POOL.words && POOL.words.length) ? POOL.words : ((_allPool||[]).filter(function(x){return x.type==='word';}));
   // 윤황보카만 고른 경우에는 오답도 윤황보카에서만 낸다
-  if(KBOOK==='y'){ var _yp=pool.filter(function(x){ return !x.src || x.src==='Y'; }); if(_yp.length>50) pool=_yp; }
+  if(KBOOK_RUN==='y'){ var _yp=pool.filter(function(x){ return !x.src || x.src==='Y'; }); if(_yp.length>50) pool=_yp; }
   var wrong=[], tries=0;
   var nWrong=3+Math.floor(Math.random()*4);      // 3~6개
   while(wrong.length<nWrong && tries<900){
@@ -6054,8 +6727,32 @@ function requeueKo(q){
   Q.splice(at,0,nq); ans.splice(at,0,null);
   try{ $('cnt').textContent=(qi+1)+' / '+Q.length; }catch(e){}
 }
-function buildSyn(w){
+// ── 문제 자리 섞기 (표제어 ↔ 동의어) ──
+// 켜면 같은 뜻 줄(예: 「맡기다」 relegate · commit · consign)에서 한 단어를 골라 문제 자리에 놓고,
+// 그 줄의 나머지 단어(표제어 포함)를 정답으로 낸다. 표제어가 뽑히면 평소 문제 그대로.
+// 모드마다 따로 기억한다: syn(동의어 매칭) · write(동의어 쓰기) · rev(역방향 확인)
+var SWAP={syn:false, write:false, rev:false};
+// syn·write: 0 표제어만 · 1 반반 · 2 동의어 위주 (예전 '동의어도 랜덤으로' = 2) / rev: 켬·끔
+try{ var _sw=JSON.parse(localStorage.getItem('voca_swap')||'null'); if(_sw) for(var _k in SWAP){ var _v=_sw[_k]; SWAP[_k] = (_k==='rev') ? !!_v : (_v===true ? 2 : (typeof _v==='number' ? _v : 0)); } }catch(e){}
+function swapSave(){ lsSet('voca_swap', JSON.stringify(SWAP)); }
+// 문제로 낼 자리 고르기. noHead=true면 표제어는 안 뽑는다(역방향). 못 고르면 null
+function pickSwap(w, noHead, half){
+  var ps=ownPairs(w); if(!ps) return null;
+  if(half && !noHead && Math.random()<0.5) return null;   // 반반: 절반은 표제어 자리
+  var pool=[];
+  if(!noHead && !half) pool.push(null);              // 표제어 자리 (평소 문제)
+  ps.forEach(function(pr){ (pr.s||[]).forEach(function(t){
+    if(String(t).toLowerCase().trim()===String(w.w).toLowerCase().trim()) return;
+    pool.push({t:t, d:pr.d, line:(pr.s||[]).slice()});
+  }); });
+  if(!pool.length) return null;
+  return pool[Math.floor(Math.random()*pool.length)];
+}
+function buildSyn(w, opt){
+  opt=opt||{};
+  var _swo={swap:!!opt.swap, noHead:!!opt.noHead, half:!!opt.half};
   var pairs = ownPairs(w) || [{d:w.m, s:ownSyns(w)}];
+  var SW = opt.swap ? pickSwap(w, !!opt.noHead, !!opt.half) : null;
 
   // 동의어 -> 그 동의어가 속한 뜻 매핑
   var senseOf = {};
@@ -6069,6 +6766,17 @@ function buildSyn(w){
     });
   });
   if(!all.length) all = (w.s||[]).slice();
+  var allFull = all.slice();                        // 이 단어의 동의어 전부 (오답 금지 목록용)
+  if(SW){
+    // 문제 자리에 온 동의어를 뺀 그 뜻 줄 + 표제어가 정답
+    var lk={}; all=[];
+    [w.w].concat(SW.line).forEach(function(t){
+      var k=String(t).toLowerCase().trim();
+      if(!k || lk[k] || k===String(SW.t).toLowerCase().trim()) return;
+      lk[k]=1; all.push(t); senseOf[k]=SW.d;
+    });
+    if(!all.length) SW=null, all=allFull.slice();
+  }
 
   // ── 동의어 노출 확대 ──
   // 같은 단어를 다시 만날수록 정답(동의어)을 더 많이 보여준다.
@@ -6093,12 +6801,15 @@ function buildSyn(w){
   // 아직 한 번도 안 푼 단어는 STATS 기록이 없어 여기서 적을 곳이 없다.
   // 그래서 문제에 적어 두고, 채점할 때 기록으로 옮긴다 (그래야 2회차가 3개로 멈추지 않는다)
   var right = keep.concat(rest).slice(0, want);
+  if(SW) right = shuf(all.slice());                 // 자리 바꾼 문제는 그 줄 정답을 전부
   var MAXOPT = right.length + 6;   // 오답은 3~6개
 
 
   var seen={};
   seen[w.w.toLowerCase()]=1;
   all.forEach(function(t){ seen[t.toLowerCase()]=1; });   // 안 뽑힌 동의어도 오답 금지
+  allFull.forEach(function(t){ seen[String(t).toLowerCase().trim()]=1; });   // 다른 뜻 줄의 동의어도 오답 금지
+  if(SW) seen[String(SW.t).toLowerCase().trim()]=1;
   // 파생형 갈래의 동의어도 오답으로 쓰지 않는다 (뜻이 통해버려서 시비가 생김)
   (w.s||[]).forEach(function(t){ seen[String(t).toLowerCase().trim()]=1; });
   (w.p||[]).forEach(function(pr){ if(isDeriv(pr)){
@@ -6113,13 +6824,20 @@ function buildSyn(w){
   if(hi<lo) hi=lo;
   var need = lo + Math.floor(Math.random()*(hi-lo+1));
   // 정답이 표현이면 오답도 표현에서, 단어면 단어에서
+  _ensurePool();
   var srcPool = (w.type==='phrase') ? POOL.phrases : POOL.words;
   if(srcPool.length<2) srcPool = POOL.all;  // 극단적 부족시만 fallback
   var wrong=[], cand=shuf(srcPool);
+  // 품사가 같은 단어를 먼저 오답으로 (형용사 문제에 동사가 섞여 품사로 지워지지 않게) — pos.json
+  var _hp=(WPOS && w.id!==undefined && WPOS[String(w.id)]) || '';
+  function _posOK(c){ if(!_hp) return true; var cp=(WPOS && WPOS[String(c.id)])||''; if(!cp) return false;
+    for(var z=0; z<cp.length; z++) if(_hp.indexOf(cp.charAt(z))>=0) return true; return false; }
+  for(var _pp=0; _pp<2; _pp++){                      // 0: 같은 품사만 · 1: 모자라면 품사 상관없이
   // 1차: 뜻을 아는 단어만 오답으로 (defOf가 있는 것)
   for(var i=0;i<cand.length && wrong.length<need;i++){
     var c=cand[i];
     if(c.w===w.w) continue;
+    if(_pp===0 && !_posOK(c)) continue;
     var src = (c.s&&c.s.length) ? c.s : [c.w];
     // 이 단어의 동의어 중 뜻이 있는 것 우선
     var withDef = src.filter(function(t){ return defOf(t); });
@@ -6129,6 +6847,7 @@ function buildSyn(w){
     if(!pick||seen[pick.toLowerCase()]) continue;
     seen[pick.toLowerCase()]=1;
     wrong.push(pick);
+  }
   }
   // 2차: 부족하면 뜻 없는 것도 허용
   for(var i2=0;i2<cand.length && wrong.length<need;i2++){
@@ -6140,23 +6859,34 @@ function buildSyn(w){
     seen[pick2.toLowerCase()]=1;
     wrong.push(pick2);
   }
+  // 전에 이 문제에서 잘못 골랐던 단어를 오답 하나 자리에 다시 넣는다
+  var _misT=null;
+  try{ _misT=misPickFor(w, seen); }catch(e){}
+  if(_misT && wrong.length){ wrong[Math.floor(Math.random()*wrong.length)]=_misT; }
   var opts=shuf(right.concat(wrong)).map(function(t){
     var ok = right.indexOf(t)>=0;
     return {
       t: t,
       ok: ok,
       sense: ok ? (senseOf[t.toLowerCase().trim()] || '') : '',   // 정답: 메인 단어의 어느 뜻
-      def:  ok ? '' : defOf(t)                                      // 오답: 그 단어 자체의 뜻
+      def:  ok ? '' : defOf(t),                                     // 오답: 그 단어 자체의 뜻
+      mis:  (!ok && _misT && t===_misT) ? 1 : undefined
     };
   });
   // 이번에 보여준 정답 수 · 이 단어의 동의어 총수 (채점할 때 기록으로 옮긴다)
+  if(SW){
+    // 자리 바꾼 문제는 '몇 개까지 봤나' 기록에 넣지 않는다 (표제어 기준 기록이 흐트러지지 않게)
+    return {w:w, opts:opts, need:right.length, kind:'syn', shown:0, total:0, rightList:[],
+            swap:{t:SW.t, d:SW.d}, swo:_swo};
+  }
   return {w:w, opts:opts, need:right.length, kind:'syn', shown:right.length, total:all.length,
-          rightList:right.slice()};   // 이번에 정답으로 낸 목록 — 다음에 만날 때 그대로 다시 싣는다
+          rightList:right.slice(), swo:(_swo.swap?_swo:undefined)};   // 이번에 정답으로 낸 목록 — 다음에 만날 때 그대로 다시 싣는다
 }
 
 function buildQuiz(w){
   // 정답이 표현이면 오답도 반드시 표현끼리, 단어면 반드시 단어끼리
   var isPhrase = (w.type==='phrase');
+  _ensurePool();
   var basePool = isPhrase ? POOL.phrases : POOL.words;
   if(basePool.length<2) basePool = POOL.all;  // 극단적으로 1개뿐이면 어쩔 수 없이 전체
   var seen={}; seen[w.m]=1;
@@ -6235,11 +6965,15 @@ function tagOf(w){
 function againBadgeUI(q, revealed){
   var t=$('tag'); if(!t) return;
   var old=$('qagain'); if(old) old.remove();
+  var oldf=$('qfin'); if(oldf) oldf.remove();
+  if(q && q.isFin){ var fb=document.createElement('span'); fb.id='qfin'; fb.className='againtag fintag'; fb.textContent='최종 정리 · 교재 동의어 + 같은 뜻'; t.appendChild(fb); }
+  if(q && q.kind==='rev' && q.again){ var rb=document.createElement('span'); rb.id='qagain'; rb.className='againtag'; rb.textContent='틀려서 다시 나온 문제'; t.appendChild(rb); return; }
   if(!q || q.kind!=='syn' || !q.again) return;
   var why=q.why||'';
   var txt = why.indexOf('w')>=0 && why.indexOf('m')>=0 ? '틀려서 다시 · 동의어도 늘림'
           : why.indexOf('w')>=0 ? '틀려서 다시 나온 문제'
           : why.indexOf('m')>=0 ? '동의어 늘려서 다시 나온 문제'
+          : why.indexOf('u')>=0 ? '눌러서 다시 나온 문제'
           : '다시 나온 문제';
   if(revealed && q.total){
     var n=(q.opts||[]).filter(function(o){ return o.ok; }).length;
@@ -6260,14 +6994,15 @@ function draw(){
   var nx=$('next');
   if(nx){ nx.textContent='다음'; nx.classList.remove('fbtn'); }
   if(q.kind==='ko'){
-    $('tag').textContent='뜻 → 영어 · '+(KSCOPE==='all'?'교재 전체에서':'이 강에서')+' · '+(KBOOK==='y'?'윤황보카만':'MVP까지');
+    $('tag').textContent='뜻 → 영어 · '+(KSCOPE==='all'?'교재 전체에서':'이 강에서')+' · '+(KBOOK_RUN==='y'?'윤황보카만':'MVP까지');
   } else {
     $('tag').textContent=tagOf(q.w)+' · #'+q.w.id;
   }
   try{ againBadgeUI(q, ans[qi]!==null && ans[qi]!==undefined); }catch(e){}
   _hereW=q.w;
-  $('qw').innerHTML=esc((q.kind==='rev'||q.kind==='ko') ? q.prompt : q.w.w)+'<span id="qwmean"></span>';
+  $('qw').innerHTML=esc((q.kind==='rev'||q.kind==='ko') ? q.prompt : (q.swap ? q.swap.t : q.w.w))+'<span id="qwmean"></span>';
   $('qw').classList.toggle('kow', q.kind==='ko');
+  try{ var _qe=$('qety'); if(_qe){ _qe.style.display='none'; _qe.innerHTML=''; } againBtnUI(q, false); }catch(e){}
   $('qw').classList.remove('hassim');
   var _ak=$('ask'); if(_ak) _ak.className='ask';
   if(MOPUP){
@@ -6347,6 +7082,22 @@ function submitSyn(){
     if(o.ok!==picked) ok=false;
   });
   ans[qi]={sel:chosen, ok:ok};
+  // 잘못 고른 단어 쌓기 · 맞힌 횟수 세기
+  if(q.kind==='syn'){
+    try{
+      var _mc=false;
+      if(q.misT && misKey(q.misT)===misKey(q.w.w)){ if(ok) misCredit(q.misT); else misAdd(q.misT, ''); _mc=true; }
+      q.opts.forEach(function(o,i){
+        var picked=chosen.indexOf(i)>=0, k=misKey(o.t);
+        if(!o.ok && picked){ misAdd(o.t, q.w.w); _mc=true; }
+        else if(MIS[k] && !misDone(MIS[k])){
+          if(o.ok && picked){ misCredit(o.t); _mc=true; }            // 그 단어가 정답으로 나와서 골랐다
+          else if(o.mis && !picked){ misCredit(o.t); _mc=true; }     // 일부러 다시 넣은 오답을 이번엔 안 골랐다
+        }
+      });
+      if(_mc) misSave();
+    }catch(e){}
+  }
   synShownSave(q);       // 이번에 몇 개까지 봤는지 기록
   koShownSave(q);        // 뜻 → 영어 모드도 같은 방식으로 기록
   var _mine=chosen.map(function(i){return q.opts[i].t;}).join(', ');
@@ -6369,7 +7120,7 @@ function submitSyn(){
     statsRight(q.w, 'syn');
   }
   bankSave();
-  requeueSyn(q); requeueKo(q);         // 동의어를 아직 다 못 봤으면 이번 회독 안에서 한 번 더
+  requeueSyn(q); requeueKo(q); requeueRev(q);   // 동의어를 아직 다 못 봤으면 / 틀렸으면 이번 회독 안에서 한 번 더
   replay();
   score();
   maybeShowFinishBtn();
@@ -6400,9 +7151,21 @@ function requeueSyn(q){
   var seenN=(r&&r.shown)||0;
   var more=!!(q.total && seenN<q.total);          // 아직 못 본 동의어가 남았다
   if(!wrong && !more) return;                     // 맞혔고 동의어도 다 봤으면 끝 (이유가 둘이어도 한 번만 넣는다)
-  var nq=buildSyn(q.w);                           // 정답 수는 지난번 + 4 (틀렸어도 늘린다)
+  var nq=q.isFin ? buildFinQ(q.w) : buildSyn(q.w, q.swo||{});   // 같은 방식(자리 섞기 켬/끔 · 최종 정리)으로 다시 만든다
   nq.again=true;                                  // 같은 시행 안에서 다시 나온 문제 — 오답 목록은 처음 판정으로만 정한다
   nq.why=(wrong?'w':'')+(more?'m':'');            // w = 틀려서 · m = 동의어를 더 보여 주려고
+  var at=requeueAt();
+  Q.splice(at,0,nq);
+  ans.splice(at,0,null);
+  try{ $('cnt').textContent=(qi+1)+' / '+Q.length; }catch(e){}
+}
+// 역방향 확인에서 틀린 문제는 몇 문제 뒤에 다시 (보여 주는 동의어는 새로 뽑는다)
+function requeueRev(q){
+  if(!q || q.kind!=='rev' || !q.w) return;
+  var a=ans[qi]; if(!a || a.ok) return;
+  var nq=null; try{ nq=buildRev(q.w, (POOL.all&&POOL.all.length)?POOL.all:(_allPool||[])); }catch(e){}
+  if(!nq) return;
+  nq.again=true; nq.why='w';
   var at=requeueAt();
   Q.splice(at,0,nq);
   ans.splice(at,0,null);
@@ -6418,6 +7181,31 @@ function _wrongHas(kind, key){
   }
   return false;
 }
+// 「↻ 이번 회차에 다시」: 맞힌 문제도 이번 회차 안에서 몇 문제 뒤에 한 번 더 (오답·복습 목록에는 안 넣음)
+function againBtnUI(q, answered){
+  var b=$('againQ'); if(!b) return;
+  var a=ans[qi];
+  // 동의어 매칭에서 정답을 공개한 뒤에만. 틀린 문제는 이미 다시 나오므로 숨긴다.
+  var show = !!(answered && q && q.kind==='syn' && a && a.ok);
+  b.style.display = show ? '' : 'none';
+  var done = !!(q && q._ua);
+  b.classList.toggle('done', done);
+  b.textContent = done ? '✓ 몇 문제 뒤에 다시 나와요' : '↻ 이번 회차에 다시';
+}
+function againUser(){
+  var q=Q[qi]; if(!q || q.kind!=='syn' || q._ua) return;
+  var a=ans[qi]; if(!a || !a.ok) return;
+  var nq=null;
+  try{ nq=q.isFin ? buildFinQ(q.w) : buildSyn(q.w, q.swo||{}); }catch(e){}
+  if(!nq) return;
+  nq.again=true; nq.why='u';                       // u = 내가 눌러서 다시
+  var at=requeueAt();
+  Q.splice(at,0,nq); ans.splice(at,0,null);
+  q._ua=true;
+  try{ $('cnt').textContent=(qi+1)+' / '+Q.length; }catch(e){}
+  againBtnUI(q, true);
+  try{ sessionSave(); }catch(e){}
+}
 function requeueAt(){
   // 사이에 최소 6문제, 최대 14문제를 두고 무작위 (7~15번째 뒤에 나온다)
   var left=Q.length-(qi+1);                         // 지금 문제 뒤에 남은 문제 수
@@ -6432,6 +7220,11 @@ function pick(i){
   var q=Q[qi];
   var ok=(i===q.ans);
   ans[qi]={sel:i, ok:ok};
+  if(q.misT && !q.w._mis && misKey(q.misT)===misKey(q.w.w)){ if(ok) misCredit(q.misT); else misAdd(q.misT,''); misSave(); }
+  if(q.w && q.w._mis){                                   // 잘못 고른 단어 · 뜻 고르기: 기록은 그 목록에만
+    if(ok) misCredit(q.w.w); else misAdd(q.w.w, '');
+    misSave(); replay(); score(); maybeShowFinishBtn(); return;
+  }
   if(!ok){
     var mineT = (typeof q.opts[i]==='string') ? q.opts[i] : q.opts[i].t;
     wrongs.push({w:q.w, mine:mineT, kind:'quiz'});
@@ -6465,8 +7258,19 @@ function replay(){
     var q0=Q[qi], el=$('qwmean');
     if(q0 && q0.kind==='ko'){ var ak0=$('ask'); if(ak0) ak0.textContent=''; if(el) el.textContent=''; }
     else if(el && q0 && q0.w){
-      el.textContent=' · '+q0.w.m;              // 단어 옆에 뜻
+      if(q0.swap) el.innerHTML=' · '+esc(q0.swap.d)+'<span class="swapof">('+esc(q0.w.w)+'의 동의어)</span>';   // 자리 바꾼 문제: 그 줄 뜻 + 누구 동의어인지
+      else el.innerHTML=((q0.kind==='syn'||q0.kind==='quiz') ? wposHTML(q0.w) : '')+' · '+esc(q0.w.m);   // 단어 옆에 품사 · 뜻
       var ak=$('ask'); if(ak) ak.textContent='';  // 안내 문구는 비움
+      // 동의어 매칭: 정답 공개 후 표제어 바로 밑에 어원 한 줄(→ 앞부분만, 조각은 누를 수 있음)
+      try{ var _qe2=$('qety');
+        if(_qe2){
+          var _rr=(q0.kind==='syn' && q0.w.r) ? String(q0.w.r) : '';
+          var _hd=_rr ? _rr.split('→')[0].trim() : '';
+          if(_hd){ _qe2.innerHTML='<span class="qetyl">어원</span>'+rootLinkHTML(_hd, q0.w.w); _qe2.style.display=''; }
+          else { _qe2.innerHTML=''; _qe2.style.display='none'; }
+        }
+        againBtnUI(q0, true);
+      }catch(e){}
       var sims0=similarOf(q0.w.w);
       if(sims0.length||(CONF&&CONF[q0.w.w])||(CONFW&&CONFW[q0.w.w])||posOf(q0.w.w).length){ $('qw').classList.add('hassim'); }
       else { $('qw').classList.remove('hassim'); }
@@ -6509,7 +7313,7 @@ function replay(){
       var _note = o.ok ? synonlyNote(o.t, o.sense) : null;
       var _own  = _note ? (ghPoolFind(o.t)||{}).m : '';
       var body = '<span class="otxt">'+esc(o.t)+'</span>'
-        + ((o.ok && o.sense) ? '<em class="sns">'+esc(o.sense)+'</em>' : '')
+        + ((o.ok && o.sense) ? '<em class="sns">'+esc(fitSense(o.sense, o.t))+'</em>' : '')
         + (_own ? '<em class="sown">교재에 실린 '+esc(o.t)+' 뜻은 '+esc(_own)+'</em>' : '');
       var meta = (!o.ok && o.def) ? '<em class="od">'+mm(o.t, o.def)+'</em>' : '';
       // 어원은 선지 99.9%에 있어 표시할 값어치가 없다 → 표시 안 함 (누르면 나오는 건 그대로)
@@ -6517,9 +7321,13 @@ function replay(){
       // 철자가 비슷한 단어가 있으면 작은 점 하나만
       if((CONFW&&CONFW[o.t])||(CONF&&CONF[o.t])||similarOf(o.t).length||posOf(o.t).length) meta += '<span class="simdot"></span>';
       // 답 공개 뒤에만 '몇 강 몇 번' 표시 (풀기 전엔 힌트가 되므로 안 붙임)
-      meta += hwTagHTML(o.t, q.w && q.w.w);
+      var _tg = hwTagHTML(o.t, q.w && q.w.w);
+      if(o.fin==='S') _tg = _tg ? _tg.replace(/class="hwat/g,'class="hwat same').replace(/(<span class="hwat same[^>]*>)/,'$1같은 뜻 · ') : '<span class="hwat same">같은 뜻</span>';
+      meta += _tg;
+      var _fn = o.fin==='S' ? '<span class="finnote s">'+esc(o.fn||'')+'</span>'
+              : o.fin==='N' ? '<span class="finnote n">비슷하지만 다름 — '+esc(o.fn||'')+'</span>' : '';
       bs[i].innerHTML = (num?num.outerHTML:'') + body
-        + (meta?'<span class="ometa">'+meta+'</span>':'');
+        + (meta?'<span class="ometa">'+meta+'</span>':'') + _fn;
       if(q.opts[i].ok && picked) bs[i].classList.add('ok');
       else if(q.opts[i].ok && !picked) bs[i].classList.add('miss');
       else if(!q.opts[i].ok && picked) bs[i].classList.add('no');
@@ -6534,7 +7342,7 @@ function replay(){
       if(o && typeof o==='object' && o.srcw && !o.ok){
         bs[i].innerHTML=(num2?num2.outerHTML:'')
           +'<span class="otxt">'+esc(o.t)+'</span>'
-          +'<span class="ometa"><em class="od">'+esc(o.srcw)+'</em>'
+          +'<span class="ometa"><em class="od odw">'+esc(o.srcw)+'</em>'
           +hwTagHTML(o.srcw, q.w && q.w.w)+'</span>';
       }else if(i===q.ans && q.w){
         var _t2=hwTagHTML(q.w.w, null);
@@ -6556,6 +7364,7 @@ function replay(){
     for(var si=0; si<q.opts.length; si++){
       _shownSyn[String(q.opts[si].t).toLowerCase().trim()]=1;
     }
+    if(q.swap) _shownSyn[String(q.swap.t).toLowerCase().trim()]=1;
   }
   var w=q.w, h='';
   h += '<div class="togrow">'
@@ -6572,6 +7381,7 @@ function replay(){
     var _rw=repWordsFor(w.r);
     if(_rw.length) h+=repToggleHTML(_rw);
   }
+  h += formsLineHTML(w.w);            // 형태 바뀐 단어 한 줄 (누르면 그 단어 카드)
   h += '<div id="qsimHost"></div>';   // 헷갈리는 철자가 열리면 여기에 (다른 박스들과 같은 자리)
   h += phraseWordHTML(w);
   h += nuanceHTML(w);
@@ -6630,10 +7440,12 @@ function pinForReview(w, nowToo){
     // 이미 담아둔 것 → 빼기 (오답 목록에서도 제거)
     STATS[k].pinned=0;
     STATS[k].pinNow=0;
+    STATS[k].pinT=Date.now();
     bankDel('syn', w); bankDel('quiz', w);
     bankSave();
   } else {
     STATS[k].pinned=1;
+    STATS[k].pinT=Date.now();
     STATS[k].pinNow = nowToo ? 1 : 0;
     if(STATS[k].wrong<1) STATS[k].wrong=1;
     STATS[k].due=Date.now();
@@ -6776,6 +7588,511 @@ function _cmpBtn(ids, c){
     b.textContent=txt; b.classList.toggle('has', n>0);
   });
 }
+
+// ── 품사 (정답 공개 후 표제어 옆에) ──  pos.json = { 단어 번호: '명동' } — 클로드가 영어 기준으로 정리
+var WPOS=null;
+function wposLoad(){
+  if(WPOS) return;
+  WPOS={};
+  loadJ('data/pos.json').then(function(d){ WPOS=d||{}; }).catch(function(){});
+  loadJ('data/vtvi.json').then(function(d){ VTVI=d||{}; }).catch(function(){ VTVI={}; });
+}
+// 자동사·타동사 (vtvi.json = { 단어 번호: [[동사 뜻, '타'|'자'|'자타', 전치사?], …] } — 클로드 정리)
+var VTVI=null;
+function vtviHTML(w){
+  if(!VTVI || !w || w.id===undefined) return '';
+  var L=VTVI[String(w.id)]; if(!L || !L.length) return '';
+  var seen={}, out=[];
+  L.forEach(function(e){ var k=e[1]+(e[2]?'('+e[2]+')':''); if(seen[k]) return; seen[k]=1; out.push(k); });
+  var tip=L.map(function(e){ return e[0]+' — '+e[1]+(e[2]?' ('+e[2]+')':''); }).join('\n');
+  return '<span class="wvt" title="'+esc(tip)+'">'+out.slice(0,3).map(esc).join(' · ')+(out.length>3?' …':'')+'</span>';
+}
+var WPOSCLS={'명':'n','동':'v','형':'a','부':'d'};
+function wposHTML(w){
+  if(!WPOS || !w || w.id===undefined) return '';
+  var t=WPOS[String(w.id)]||''; if(!t) return '';
+  return '<span class="wpos">'+t.split('').map(function(c){ return '<i class="'+(WPOSCLS[c]||'e')+'">'+esc(c)+'</i>'; }).join('')+(t.indexOf('동')>=0 ? vtviHTML(w) : '')+'</span>';
+}
+// 정답 선지 노란 글씨: 뜻 줄 일부에만 맞는 동의어면 맞는 조각만 (nzfit.json). 어느 조각에도 안 맞는 단어는 줄 뜻 그대로.
+function fitSense(sense, t){
+  try{
+    var ft=NZFIT && NZFIT[sense] && NZFIT[sense][t];
+    if(ft && ft.f && ft.f.length) return ft.f.join(' / ');
+  }catch(e){}
+  return sense;
+}
+function wposOfName(name){
+  var a=hwAll(name); if(!a.length) return '';
+  return wposHTML({id:a[0].id});
+}
+
+// ── 숫자키로 칩 고르기 (비교 목록 · 내 단어장) ── 칩 10개 이상이면 두 자리
+var _ckBuf='', _ckT=null;
+function chipKey(key, n, choose){
+  if(!n) return;
+  if(n<=9){ var d=parseInt(key,10); if(d>=1 && d<=n) choose(d); return; }
+  if(_ckBuf){
+    var two=parseInt(_ckBuf+key,10), first=parseInt(_ckBuf,10);
+    clearTimeout(_ckT); _ckBuf='';
+    if(two>=1 && two<=n) choose(two); else { choose(first); if(key!=='0') chipKey(key, n, choose); }
+    return;
+  }
+  var d1=parseInt(key,10); if(!d1) return;
+  if(d1*10>n){ choose(d1); return; }
+  _ckBuf=key;
+  _ckT=setTimeout(function(){ var b=_ckBuf; _ckBuf=''; if(b) choose(parseInt(b,10)); }, 600);
+}
+function _chipClick(boxId, n){
+  var cs=$(boxId) ? $(boxId).querySelectorAll('.cmpchip') : [];
+  if(cs[n-1]) cs[n-1].click();
+}
+
+// ── 내 단어장 (강과 상관없이 하나로 계속 쌓임 · 기기 간 동기화) ──
+//   WB = { 소문자 단어: {w, on(1 담김/0 뺌), t(마지막으로 바꾼 시각), a(담은 시각)} }
+var WBKEY='voca_wb_v1', WB={};
+function wbLoad(){
+  try{ var r=localStorage.getItem(WBKEY); if(r) WB=JSON.parse(r)||{}; }catch(e){ WB={}; }
+  var lim=Date.now()-60*86400000;
+  for(var k in WB){ var x=WB[k]; if(x && !x.on && (x.t||0)<lim) delete WB[k]; }
+}
+function wbSave(){ lsSet(WBKEY, JSON.stringify(WB)); if(typeof syncSoon==='function') syncSoon(); }
+function wbKey(w){ return String(w||'').toLowerCase().trim(); }
+function wbHas(w){ var r=WB[wbKey(w)]; return !!(r && r.on); }
+function wbToggle(w){
+  var k=wbKey(w); if(!k) return;
+  var now=Date.now(), r=WB[k];
+  if(r && r.on){ r.on=0; r.t=now; }
+  else WB[k]={w:String(w).trim(), on:1, t:now, a:now};
+  wbSave(); wbBtnSync();
+}
+function wbList(){
+  var o=[]; for(var k in WB) if(WB[k] && WB[k].on) o.push(WB[k]);
+  o.sort(function(a,b){ return (b.a||b.t||0)-(a.a||a.t||0); });   // 최근에 담은 순
+  return o;
+}
+function wbMerge(a, b){
+  var o={}, ks={};
+  for(var k in (a||{})) ks[k]=1;
+  for(var k2 in (b||{})) ks[k2]=1;
+  for(var k3 in ks){ var x=(a||{})[k3], y=(b||{})[k3];
+    if(!x){ o[k3]=y; continue; } if(!y){ o[k3]=x; continue; }
+    o[k3]=((x.t||0)>=(y.t||0)) ? x : y; }
+  return o;
+}
+function wbBtnSync(){
+  var n=wbList().length, txt='내 단어장'+(n?' '+n:'');
+  var narrow=false; try{ narrow=window.innerWidth<=480; }catch(e){}
+  ['dockWb','wbQ','wbC','wbHomeGo'].forEach(function(id){ var b=$(id); if(b){ b.textContent=(id==='dockWb'&&narrow)?('단어장'+(n?' '+n:'')):txt; b.classList.toggle('has', n>0); } });
+  var cq=null, cc=null;
+  try{ cq=cmpCtx('quiz'); }catch(e){}
+  try{ cc=cmpCtx('copy'); }catch(e){}
+  var d=$('dockWb'); if(d) d.style.display = cq ? '' : 'none';
+  var q=$('wbQ'); if(q) q.style.display = (cq && !dockOn()) ? '' : 'none';
+  var c=$('wbC'); if(c) c.style.display = cc ? '' : 'none';
+}
+var _wbCtx=null, _wbDrawN=0;
+function wbIsOpen(){ var b=$('wbBox'); return !!(b && b.classList.contains('on')); }
+function wbOpen(which){
+  var c=null;
+  if(which && which!=='home'){ try{ c=cmpCtx(which); }catch(e){} }
+  _wbCtx=c;
+  try{ if(document.activeElement && document.activeElement.blur) document.activeElement.blur(); }catch(e){}
+  var box=$('wbBox');
+  if(!box){
+    box=document.createElement('div'); box.id='wbBox'; box.className='ovbox';
+    document.body.appendChild(box);
+    box.addEventListener('click', function(ev){
+      var t=ev.target;
+      if(t.classList && t.classList.contains('cmpwrap')){ wbClose(); return; }
+      if(t.closest && t.closest('.cmpx')){ wbClose(); return; }
+      var ch=t.closest && t.closest('[data-wbw]');
+      if(ch){ wbToggle(ch.getAttribute('data-wbw')); wbDraw(); return; }
+      var dl=t.closest && t.closest('[data-wbdel]');
+      if(dl){ wbToggle(dl.getAttribute('data-wbdel')); wbDraw(); return; }
+    });
+  }
+  box.classList.add('on');
+  document.body.style.overflow='hidden';
+  wbDraw();
+}
+function wbClose(){
+  var box=$('wbBox'); if(box) box.classList.remove('on');
+  document.body.style.overflow='';
+  wbBtnSync();
+  try{
+    if($('copyscr').classList.contains('on') && !$('cinput').disabled) $('cinput').focus();
+    else if($('writescr').classList.contains('on') && !$('winput').disabled) $('winput').focus();
+  }catch(e){}
+}
+function _wbCardHTML(it, e){
+  var name=it.w;
+  var h='<div class="wbitem"><div class="cmpwt"><b>'+esc(name)+'</b>'+wposOfName(name)
+    + hwAll(name).map(function(x){ return '<span class="hwat">'+esc(x.tag)+'</span>'; }).join('')
+    + '<button class="cmpdel" data-wbdel="'+esc(name)+'">빼기</button></div>';
+  if(e){
+    h+='<div class="wbm">'+esc(e.m||'')+'</div>';
+    var b='';
+    var keep=_shownSyn; _shownSyn=null;
+    try{ b+=renderPairs(e, null); }catch(x){}
+    _shownSyn=keep;
+    if(e.r) b+='<div class="r" style="margin-top:7px">'+rootFromHTML(e)+rootLinkHTML(e.r, e.w)+'</div>';
+    if(b) h+='<details><summary>동의어 · 어원</summary><div class="info on">'+b+'</div></details>';
+  } else {
+    var wp=''; try{ wp=wordPanel(name); }catch(x){}
+    h+= wp || '<div class="cmpempty">교재에 이 단어 정보가 없어요</div>';
+  }
+  return h+'</div>';
+}
+function wbDraw(){
+  var box=$('wbBox'); if(!box) return;
+  var c=_wbCtx, list=wbList();
+  var scrollY=0; try{ scrollY=box.querySelector('.cmpbody').scrollTop; }catch(e){}
+  var chips='';
+  if(c){
+    var words=_cmpUniq(c.words);
+    chips='<div class="cmplab">이 문제 단어 — 누르면 담기, 한 번 더 누르면 빼기 · 키보드 숫자로도 돼요</div><div class="cmpchips">'
+      + words.map(function(w, i){
+          return '<button class="cmpchip'+(wbHas(w)?' on':'')+'" data-wbw="'+esc(w)+'"><span class="cnum">'+(i+1)+'</span>'+esc(w)
+            + ((i===0 && c.w && String(c.w.w).toLowerCase()===String(w).toLowerCase())?'<span class="ctag">표제어</span>':'')+'</button>';
+        }).join('')+'</div>';
+  }
+  var head='<div class="cmpwrap"><div class="cmpcard"><div class="cmphead"><div class="cmpttl">내 단어장<span>전체 누적 · '+list.length+'개</span></div><button class="cmpx">닫기</button></div>'
+    +'<div class="cmpbody">'+chips+'<div class="cmplab">최근에 담은 순</div><div id="wbItems">';
+  var tail='</div></div></div></div>';
+  if(!list.length){ box.innerHTML=head+'<div class="cmpempty">아직 담은 단어가 없어요</div>'+tail; return; }
+  box.innerHTML=head+'<div class="cmpempty">불러오는 중…</div>'+tail;
+  try{ box.querySelector('.cmpbody').scrollTop=scrollY; }catch(e){}
+  var my=++_wbDrawN;
+  Promise.all(list.map(function(it){ return _cmpEntry(it.w, ''); })).then(function(es){
+    if(my!==_wbDrawN || !wbIsOpen()) return;
+    var h=''; list.forEach(function(it, i){ h+=_wbCardHTML(it, es[i]); });
+    var host=$('wbItems'); if(!host) return;
+    host.innerHTML=h;
+    try{ box.querySelector('.cmpbody').scrollTop=scrollY; }catch(e){}
+  });
+}
+
+// ── 잘못 고른 단어 (동의어 매칭에서 오답 선지를 골랐을 때 그 선지 단어를 쌓는다 · 빼지 않고 표시만) ──
+//   MIS = { 소문자 단어: {w, n(잘못 고른 횟수), ok(나중에 맞힌 횟수), q:[헷갈린 문제 표제어], of:[이 단어를 동의어로 가진 표제어], a, t} }
+var MISKEY='voca_mis_v1', MIS={}, MISCFGKEY='voca_miscfg_v1', MISCFG={lim:100, need:2};
+function misLoad(){
+  try{ var r=localStorage.getItem(MISKEY); if(r) MIS=JSON.parse(r)||{}; }catch(e){ MIS={}; }
+  try{ var c=localStorage.getItem(MISCFGKEY); if(c){ var o=JSON.parse(c)||{}; if(o.lim>0) MISCFG.lim=o.lim; if(o.need>0) MISCFG.need=o.need; } }catch(e){}
+}
+function misSave(){ lsSet(MISKEY, JSON.stringify(MIS)); if(typeof syncSoon==='function') syncSoon(); misBtnSync(); }
+function misCfgSave(){ lsSet(MISCFGKEY, JSON.stringify(MISCFG)); }
+function misKey(w){ return String(w||'').toLowerCase().trim(); }
+function misDone(r){ return !!(r && (r.ok||0)>=MISCFG.need); }
+function misOwners(t){
+  var k=misKey(t), out=[], pool=_allPool||(POOL&&POOL.all)||[];
+  for(var i=0;i<pool.length && out.length<3;i++){ var x=pool[i];
+    if((x.s||[]).some(function(z){ return misKey(z)===k; }) && out.indexOf(x.w)<0) out.push(x.w); }
+  if(!out.length && pool.some(function(x){ return misKey(x.w)===k; })) out.push(String(t).trim());   // 동의어로는 없고 교재 표제어 자체인 단어
+  return out;
+}
+function misAdd(t, qw){
+  var k=misKey(t); if(!k) return;
+  var now=Date.now(), r=MIS[k];
+  if(!r){ r=MIS[k]={w:String(t).trim(), n:0, ok:0, q:[], of:[], a:now, t:now}; }
+  r.n=(r.n||0)+1; r.t=now;
+  if(qw && r.q.indexOf(qw)<0){ r.q.unshift(qw); if(r.q.length>5) r.q.length=5; }
+  if(!r.of || !r.of.length){ try{ r.of=misOwners(t); }catch(e){ r.of=[]; } }
+}
+function misCredit(t){
+  var r=MIS[misKey(t)]; if(!r) return;
+  r.ok=(r.ok||0)+1; r.t=Date.now();
+}
+function misMerge(a, b){
+  var o={}, ks={}; for(var k in (a||{})) ks[k]=1; for(var k2 in (b||{})) ks[k2]=1;
+  for(var k3 in ks){ var x=(a||{})[k3], y=(b||{})[k3];
+    if(!x){ o[k3]=y; continue; } if(!y){ o[k3]=x; continue; }
+    var u=function(p,q){ var r=(p||[]).slice(); (q||[]).forEach(function(z){ if(r.indexOf(z)<0) r.push(z); }); return r; };
+    o[k3]={w:x.w||y.w, n:Math.max(x.n||0,y.n||0), ok:Math.max(x.ok||0,y.ok||0), q:u(x.q,y.q).slice(0,5), of:u(x.of,y.of).slice(0,3),
+           a:Math.min(x.a||Date.now(), y.a||Date.now()), t:Math.max(x.t||0,y.t||0)};
+  }
+  return o;
+}
+function misList(){
+  var o=[]; for(var k in MIS) if(MIS[k]) o.push(MIS[k]);
+  o.sort(function(a,b){ var d=(misDone(a)?1:0)-(misDone(b)?1:0); return d || (b.t||0)-(a.t||0); });
+  return o;
+}
+function misLeft(){ return misList().filter(function(r){ return !misDone(r); }).length; }
+function misBtnSync(){
+  var b=$('misHomeGo'); if(!b) return;
+  var n=misLeft(), ready=n>=MISCFG.lim;
+  b.textContent='잘못 고른 단어'+(n?' '+n:'')+(ready?' · 퀴즈 준비됨':'');
+  b.classList.toggle('has', n>0); b.classList.toggle('ready', ready);
+}
+// 지금 문제 표제어에서 전에 잘못 골랐던 단어가 있으면 그 단어를 오답 선지에 다시 넣는다 (구별하게 됐는지 확인)
+function misPickFor(w, seen){
+  var hw=String(w.w), c=[];
+  for(var k in MIS){ var r=MIS[k]; if(!r || misDone(r) || (r.q||[]).indexOf(hw)<0) continue; if(seen[k]) continue; c.push(r.w); }
+  return c.length ? c[Math.floor(Math.random()*c.length)] : null;
+}
+var _misScope='head';
+function misIsOpen(){ var b=$('misBox'); return !!(b && b.classList.contains('on')); }
+function misClose(){ var b=$('misBox'); if(b) b.classList.remove('on'); document.body.style.overflow=''; misBtnSync(); }
+function misOpen(){
+  var box=$('misBox');
+  if(!box){
+    box=document.createElement('div'); box.id='misBox'; box.className='ovbox';
+    document.body.appendChild(box);
+    box.addEventListener('click', function(ev){
+      var t=ev.target;
+      if(t.classList && t.classList.contains('cmpwrap')){ misClose(); return; }
+      if(t.closest && t.closest('.cmpx')){ misClose(); return; }
+      var qb=t.closest && t.closest('[data-misq]');
+      if(qb){ misClose(); startMis(qb.getAttribute('data-misq')); return; }
+    });
+    box.addEventListener('change', function(ev){
+      var t=ev.target;
+      if(t.id==='misLim'){ var v=parseInt(t.value,10); if(v>0){ MISCFG.lim=v; misCfgSave(); misDraw(); } }
+      if(t.id==='misNeed'){ var v2=parseInt(t.value,10); if(v2>0){ MISCFG.need=v2; misCfgSave(); misDraw(); } }
+    });
+  }
+  box.classList.add('on'); document.body.style.overflow='hidden';
+  (_allPool ? Promise.resolve() : buildFullPool()).then(function(){ misDraw(); });
+  misDraw();
+}
+function misDraw(){
+  var box=$('misBox'); if(!box) return;
+  var list=misList(), left=misLeft();
+  var h='<div class="cmpwrap"><div class="cmpcard"><div class="cmphead"><div class="cmpttl">잘못 고른 단어<span>남은 '+left+'개 · 전체 '+list.length+'개</span></div><button class="cmpx">닫기</button></div><div class="cmpbody">'
+    +'<div class="misset">퀴즈 알림 기준 <input id="misLim" type="number" min="1" value="'+MISCFG.lim+'">개 · <input id="misNeed" type="number" min="1" value="'+MISCFG.need+'">번 맞히면 「익힘」</div>'
+    +(left ? '<div class="misbar"><button data-misq="head">표제어 문제로 풀기</button><button data-misq="mean">뜻 고르기로 풀기</button><button data-misq="mix">섞어서 풀기</button></div>' : '')
+    +(left>=MISCFG.lim ? '<div class="cmplab" style="color:#ffd479">'+MISCFG.lim+'개가 쌓였어요 — 퀴즈로 한 번 정리해 보세요</div>' : '')
+    +'<div class="cmplab">잘못 고를 때마다 자동으로 쌓여요 · 빼지 않고 맞힌 횟수만 표시해요</div>';
+  if(!list.length) h+='<div class="cmpempty">아직 없어요. 동의어 매칭에서 오답을 고르면 여기 쌓여요</div>';
+  list.forEach(function(r){
+    var m=''; try{ m=defOf(r.w)||relMean(r.w,''); }catch(e){}
+    var done=misDone(r);
+    h+='<div class="misrow"><b class="wtap" data-w="'+esc(r.w)+'">'+esc(r.w)+'</b>'
+      +'<span class="misst'+(done?' done':'')+'">'+(done?'익힘':(r.ok?'✓ '+r.ok+'번 맞힘':'×'+r.n+'번 잘못 고름'))+'</span>'
+      +(m?'<div class="mism">'+esc(m)+((r.of&&r.of.length)?' · '+esc(r.of.join(', '))+'의 동의어':'')+'</div>':'')
+      +((r.q&&r.q.length)?'<div class="misq">헷갈린 문제: '+r.q.map(esc).join(', ')+'</div>':'')+'</div>';
+  });
+  box.innerHTML=h+'</div></div></div>';
+}
+// 잘못 고른 단어 퀴즈: head = 그 단어가 동의어로 들어 있는 표제어 문제 · mean = 그 단어를 보고 뜻 고르기 · mix = 섞기
+function startMis(scope){
+  _misScope=scope||'head';
+  if(st.mode!=='syn'){ var mb=document.querySelector('#mseg button[data-m="syn"]'); if(mb) mb.click(); }
+  FINRUN=false;
+  msg('불러오는 중…','load');
+  buildFullPool().then(function(){
+    _ensurePool();
+    var rows=misList().filter(function(r){ return !misDone(r); });
+    var Qs=[];
+    shuf(rows).forEach(function(r, i){
+      var mode=_misScope==='mix' ? (i%2?'mean':'head') : _misScope;
+      var owner=null;
+      if(mode==='head'){
+        var of=(r.of&&r.of.length)?r.of:misOwners(r.w);
+        if(of.length) owner=_allPool.find(function(x){ return x.w===of[0]; });
+        if(owner){
+          var hasSyn=(owner.p && owner.p.some(function(pr){return pr.s&&pr.s.length;})) || (owner.s&&owner.s.length);
+          var q=hasSyn ? buildSyn(owner, {}) : buildQuiz(owner);
+          if(q){ q.misT=r.w; Qs.push(q); return; }
+        }
+      }
+      var m=''; try{ m=defOf(r.w)||relMean(r.w,''); }catch(e){}
+      if(!m) return;
+      var q2=buildQuiz({w:r.w, m:m, type:(String(r.w).indexOf(' ')>=0?'phrase':'word'), _mis:1});
+      q2.misT=r.w; Qs.push(q2);
+    });
+    if(!Qs.length) throw new Error('풀 수 있는 단어가 없어요');
+    SRC='mis';
+    Q=Qs; qi=0; ans=new Array(Q.length).fill(null); wrongs=[]; fin=false; MOPUP=false;
+    hide(); show('qscr'); draw();
+  }).catch(function(e){ msg('❌ '+e.message,'err'); });
+}
+// ── 강별 어근 목록 (진도 칸 아래 「어원 N」을 누르면) ──
+// ── 단어 검색 (동의어 매칭 안 · 혼자 공부용, 정답 공개 전후 상관없이) ──
+//   교재 표제어·파생 단어 + 동의어. 영어는 앞부분 일치 우선, 한글은 뜻에 들어간 단어.
+function srIsOpen(){ var b=$('srBox'); return !!(b && b.classList.contains('on')); }
+function srClose(){ var b=$('srBox'); if(b) b.classList.remove('on'); document.body.style.overflow=''; }
+var _srIdx=null;
+function _srBuild(){
+  if(_srIdx) return _srIdx;
+  var pool=_allPool||(POOL&&POOL.all)||[], hw={}, syn={}, list=[];
+  pool.forEach(function(x){
+    var k=String(x.w).toLowerCase().trim(); if(!k) return;
+    if(!hw[k]){ hw[k]=1; list.push({w:x.w, k:k, m:x.m||'', hw:1}); }
+  });
+  pool.forEach(function(x){
+    (x.s||[]).forEach(function(t){
+      var k=String(t).toLowerCase().trim(); if(!k || hw[k]) return;
+      if(!syn[k]){ syn[k]={w:t, k:k, of:[]}; list.push(syn[k]); }
+      if(syn[k].of.indexOf(x.w)<0) syn[k].of.push(x.w);
+    });
+  });
+  _srIdx=list; return list;
+}
+function srFind(q){
+  q=String(q||'').trim(); if(!q) return [];
+  var ko=/[가-힣]/.test(q), ql=q.toLowerCase(), out=[];
+  _srBuild().forEach(function(e){
+    var sc=-1;
+    if(ko){ if(e.hw && e.m.indexOf(q)>=0) sc=2; }
+    else if(e.k===ql) sc=0;
+    else if(e.k.indexOf(ql)===0) sc=1;
+    else if(ql.length>=3 && e.k.indexOf(ql)>0) sc=3;
+    if(sc>=0) out.push({e:e, sc:sc+(e.hw?0:0.5)});
+  });
+  out.sort(function(a,b){ return a.sc-b.sc || a.e.k.length-b.e.k.length || (a.e.k<b.e.k?-1:1); });
+  return out.map(function(o){ return o.e; });
+}
+var SRMODE='w', _fmLim=60;
+function srFamFind(q){
+  q=String(q||'').trim().toLowerCase(); var F=FORMS||[];
+  if(!q) return F.slice();
+  var ko=/[가-힣]/.test(q);
+  return F.filter(function(f){ return f.some(function(w){
+    if(ko){ var it=ghPoolFind(w); return !!(it && it.m && it.m.indexOf(q)>=0); }
+    return w.indexOf(q)===0 || (q.length>=3 && w.indexOf(q)>0); }); });
+}
+function srFamDraw(){
+  var q=$('srIn').value, res=srFamFind(q), h='';
+  h+='<div class="cmplab">형태 바뀐 단어 묶음 '+res.length+'개'+(res.length>_fmLim?' · 위 '+_fmLim+'개':'')+' · 교재 파생 줄과 어원 줄 기준</div>';
+  res.slice(0,_fmLim).forEach(function(f){
+    h+='<div class="srfam"><div class="srfh">'+f.map(esc).join(' · ')+'</div>';
+    f.forEach(function(w){ var it=ghPoolFind(w), t=formTag(w);
+      h+='<div class="srrow" data-w="'+esc(w)+'"><b>'+esc(w)+'</b> '+(t?'<span class="hwat">'+esc(t)+'</span>':'')+'<div class="srm">'+esc((it&&it.m)||relMean(w,''))+'</div></div>'; });
+    h+='</div>';
+  });
+  if(res.length>_fmLim) h+='<button class="rtmore srfmore">나머지 '+(res.length-_fmLim)+'개 더 보기</button>';
+  if(!res.length) h+='<div class="cmpempty">찾는 묶음이 없어요</div>';
+  $('srRes').innerHTML=h;
+}
+function srDraw(){
+  var box=$('srBox'); if(!box) return;
+  if(SRMODE==='fm'){ srFamDraw(); return; }
+  var q=$('srIn').value, res=srFind(q), LIM=60;
+  var h='';
+  if(String(q).trim()){
+    h+='<div class="cmplab">'+res.length+'개 찾음'+(res.length>LIM?' · 위 '+LIM+'개':'')+'</div>';
+    res.slice(0,LIM).forEach(function(e){
+      h+='<div class="srrow" data-w="'+esc(e.w)+'"'+(e.of?' data-of="'+esc(e.of[0])+'"':'')+'><b>'+esc(e.w)+'</b> '
+        + hwAll(e.w).map(function(a){ return '<span class="hwat">'+esc(a.tag)+'</span>'; }).join('')
+        + '<div class="srm">'+(e.hw ? esc(e.m) : '<span class="srof">'+e.of.slice(0,3).map(esc).join(', ')+'의 동의어</span>')+'</div></div>';
+    });
+    if(!res.length) h+='<div class="cmpempty">찾는 단어가 없어요</div>';
+  } else h+='<div class="cmplab">영어 단어나 한글 뜻을 입력하세요</div>';
+  $('srRes').innerHTML=h;
+}
+function srMode(m){ SRMODE=(m==='fm')?'fm':'w'; _fmLim=60;
+  var b=$('srBox'); if(b) b.querySelectorAll('.srtog button').forEach(function(x){ x.classList.toggle('on', x.getAttribute('data-sm')===SRMODE); });
+  var i=$('srIn'); if(i) i.placeholder = SRMODE==='fm' ? '예: agitate, 동요 — 비우면 전체 묶음' : '예: append, 부록';
+  if(SRMODE==='fm') formsLoad().then(srDraw); else srDraw(); }
+function formsOpen(){ srOpen(); srMode('fm'); }
+function srOpen(){
+  var box=$('srBox');
+  if(!box){
+    box=document.createElement('div'); box.id='srBox'; box.className='ovbox';
+    box.innerHTML='<div class="cmpwrap"><div class="cmpcard"><div class="cmphead"><div class="cmpttl">단어 검색 <span>교재 전체 · 영어 또는 한글 뜻</span></div><button class="cmpx">닫기</button></div>'
+      +'<div class="cmpbody"><div class="srtog"><button data-sm="w" class="on">단어로 찾기</button><button data-sm="fm">형태로 묶어 보기</button></div><input id="srIn" type="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="예: append, 부록"><div id="srRes"></div></div></div></div>';
+    document.body.appendChild(box);
+    var tm=null;
+    $('srIn').addEventListener('input', function(){ clearTimeout(tm); tm=setTimeout(srDraw, 120); });
+    box.addEventListener('click', function(ev){
+      var t=ev.target;
+      if(t.classList && t.classList.contains('cmpwrap')){ srClose(); return; }
+      if(t.closest && t.closest('.cmpx')){ srClose(); return; }
+      var sm=t.closest && t.closest('.srtog button');
+      if(sm){ srMode(sm.getAttribute('data-sm')); return; }
+      if(t.closest && t.closest('.srfmore')){ _fmLim+=200; srDraw(); return; }
+      if(t.closest && t.closest('.srcard')) return;          // 카드 안(어원 조각 등)은 그대로
+      var row=t.closest && t.closest('.srrow');
+      if(row){
+        var nx=row.nextElementSibling, open=nx && nx.classList.contains('srcard');
+        box.querySelectorAll('.srcard').forEach(function(c){ c.remove(); });
+        box.querySelectorAll('.srrow.on').forEach(function(r){ r.classList.remove('on'); });
+        if(open) return;
+        var name=row.getAttribute('data-w'), wp='';
+        try{ wp=wordPanel(name); }catch(x){}
+        if(!wp && row.getAttribute('data-of')){ try{ wp=wordPanel(row.getAttribute('data-of')); }catch(x){} }
+        row.insertAdjacentHTML('afterend', '<div class="srcard">'+(wp||'<div class="cmpempty">정보가 없어요</div>')+'</div>');
+        row.classList.add('on');
+      }
+    });
+  }
+  box.classList.add('on'); document.body.style.overflow='hidden';
+  var go=function(){ srDraw(); setTimeout(function(){ var i=$('srIn'); if(i){ i.focus(); i.select(); } }, 30); };
+  if(_allPool) go(); else { $('srRes').innerHTML='<div class="cmplab">불러오는 중…</div>'; buildFullPool().then(function(){ _srIdx=null; go(); }); }
+}
+function lrIsOpen(){ var b=$('lrBox'); return !!(b && b.classList.contains('on')); }
+function lrClose(){ var b=$('lrBox'); if(b) b.classList.remove('on'); document.body.style.overflow=''; }
+function lrOpen(){
+  var key=st.key;
+  var box=$('lrBox');
+  if(!box){
+    box=document.createElement('div'); box.id='lrBox'; box.className='ovbox';
+    document.body.appendChild(box);
+    box.addEventListener('click', function(ev){
+      var t=ev.target;
+      if(t.classList && t.classList.contains('cmpwrap')){ lrClose(); return; }
+      if(t.closest && t.closest('.cmpx')){ lrClose(); return; }
+      var wbt=t.closest && t.closest('.lrw');
+      if(wbt){
+        var g=wbt.closest('.lrg'), ws=g.querySelector('.lrws'), old=g.querySelector('.lrcard'), name=wbt.getAttribute('data-w');
+        g.querySelectorAll('.lrw.on').forEach(function(x){ x.classList.remove('on'); });
+        if(old){ var same=old.getAttribute('data-w')===name; old.remove(); if(same) return; }
+        var wp=''; try{ wp=wordPanel(name); }catch(x){}
+        ws.insertAdjacentHTML('afterend', '<div class="lrcard" data-w="'+esc(name)+'">'+(wp||'<div class="cmpempty">정보가 없어요</div>')+'</div>');
+        wbt.classList.add('on');
+        return;
+      }
+      var all=t.closest && t.closest('.lrall');
+      if(all){
+        var g2=all.closest('.lrg'), o2=g2.querySelector('.lrtot');
+        if(o2){ o2.remove(); return; }
+        var html=''; try{ html=rootListHTML(all.getAttribute('data-rt'), all.getAttribute('data-g'), '', true, all.getAttribute('data-suf')==='1'); }catch(x){}
+        g2.insertAdjacentHTML('beforeend', '<div class="lrtot">'+(html||'<div class="cmpempty">교재 전체 목록이 없어요</div>')+'</div>');
+        return;
+      }
+    });
+  }
+  box.classList.add('on');
+  document.body.style.overflow='hidden';
+  var ttl=''; try{ ttl=cmpUnitLabel(key); }catch(e){ ttl=key; }
+  var head='<div class="cmpwrap"><div class="cmpcard"><div class="cmphead"><div class="cmpttl">'+esc(ttl)+' 어근<span id="lrSub"></span></div><button class="cmpx">닫기</button></div><div class="cmpbody" id="lrBody">';
+  box.innerHTML=head+'<div class="cmpempty">불러오는 중…</div></div></div></div>';
+  Promise.all([getDay(key), rootallLoad(), rwlinkLoad()]).then(function(r){
+    if(!lrIsOpen()) return;
+    var items=r[0]||[], groups={}, order=[], nWords=0;
+    items.forEach(function(x){
+      if(!x || !x.r || String(x.r).charAt(0)==='[') return;
+      nWords++;
+      var rr=String(x.r), cut=rr.indexOf('→'), head2=cut>=0?rr.slice(0,cut):rr;
+      head2.split('+').forEach(function(pt){
+        var m=pt.match(/^\s*(-?)([a-zA-Z]+)\(([^)]*)\)/); if(!m) return;
+        var gl=m[3];
+        if(isGramRoot(gl)) return;
+        try{ if(rwLinkOf(x.w, m[2], gl)) return; }catch(e){}      // 영어 단어를 통째로 쓴 자리는 어근이 아니다
+        var gp=null; try{ gp=rootGroupOf(m[2], gl, m[1]==='-'); }catch(e){}
+        if(gp && isGramRoot(gp.g)) return;
+        var gk=gp ? ('g:'+gp.r+'|'+gp.g) : ('t:'+(m[1]+m[2]).toLowerCase()+'|'+gl);
+        if(!groups[gk]){ groups[gk]={name:m[1]+m[2].toLowerCase(), gloss:gl, rt:m[2].toLowerCase(), g:gl, gp:gp, suf:m[1]==='-', ws:[]}; order.push(gk); }
+        if(groups[gk].ws.indexOf(x.w)<0) groups[gk].ws.push(x.w);
+      });
+    });
+    order.sort(function(a,b){ var d=groups[b].ws.length-groups[a].ws.length; return d || (groups[a].name<groups[b].name?-1:1); });
+    var h='';
+    order.forEach(function(gk){
+      var G=groups[gk];
+      var tot=G.gp ? ((G.gp.w&&G.gp.w.length)||G.gp.n||0) : 0;
+      h+='<div class="lrg"><div class="lrh"><span class="lrn">'+esc(G.name)+'</span><span class="lrgl">'+esc(G.gloss)+'</span>'
+        +'<span style="color:#8fa8cc;font-size:.85em">이 강 '+G.ws.length+'개</span>'
+        +(G.gp?'<button class="lrall" data-rt="'+esc(G.rt)+'" data-g="'+esc(G.g)+'"'+(G.suf?' data-suf="1"':'')+'>교재 전체 '+tot+'개 ›</button>':'')+'</div>'
+        +'<div class="lrws">'+G.ws.map(function(w){ return '<button class="lrw" data-w="'+esc(w)+'">'+esc(w)+'</button>'; }).join('')+'</div></div>';
+    });
+    var body=$('lrBody'); if(!body) return;
+    body.innerHTML=h || '<div class="cmpempty">이 강에는 어근으로 묶을 어원이 없어요</div>';
+    var sub=$('lrSub'); if(sub) sub.textContent='어근 '+order.length+'개 · 많이 나온 순';
+  }).catch(function(){ var body=$('lrBody'); if(body) body.innerHTML='<div class="cmpempty">불러오지 못했어요</div>'; });
+}
+
 function cmpBtnSync(){
   var cq=null, cc=null, cw=null;
   try{ cq=cmpCtx('quiz'); }catch(e){}
@@ -6792,6 +8109,7 @@ function cmpBtnSync(){
   if(d) d.style.display = cq ? '' : 'none';
   var b=$('cmpC');
   if(b) b.style.display = cc ? '' : 'none';
+  try{ wbBtnSync(); }catch(e){}
 }
 // 표제어면 그 강 항목을 불러와 쓴다 (다른 강 단어도)
 function _cmpKeyOfLoc(a){
@@ -6818,7 +8136,8 @@ function _cmpCardHTML(it, e){
   var name=it.w;
   var h='<div class="cmpitem"><div class="cmpwt"><b>'+esc(name)+'</b>'
     + hwAll(name).map(function(x){ return '<span class="hwat">'+esc(x.tag)+' #'+x.id+'</span>'; }).join('')
-    + '<button class="cmpdel" data-cmpdel="'+esc(name)+'">빼기</button></div>';
+    + (it._u ? '<span class="hwat cmpu">'+esc(cmpUnitLabel(it._u))+' 목록</span>' : '')
+    + '<button class="cmpdel" data-cmpdel="'+esc(name)+'"'+(it._u?' data-cmpu="'+esc(it._u)+'"':'')+'>빼기</button></div>';
   if(e){
     var keep=_shownSyn; _shownSyn=null;
     var b='';
@@ -6849,7 +8168,7 @@ function cmpOpen(which){
   try{ if(document.activeElement && document.activeElement.blur) document.activeElement.blur(); }catch(e){}   // 뒤 입력창에 글자·Enter가 들어가지 않게
   var box=$('cmpBox');
   if(!box){
-    box=document.createElement('div'); box.id='cmpBox';
+    box=document.createElement('div'); box.id='cmpBox'; box.className='ovbox';
     document.body.appendChild(box);
     box.addEventListener('click', function(ev){
       var t=ev.target;
@@ -6858,7 +8177,10 @@ function cmpOpen(which){
       var ch=t.closest && t.closest('[data-cmpw]');
       if(ch){ cmpToggle(_cmpCtx.unit, ch.getAttribute('data-cmpw')); cmpDraw(); return; }
       var dl=t.closest && t.closest('[data-cmpdel]');
-      if(dl){ cmpToggle(_cmpCtx.unit, dl.getAttribute('data-cmpdel')); cmpDraw(); return; }
+      if(dl){ cmpToggle(dl.getAttribute('data-cmpu')||_cmpCtx.unit, dl.getAttribute('data-cmpdel')); cmpDraw(); return; }
+      var cv=t.closest && t.closest('[data-cv]');
+      if(cv){ CMPVIEW=cv.getAttribute('data-cv'); cmpDraw(); return; }
+      if(t.closest && t.closest('.cmpadd')){ cmpTyped(); return; }
     });
   }
   box.classList.add('on');
@@ -6877,28 +8199,46 @@ function cmpClose(){
 }
 function cmpIsOpen(){ var b=$('cmpBox'); return !!(b && b.classList.contains('on')); }
 var _cmpDrawN=0;
+var CMPVIEW='unit';   // unit = 이 강만 · all = 모든 강 전체
+function cmpListAll(){
+  var out=[];
+  for(var u in CMP){ var m=CMP[u]||{}; for(var k in m){ var r=m[k]; if(r && r.on) out.push({w:r.w, a:r.a, t:r.t, on:1, _u:u}); } }
+  out.sort(function(a,b){ return (b.a||0)-(a.a||0); });   // 최근에 담은 순
+  return out;
+}
+function cmpTyped(){
+  var inp=$('cmpIn'); if(!inp || !_cmpCtx) return;
+  var t=String(inp.value||'').trim(); if(!t) return;
+  if(!cmpHas(_cmpCtx.unit, t)) cmpToggle(_cmpCtx.unit, t);
+  inp.value='';
+  if(CMPVIEW==='all') CMPVIEW='unit';
+  cmpDraw();
+  setTimeout(function(){ var i=$('cmpIn'); if(i) i.focus(); }, 30);
+}
 function cmpDraw(){
   var c=_cmpCtx; if(!c) return;
   var box=$('cmpBox'); if(!box) return;
   var words=_cmpUniq(c.words);
-  var list=cmpList(c.unit);
+  var list=(CMPVIEW==='all') ? cmpListAll() : cmpList(c.unit);
   var scrollY=0; try{ scrollY=box.querySelector('.cmpbody').scrollTop; }catch(e){}
-  var chips=words.map(function(w){
-    return '<button class="cmpchip'+(cmpHas(c.unit,w)?' on':'')+'" data-cmpw="'+esc(w)+'">'+esc(w)+'</button>';
+  var chips=words.map(function(w, i){
+    return '<button class="cmpchip'+(cmpHas(c.unit,w)?' on':'')+'" data-cmpw="'+esc(w)+'"><span class="cnum">'+(i+1)+'</span>'+esc(w)+'</button>';
   }).join('');
   var head='<div class="cmpwrap"><div class="cmpcard"><div class="cmphead"><div class="cmpttl">비교 목록<span>'
-    +esc(cmpUnitLabel(c.unit))+' · '+list.length+'개</span></div><button class="cmpx">닫기</button></div>'
-    +'<div class="cmpbody"><div class="cmplab">이 문제 단어 — 누르면 담기, 한 번 더 누르면 빼기</div>'
+    +(CMPVIEW==='all' ? '모든 강 전체' : esc(cmpUnitLabel(c.unit)))+' · '+list.length+'개</span></div><button class="cmpx">닫기</button></div>'
+    +'<div class="cmpbody"><div class="cmpview"><button data-cv="unit" class="'+(CMPVIEW==='unit'?'on':'')+'">이 강만</button><button data-cv="all" class="'+(CMPVIEW==='all'?'on':'')+'">모든 강 전체</button></div>'
+    +'<div class="cmpinrow"><input id="cmpIn" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="단어를 쳐서 담기 (예: cautious)"><button class="cmpadd">담기</button></div>'
+    +'<div class="cmplab">이 문제 단어 — 누르면 담기, 한 번 더 누르면 빼기 · 키보드 숫자로도 돼요</div>'
     +'<div class="cmpchips">'+chips+'</div><div id="cmpItems">';
   var tail='</div></div></div></div>';
   if(!list.length){
-    box.innerHTML=head+'<div class="cmpempty">'+esc(cmpUnitLabel(c.unit))+' 비교 목록이 비어 있어요</div>'+tail;
+    box.innerHTML=head+'<div class="cmpempty">'+(CMPVIEW==='all'?'비교 목록이 비어 있어요':esc(cmpUnitLabel(c.unit))+' 비교 목록이 비어 있어요')+'</div>'+tail;
     return;
   }
   box.innerHTML=head+'<div class="cmpempty">불러오는 중…</div>'+tail;
   try{ box.querySelector('.cmpbody').scrollTop=scrollY; }catch(e){}
   var my=++_cmpDrawN;
-  Promise.all(list.map(function(it){ return _cmpEntry(it.w, c.unit); })).then(function(es){
+  Promise.all(list.map(function(it){ return _cmpEntry(it.w, it._u||c.unit); })).then(function(es){
     if(my!==_cmpDrawN || !cmpIsOpen()) return;
     var h='';
     list.forEach(function(it, i){ h+=_cmpCardHTML(it, es[i]); });
@@ -6923,7 +8263,8 @@ function fillExample(w){
 
 function score(){
   ['retry','wbtn'].forEach(function(id){ var b=$(id); if(b) b.style.display=''; });
-  ['revGo','penGo2'].forEach(function(id){ var b=$(id); if(b) b.style.display='none'; });
+  ['revGo','penGo2','revSwap'].forEach(function(id){ var b=$(id); if(b) b.style.display='none'; });
+  var _pb2=$('penbtn2'); if(_pb2) _pb2.style.display='';
   var d=0, o=0;
   ans.forEach(function(a){ if(a!==null){ d++; if(a.ok) o++; } });
   $('bar').textContent='점수 '+o+' / '+d+'   ·   '+(d?Math.round(o/d*100)+'%':'-');
@@ -6967,6 +8308,7 @@ function finish(){
   if(SRC==='rev'){
     $('rm').textContent = '🔄 역방향 확인 완료 — 이제 손으로 정리해볼까요?';
     var pb=$('penGo2'); if(pb) pb.style.display='';
+    var pb3=$('penbtn2'); if(pb3) pb3.style.display='none';   // 같은 이름 버튼은 하나만
   } else if(SRC==='bank'){
     $('rm').textContent = '누적 오답 풀기 완료' + tail;
   } else if(SRC==='retry'){
@@ -6990,7 +8332,9 @@ function finish(){
       // 마무리: 역방향 확인 → 손으로 쓸 단어
       var revBtn=$('revGo'), penBtn=$('penGo2');
       if(revBtn) revBtn.style.display='';
+      try{ $('revSwap').style.display=''; $('revSwapChk').checked=!!SWAP.rev; }catch(e){}
       if(penBtn) penBtn.style.display='';
+      var pb4=$('penbtn2'); if(pb4) pb4.style.display='none';   // 같은 이름 버튼은 하나만
       $('retry').style.display='none';
       $('wbtn').style.display='none';
       show('resscr');
@@ -7120,6 +8464,12 @@ $('dockPrev').addEventListener('click',function(){ prev(); });
 $('dockCmp').addEventListener('click',function(){ cmpOpen('quiz'); });
 $('cmpQ').addEventListener('click',function(){ cmpOpen('quiz'); });
 $('cmpC').addEventListener('click',function(){ cmpOpen('copy'); });
+$('dockWb').addEventListener('click',function(){ wbOpen('quiz'); });
+$('wbQ').addEventListener('click',function(){ wbOpen('quiz'); });
+$('wbC').addEventListener('click',function(){ wbOpen('copy'); });
+$('wbHomeGo').addEventListener('click',function(){ wbOpen('home'); });
+$('misHomeGo').addEventListener('click',function(){ misOpen(); });
+$('dstat').addEventListener('click',function(e){ if(e.target.closest && e.target.closest('#lrOpen')) lrOpen(); });
 $('cmpW').addEventListener('click',function(){ cmpOpen('write'); });
 $('dockPin').addEventListener('click',function(){ var q=Q&&Q[qi]; if(q&&q.w) pinAsk(q.w, 'dockPin'); });
 $('dockNext').addEventListener('click',function(){ next(); });
@@ -7130,10 +8480,13 @@ $('dockShow').addEventListener('click',function(){
 $('mseg').addEventListener('click',function(e){
   var b=e.target.closest('button'); if(!b) return;
   __lastAction='모드선택:'+b.dataset.m;
-  if(b.dataset.m==='conf'){ openConf(); return; }   // 진도·시작 버튼과 상관없이 바로 전체 목록
+  if(b.dataset.m==='conf'){ openConf(); return; }
+  if(b.dataset.m==='forms'){ formsOpen(); return; }   // 형태로 묶기 — 검색 창을 묶음 보기로 연다   // 진도·시작 버튼과 상관없이 바로 전체 목록
   this.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
   b.classList.add('on');
   st.mode=b.dataset.m;
+  FINMODE = (b.dataset.fin==='1');          // 최종 정리 = 동의어 매칭 + 같은 뜻 단어
+  try{ swapUI(); }catch(x){}
   try{ var _fk=$('fko'); if(_fk) _fk.style.display=(st.mode==='ko')?'':'none'; }catch(x){}
   stat();
   bankUI();
@@ -7194,6 +8547,12 @@ $('resumeList').addEventListener('click',function(e){
 $('resumeGo').addEventListener('click',function(){
   if(!sessionResume()){ msg('이어 풀 퀴즈가 없습니다','err'); resumeUI(); }
 });
+$('swseg').addEventListener('click',function(e){
+  var b=e.target.closest('button'); if(!b) return;
+  if(st.mode!=='syn' && st.mode!=='write') return;
+  SWAP[st.mode]=parseInt(b.dataset.s,10)||0; swapSave(); swapUI();
+});
+$('revSwapChk').addEventListener('change',function(){ SWAP.rev=!!this.checked; swapSave(); });
 $('resumeClr').addEventListener('click',function(){
   var list=sessionsEntries(); if(!list.length){ resumeUI(); return; }
   if(!confirm('풀던 기록 '+list.length+'개를 모두 지울까요?')) return;
@@ -7205,7 +8564,7 @@ $('statsClr').addEventListener('click',function(){
   var n=statsList().length;
   if(!n){ return; }
   if(!confirm('약점 단어 기록 '+n+'개를 모두 지울까요?')) return;
-  STATS={}; statsSave(); statsUI();
+  STATS={}; DELS.all.stats=Date.now(); delsSave(); statsSave(); statsUI();
 });
 document.getElementById('stfilter').addEventListener('click',function(e){
   var b=e.target.closest('.stf'); if(!b) return;
@@ -7233,7 +8592,7 @@ window.addEventListener('scroll',function(){
   if(window.innerHeight+window.scrollY < document.body.scrollHeight-400) return;
   if(!ROOTALL) return;
   var q=($('rtsearch').value||'').toLowerCase().trim();
-  var tot=ROOTALL.filter(function(g){ return !RTTYPE||g.t===RTTYPE; }).length;
+  var tot=ROOTALL.filter(function(g){ return !g.x && (!RTTYPE||g.t===RTTYPE); }).length;
   if(_rtLimit>=tot) return;
   _rtLimit+=60; drawRoots($('rtsearch').value);
 });
@@ -7241,6 +8600,8 @@ window.addEventListener('scroll',function(){
 $('wsubmit').addEventListener('click',writeSubmit);
 // 따라쓰기 이벤트
 // 동의어 매칭: 입력 모드 토글
+$('againQ').addEventListener('click',function(e){ e.stopPropagation(); againUser(); });
+$('srchQ').addEventListener('click',function(e){ e.stopPropagation(); srOpen(); });
 $('synmodetog').addEventListener('click',function(){
   SYN_TYPING=!SYN_TYPING;
   if($('syninput')) $('syninput').value='';
@@ -7329,7 +8690,7 @@ $('revGo').addEventListener('click',function(){
     });
     if(!list.length){ msg('역방향 문제를 만들 수 없습니다','err'); return; }
     hide();
-    SRC='rev';
+    SRC='rev'; FINRUN=false;
     launch(shuf(list), {rev:true});
   }).catch(function(e){ msg('❌ '+e.message,'err'); });
 });
@@ -7352,6 +8713,7 @@ $('penAll').addEventListener('click',function(){
 $('penClr').addEventListener('click',function(){
   if(!penList().length){ return; }
   if(!confirm('✍️ 손글씨 목록 '+penList().length+'개를 비울까요? (틀린 단어는 그대로 남아요)')) return;
+  for(var pk in PENLIST) DELS.pen[pk]=Date.now(); delsSave();
   PENLIST={}; penSave(); penDraw();
 });
 $('syncGo').addEventListener('click',function(){ ghSync(false); });
@@ -7400,9 +8762,17 @@ document.addEventListener('click',function(e){
     var same = nx && nx.classList && nx.classList.contains('rtlist') && nx.getAttribute('data-rt')===rt.getAttribute('data-rt');
     if(nx && nx.classList && nx.classList.contains('rtlist')) nx.remove();
     line.querySelectorAll('.rtap.on').forEach(function(x){ x.classList.remove('on'); });
+    if(!same && rt.getAttribute('data-lk')){
+      // 영어 단어를 통째로 쓴 자리 → 그 단어 카드
+      var lkw=rt.getAttribute('data-lk');
+      line.insertAdjacentHTML('afterend', rwLinkCardHTML(lkw, rt.getAttribute('data-rel'), rt.getAttribute('data-rt'), rt.getAttribute('data-me')));
+      rt.classList.add('on');
+      try{ rwLinkFill(line.nextElementSibling, lkw); }catch(x){}
+      e.stopPropagation(); return;
+    }
     if(!same){
       // 선지를 눌렀을 때 뜨는 어원 칸(1순위)에서는 목록을 처음부터 전부 보여 준다
-      var html=rootListHTML(rt.getAttribute('data-rt'), rt.getAttribute('data-g'), rt.getAttribute('data-me'), !!rt.closest('#qroot'));
+      var html=rootListHTML(rt.getAttribute('data-rt'), rt.getAttribute('data-g'), rt.getAttribute('data-me'), !!rt.closest('#qroot'), rt.getAttribute('data-suf')==='1');
       if(html){ line.insertAdjacentHTML('afterend', html); rt.classList.add('on'); }
     }
     e.stopPropagation(); return;
@@ -7424,17 +8794,18 @@ document.addEventListener('click',function(e){
   if(!t) return;
   // 뜻은 그 줄(.pr) 전체 뒤에, 단어는 바로 뒤에 넣는다
   var anchor = t.classList.contains('nztap') ? (t.closest('.pr')||t)
-             : (t.closest('.rw') || t.closest('.cfrow') || t.closest('.cfh') || t);
+             : (t.closest('.rw') || t.closest('.cfrow') || t.closest('.cfh') || t.closest('.fmline') || t);
   var nx=anchor.nextElementSibling;
   var open = nx && nx.classList && (nx.classList.contains('nzpanel')||nx.classList.contains('wpanel'));
-  if(open){ nx.remove(); t.classList.remove('tapon'); return; }
+  if(open){ var _same=!nx.dataset.for || nx.dataset.for===t.getAttribute('data-w'); nx.remove(); (anchor.querySelectorAll?anchor.querySelectorAll('.tapon'):[]).forEach(function(x){ x.classList.remove('tapon'); }); t.classList.remove('tapon'); if(_same) return; }
   var html='';
   if(t.classList.contains('nztap')) html=nuancePanel(t.getAttribute('data-sense'), t.getAttribute('data-me'));
   else html=wordPanel(t.getAttribute('data-w'));
   if(!html) return;
   var d=document.createElement('div');
   d.innerHTML=html;
-  anchor.parentNode.insertBefore(d.firstElementChild, anchor.nextSibling);
+  var _pn=d.firstElementChild; if(t.classList.contains('fmw')) _pn.dataset.for=t.getAttribute('data-w');
+  anchor.parentNode.insertBefore(_pn, anchor.nextSibling);
   t.classList.add('tapon');
   e.stopPropagation();
 });
@@ -7594,6 +8965,7 @@ $('dayClose').addEventListener('click',function(){ $('dayPanel').style.display='
 $('calprev').addEventListener('click',function(){ CAL_M--; if(CAL_M<0){ CAL_M=11; CAL_Y--; } calDraw(); });
 $('calnext').addEventListener('click',function(){ CAL_M++; if(CAL_M>11){ CAL_M=0; CAL_Y++; } calDraw(); });
 $('weakGo').addEventListener('click',startWeak);
+$('dueGo').addEventListener('click',startDue);
 $('pinGo').addEventListener('click',startPinned);
 $('pinView').addEventListener('click',function(){
   var pl=$('pinList');
@@ -7603,7 +8975,7 @@ $('pinView').addEventListener('click',function(){
 $('pinList').addEventListener('click',function(e){
   var d=e.target.closest('.pdel'); if(!d) return;
   var w=d.getAttribute('data-pw');
-  if(STATS[w]){ STATS[w].pinned=0; statsSave(); }
+  if(STATS[w]){ STATS[w].pinned=0; STATS[w].pinT=Date.now(); statsSave(); }
   srsUI();                 // 배너 개수 갱신 (목록은 여기서 비워짐)
   if(pinnedList().length){ pinListUI(); $('pinView').textContent='닫기'; }   // 다시 그리기
   else { $('pinView').textContent='목록'; }
@@ -7622,6 +8994,7 @@ $('reqCopy').addEventListener('click',function(){
 });
 $('reqClr').addEventListener('click',function(){
   if(!confirm('어원 요청 목록 '+rootReqCount()+'개를 모두 지울까요?')) return;
+  for(var rk in ROOTREQ) DELS.req[rk]=Date.now(); delsSave();
   ROOTREQ={}; rootReqSave(); reqUI();
 });
 $('csubmit').addEventListener('click',copySubmit);
@@ -7649,6 +9022,8 @@ document.addEventListener('click',function(e){
     var box=$('qroot'); if(!box||!nm) return;
     var rr=rootOfWord(nm);
     var h='';
+    var _ph=phrsynHTML(nm, false);
+    if(_ph && !rr){ box.innerHTML=_ph; box.style.display=''; return; }   // 교재 동의어 구문: 구문 뜻 · 속 단어
     if(rr){
       h='<span class="crootlabel">'+esc(nm)+' 어원</span><span class="byc">'+rootLinkHTML(rr, nm)+'</span>';
       var rw=repWordsFor(rr);
@@ -7782,8 +9157,14 @@ $('cinput').addEventListener('keydown',function(e){
   else if(e.key==='ArrowLeft' && !this.value){ e.preventDefault(); e.stopPropagation(); cWaiting=false; copyPrev(); }
 });
 $('cohome').addEventListener('click',function(){ bankUI(); statsUI(); resumeUI(); srsUI(); reqUI(); todayUI(); syncUI(); refreshUnitLabels(); show('setup'); });
-$('winput').addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); writeSubmit(); } });
-$('wskip').addEventListener('click',function(){ writeReveal(false); });
+$('winput').addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); e.stopPropagation(); writeSubmit(); } });
+$('wskip').addEventListener('click',function(){ writeGrade(); });
+$('wgot').addEventListener('click',function(e){
+  if(wdone) return;
+  var c=e.target.closest && e.target.closest('.wpend'); if(!c) return;
+  wpend.splice(parseInt(c.getAttribute('data-i'),10),1); wPendDraw();
+  $('wfb').textContent=wpend.length?wpend.length+'개 썼어요':''; $('winput').focus();
+});
 $('wnext').addEventListener('click',writeNext);
 $('whome').addEventListener('click',function(){ bankUI(); statsUI(); resumeUI(); show('setup'); });
 
@@ -7795,6 +9176,7 @@ $('bankClr').addEventListener('click',function(){
   var n=bankList(m).length;
   if(!n) return;
   if(!confirm('누적 오답 '+n+'개를 모두 지울까요?')) return;
+  for(var bk in BANK[m]) DELS[m==='syn'?'bs':'bq'][bk]=Date.now(); delsSave();
   BANK[m]={};
   bankSave();
   bankUI();
@@ -7833,8 +9215,35 @@ function numKey(key, q){
   _nkTimer=setTimeout(function(){ var b=_nkBuf; _nkClear(); if(b) _nkChoose(parseInt(b), q); }, 600);
 }
 document.addEventListener('keydown',function(e){
+  if(misIsOpen()){
+    if(e.key==='Escape'){ e.preventDefault(); misClose(); }
+    return;
+  }
+  if(srIsOpen()){
+    if(e.key==='Escape'){ e.preventDefault(); srClose(); }
+    return;                                              // 검색창에 쓰는 동안 숫자·Enter가 문제를 건드리지 않게
+  }
+  if(e.key==='/' && $('qscr').classList.contains('on') && !(document.activeElement && /^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName))){
+    e.preventDefault(); srOpen(); return;
+  }
+  if(lrIsOpen()){
+    if(e.key==='Escape'){ e.preventDefault(); lrClose(); }
+    return;
+  }
+  if(wbIsOpen()){
+    if(e.key==='Escape'){ e.preventDefault(); wbClose(); }
+    else if(e.key>='0' && e.key<='9'){ e.preventDefault(); chipKey(e.key, $('wbBox').querySelectorAll('.cmpchip').length, function(n){ _chipClick('wbBox', n); }); }
+    else if(e.key!=='Tab') e.preventDefault();
+    return;
+  }
   if(cmpIsOpen()){
+    if(document.activeElement && document.activeElement.id==='cmpIn'){   // 단어 입력 칸에 쓰는 중
+      if(e.key==='Enter'){ e.preventDefault(); cmpTyped(); }
+      else if(e.key==='Escape'){ e.preventDefault(); cmpClose(); }
+      return;
+    }
     if(e.key==='Escape'){ e.preventDefault(); cmpClose(); }
+    else if(e.key>='0' && e.key<='9'){ e.preventDefault(); chipKey(e.key, $('cmpBox').querySelectorAll('.cmpchip').length, function(n){ _chipClick('cmpBox', n); }); }
     else if(e.key!=='Tab') e.preventDefault();
     return;
   }
@@ -7845,6 +9254,7 @@ document.addEventListener('keydown',function(e){
     return;
   }
   // 따라쓰기: 화살표 이동 + ↓ 어원 토글 + Enter(입력창 밖에서도 동작)
+  if($('writescr').classList.contains('on') && wdone && e.key==='Enter'){ e.preventDefault(); writeNext(); return; }
   if($('copyscr').classList.contains('on')){
     if(e.key==='ArrowDown'){ e.preventDefault(); toggleRoot(); }
     else if(e.key==='ArrowRight'){ e.preventDefault(); cWaiting=false; copyNext(); }
