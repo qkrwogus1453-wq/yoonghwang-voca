@@ -1297,6 +1297,7 @@ body.hasdock #qnav{display:none}
 #pinAskBox .pkbtn.later{border-color:#5eead4;color:#7fe7d4}
 #pinAskBox .pkbtn.cancel{background:none;border-color:#2a3a60;color:#8fa4c2;font-size:.95em;padding:11px}
 #pinAskBox .pkbtn:active{transform:scale(.98)}
+#pinAskBox .pkk{display:inline-block;min-width:1.6em;margin-right:7px;padding:0 5px;border:1px solid currentColor;border-radius:5px;font-size:.8em;opacity:.75}
 
 /* 이번 선지에 안 나온 동의어 — 색으로 구분 */
 #qscr .info .sy.notshown{color:#e0b968;border-bottom:1.5px dashed #8a6d2f;padding-bottom:1px}
@@ -1957,7 +1958,7 @@ body.hasdock #qnav{display:none}
   </div>
 </div>
 
-<script>
+<script id="appjs" type="text/x-app">
 'use strict';
 var IDX=null, refreshUnitLabels=function(){}, CACHE={}, POOL={words:[],phrases:[],all:[]}, SET=[], LEX={}, ROOTS=null;
 var st={mode:'syn', key:null, cum:false, set:0, n:50, target:'word'};
@@ -2313,7 +2314,7 @@ var SYNONLY=null;
 // 박스를 접으면 다음 문제·다음 번 접속에도 접힌 채로 뜬다. 펴 두면 계속 펴진 채로.
 var FOLD_KEY='voca_fold_v1', FOLDST={};
 function foldLoad(){
-  try{ var r=localStorage.getItem(FOLD_KEY); if(r) FOLDST=JSON.parse(r)||{}; }catch(e){ FOLDST={}; }
+  try{ var r=LS.getItem(FOLD_KEY); if(r) FOLDST=JSON.parse(r)||{}; }catch(e){ FOLDST={}; }
 }
 function foldKeyOf(bt){
   if(!bt) return '';
@@ -2325,7 +2326,7 @@ function foldSet(key, folded){
   var t=String(key||'').trim();
   if(!t) return;
   if(folded) FOLDST[t]=1; else delete FOLDST[t];
-  try{ localStorage.setItem(FOLD_KEY, JSON.stringify(FOLDST)); }catch(e){}
+  try{ LS.setItem(FOLD_KEY, JSON.stringify(FOLDST)); }catch(e){}
 }
 function foldIsClosed(key){
   return !!FOLDST[String(key||'').trim()];
@@ -2707,7 +2708,7 @@ function shuf(a){var r=a.slice();for(var i=r.length-1;i>0;i--){var j=Math.floor(
 var BKEY='voca_bank_v1';
 function bankLoad(){
   try{
-    var raw=localStorage.getItem(BKEY);
+    var raw=LS.getItem(BKEY);
     if(raw){
       var d=JSON.parse(raw);
       if(d && d.quiz && d.syn) BANK=d;
@@ -2738,7 +2739,7 @@ function slimLocalMap(m){
 var SKEY='voca_stats_v1';
 function statsLoad(){
   try{
-    var raw=localStorage.getItem(SKEY);
+    var raw=LS.getItem(SKEY);
     if(raw){ var d=JSON.parse(raw); if(d) STATS=d; }
   }catch(e){ STATS={}; }
 }
@@ -2746,7 +2747,7 @@ function statsLoad(){
 var GKEY='voca_gh_v1';
 var GH={token:'', owner:'qkrwogus1453-wq', repo:'voca-data', path:'progress.json', sha:'', last:0, auto:true};
 function ghLoad(){
-  try{ var r=localStorage.getItem(GKEY); if(r){ var d=JSON.parse(r); for(var k in d) GH[k]=d[k]; } }catch(e){}
+  try{ var r=LS.getItem(GKEY); if(r){ var d=JSON.parse(r); for(var k in d) GH[k]=d[k]; } }catch(e){}
 }
 function ghSave(){ lsSet(GKEY, JSON.stringify(GH)); }
 function ghReady(){ return !!(GH.token && GH.owner && GH.repo); }
@@ -3045,7 +3046,7 @@ function ghApplyRun(d){
   if(d.memo)  { MEMO=d.memo; memoSave(); }
   if(d.req)   { ROOTREQ=d.req; rootReqSave(); }
   if(d.diary) { DIARY=d.diary; diarySave(); }
-  if(d.dels)  { for(var dc in DELS) DELS[dc]=d.dels[dc]||{}; try{ localStorage.setItem(DELKEY, JSON.stringify(DELS)); }catch(e){} }
+  if(d.dels)  { for(var dc in DELS) DELS[dc]=d.dels[dc]||{}; try{ LS.setItem(DELKEY, JSON.stringify(DELS)); }catch(e){} }
   if(d.sdel)  {   // 다른 기기에서 지운 세션은 여기서도 지운다
     for(var dk in d.sdel){ if(!SESDEL[dk] || d.sdel[dk]>SESDEL[dk]) SESDEL[dk]=d.sdel[dk]; }
     for(var dk2 in SESSIONS){ if(SESDEL[dk2] && (SESSIONS[dk2].ts||0)<=SESDEL[dk2]) delete SESSIONS[dk2]; }
@@ -3073,11 +3074,11 @@ function ghApplyRun(d){
     if(_ahead){ setTimeout(function(){ try{ if(sessionResume(_curK)) msg('↩ 다른 기기에서 푼 데까지 불러왔어요','ok'); }catch(e){} }, 0); } }
   if(d.ses || d.sdel){ try{ if($('setup').classList.contains('on')) resumeUI(); }catch(e){} }
   if(d.oset && (d.oset.t||0)>ORDER_T){ ORDER_T=d.oset.t||0; orderApply(d.oset.v); }
-  if(d.ord)   { ORDPOS=d.ord; try{ localStorage.setItem('voca_ordpos', JSON.stringify(ORDPOS)); }catch(e){} try{ ordStat(); }catch(e){} }
+  if(d.ord)   { ORDPOS=d.ord; try{ LS.setItem('voca_ordpos', JSON.stringify(ORDPOS)); }catch(e){} try{ ordStat(); }catch(e){} }
   if(d.cmp)   { CMP=d.cmp; cmpSave(); try{ cmpBtnSync(); if(cmpIsOpen()) cmpDraw(); }catch(e){} }
-  if(d.mis)   { MIS=d.mis; try{ localStorage.setItem(MISKEY, JSON.stringify(MIS)); }catch(e){} try{ misBtnSync(); if(misIsOpen()) misDraw(); }catch(e){} }
-  if(d.rvr)   { RVR=d.rvr; try{ localStorage.setItem(RVKEY, JSON.stringify(RVR)); }catch(e){} _rvDirty=true; try{ rvUI(); refreshUnitLabels(); }catch(e){} }
-  if(d.wb)    { WB=d.wb; try{ localStorage.setItem(WBKEY, JSON.stringify(WB)); }catch(e){} try{ wbBtnSync(); if(wbIsOpen()) wbDraw(); }catch(e){} }
+  if(d.mis)   { MIS=d.mis; try{ LS.setItem(MISKEY, JSON.stringify(MIS)); }catch(e){} try{ misBtnSync(); if(misIsOpen()) misDraw(); }catch(e){} }
+  if(d.rvr)   { RVR=d.rvr; try{ LS.setItem(RVKEY, JSON.stringify(RVR)); }catch(e){} _rvDirty=true; try{ rvUI(); refreshUnitLabels(); }catch(e){} }
+  if(d.wb)    { WB=d.wb; try{ LS.setItem(WBKEY, JSON.stringify(WB)); }catch(e){} try{ wbBtnSync(); if(wbIsOpen()) wbDraw(); }catch(e){} }
   // 동기화로 받은 기록에도 옛 단어 내용이 섞여 있을 수 있으니 풀 기준으로 갱신
   if(typeof _allPool!=='undefined' && _allPool){ try{ refreshStored(); }catch(e){} }
 }
@@ -3312,7 +3313,7 @@ setInterval(ghPeek, 120000);
 function lsUsage(){
   var NAME={voca_stats_v1:'단어 기록(틀린·맞힌)', voca_sessions_v1:'풀던 문제', voca_bank_v1:'담긴 단어', voca_pen_v1:'손글씨 목록', voca_memo_v1:'내 메모', voca_daily_v1:'날짜별 기록', voca_gh_v1:'동기화 설정', voca_ordpos:'이어 풀 위치'};
   var tot=0, items=[];
-  try{ for(var i=0;i<localStorage.length;i++){ var k=localStorage.key(i); var n=(k.length+(localStorage.getItem(k)||'').length)*2; tot+=n; items.push({k:k, n:n}); } }catch(e){}
+  try{ for(var i=0;i<LS.length;i++){ var k=LS.key(i); var n=(k.length+(LS.getItem(k)||'').length)*2; tot+=n; items.push({k:k, n:n}); } }catch(e){}
   items.sort(function(a,b){ return b.n-a.n; });
   return {tot:tot, top:items.slice(0,3).map(function(x){ return (NAME[x.k]||x.k)+' '+(x.n/1048576).toFixed(2)+'MB'; })};
 }
@@ -3330,7 +3331,8 @@ function syncDiag(){
   h+=row('자동 동기화', GH.auto?'켜짐':'꺼짐', GH.auto?'good':'bad');
   h+=row('마지막 성공', GH.last?new Date(GH.last).toLocaleString():'아직 없음', GH.last?'':'bad');
   h+=row('마지막 실패', (GH.lastErr && (GH.lastErrT||0)>(GH.last||0)) ? new Date(GH.lastErrT).toLocaleString()+' · '+GH.lastErr : '없음', (GH.lastErr && (GH.lastErrT||0)>(GH.last||0))?'bad':'good');
-  h+=row('저장 공간 사용', mb.toFixed(2)+'MB / 약 5MB'+(u.top.length?' (큰 것: '+u.top.join(', ')+')':''), mb>4?'bad':(mb>3?'':'good'));
+  if(LS.mode==='idb') h+=row('저장 공간 사용', '큰 저장칸 · '+mb.toFixed(2)+'MB (5MB 제한 없음)'+(u.top.length?' (큰 것: '+u.top.join(', ')+')':''), 'good');
+  else h+=row('저장 공간 사용', '작은 저장칸 · '+mb.toFixed(2)+'MB / 약 5MB'+(u.top.length?' (큰 것: '+u.top.join(', ')+')':'')+(LS.why?' · 큰 저장칸 못 씀('+LS.why+')':''), mb>4?'bad':(mb>3?'':'good'));
   h+=row('저장 실패', LS_FAIL||'없음', LS_FAIL?'bad':'good');
   h+=row('원격 기록 파일', GH.rsize ? (GH.rsize/1024).toFixed(0)+'KB' : '모름');
   h+=row('풀던 문제 기록', ses+'개');
@@ -3345,7 +3347,7 @@ function syncDiag(){
 //   bq/bs: 오답(사지선다/동의어) · pen: 손글씨 · memo: 메모 · req: 어원 요청 · all: 통째로 비운 시각
 var DELKEY='voca_dels_v1', DELS={bq:{},bs:{},pen:{},memo:{},req:{},all:{}};
 function delsLoad(){
-  try{ var r=localStorage.getItem(DELKEY); if(r){ var d=JSON.parse(r)||{}; for(var c in DELS) DELS[c]=d[c]||{}; } }catch(e){}
+  try{ var r=LS.getItem(DELKEY); if(r){ var d=JSON.parse(r)||{}; for(var c in DELS) DELS[c]=d[c]||{}; } }catch(e){}
   var lim=Date.now()-60*86400000;
   for(var c2 in DELS){ if(c2==='all') continue; for(var k in DELS[c2]) if((DELS[c2][k]||0)<lim) delete DELS[c2][k]; }
 }
@@ -3374,7 +3376,7 @@ function syncSoon(){
 
 // ── 단어 메모 (내가 만든 설명) ──
 var MKEY='voca_memo_v1', MEMO={};
-function memoLoad(){ try{ var r=localStorage.getItem(MKEY); if(r) MEMO=JSON.parse(r)||{}; }catch(e){ MEMO={}; } }
+function memoLoad(){ try{ var r=LS.getItem(MKEY); if(r) MEMO=JSON.parse(r)||{}; }catch(e){ MEMO={}; } }
 function memoSave(){ lsSet(MKEY, JSON.stringify(MEMO)); if(typeof syncSoon==='function') syncSoon(); }
 function memoGet(w){ var m=MEMO[String(w)]; return m?m.t:''; }
 function memoSet(w, txt){
@@ -3411,7 +3413,7 @@ function memoBox(w, hostId){
 // ── 펜으로 쓸 단어 목록 ──
 var PKEY='voca_pen_v1', PENLIST={};
 function penLoad(){
-  try{ var r=localStorage.getItem(PKEY); if(r) PENLIST=JSON.parse(r)||{}; }catch(e){ PENLIST={}; }
+  try{ var r=LS.getItem(PKEY); if(r) PENLIST=JSON.parse(r)||{}; }catch(e){ PENLIST={}; }
 }
 function penSave(){ lsSet(PKEY, JSON.stringify(slimLocalMap(PENLIST))); if(typeof syncSoon==='function') syncSoon(); }
 function isPen(w){ return !!PENLIST[String(w.w)]; }
@@ -3432,7 +3434,7 @@ function penBtnUI(id, w){
 
 // ── 날짜별 다이어리 메모 ──
 var JKEY='voca_diary_v1', DIARY={};
-function diaryLoad(){ try{ var r=localStorage.getItem(JKEY); if(r) DIARY=JSON.parse(r)||{}; }catch(e){ DIARY={}; } }
+function diaryLoad(){ try{ var r=LS.getItem(JKEY); if(r) DIARY=JSON.parse(r)||{}; }catch(e){ DIARY={}; } }
 function diarySave(){ lsSet(JKEY, JSON.stringify(DIARY)); }
 function diaryGet(k){ var d=DIARY[k]; return d?{todo:d.todo||'', done:d.done||''}:{todo:'',done:''}; }
 function diarySet(k, todo, done, checks){
@@ -3469,7 +3471,7 @@ function dayKey(d){
   return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
 }
 function dailyLoad(){
-  try{ var r=localStorage.getItem(DKEY); if(r) DAILY=JSON.parse(r)||{}; }catch(e){ DAILY={}; }
+  try{ var r=LS.getItem(DKEY); if(r) DAILY=JSON.parse(r)||{}; }catch(e){ DAILY={}; }
 }
 function dailySave(){ lsSet(DKEY, JSON.stringify(DAILY)); if(typeof syncSoon==='function') syncSoon(); }
 // 이 강을 1회독 끝냈는가 — 그 강 단어를 전부 동의어 매칭으로 풀었고 남은 오답이 없으면
@@ -3790,7 +3792,7 @@ function seenSynCount(){
 // ── 복습 회독 진도 (재현님 요청: 2권 진도 나가면서 1권 복습 — 강 순서대로) ──
 // 권마다 「몇 회독째, 언제부터」를 정해 두고, 그 뒤에 동의어 매칭으로 푼 단어를 강별로 센다.
 var RVKEY='voca_rvround_v1', RVR={}, _rvDirty=true, _rvCache={};
-try{ RVR=JSON.parse(localStorage.getItem(RVKEY)||'{}')||{}; }catch(e){ RVR={}; }
+try{ RVR=JSON.parse(LS.getItem(RVKEY)||'{}')||{}; }catch(e){ RVR={}; }
 function rvSave(){ lsSet(RVKEY, JSON.stringify(RVR)); _rvDirty=true; if(typeof syncSoon==='function') syncSoon(); }
 function rvLast(r){ return r ? (r.ls || (r.seen_syn ? (r.last||0) : 0)) : 0; }
 // 기본 시작: 그 권의 새 단어를 마지막으로 푼 날의 다음날 0시
@@ -4101,7 +4103,7 @@ setInterval(function(){
   }catch(e){}
 },1500);
 
-var APP_VER = '2026.12.27';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
+var APP_VER = '2026.12.29';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
 var VER = APP_VER;  // 데이터 URL 캐시 키. 배포 때만 바뀌므로 브라우저 캐시가 제대로 재사용됨
 function loadJ(p){
   // 데이터 파일은 URL에 버전(v=)이 붙어 캐시가 자동 갱신되므로 브라우저 캐시를 허용한다.
@@ -4343,18 +4345,18 @@ function startBoot(){
 
 // 출제 대상(단어/표현/둘다)에 맞게 항목 거르기
 // ── 문제 순서 (랜덤 / 순서대로) ──
-var ORDER=(function(){ try{ return localStorage.getItem('voca_order')==='book' ? 'book' : 'rand'; }catch(e){ return 'rand'; } })();
-var ORDER_T=(function(){ try{ return +localStorage.getItem('voca_order_t')||0; }catch(e){ return 0; } })();
+var ORDER=(function(){ try{ return LS.getItem('voca_order')==='book' ? 'book' : 'rand'; }catch(e){ return 'rand'; } })();
+var ORDER_T=(function(){ try{ return +LS.getItem('voca_order_t')||0; }catch(e){ return 0; } })();
 function orderApply(v){
   ORDER=(v==='book')?'book':'rand';
-  try{ localStorage.setItem('voca_order', ORDER); localStorage.setItem('voca_order_t', String(ORDER_T)); }catch(e){}
+  try{ LS.setItem('voca_order', ORDER); LS.setItem('voca_order_t', String(ORDER_T)); }catch(e){}
   try{ $('oseg').querySelectorAll('button').forEach(function(x){ x.classList.toggle('on', x.dataset.o===ORDER); }); ordStat(); }catch(e){}
 }
 var ORDPOS={};   // 순서대로: 범위마다 다음에 시작할 자리
-try{ ORDPOS=JSON.parse(localStorage.getItem('voca_ordpos')||'{}')||{}; }catch(e){ ORDPOS={}; }
+try{ ORDPOS=JSON.parse(LS.getItem('voca_ordpos')||'{}')||{}; }catch(e){ ORDPOS={}; }
 function ordKey(){ return (st.mode||'')+'|'+keys().join(',')+'|'+(st.target||''); }
 function ordGet(k){ var v=ORDPOS[k]; return (v && typeof v==='object') ? (v.a|0) : (v|0); }
-function ordSet(k, a){ ORDPOS[k]={a:a, t:Date.now()}; try{ localStorage.setItem('voca_ordpos', JSON.stringify(ORDPOS)); }catch(e){} if(typeof syncSoon==='function') syncSoon(); }
+function ordSet(k, a){ ORDPOS[k]={a:a, t:Date.now()}; try{ LS.setItem('voca_ordpos', JSON.stringify(ORDPOS)); }catch(e){} if(typeof syncSoon==='function') syncSoon(); }
 // 순서대로면 지난번 끝난 다음부터 n개 (남은 게 n보다 적으면 남은 것만, 다 풀면 처음으로)
 function pickOrder(list, n){
   if(ORDER!=='book') return shuf(list).slice(0, n);
@@ -5554,7 +5556,7 @@ function renderFocus(w){
 var RQKEY='voca_rootreq_v1';
 var ROOTREQ={};
 function rootReqLoad(){
-  try{ var r=localStorage.getItem(RQKEY); if(r) ROOTREQ=JSON.parse(r)||{}; }catch(e){ ROOTREQ={}; }
+  try{ var r=LS.getItem(RQKEY); if(r) ROOTREQ=JSON.parse(r)||{}; }catch(e){ ROOTREQ={}; }
 }
 function rootReqSave(){ lsSet(RQKEY, JSON.stringify(ROOTREQ)); if(typeof syncSoon==='function') syncSoon(); }
 function rootReqAdd(word, mainWord){
@@ -6098,7 +6100,7 @@ var SESMAP='voca_sessions_v1';      // 강별 세션 보관 (기기 간 동기�
 var SESSIONS={};
 // 지운 기록 표시 (기기 간 동기화용): {세션키: 지운 시각}. 이 시각보다 옛 세션은 다른 기기에서 와도 되살리지 않는다.
 var SDKEY='voca_sesdel', SESDEL={};
-function sesDelLoad(){ try{ var r=localStorage.getItem(SDKEY); if(r) SESDEL=JSON.parse(r)||{}; }catch(e){ SESDEL={}; }
+function sesDelLoad(){ try{ var r=LS.getItem(SDKEY); if(r) SESDEL=JSON.parse(r)||{}; }catch(e){ SESDEL={}; }
   var lim=Date.now()-40*86400000; for(var k in SESDEL) if((SESDEL[k]||0)<lim) delete SESDEL[k]; }
 function sesDelSave(){ lsSet(SDKEY, JSON.stringify(SESDEL)); }
 function sesDelMark(k){ SESDEL[k]=Date.now(); sesDelSave(); }
@@ -6120,9 +6122,9 @@ function sesRepair(d){
 }
 // 처음 한 번: 동기화로 지금 기록을 올려 둔 뒤, 이 기기 저장분을 작게 다시 쓴다
 function storageSlimOnce(){
-  try{ if(localStorage.getItem('voca_slim_v1')) return; }catch(e){ return; }
+  try{ if(LS.getItem('voca_slim_v1')) return; }catch(e){ return; }
   function doSlim(){
-    try{ ['voca_session_v1','voca_session_v2'].forEach(function(k){ localStorage.removeItem(k); }); }catch(e){}
+    try{ ['voca_session_v1','voca_session_v2'].forEach(function(k){ LS.removeItem(k); }); }catch(e){}
     try{ statsSave(); bankSave(); penSave(); dailySave(); sessionsSave(); }catch(e){}
     lsSet('voca_slim_v1', String(Date.now()));
   }
@@ -6140,17 +6142,17 @@ function sesRekey(m){
   }
   return moved;
 }
-function sessionsLoad(){ try{ var r=localStorage.getItem(SESMAP); if(r) SESSIONS=JSON.parse(r)||{}; }catch(e){ SESSIONS={}; }
+function sessionsLoad(){ try{ var r=LS.getItem(SESMAP); if(r) SESSIONS=JSON.parse(r)||{}; }catch(e){ SESSIONS={}; }
   sesDelLoad();
   try{ if(sesRekey(SESSIONS)) sessionsSave(); }catch(e){}
   // 예전에 따로 두던 '마지막 세션' 사본은 강별 보관으로 옮기고 지운다 (같은 걸 두 번 저장하던 것 — 저장 공간 절약)
-  try{ var raw=localStorage.getItem(SESKEY); if(raw){ var d0=JSON.parse(raw); if(d0&&d0.Q){ var k0=sesKeyOf(d0); if(!SESSIONS[k0] || (SESSIONS[k0].ts||0)<(d0.ts||0)) SESSIONS[k0]=d0; } localStorage.removeItem(SESKEY); } }catch(e){}
+  try{ var raw=LS.getItem(SESKEY); if(raw){ var d0=JSON.parse(raw); if(d0&&d0.Q){ var k0=sesKeyOf(d0); if(!SESSIONS[k0] || (SESSIONS[k0].ts||0)<(d0.ts||0)) SESSIONS[k0]=d0; } LS.removeItem(SESKEY); } }catch(e){}
   try{ var gone=0; for(var k in SESSIONS){ var d=SESSIONS[k]; if(d) sesRepair(d); if(!sesOk(d) || (SESDEL[k] && (d.ts||0)<=SESDEL[k])){ delete SESSIONS[k]; gone++; } } if(gone) sessionsSave(); }catch(e){} }
 function sessionsSave(){ lsSet(SESMAP, JSON.stringify(SESSIONS)); }
 // 저장 공간이 꽉 차 저장에 실패하면 알린다 (조용히 실패하면 기록이 어긋나거나 사라짐)
 var _lsFailT=0, LS_FAIL='';
 function lsSet(k, v){
-  try{ localStorage.setItem(k, v); return true; }
+  try{ LS.setItem(k, v); return true; }
   catch(e){
     LS_FAIL=new Date().toLocaleString()+' · '+k;
     if(Date.now()-_lsFailT>60000){ _lsFailT=Date.now(); try{ __showErr('저장 공간이 꽉 차서 기록을 저장하지 못했어요 — 홈의 동기화 「점검」에서 사용량을 확인해 주세요'); }catch(e2){} }
@@ -6228,10 +6230,10 @@ function sessionHas(){
 }
 // ── 풀던 화면 기억: 아이패드가 페이지를 다시 열어도(메모리 정리·새 버전) 홈 대신 풀던 문제로 ──
 var CURKEY='voca_cur', CUR=null;
-try{ CUR=JSON.parse(localStorage.getItem(CURKEY)||'null'); }catch(e){ CUR=null; }
+try{ CUR=JSON.parse(LS.getItem(CURKEY)||'null'); }catch(e){ CUR=null; }
 var BOOTCUR=CUR;                         // 이번에 열리기 직전에 풀던 것
 function curSet(k){ CUR={k:k, t:Date.now()}; lsSet(CURKEY, JSON.stringify(CUR)); }
-function curClear(){ CUR=null; try{ localStorage.removeItem(CURKEY); }catch(e){} }
+function curClear(){ CUR=null; try{ LS.removeItem(CURKEY); }catch(e){} }
 var _resTok=0;
 function sessionResume(sesKey){
   var d0 = sesKey ? SESSIONS[sesKey] : sessionHas();
@@ -6623,7 +6625,7 @@ function koBookFor(words){
 }
 var KOST=null;       // 뜻별로 몇 개까지 봤는지 (동의어 매칭과 같은 방식)
 var KOKEY='voca_ko_v1';
-function koLoad(){ try{ KOST=JSON.parse(localStorage.getItem(KOKEY)||'{}'); }catch(e){ KOST={}; } if(!KOST) KOST={}; }
+function koLoad(){ try{ KOST=JSON.parse(LS.getItem(KOKEY)||'{}'); }catch(e){ KOST={}; } if(!KOST) KOST={}; }
 function koSave(){ lsSet(KOKEY, JSON.stringify(KOST)); }
 function koRec(sense){ if(!KOST) koLoad(); return KOST[sense] || (KOST[sense]={shown:0, sh:[]}); }
 
@@ -6733,7 +6735,7 @@ function requeueKo(q){
 // 모드마다 따로 기억한다: syn(동의어 매칭) · write(동의어 쓰기) · rev(역방향 확인)
 var SWAP={syn:false, write:false, rev:false};
 // syn·write: 0 표제어만 · 1 반반 · 2 동의어 위주 (예전 '동의어도 랜덤으로' = 2) / rev: 켬·끔
-try{ var _sw=JSON.parse(localStorage.getItem('voca_swap')||'null'); if(_sw) for(var _k in SWAP){ var _v=_sw[_k]; SWAP[_k] = (_k==='rev') ? !!_v : (_v===true ? 2 : (typeof _v==='number' ? _v : 0)); } }catch(e){}
+try{ var _sw=JSON.parse(LS.getItem('voca_swap')||'null'); if(_sw) for(var _k in SWAP){ var _v=_sw[_k]; SWAP[_k] = (_k==='rev') ? !!_v : (_v===true ? 2 : (typeof _v==='number' ? _v : 0)); } }catch(e){}
 function swapSave(){ lsSet('voca_swap', JSON.stringify(SWAP)); }
 // 문제로 낼 자리 고르기. noHead=true면 표제어는 안 뽑는다(역방향). 못 고르면 null
 function pickSwap(w, noHead, half){
@@ -7484,26 +7486,32 @@ function pinAsk(w, btnId){
   }
   host.innerHTML='<div class="pkwrap"><div class="pkbox">'
     +'<div class="pkt">'+esc(w.w)+' 담기</div>'
-    +'<button class="pkbtn now" data-pk="now">지금 오답에도 넣기</button>'
-    +'<button class="pkbtn later" data-pk="later">담아둔 목록에만</button>'
-    +'<button class="pkbtn cancel" data-pk="cancel">취소</button>'
+    +'<button class="pkbtn now" data-pk="now"><span class="pkk">1</span>지금 오답에도 넣기</button>'
+    +'<button class="pkbtn later" data-pk="later"><span class="pkk">2</span>담아둔 목록에만</button>'
+    +'<button class="pkbtn cancel" data-pk="cancel"><span class="pkk">Esc</span>취소</button>'
     +'</div></div>';
   host.style.display='';
-  host.onclick=function(e){
-    var t=e.target.closest('[data-pk]');
-    if(!t){ if(e.target.classList.contains('pkwrap')){ host.style.display='none'; } return; }
-    var v=t.getAttribute('data-pk');
+  _pinAskPick=function(v){
+    _pinAskPick=null;
     if(v!=='cancel'){ pinForReview(w, v==='now'); pinBtnUI(btnId, w); }
     host.style.display='none';
   };
+  host.onclick=function(e){
+    var t=e.target.closest('[data-pk]');
+    if(!t){ if(e.target.classList.contains('pkwrap') && _pinAskPick) _pinAskPick('cancel'); return; }
+    if(_pinAskPick) _pinAskPick(t.getAttribute('data-pk'));
+  };
 }
+// 담기 창이 떠 있는지 — 떠 있는 동안은 키보드 1·2·Esc가 이 창으로만 간다 (뒤 문제의 보기가 눌리지 않게)
+var _pinAskPick=null;
+function pinAskIsOpen(){ var h=$('pinAskBox'); return !!(_pinAskPick && h && h.style.display!=='none'); }
 
 // ── 비교 목록 ───────────────────────────────────────────────
 //  CMP = { 강키: { 단어(소문자): {w:표시 글자, on:1|0, t:마지막으로 바꾼 시각, a:담은 시각} } }
 //  · 담을 때 '지금 문제 단어가 속한 강'에 들어간다 → 그 강 목록에만 머문다
 //  · 빼도 기록(on:0)은 남긴다 → 동기화할 때 다른 기기에서 다시 살아나지 않게 (단어마다 최신 것이 이김)
 var CMPKEY='voca_cmp_v1', CMP={};
-function cmpLoad(){ try{ var r=localStorage.getItem(CMPKEY); if(r) CMP=JSON.parse(r)||{}; }catch(e){ CMP={}; } }
+function cmpLoad(){ try{ var r=LS.getItem(CMPKEY); if(r) CMP=JSON.parse(r)||{}; }catch(e){ CMP={}; } }
 function cmpSave(){ lsSet(CMPKEY, JSON.stringify(CMP)); }
 function _pad2(n){ n=parseInt(n,10)||0; return (n<10?'0':'')+n; }
 function cmpUnitOf(w){
@@ -7651,7 +7659,7 @@ function _chipClick(boxId, n){
 //   WB = { 소문자 단어: {w, on(1 담김/0 뺌), t(마지막으로 바꾼 시각), a(담은 시각)} }
 var WBKEY='voca_wb_v1', WB={};
 function wbLoad(){
-  try{ var r=localStorage.getItem(WBKEY); if(r) WB=JSON.parse(r)||{}; }catch(e){ WB={}; }
+  try{ var r=LS.getItem(WBKEY); if(r) WB=JSON.parse(r)||{}; }catch(e){ WB={}; }
   var lim=Date.now()-60*86400000;
   for(var k in WB){ var x=WB[k]; if(x && !x.on && (x.t||0)<lim) delete WB[k]; }
 }
@@ -7776,8 +7784,8 @@ function wbDraw(){
 //   MIS = { 소문자 단어: {w, n(잘못 고른 횟수), ok(나중에 맞힌 횟수), q:[헷갈린 문제 표제어], of:[이 단어를 동의어로 가진 표제어], a, t} }
 var MISKEY='voca_mis_v1', MIS={}, MISCFGKEY='voca_miscfg_v1', MISCFG={lim:100, need:2};
 function misLoad(){
-  try{ var r=localStorage.getItem(MISKEY); if(r) MIS=JSON.parse(r)||{}; }catch(e){ MIS={}; }
-  try{ var c=localStorage.getItem(MISCFGKEY); if(c){ var o=JSON.parse(c)||{}; if(o.lim>0) MISCFG.lim=o.lim; if(o.need>0) MISCFG.need=o.need; } }catch(e){}
+  try{ var r=LS.getItem(MISKEY); if(r) MIS=JSON.parse(r)||{}; }catch(e){ MIS={}; }
+  try{ var c=LS.getItem(MISCFGKEY); if(c){ var o=JSON.parse(c)||{}; if(o.lim>0) MISCFG.lim=o.lim; if(o.need>0) MISCFG.need=o.need; } }catch(e){}
 }
 function misSave(){ lsSet(MISKEY, JSON.stringify(MIS)); if(typeof syncSoon==='function') syncSoon(); misBtnSync(); }
 function misCfgSave(){ lsSet(MISCFGKEY, JSON.stringify(MISCFG)); }
@@ -8400,7 +8408,7 @@ $('chome').addEventListener('click',function(){ show('setup'); });
 
 // ── 아래 고정 바 ─────────────────────────────────────────────
 var DOCK_KEY='voca_dock_v1', VIEW_KEY='voca_view_v1';
-function dockOn(){ try{ return localStorage.getItem(DOCK_KEY)!=='off'; }catch(e){ return true; } }
+function dockOn(){ try{ return LS.getItem(DOCK_KEY)!=='off'; }catch(e){ return true; } }
 function dockApply(){
   var on=dockOn(), q=$('qscr')&&$('qscr').classList.contains('on');
   $('dockbar').classList.toggle('on', !!(on&&q));
@@ -8425,7 +8433,7 @@ function scrollToQ(){
 }
 // ── 간단히 / 자세히 ─────────────────────────────────────────
 function viewLite(){
-  try{ var v=localStorage.getItem(VIEW_KEY); if(v) return v==='lite'; }catch(e){}
+  try{ var v=LS.getItem(VIEW_KEY); if(v) return v==='lite'; }catch(e){}
   return window.innerWidth < 700;          // 폰은 간단히, 패드·PC는 자세히
 }
 function viewApply(){
@@ -8438,7 +8446,7 @@ function viewApply(){
 }
 function viewToggle(){
   var lite=!viewLite();
-  try{ localStorage.setItem(VIEW_KEY, lite?'lite':'full'); }catch(e){}
+  try{ LS.setItem(VIEW_KEY, lite?'lite':'full'); }catch(e){}
   viewApply();
   // 접어서 내용이 짧아지면 빈 화면만 남을 수 있으니 위치를 다시 맞춘다
   if(document.documentElement.scrollHeight - window.pageYOffset < window.innerHeight+40) scrollToQ();
@@ -8448,13 +8456,13 @@ function viewToggle(){
 try{
   $('kscope').addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b) return;
     this.querySelectorAll('button').forEach(function(x){x.classList.remove('on');}); b.classList.add('on');
-    KSCOPE=b.dataset.ks; try{ localStorage.setItem('voca_kscope', KSCOPE); }catch(x){} });
+    KSCOPE=b.dataset.ks; try{ LS.setItem('voca_kscope', KSCOPE); }catch(x){} });
   $('kbook').addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b) return;
     this.querySelectorAll('button').forEach(function(x){x.classList.remove('on');}); b.classList.add('on');
-    KBOOK=b.dataset.kb; try{ localStorage.setItem('voca_kbook', KBOOK); }catch(x){} });
+    KBOOK=b.dataset.kb; try{ LS.setItem('voca_kbook', KBOOK); }catch(x){} });
   (function(){
-    try{ var a=localStorage.getItem('voca_kscope'); if(a) KSCOPE=a;
-         var c=localStorage.getItem('voca_kbook'); if(c) KBOOK=c; }catch(x){}
+    try{ var a=LS.getItem('voca_kscope'); if(a) KSCOPE=a;
+         var c=LS.getItem('voca_kbook'); if(c) KBOOK=c; }catch(x){}
     $('kscope').querySelectorAll('button').forEach(function(x){ x.classList.toggle('on', x.dataset.ks===KSCOPE); });
     $('kbook').querySelectorAll('button').forEach(function(x){ x.classList.toggle('on', x.dataset.kb===KBOOK); });
     koLoad();
@@ -8474,9 +8482,9 @@ $('cmpW').addEventListener('click',function(){ cmpOpen('write'); });
 $('dockPin').addEventListener('click',function(){ var q=Q&&Q[qi]; if(q&&q.w) pinAsk(q.w, 'dockPin'); });
 $('dockNext').addEventListener('click',function(){ next(); });
 $('dockHide').addEventListener('click',function(){
-  try{ localStorage.setItem(DOCK_KEY,'off'); }catch(e){} dockApply(); });
+  try{ LS.setItem(DOCK_KEY,'off'); }catch(e){} dockApply(); });
 $('dockShow').addEventListener('click',function(){
-  try{ localStorage.setItem(DOCK_KEY,'on'); }catch(e){} dockApply(); });
+  try{ LS.setItem(DOCK_KEY,'on'); }catch(e){} dockApply(); });
 $('mseg').addEventListener('click',function(e){
   var b=e.target.closest('button'); if(!b) return;
   __lastAction='모드선택:'+b.dataset.m;
@@ -9215,6 +9223,13 @@ function numKey(key, q){
   _nkTimer=setTimeout(function(){ var b=_nkBuf; _nkClear(); if(b) _nkChoose(parseInt(b), q); }, 600);
 }
 document.addEventListener('keydown',function(e){
+  if(pinAskIsOpen()){
+    if(e.key==='1'){ e.preventDefault(); _pinAskPick('now'); }
+    else if(e.key==='2'){ e.preventDefault(); _pinAskPick('later'); }
+    else if(e.key==='Escape'){ e.preventDefault(); _pinAskPick('cancel'); }
+    else if(e.key!=='Tab') e.preventDefault();
+    return;
+  }
   if(misIsOpen()){
     if(e.key==='Escape'){ e.preventDefault(); misClose(); }
     return;
@@ -9287,6 +9302,86 @@ document.addEventListener('keydown',function(e){
 });
 
 boot();
+</script>
+<script>
+// ── 저장칸: 사파리의 작은 저장칸(약 5MB) 대신 큰 저장칸(IndexedDB)에 기록을 둔다 ──
+//   앱 코드는 예전처럼 LS.getItem / LS.setItem 을 쓴다. LS는 시작할 때 큰 저장칸을 통째로 읽어
+//   메모리에 들고 있다가, 바뀐 것만 잠시 뒤(0.3초) 큰 저장칸에 써 넣는다.
+//   처음 한 번은 작은 저장칸의 기록을 전부 큰 저장칸으로 옮기고, 다 옮겨진 걸 확인한 뒤에만 작은 저장칸을 비운다.
+//   큰 저장칸을 못 쓰는 환경이면 예전처럼 작은 저장칸을 그대로 쓴다.
+(function(){
+  var DBN='voca_store', ST='kv', FLAG='voca_idb_v1';
+  var mem={}, db=null, pend={}, tmr=null;
+  function has(k){ return Object.prototype.hasOwnProperty.call(mem,k); }
+  var IDBLS={
+    mode:'idb', fail:'',
+    getItem:function(k){ k=String(k); return has(k)?mem[k]:null; },
+    setItem:function(k,v){ k=String(k); mem[k]=String(v); pend[k]=1; later(); },
+    removeItem:function(k){ k=String(k); delete mem[k]; pend[k]=1; later(); },
+    key:function(i){ var a=Object.keys(mem); return i<a.length?a[i]:null; },
+    flush:flush
+  };
+  Object.defineProperty(IDBLS,'length',{get:function(){ return Object.keys(mem).length; }});
+  function later(){ if(!tmr) tmr=setTimeout(flush, 300); }
+  function flush(){
+    clearTimeout(tmr); tmr=null;
+    var ks=Object.keys(pend); if(!ks.length || !db) return;
+    pend={};
+    try{
+      var tx=db.transaction(ST,'readwrite'), os=tx.objectStore(ST);
+      ks.forEach(function(k){ if(has(k)) os.put(mem[k], k); else os.delete(k); });
+      tx.onerror=tx.onabort=function(){
+        ks.forEach(function(k){ pend[k]=1; });
+        IDBLS.fail=new Date().toLocaleString()+' · '+ks.join(',');
+        try{ window.LS_FAIL=IDBLS.fail; }catch(e){}
+      };
+    }catch(e){ ks.forEach(function(k){ pend[k]=1; }); IDBLS.fail=new Date().toLocaleString()+' · '+String(e&&e.message); }
+  }
+  // 앱을 내리거나 다른 앱으로 갈 때 남은 것을 바로 써 둔다
+  document.addEventListener('visibilitychange', function(){ if(document.visibilityState==='hidden') flush(); });
+  window.addEventListener('pagehide', flush);
+  function start(store){
+    window.LS=store;
+    var src=document.getElementById('appjs').textContent;
+    var sc=document.createElement('script'); sc.textContent=src; document.body.appendChild(sc);
+  }
+  function fallback(why){ var o=window.localStorage; try{ o.mode='ls'; o.why=why; }catch(e){} start(o); }
+  var moved=false; try{ moved=!!window.localStorage.getItem(FLAG); }catch(e){}
+  if(!window.indexedDB){ fallback('no-idb'); return; }
+  var done=false;
+  // 옮기기 전이면 3초 안에 큰 저장칸이 안 열릴 때 예전 방식으로. 이미 옮겼으면 기록이 거기 있으니 더 기다린다.
+  var tmo=setTimeout(function(){ if(done) return; done=true;
+    if(moved){ alert('기록 저장칸을 여는 데 실패했어요. 앱을 완전히 닫았다가 다시 열어 주세요.'); }
+    fallback('timeout'); }, moved?15000:3000);
+  var rq;
+  try{ rq=indexedDB.open(DBN,1); }catch(e){ clearTimeout(tmo); fallback('open-throw'); return; }
+  rq.onupgradeneeded=function(){ var d=rq.result; if(!d.objectStoreNames.contains(ST)) d.createObjectStore(ST); };
+  rq.onerror=function(){ if(done) return; done=true; clearTimeout(tmo); fallback('open-error'); };
+  rq.onsuccess=function(){
+    if(done){ try{ rq.result.close(); }catch(e){} return; }
+    db=rq.result;
+    var tx=db.transaction(ST,'readonly'), cur=tx.objectStore(ST).openCursor();
+    cur.onsuccess=function(){ var c=cur.result; if(c){ mem[String(c.key)]=String(c.value); c.continue(); } };
+    tx.oncomplete=function(){
+      if(done) return;
+      if(moved){ done=true; clearTimeout(tmo); start(IDBLS); return; }
+      // 처음 한 번: 작은 저장칸 → 큰 저장칸
+      var src=window.localStorage, keys=[];
+      try{ for(var i=0;i<src.length;i++){ var k=src.key(i); if(k!==FLAG) keys.push(k); } }catch(e){}
+      var w=db.transaction(ST,'readwrite'), os=w.objectStore(ST);
+      keys.forEach(function(k){ if(!has(k)){ var v=src.getItem(k); if(v!==null){ mem[k]=v; os.put(v,k); } } });
+      w.oncomplete=function(){
+        if(done) return; done=true; clearTimeout(tmo);
+        // 다 옮겨진 걸 확인했으니 작은 저장칸을 비운다 (표시 하나만 남김)
+        try{ keys.forEach(function(k){ src.removeItem(k); }); src.setItem(FLAG, String(Date.now())); }catch(e){}
+        start(IDBLS);
+      };
+      w.onerror=w.onabort=function(){ if(done) return; done=true; clearTimeout(tmo); fallback('move-fail'); };
+    };
+    tx.onerror=function(){ if(done) return; done=true; clearTimeout(tmo); fallback('read-fail'); };
+  };
+  try{ if(navigator.storage && navigator.storage.persist) navigator.storage.persist(); }catch(e){}
+})();
 </script>
 </body>
 </html>
