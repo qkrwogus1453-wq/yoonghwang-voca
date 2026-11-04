@@ -219,6 +219,14 @@ button:disabled{background:#3a3a4a;color:#778;cursor:not-allowed}
 .pbox.gold>.pbt{color:#fbbf24}
 .pbox.sky{border-color:#2a6a91;background:rgba(56,189,248,.045)}
 .pbox.sky>.pbt{color:#38bdf8}
+.pbox.dsbox{border-color:#4a3f7a;background:rgba(195,177,245,.04)}
+.pbox.dsbox>.pbt{color:#c3b1f5}
+.dsg+.dsg{border-top:1px dashed #3a3560;margin-top:6px;padding-top:6px}
+.dsrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;padding:2px 0;font-size:.9em;line-height:1.45}
+.dsrow b{color:#e8eefc;min-width:6.5em}
+.dsrow.on b{color:#fbbf24}
+.dsrow .hwat{font-size:.78em}
+.dsrow .dsk{flex:1 1 14em}
 /* 아래 고정 바 — 작게, 눈에 덜 띄게, 숨길 수 있게 */
 /* 아이패드 홈 표시줄과 겹쳐 홈으로 나가던 문제 → 바를 화면 맨 밑에서 띄우고(안전 영역만큼 더), 버튼을 키운다 */
 #dockbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;
@@ -456,12 +464,41 @@ body.hasdock #qnav{display:none}
 .chip.wbad{text-decoration:line-through}
 .modetog.againtog{border-color:#2e7d6a;color:#4ecca3;margin-right:8px}
 .modetog.againtog.done{opacity:.65;cursor:default}
+/* 키 표시 (Tab) */
+@media(max-width:480px){ #dockbar kbd.kk{display:none} }   /* 좁은 화면 아래 바는 키 표시 없이 */
+kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:1px solid #3d5270;border-bottom-width:2px;border-radius:5px;padding:0 5px;margin-left:4px;vertical-align:1px}
+.done kbd.kk{display:none}
+/* 아래 바의 「이번 회차에 다시」 */
+#dockbar #dockAgain{border:1.5px solid #2e7d6a;color:#4ecca3;border-radius:20px;font-weight:600;font-size:.9em;padding:9px 14px}
+#dockbar #dockAgain.done{opacity:.65;cursor:default}
+@media(max-width:480px){ #dockbar.ag{gap:1px;padding-left:2px;padding-right:2px} #dockbar #dockAgain{padding:7px 4px;font-size:.82em} #dockbar #dockAgain kbd.kk,#dockbar #dockAgain .dkx,#dockbar #dockAgain .dkw{display:none} #dockbar #dockPin .dkx{display:none} }
+/* 정답 공개 후 표제어 밑: 같은 뜻 · 반의어 (사전으로 확인된 연결) */
+.qrel{margin:-2px 0 8px}
+.qrel .fmline{margin:3px 0}
+.qrel .fmline em.relsame{color:#9fd8c6;border-color:#2e6f62}
+.qrel .fmline em.relant{color:#e6b58f;border-color:#7a5236}
+.qrel .fmline .fmw b{color:#e8f2ff}
+.qrel .fmline .fmw.out b{color:#8a96ad;font-weight:400;border-bottom-color:#4a5670}
+.antmore{background:none;border:1px solid #3d5270;color:#8aa0b8;border-radius:10px;padding:1px 9px;font-size:.84em;margin-left:6px;cursor:pointer;font-family:inherit}
+.qrel .relmore{color:#8aa0b8;font-size:.86em;margin-left:4px}
+/* 한 번이라도 틀린 단어 · 3일 주기 알림 */
+#srsBank .r{flex-wrap:wrap}
+#ewrGo{background:#3a1f22;border:1.5px solid #e2706a;color:#ffd6d2;font-weight:700}
+.ewrinfo{margin-top:9px;font-size:.9em;color:#d9c9a6;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.ewrinfo b{color:#fff}
+.ewrinfo button{background:#16213e;border:1px solid #3d5270;color:#cfe0f5;border-radius:8px;padding:6px 11px;font-size:.92em}
+.ewrinfo .ewrnote{width:100%;font-size:.84em;color:#8fa3c0}
+.ewralert{background:#3a1416;border:2px solid #ff6b5e;border-radius:12px;padding:13px 15px;margin-bottom:15px;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;color:#ffe3df;font-size:1.05em;font-weight:700;box-shadow:0 0 0 3px rgba(255,107,94,.15)}
+.ewralert .ewrat{flex:1;min-width:200px}
+.ewralert .ewrat small{display:block;font-weight:500;font-size:.8em;color:#f0b9b3;margin-top:3px}
+.ewralert button{background:#ff6b5e;color:#2a0d0d;border:0;border-radius:10px;padding:10px 16px;font-weight:800;font-size:.95em}
 .qety{font-size:.86em;line-height:1.4;margin:-2px 0 8px;color:#b9c3dc}
 .qety .qetyl{font-size:.78em;color:#8aa0b8;border:1px solid #3d5270;border-radius:6px;padding:0 5px;margin-right:6px;vertical-align:1px}
 .modetog{background:#1b2b50;border:1.5px solid #2f4270;color:#9fb4d6;border-radius:20px;
   padding:8px 16px;font-size:.92em;font-weight:600;cursor:pointer}
 .modetog.on{background:#22335c;border-color:#f0a500;color:#ffd479}
-#syninput{font-size:1.25em;padding:14px 16px}
+#syninput,#syninput2{font-size:1.25em;padding:14px 16px}
 /* 입력 모드일 때 보기를 가로 2~3열로 (큼직하게 유지하면서 세로 길이 축소) */
 .ch.typing{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .ch.typing .c{font-size:1.15em;padding:14px 12px;justify-content:center;text-align:center}
@@ -649,7 +686,7 @@ body.hasdock #qnav{display:none}
   #qscr .ask{font-size:1.05em}
   /* 입력 모드에선 3열까지 */
   .ch.typing{grid-template-columns:repeat(3,1fr)!important}
-  #syninput{font-size:1.3em;padding:16px 18px}
+  #syninput,#syninput2{font-size:1.3em;padding:16px 18px}
   /* 정답 해설(뜻·동의어) 읽기 좋게 */
   #qscr .info{font-size:1.05em;line-height:1.75;padding:16px 20px}
   #qscr .info .m{font-size:1.05em;line-height:1.7}
@@ -1354,6 +1391,78 @@ body.hasdock #qnav{display:none}
   color:#a8bcd8;background:#2b3558;border:1px solid #3d4a75;
   border-radius:5px;padding:2px 7px;vertical-align:middle;white-space:nowrap}
 .hwat.hwsame{color:#5fdcb0;background:#173d33;border-color:#2f6b58}
+/* 영어 → 뜻 기록만 있을 때: 동의어 매칭 쪽 글자·버튼은 숨긴다 */
+.bank.enonly > .t, .bank.enonly > .r, .bank.enonly > #ewrInfo, .bank.enonly > #pinList{display:none!important}
+.bank.enonly > .enrow{margin-top:0}
+#ch > #sub, #ch > .ensec, #ch > .ensh, #ch > #entyped{grid-column:1/-1}
+#ch.enwrite > #sub{display:none}
+/* 홈: 영어 → 뜻 작은 줄 */
+.enrow{margin-top:8px;padding:7px 10px;border-radius:9px;background:rgba(240,192,64,.07);border:1px dashed rgba(240,192,64,.35);font-size:.84em;color:#d6dcf0;line-height:1.55}
+.enrow .enlab{display:inline-block;margin-right:7px;padding:0 7px;border-radius:7px;background:#3a3216;color:#f0c040;font-size:.86em;font-weight:700}
+.enrow .ensub{color:#9fb0d6;font-size:.95em}
+.enrow .enbtns{display:flex;flex-wrap:wrap;gap:6px;margin-top:5px}
+.enrow .enbtns button, .enrow > button{font-size:.92em;padding:5px 11px}
+.enrow.enbank{margin:-4px 0 12px}
+.enrow.enstat{margin-top:6px}
+.enalert{font-size:.86em;padding:8px 12px!important;margin-top:-4px}
+.enalert button{padding:7px 12px!important;font-size:.95em!important}
+.calc .cne{display:block;font-size:.62em;color:#f0c040}
+.calall.calen{color:#f0c040}
+/* 영어 → 뜻 · 세 칸 버튼 */
+#synmodebar .stylebar{display:inline-flex;border:1px solid #4a5a8a;border-radius:20px;overflow:hidden;vertical-align:middle;margin-left:6px}
+#synmodebar .stylebar button{background:none;border:0;color:#c9d1f0;padding:7px 14px;font-size:.88em;cursor:pointer;border-radius:0}
+#synmodebar .stylebar button.on{background:#f0c040;color:#1b1d2e;font-weight:700}
+#ch .ensec{margin:2px 0 12px}
+#ch .ensh{font-size:.88em;color:#9fb0e0;font-weight:700;margin:4px 0 7px}
+#ch .ensh .enneed{font-weight:400;color:#7f8fbf}
+#ch .ensh.ennone{font-weight:400;color:#7f8fbf;margin:2px 0 6px}
+#ch .engrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#ch .engrid button.c{margin:0}
+@media(max-width:480px){ #ch .ens .engrid{grid-template-columns:1fr} }   /* 폰: 동의어 칸은 동의어 매칭처럼 한 줄에 하나 */
+#ch button.c.enko .otxt{font-size:1.02em}
+#ch.enwrite .ensec .engrid, #ch.enwrite .ensh .enneed{display:none}
+#ch.enwrite .ensec .ensh{display:none}
+#ch.enwrite > button.c{display:none}
+#ch.enwrite .ensec.enkeep .engrid{display:grid}
+#ch.enwrite .ensec.enkeep .ensh, #ch.enwrite .ensec.enkeep .ensh .enneed{display:block}
+#ch.enwrite .ensec.enkeep .ensh .enneed{display:inline}
+#ch .frnu{background:#12253f;border-left:3px solid #6d58a8;padding:7px 10px;border-radius:6px;font-size:.95em;margin:0 0 8px;color:#e0d6ff}
+#tag .frchain{display:inline-block;margin-left:8px;padding:1px 9px;border-radius:7px;background:#12304a;border:1px solid #2e7d6a;color:#7fe0c2;font-size:.92em}
+.finnote.a{color:#ffb4c0}
+.finnote.u{color:#cdb6ff}
+.frprog{margin-top:6px;font-size:.88em;color:#9fd8c4}
+#ch #entyped{margin-top:10px}
+#entyped .entl{font-size:.82em;color:#8fa8cc;margin:4px 0 6px}
+#entyped .entw{display:flex;flex-wrap:wrap;gap:6px}
+#entyped .entlab{font-style:normal;font-size:.78em;color:#8aa0b8;border:1px solid #3d5270;border-radius:6px;padding:0 5px}
+#entyped .entk{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:14px;background:#12305a;color:#e6ecff;font-size:.95em}
+#entyped .entx{background:none;border:0;color:#8fa8cc;font-size:1.05em;padding:0 2px;cursor:pointer}
+#entyped .enst{font-size:.78em;font-weight:600}
+#entyped .enst.ok{color:#5fd39a} #entyped .enst.no{color:#ff8a9a}
+#entyped .enck{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px 12px;margin:6px 0;border-radius:10px;background:#12305a;border:1px solid transparent}
+#entyped .enck.cur{border-color:#f0c040}
+#entyped .enckt{color:#e6ecff} #entyped .enckt em{font-style:normal;font-size:.78em;color:#8fa8cc;margin-right:4px}
+#entyped .enckb{display:inline-flex;gap:6px;flex-shrink:0}
+#entyped .enckb button{padding:5px 12px;border-radius:14px;background:none;font-size:.9em;cursor:pointer}
+#entyped .enckb button[data-v="o"]{border:1px solid #5fd39a;color:#5fd39a}
+#entyped .enckb button[data-v="x"]{border:1px solid #e8455f;color:#ff8a9a}
+/* 선지 눌렀을 때: 교재에 실린 자리 (표제어 / 어느 표제어의 동의어) */
+/* 내 단어장 빼기 확인 */
+#wbBox .wbask{position:fixed;inset:0;z-index:5;display:flex;align-items:center;justify-content:center;background:rgba(5,8,20,.55)}
+#wbBox .wbaskc{background:#16223f;border:1px solid #3a4f80;border-radius:14px;padding:16px 18px;max-width:340px;width:86%;text-align:center}
+#wbBox .wbaskt{color:#e6ecff;font-size:1em;margin-bottom:12px;line-height:1.5}
+#wbBox .wbaskc .pkbtn{display:block;width:100%;margin:6px 0;background:#1b2b50;border:1.5px solid #2f4270;color:#dce8f8;border-radius:11px;padding:13px 16px;font-size:1.02em;font-weight:600;cursor:pointer;text-align:left}
+#wbBox .wbaskc .pkbtn.now{border-color:#e8455f;color:#ff9aa8}
+#wbBox .wbaskc .pkbtn.later{border-color:#5eead4;color:#7fe7d4}
+#wbBox .wbaskc .pkk{display:inline-block;min-width:1.6em;margin-right:7px;padding:0 5px;border:1px solid currentColor;border-radius:5px;font-size:.8em;opacity:.75;text-align:center}
+#qroot .synwhere{margin:0 0 10px;padding:8px 12px;border-radius:10px;background:#16223f;border:1px solid #2b3d66}
+#qroot .synwhere .swt{font-size:.78em;color:#8fa8cc;margin-bottom:4px}
+#qroot .synwhere .swr{font-size:.9em;color:#c9d4ee;padding:3px 0;line-height:1.45}
+#qroot .synwhere .swr b{color:#e6ecff;font-weight:600}
+#qroot .synwhere .swr .swo{color:#ffd479;font-weight:600}
+#qroot .synwhere .swr .swm{color:#9fb0d6;font-size:.92em}
+#qroot .synwhere .swr.here{color:#e8fff6}
+#qroot .synwhere .swh{display:inline-block;margin-right:6px;font-size:.78em;padding:1px 7px;border-radius:8px;color:#5fdcb0;background:#173d33;border:1px solid #2f6b58}
 .c .hwat{margin-left:auto;flex:0 0 auto;align-self:center}
 /* 선지 두 줄 배치 — 2·3열에서 가로가 좁을 때만. 폰(1열)은 원래대로 한 줄 */
 .c{flex-wrap:wrap}
@@ -1528,7 +1637,9 @@ body.hasdock #qnav{display:none}
 .msynm{color:#a89168;font-size:.86em}
 .dwhy{display:block;margin-top:4px;font-size:.82em;color:#8ba0bd}
 .dwname{color:#cfe0f5;font-weight:700}
-.nzat-out{color:#98a2b3;background:#23262e;border:1px solid #3a3f4b}         /* 교재에 없는 단어 (회색) */
+.nzat-out{color:#98a2b3;background:#23262e;border:1px solid #3a3f4b}
+.nzat-dx{color:#f0b3a8;background:#3a2222;border:1px solid #6a3a35}         /* 사전엔 이 뜻 없음 (붉은 갈색) */
+.nzat-dq{color:#c3b1f5;background:#241d3a;border:1px solid #4a3d7a}         /* 사전 확인 안 됨 (클로드 연보라) */         /* 교재에 없는 단어 (회색) */
 .nzrest{background:#101a30;border-left-color:#2d5590}
 .nzsub{font-size:.82em;color:#8ba0bd}
 .wprelm{display:inline-block;margin-left:5px;font-size:.83em;color:#8ba0bd}
@@ -1547,6 +1658,8 @@ body.hasdock #qnav{display:none}
 <div id="msg" class="load">불러오는 중…</div>
 
 <div class="panel scr" id="setup">
+  <div id="ewrAlert" class="ewralert" style="display:none"></div>
+  <div id="enAlert" class="ewralert enalert" style="display:none"></div>
   <div class="bank sync" id="syncBank">
     <div class="t" id="syncT"></div>
     <div class="r">
@@ -1577,6 +1690,7 @@ body.hasdock #qnav{display:none}
     <div class="tbar"><div class="tfill" id="todayFill"></div></div>
     <div class="rvline" id="rvLine" style="display:none"></div>
     <div class="rvset" id="rvSet" style="display:none"></div>
+    <div class="enrow" id="enToday" style="display:none"></div>
     <div class="r">
       <button id="calGo">달력</button>
       <button class="clr" id="penHomeGo">손으로 쓸 단어</button>
@@ -1591,9 +1705,13 @@ body.hasdock #qnav{display:none}
       <button id="dueGo" class="duebtn">오늘 복습</button>
       <button id="weakGo">약점 단어만</button>
       <button id="pinGo">담아둔 것만</button>
+      <button id="ewrGo" style="display:none">한 번이라도 틀린 단어</button>
       <button class="clr" id="pinView">목록</button>
     </div>
+    <div id="ewrInfo" class="ewrinfo" style="display:none"></div>
     <div id="pinList" style="display:none"></div>
+    <div class="enrow" id="enSrs" style="display:none"></div>
+    <div id="enPinList" style="display:none"></div>
   </div>
   <div class="bank resume" id="resumeBank">
     <div class="t" id="resumeT"></div>
@@ -1611,6 +1729,7 @@ body.hasdock #qnav{display:none}
       <button class="clr" id="bankClr">비우기</button>
     </div>
   </div>
+  <div class="enrow enbank" id="enBank" style="display:none"></div>
 
   <div class="bank req" id="reqBank" style="display:none">
     <div class="t" id="reqT"></div>
@@ -1627,6 +1746,7 @@ body.hasdock #qnav{display:none}
       <button id="statsView">약점 단어 보기</button>
       <button class="clr" id="statsClr">초기화</button>
     </div>
+    <div class="enrow" id="enStats" style="display:none"></div>
   </div>
 
   <div class="fld">
@@ -1641,8 +1761,10 @@ body.hasdock #qnav{display:none}
       <button data-m="roots"><span class="t">어근으로 묶기</span><span class="d">5,829개 어근 전체 · 검색</span></button>
       <button data-m="forms"><span class="t">형태로 묶기</span><span class="d">agitate · agitated · agitation처럼 형태만 바뀐 단어 모아 보기 · 검색</span></button>
       <button data-m="conf"><span class="t">헷갈리는 철자</span><span class="d">누르면 바로 열림 · 비슷하게 생긴 단어 나란히 비교</span></button>
-      <button data-m="ko"><span class="t">뜻 → 영어</span><span class="d">한글 뜻 보고 해당하는 영어 단어 모두 고르기</span></button>
+      <button data-m="ko"><span class="t">뜻 → 영어</span><span class="d">한글 뜻 보고 해당하는 영어 단어 고르기 · 쓰기</span></button>
+      <button data-m="en"><span class="t">영어 → 뜻</span><span class="d">영어 보고 뜻 · 동의어 고르기 · 쓰기 (기록은 따로)</span></button>
       <button data-m="syn" data-fin="1"><span class="t">최종 정리</span><span class="d">교재 동의어 + 같은 뜻 단어까지 · 비슷하지만 다른 단어 구별</span></button>
+      <button data-m="fr"><span class="t">최종 복습</span><span class="d">뜻 · 같은 뜻 · 반대말 · 뉘앙스 한 번에 · 이어진 단어로 (기록은 따로)</span></button>
     </div>
   </div>
 
@@ -1653,6 +1775,8 @@ body.hasdock #qnav{display:none}
       <button class="b2" id="cum" title="누적">누적</button>
     </div>
     <div class="stat" id="dstat"></div>
+    <div class="enrow enstat" id="enDstat" style="display:none"></div>
+    <div class="frprog" id="frprog" style="display:none"></div>
   </div>
 
   <div class="fld" id="fko" style="display:none">
@@ -1680,6 +1804,15 @@ body.hasdock #qnav{display:none}
   <div class="fld" id="fset">
     <label>세트</label>
     <select id="sset"></select>
+  </div>
+
+  <div class="fld" id="ffr" style="display:none">
+    <label>푸는 단위</label>
+    <div class="seg" id="frseg">
+      <button data-u="unit" class="on">강 단위</button>
+      <button data-u="box">뜻 상자 단위</button>
+    </div>
+    <div class="stat" id="frstat"></div>
   </div>
 
   <div class="fld" id="fnum">
@@ -1743,12 +1876,14 @@ body.hasdock #qnav{display:none}
     <div class="tag" id="tag"></div>
     <div class="wd" id="qw"></div>
     <div id="qety" class="qety" style="display:none"></div>
+    <div id="qrel" class="qrel" style="display:none"></div>
     <div class="ask" id="ask"></div>
     <div id="qmissed"></div>
-    <div id="synmodebar"><button id="againQ" class="modetog againtog" style="display:none">↻ 이번 회차에 다시</button><button id="synmodetog" class="modetog">입력으로 풀기</button></div>
+    <div id="synmodebar"><button id="againQ" class="modetog againtog" style="display:none">↻ 이번 회차에 다시 <kbd class="kk">Tab</kbd></button><button id="synmodetog" class="modetog">입력으로 풀기</button><span id="stylebar" class="stylebar" style="display:none"><button data-st="pick">고르기</button><button data-st="see">보며 쓰기</button><button data-st="write">직접 쓰기</button></span></div>
     <div class="ch" id="ch"></div>
     <div class="winrow" id="synwrap" style="display:none">
       <input id="syninput" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="동의어를 입력하고 Enter">
+      <input id="syninput2" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="동의어 쓰고 Enter" style="display:none">
       <button id="synsubmit">제출</button>
     </div>
     <div class="fb" id="fb"></div>
@@ -1769,6 +1904,7 @@ body.hasdock #qnav{display:none}
   <button id="dockPin">복습에 담기</button>
   <button id="dockCmp" class="cmpbtn">비교 목록</button>
   <button id="dockWb" class="cmpbtn wbbtn">내 단어장</button>
+  <button id="dockAgain" class="againtog" title="이번 회차에 다시 (Tab)" style="display:none">↻ <span class="dkx">회차에 </span><span class="dkw">다시</span> <kbd class="kk">Tab</kbd></button>
   <button id="dockPrev">이전</button>
   <span id="dockCnt"></span>
   <button id="dockNext">다음</button>
@@ -1972,11 +2108,190 @@ function finLoad(){
   if(FINDATA) return Promise.resolve(FINDATA);
   return loadJ('data/fin.json').then(function(d){ FINDATA=d||{}; return FINDATA; }).catch(function(){ FINDATA={}; return FINDATA; });
 }
+// ── 최종 복습 (2027.01.14) ──
+// 영어 → 뜻 문제 틀에 칸을 더한다: 뜻 · 같은 뜻 · 반대말 · 뉘앙스.
+// 자료(data/fr.json)는 교재 단어(윤황보카 + MVP 표제어 · 교재 동의어)끼리, Merriam-Webster 유의어 사전으로 확인된 연결만.
+//   a = 반대말: 양쪽 단어 사전에서 모두 반대말로 나온 쌍
+//   s = 같은 뜻: 같은 뜻 상자 안에서 사전으로 서로 유의어로 확인된 단어 (상자 이름)
+//   n = 뉘앙스: 사전 구별 묶음 (교재 단어만 · 서로 유의어로 확인된 짝 번호)
+var FRDATA=null, _frP=null, _frNset=false;
+var FRUNIT='unit';
+try{ var _fu0=LS.getItem('voca_frunit'); if(_fu0==='unit'||_fu0==='box') FRUNIT=_fu0; }catch(e){}
+function frLoad(){
+  if(FRDATA) return Promise.resolve(FRDATA);
+  if(_frP) return _frP;
+  _frP=loadJ('data/fr.json').then(function(d){ FRDATA=d||{a:{},s:{},n:[],ni:{}}; return FRDATA; })
+    .catch(function(){ _frP=null; return null; });
+  return _frP;
+}
+function frKey(x){ return String((x && x.w!==undefined) ? x.w : (x||'')).split('=')[0].trim().toLowerCase(); }
+// 교재 동의어 (모든 갈래)
+function frTbSyns(w){
+  var o=[]; (w.s||[]).forEach(function(t){ o.push(String(t).toLowerCase().trim()); });
+  (w.p||[]).forEach(function(pr){ (pr.s||[]).forEach(function(t){ o.push(String(t).toLowerCase().trim()); }); });
+  return o;
+}
+// 두 단어가 이어져 있는지: 사전 같은 뜻 · 반대말 · 교재 동의어
+function frNeighbors(w, withAnt){
+  var k=frKey(w), D=FRDATA||{}, o={};
+  ((D.s||{})[k]||[]).forEach(function(x){ o[x[0]]=1; });
+  if(withAnt!==false) ((D.a||{})[k]||[]).forEach(function(x){ o[x]=1; });
+  frTbSyns(w).forEach(function(x){ o[x]=1; });
+  delete o[k];
+  return o;
+}
+function frLinked(a, b){
+  var kb=frKey(b), ka=frKey(a);
+  return !!(frNeighbors(a)[kb] || frNeighbors(b)[ka]);
+}
+// 강 단위 순서: 고른 순서를 바탕으로, 방금 단어와 이어진 단어가 있으면 그 단어를 다음에
+function frOrder(list){
+  if(!list || list.length<3) return (list||[]).slice();
+  var pos={}, byK={};
+  list.forEach(function(w,i){ var k=frKey(w); if(pos[k]===undefined){ pos[k]=i; byK[k]=w; } });
+  var nb={};
+  list.forEach(function(w){ var k=frKey(w), m=frNeighbors(w); nb[k]=nb[k]||{};
+    for(var x in m){ if(pos[x]!==undefined){ nb[k][x]=1; nb[x]=nb[x]||{}; nb[x][k]=1; } } });
+  var used={}, out=[], p=0;
+  var cur=list[0]; used[0]=1; out.push(cur);
+  while(out.length<list.length){
+    var best=-1, ck=frKey(cur);
+    for(var x in (nb[ck]||{})){ var i=pos[x]; if(i!==undefined && !used[i] && (best<0 || i<best)) best=i; }
+    if(best<0){ while(used[p]) p++; best=p; }
+    used[best]=1; cur=list[best]; out.push(cur);
+  }
+  return out;
+}
+// 뜻 상자 단위: 고른 범위의 단어를 같은 뜻 상자별로 묶는다 (이어 붙여 커지지 않게, 상자 하나 = 한 뜻)
+//   상자 = 사전 같은 뜻 자료의 상자 이름 + 교재 표제어의 뜻 줄(그 줄의 교재 동의어)
+//   한 단어는 한 상자에만 · 아직 다 못 맞힌 단어가 있는 상자부터 · 큰 상자부터
+var FRGRP={};
+function frBoxPick(list, n){
+  var D=FRDATA||{}, inR={}, G={};
+  list.forEach(function(w){ var k=frKey(w); if(!inR[k]) inR[k]=w; });
+  function add(g, w){ if(!w) return; var a=G[g]||(G[g]=[]); if(a.indexOf(w)<0) a.push(w); }
+  list.forEach(function(w){
+    var k=frKey(w);
+    ((D.s||{})[k]||[]).forEach(function(x){ if(inR[x[0]]){ add(x[1], w); add(x[1], inR[x[0]]); } });
+    (w.p||[]).forEach(function(pr){ var d=String(pr.d||'').trim(); if(!d) return;
+      (pr.s||[]).forEach(function(t){ var o=inR[String(t).toLowerCase().trim()]; if(o){ add(d, w); add(d, o); } }); });
+  });
+  var names=Object.keys(G).filter(function(g){ return G[g].length>1; });
+  function left(a){ return a.filter(function(w){ var r=STATS[w.w]; return !(r && r.frDone); }).length; }
+  var meta={}; names.forEach(function(g){ meta[g]={l:left(G[g]), r:Math.random()}; });
+  names.sort(function(a,b){
+    if((meta[a].l>0)!==(meta[b].l>0)) return (meta[b].l>0)-(meta[a].l>0);   // 아직 다 못 맞힌 상자 먼저
+    if(G[a].length!==G[b].length) return G[b].length-G[a].length;           // 큰 상자 먼저
+    return meta[a].r-meta[b].r;
+  });
+  var used={}, out=[]; FRGRP={};
+  for(var i=0;i<names.length;i++){
+    if(n>0 && out.length>=n) break;
+    var ws=G[names[i]].filter(function(w){ return !used[frKey(w)]; });
+    if(ws.length<2) continue;                                     // 이미 다른 상자로 나온 단어를 빼면 하나뿐인 상자는 건너뛴다
+    if(n>0 && out.length && out.length+ws.length>n+5) continue;   // 많이 넘치면 더 작은 상자로 채운다
+    ws.forEach(function(w){ used[frKey(w)]=1; FRGRP[frKey(w)]=names[i]; });
+    out=out.concat(frOrder(ws));
+  }
+  if(n>0 && out.length<n){                                         // 상자가 모자라면 혼자인 단어로 채운다
+    shuf(list.filter(function(w){ return !used[frKey(w)]; })).slice(0, n-out.length).forEach(function(w){ out.push(w); });
+  }
+  return out;
+}
+function frDef(t){ try{ return defOf(t)||''; }catch(e){ return ''; } }   // 교재 표제어면 교재 뜻, 아니면 앱에 있던 짧은 뜻
+// 관계없는 오답 (교재 단어 · 뜻 있는 것)
+function frRandWords(n, near){
+  var pool=(POOL && POOL.words && POOL.words.length) ? POOL.words : ((_allPool||[]).filter(function(x){ return x.type==='word'; }));
+  var out=[], tries=0;
+  while(out.length<n && tries<600 && pool.length){
+    tries++;
+    var c=pool[Math.floor(Math.random()*pool.length)]; if(!c || !c.m) continue;
+    var k=frKey(c); if(!k || near[k] || !_isOneWord(c.w)) continue;
+    near[k]=1; out.push({t:c.w, def:c.m});
+  }
+  return out;
+}
+function buildFr(w, opt){
+  var q=buildEn(w, opt||{}); if(!q) return null;
+  q.fr=1;
+  var D=FRDATA||{a:{},s:{},n:[],ni:{}};
+  var key=frKey(q.prompt || w.w);
+  var near={}; near[key]=1;
+  q.opts.forEach(function(o){ near[String(o.t).toLowerCase().trim()]=1; });
+  ((D.s||{})[key]||[]).forEach(function(x){ near[x[0]]=1; });
+  ((D.a||{})[key]||[]).forEach(function(x){ near[x]=1; });
+  frTbSyns(w).forEach(function(x){ near[x]=1; });
+  var K=q.opts.filter(function(o){ return o.sec==='k'; }), S=q.opts.filter(function(o){ return o.sec==='s'; });
+  // 같은 뜻: 사전으로 확인된 교재 단어를 2개까지 (교재 동의어가 없는 단어는 3개까지 + 관계없는 오답)
+  var haveS={}; S.forEach(function(o){ haveS[String(o.t).toLowerCase().trim()]=1; });
+  var dl=shuf(((D.s||{})[key]||[]).filter(function(x){ return !haveS[x[0]] && x[0]!==key; }));
+  var hadS=S.some(function(o){ return o.ok; });
+  dl.slice(0, hadS?2:3).forEach(function(x){ S.push({t:x[0], ok:true, sec:'s', fr:'D', box:x[1], def:frDef(x[0])}); });
+  if(!hadS && S.some(function(o){ return o.ok; })){
+    frRandWords(3, near).forEach(function(r){ S.push({t:r.t, ok:false, sec:'s', def:r.def}); });
+  }
+  S=shuf(S);
+  var nS=S.filter(function(o){ return o.ok; }).length;
+  q.needS = nS ? Math.min(2, nS) : 0;
+  // 반대말: 양쪽 사전 확인 쌍 3개까지 + 함정(같은 뜻 단어) 2개까지 + 관계없는 오답
+  var A=[];
+  var al=shuf(((D.a||{})[key]||[]).slice()).slice(0,3);
+  if(al.length){
+    al.forEach(function(t){ A.push({t:t, ok:true, sec:'a', fr:'A', def:frDef(t)}); });
+    var trap=shuf(S.filter(function(o){ return o.ok && al.indexOf(String(o.t).toLowerCase())<0; })).slice(0,2);
+    trap.forEach(function(o){ A.push({t:o.t, ok:false, sec:'a', fr:'T', def:frDef(o.t)}); });
+    frRandWords(Math.max(1, 6-A.length), near).forEach(function(r){ A.push({t:r.t, ok:false, sec:'a', def:r.def}); });
+    A=shuf(A);
+  }
+  q.needA = al.length ? Math.min(2, al.length) : 0;
+  // 뉘앙스: 이 단어가 든 사전 구별 묶음에서, 설명 하나 → 맞는 단어 하나 (보기는 그 단어와 사전 유의어로 확인된 것만)
+  var N=[]; q.nd='';
+  var gs=shuf(((D.ni||{})[key]||[]).slice());
+  for(var gi=0; gi<gs.length && !N.length; gi++){
+    var G=(D.n||[])[gs[gi]]; if(!G) continue;
+    var cand=shuf(G.filter(function(m){ return (m[2]||[]).length>=2; }));
+    if(!cand.length) continue;
+    var an=cand[0], ids=shuf(an[2].slice()).slice(0,3);
+    var ms=[an].concat(ids.map(function(j){ return G[j]; }).filter(Boolean));
+    q.nd=an[1];
+    N=shuf(ms.map(function(m){ return {t:m[0], ok:(m===an), sec:'n', fr:'U', fn:m[1], def:frDef(m[0])}; }));
+  }
+  q.opts=K.concat(S, A, N);
+  return q;
+}
+function frUnitUI(){
+  var sg=$('frseg'); if(sg) sg.querySelectorAll('button').forEach(function(b){ b.classList.toggle('on', b.dataset.u===FRUNIT); });
+  var t=$('frstat');
+  if(t) t.textContent = FRUNIT==='box'
+    ? '고른 범위의 단어를 같은 뜻 상자별로 묶어 같이 내요 · 아직 다 못 맞힌 상자부터 · 넓게(누적) 고를수록 상자가 커져요'
+    : '고른 강의 단어를 풀어요 · 다음 단어는 방금 단어와 이어진 단어(같은 뜻 · 반대말)부터';
+  try{ swapUI(); }catch(e){}
+}
+// 최종 복습 진도 (기록은 따로): 이 범위에서 푼 단어 · 모든 칸을 맞힌 단어
+function frProgUI(){
+  var el=$('frprog'); if(!el) return;
+  if(st.mode!=='fr' || !RS.fr){ el.style.display='none'; return; }
+  var ks=keys(), tot=0;
+  IDX.filter(function(x){ return ks.indexOf(x.key)>=0; }).forEach(function(x){ tot+=(x.words||0); });
+  var d=recWith('fr', function(){
+    var seen=0, done=0;
+    for(var k in STATS){ var r=STATS[k]; if(!r || !r.seen_syn) continue;
+      var hit=ks.some(function(kk){ var m=kk.match(/^v(\d)d(\d+)$/); return m && r.vol===+m[1] && r.day===+m[2]; });
+      if(hit){ seen++; if(r.frDone) done++; } }
+    return {seen:seen, done:done};
+  });
+  el.innerHTML='최종 복습 진도 · 이 범위 단어 '+tot+'개 중 푼 단어 <b>'+d.seen+'</b> · 모든 칸 맞힌 단어 <b>'+d.done+'</b>';
+  el.style.display='';
+}
 // 최종 정리 문제: 교재 동의어 문제에 '같은 뜻'(정답)과 '비슷하지만 다름'(오답)을 2개씩까지 섞는다
 function buildFinQ(w){
   var q=buildSyn(w, {});
   if(!q || q.kind!=='syn') return q;
   q.isFin=true;
+  return finAugment(q, w);
+}
+// 교재 동의어 문제에 '같은 뜻'(정답)과 '비슷하지만 다름'(오답)을 2개씩까지 섞는다 — 최종 정리 · 영어 → 뜻이 같이 쓴다
+function finAugment(q, w){
   var F=FINDATA && FINDATA[String(w.w).toLowerCase().trim()];
   if(!F) return q;
   var have={};
@@ -2019,7 +2334,8 @@ function show(id){
     id='setup'; target=$('setup');
     if(!target) return;
   }
-  if(id!=='qscr'){ try{ curClear(); }catch(e){} }   // 퀴즈 화면을 떠나면 '풀던 화면' 기억을 지운다
+  if(id!=='qscr' && id!=='copyscr'){ try{ curClear(); }catch(e){} }
+  if(id!=='qscr' && id!=='resscr'){ try{ recUse('main'); }catch(e){} }   // 영어 → 뜻 기록은 그 퀴즈·결과 화면에서만   // 퀴즈·따라쓰기 화면을 떠나면 '풀던 화면' 기억을 지운다
   SCREENS.forEach(function(s){ var el=$(s); if(el) el.classList.remove('on'); });
   target.classList.add('on');
   try{ dockApply(); }catch(e){}
@@ -2037,6 +2353,7 @@ function show(id){
       if(typeof todayUI==='function') todayUI();
       if(typeof syncUI==='function') syncUI();
       if(typeof refreshUnitLabels==='function') refreshUnitLabels();
+      if(typeof homeEnUI==='function') homeEnUI();
     }catch(e){}
   }
 }
@@ -2143,6 +2460,51 @@ function hwTags(name){
 }
 // 지금 풀고 있는 단어 (같은 강인지 판단용)
 var _hereW=null;
+// ── 선지를 눌렀을 때: 이 단어가 교재 어디에 표제어/동의어로 실렸는지 ──
+// 소문자 단어 → [{vol,day,src,owner(표제어),om(표제어 교재 뜻),d(그 동의어가 붙은 뜻 줄)}]
+var _SYNAT=null;
+function synAtIndex(){
+  if(_SYNAT) return _SYNAT;
+  if(!_allPool || !_allPool.length) return null;
+  var m={};
+  _allPool.forEach(function(it){
+    if(!it || !it.w) return;
+    var lines=[], seen={};
+    (it.p||[]).forEach(function(pr){ (pr.s||[]).forEach(function(t){ lines.push({t:t, d:pr.d||'', dw:pr.dw||'', dm:pr.dm||''}); }); });
+    (it.s||[]).forEach(function(t){ lines.push({t:t, d:''}); });
+    lines.forEach(function(x){
+      var k=String(x.t).toLowerCase().trim(); if(!k) return;
+      var sk=k+'|'+(it.id||it.w); if(seen[sk]) return; seen[sk]=1;
+      (m[k]||(m[k]=[])).push({vol:it.vol, day:it.day, src:it.src||'Y', owner:it.w, om:it.m||'', d:x.d, dw:x.dw||'', dm:x.dm||''});
+    });
+  });
+  _SYNAT=m; return m;
+}
+function _atTag(a){ return (a.src==='Y' || !a.src) ? (a.vol+'권 '+a.day+'강') : ('MVP'+String(a.src).slice(-1)); }
+function synWhereHTML(nm){
+  var k=String(nm).toLowerCase().trim(); if(!k) return '';
+  var here=_hereW, rows=[];
+  var isHere=function(a){ return !!(here && (a.src==='Y'||!a.src) && here.vol===a.vol && here.day===a.day); };
+  hwAll(nm).forEach(function(a){
+    var it=(_allPool||[]).filter(function(x){ return x.vol===a.vol && x.day===a.day && String(x.w).toLowerCase().trim()===k; })[0];
+    rows.push({here: here && here.vol===a.vol && here.day===a.day,
+      html:'<b>'+esc(a.tag)+'</b> 표제어'+(it && it.m ? ' <span class="swm">'+esc(it.m)+'</span>' : '')});
+  });
+  var ix=synAtIndex()||{};
+  (ix[k]||[]).forEach(function(a){
+    if(String(a.owner).toLowerCase().trim()===k) return;
+    rows.push({here:isHere(a),
+      html: a.dw
+        ? '<b>'+esc(_atTag(a))+'</b> <span class="swo">'+esc(a.owner)+'</span> 밑 파생어 <span class="swo">'+esc(a.dw)+'</span>의 동의어'+(a.dm ? ' · 「'+esc(a.dm)+'」 뜻으로' : '')
+        : '<b>'+esc(_atTag(a))+'</b> <span class="swo">'+esc(a.owner)+'</span>의 동의어'
+          +(a.d ? ' · 「'+esc(a.d)+'」 뜻으로' : (a.om ? ' <span class="swm">'+esc(a.om)+'</span>' : ''))});
+  });
+  if(!rows.length) return '';
+  rows.sort(function(x,y){ return (y.here?1:0)-(x.here?1:0); });   // 지금 강 먼저
+  return '<div class="synwhere"><div class="swt">교재에 실린 자리</div>'
+    + rows.map(function(r){ return '<div class="swr'+(r.here?' here':'')+'">'+(r.here?'<span class="swh">이 강</span>':'')+r.html+'</div>'; }).join('')
+    + '</div>';
+}
 function hwTagHTML(name, selfW){
   var all=hwAll(name);
   if(!all.length) return '';
@@ -2199,7 +2561,7 @@ function phrsynHTML(nm, inPanel){
   return h+(inPanel?'</div>':'');
 }
 var PHRCTX=null;   // 구문마다 그 구문 안에서 맞는 단어 뜻 (phrctx.json — 클로드 확인) {구문: {단어: {m, o:교재 뜻 아님, x:안 띄움}}}
-function pwordLoad(){ formsLoad(); loadJ('data/phraseword.json').then(function(d){ PWORD=d||{}; }).catch(function(){ PWORD={}; });
+function pwordLoad(){ formsLoad(); dsynLoad(); loadJ('data/phraseword.json').then(function(d){ PWORD=d||{}; }).catch(function(){ PWORD={}; });
   loadJ('data/phrctx.json').then(function(d){ PHRCTX=d||{}; }).catch(function(){ PHRCTX={}; }); }
 // 이 구문 안에서 단어 w의 뜻 확인 결과 (없으면 null)
 // ── 형태 바뀐 단어 (agitate · agitated · agitation) — forms.json: 교재 파생 줄 + 어원 줄에서 어미만 붙은 파생 ──
@@ -2207,6 +2569,20 @@ var FORMS=null, FORMIDX=null;
 function formsLoad(){ if(FORMS) return Promise.resolve(FORMS);
   return loadJ('data/forms.json').then(function(d){ FORMS=(d&&d.f)||[]; FORMIDX={}; FORMS.forEach(function(f,i){ f.forEach(function(w){ FORMIDX[w]=i; }); }); return FORMS; })
     .catch(function(){ FORMS=[]; FORMIDX={}; return FORMS; }); }
+// 사전 비슷한 말 구별 (dsyn.json — Merriam-Webster 「Choose the Right Synonym」 칸을 클로드가 우리말로 옮김)
+//   { g:[ [[단어, 차이 한 줄], ...], ... ], i:{ 단어: [묶음 번호...] } }
+var DSYN=null;
+function dsynLoad(){ if(DSYN) return Promise.resolve(DSYN);
+  return loadJ('data/dsyn.json').then(function(d){ DSYN=d||{g:[],i:{}}; return DSYN; }).catch(function(){ DSYN={g:[],i:{}}; return DSYN; }); }
+function dsynHTML(name){
+  if(!DSYN || !DSYN.i) return '';
+  var me=String(name||'').toLowerCase().trim(), gs=DSYN.i[me]; if(!gs || !gs.length) return '';
+  var h='';
+  gs.forEach(function(gi){ var g=DSYN.g[gi]; if(!g) return;
+    h+='<div class="dsg">'+g.map(function(x){ var on=(x[0]===me), t=on?'':formTag(x[0]);
+      return '<div class="dsrow'+(on?' on':'')+'"><b>'+esc(x[0])+'</b>'+(t?'<span class="hwat">'+esc(t)+'</span>':'')+'<span class="dsk byc">'+esc(x[1])+'</span></div>'; }).join('')+'</div>'; });
+  return '<div class="pbox dsbox"><div class="pbt">사전 비슷한 말 구별</div>'+h+'<div class="phfoot byc">※ Merriam-Webster 「비슷한 말 구별」 칸을 클로드가 우리말로 옮김</div></div>';
+}
 function formsOf(name){ if(!FORMIDX) return null; var i=FORMIDX[String(name||'').toLowerCase().trim()]; return (i===undefined)?null:FORMS[i]; }
 function formTag(w){ var a=hwAll(w); if(a.length) return a[0].tag;
   var it=(typeof ghPoolFind==='function')?ghPoolFind(w):null; if(it && it.dv){ var b=hwAll(it.dv); return (b.length?b[0].tag+' ':'')+it.dv+' 밑'; } return ''; }
@@ -2222,7 +2598,9 @@ function phrCtx(ph, w){ var e=PHRCTX && PHRCTX[String(ph).toLowerCase().trim()];
 function nuanceLoad(){ loadJ('data/nuance.json').then(function(d){ NUANCE=d||{}; }).catch(function(){ NUANCE={}; });
   loadJ('data/nzbox.json').then(function(d){ NZBOX=d||{}; }).catch(function(){ NZBOX={}; });
   loadJ('data/nzfit.json').then(function(d){ NZFIT=d||{}; }).catch(function(){ NZFIT={}; });
-  loadJ('data/nzleft.json').then(function(d){ NZLEFT=d||{}; }).catch(function(){ NZLEFT={}; }); }
+  loadJ('data/nzleft.json').then(function(d){ NZLEFT=d||{}; }).catch(function(){ NZLEFT={}; });
+  loadJ('data/nzdict.json').then(function(d){ NZDICT=d||{}; _relIdx=null; }).catch(function(){ NZDICT={}; });
+  loadJ('data/antonyms.json').then(function(d){ ANTO=d||{}; }).catch(function(){ ANTO={}; }); }
 // 뜻 박스를 교재 뜻 조각 기준으로 나눈 것 (nzbox.json)
 //   F: 조각 · a: 조각이 전부 적힌 단어 · f: 조각별로 그 조각만 적힌 단어
 //   o: 한글 표현은 다르지만 같은 뜻 · x: 교재엔 그 조각이 적혔지만 이 박스 뜻과 달라서 뺀 단어
@@ -2233,9 +2611,73 @@ var NZBOX=null;
 var NZFIT=null;
 // 나머지 뜻 박스 (nzleft.json) — 표제어 뜻 중 동의어 줄에 안 들어간 뜻.  key = 소문자 표제어 + '|' + 표제어 뜻 전체,  s = 박스 제목
 var NZLEFT=null;
+// 뜻 상자·갈래 단어를 Merriam-Webster 뜻풀이로 하나씩 대조한 결과 (nzdict.json)
+//   { 뜻: { X:[사전에 이 뜻 없음], Q:[사전 뜻만으론 애매], N:[사전 기록 없음] } } — 여기 없는 단어는 사전으로 확인됨
+var NZDICT=null;
+var ANTO=null;    // 반의어 (data/antonyms.json — Merriam-Webster 유의어 사전의 Antonyms) { 단어: [반의어…] }
+var _relIdx=null;
+function _isOneWord(w){ return /^[A-Za-z][A-Za-z'\-éèàçïöü]*$/.test(String(w||'')); }
+function _nzBad(key, w){ var m=NZDICT && NZDICT[key]; if(!m) return false; return (m.X&&m.X.indexOf(w)>=0)||(m.Q&&m.Q.indexOf(w)>=0)||(m.N&&m.N.indexOf(w)>=0); }
+// 사전으로 확인된 같은 뜻 묶음에서 단어 → 같은 묶음 단어들
+function relIndex(){
+  if(_relIdx) return _relIdx;
+  if(!NUANCE || !NZBOX || !NZLEFT || !NZDICT) return null;
+  var idx={};
+  function add(key, ws){
+    var ok=ws.filter(function(w){ return _isOneWord(w) && !_nzBad(key, w); });
+    ok=ok.filter(function(w,i){ return ok.indexOf(w)===i; });
+    if(ok.length<2) return;
+    ok.forEach(function(w){ var k=w.toLowerCase(), s=idx[k]||(idx[k]=[]); ok.forEach(function(x){ if(x!==w && s.indexOf(x)<0) s.push(x); }); });
+  }
+  for(var G in NUANCE){ ((NUANCE[G]||{}).g||[]).forEach(function(g){ add(G, g.w||[]); }); }
+  function boxWs(B){ var o=[]; (B.a||[]).concat(B.o||[]).forEach(function(x){ o.push(x.w); }); for(var f in (B.f||{})) (B.f[f]||[]).forEach(function(x){ o.push(x.w); }); return o; }
+  for(var K in NZBOX) add(K, boxWs(NZBOX[K]));
+  for(var L in NZLEFT) add('L:'+L, boxWs(NZLEFT[L]));
+  _relIdx=idx; return idx;
+}
+function relLineHTML(w){
+  var me=String(w||'').split('=')[0].trim(); if(!me) return '';
+  var h='';
+  function chip(x, out){ var t=out?'':formTag(x);
+    return '<span class="wtap fmw'+(out?' out':'')+'" data-w="'+esc(x)+'"><b>'+esc(x)+'</b>'+(t?' <span class="hwat">'+esc(t)+'</span>':'')+'</span>'; }
+  var idx=relIndex();
+  var same=(idx && idx[me.toLowerCase()]) || [];
+  if(same.length){
+    var inb=same.filter(function(x){ return hwAll(x).length; }), outb=same.filter(function(x){ return !hwAll(x).length; });
+    var all=inb.concat(outb), LIM=8;
+    h+='<div class="fmline"><em class="relsame">같은 뜻 =</em>'+all.slice(0,LIM).map(function(x){ return chip(x, false); }).join('<span class="fmsep">·</span>')
+      +(all.length>LIM?'<span class="relmore">외 '+(all.length-LIM)+'개 · 뜻 상자에서</span>':'')+'</div>';
+  }
+  var an=(ANTO && ANTO[me.toLowerCase()]) || [];
+  if(an.length){
+    // 교재 안 반의어는 전부, 교재 밖은 4개까지 — 나머지는 「외 N개」를 누르면 같은 줄에서 펼친다 (2027.01.11)
+    var ai=an.filter(function(x){ return hwAll(x).length; }), aoAll=an.filter(function(x){ return !hwAll(x).length; });
+    var ao=aoAll.slice(0,4), ax=aoAll.slice(4), SEP='<span class="fmsep">·</span>';
+    h+='<div class="fmline"><em class="relant">반의어 ↔</em>'+ai.map(function(x){ return chip(x,false); }).concat(ao.map(function(x){ return chip(x,true); })).join(SEP)
+      +(ax.length ? '<span class="antx" style="display:none">'+SEP+ax.map(function(x){ return chip(x,true); }).join(SEP)+'</span><button type="button" class="antmore">외 '+ax.length+'개</button>' : '')+'</div>';
+  }
+  return h;
+}
+// 반의어 「외 N개」: 누르면 그 줄에서 나머지를 펼친다
+document.addEventListener('click',function(e){
+  var b=e.target.closest && e.target.closest('.antmore'); if(!b) return;
+  e.stopPropagation(); e.preventDefault();
+  var x=b.previousElementSibling; if(x && x.classList.contains('antx')) x.style.display='';
+  b.remove();
+}, true);
+function nzDictMark(sense, t){
+  var m=NZDICT && NZDICT[String(sense||'').trim()]; if(!m) return '';
+  if(m.X && m.X.indexOf(t)>=0) return '<span class="nzat nzat-dx">사전엔 이 뜻 없음</span>';
+  if((m.Q && m.Q.indexOf(t)>=0) || (m.N && m.N.indexOf(t)>=0)) return '<span class="nzat nzat-dq">사전 확인 안 됨</span>';
+  return '';
+}
+// 출처 딱지와 사전 딱지를 한 칸에 모아 줄 배치가 안 깨지게
+function nzTagJoin(a, b){ return b ? '<span class="nzats">'+(a||'')+b+'</span>' : a; }
 function nzLeftKey(w){ return String((w&&w.w)||'').toLowerCase().trim()+'|'+String((w&&w.m)||'').trim(); }
-function nzBoxPanel(sense, w, BB){
+function nzBoxPanel(sense, w, BB, DK){
   var B=BB||NZBOX[sense];
+  var dictOn = !!(DK || (NZBOX && NZBOX[sense]===B));   // 사전 대조 결과 열쇠: 뜻 상자 = 뜻, 나머지 뜻 박스 = 'L:'+표제어|뜻
+  var dictKey = DK || sense;
   if(typeof w==='string') w = ghPoolFind(w) || {w:w, p:[]};
   var me=String((w&&w.w)||'').toLowerCase().trim();
   var own={}; ((w&&w.p)||[]).forEach(function(p){ if(String(p.d).trim()===sense) (p.s||[]).forEach(function(t){ own[String(t).toLowerCase().trim()]=1; }); });
@@ -2266,7 +2708,7 @@ function nzBoxPanel(sense, w, BB){
     var t=x.w, on=String(t).toLowerCase().trim()===me;
     var om=synOwnMean(t) || (LEX && LEX[String(t).toLowerCase().trim()]) || '';   // 교재 표제어 뜻 → 없으면 사전 한 줄
     if(!om){ var ow=ownerOf(t); if(ow) om=ow.d; }
-    return '<div class="nzrow'+(on?' nzme':'')+'"><span class="nzw">'+esc(t)+'</span>'+mark(t)
+    return '<div class="nzrow'+(on?' nzme':'')+'"><span class="nzw">'+esc(t)+'</span>'+nzTagJoin(mark(t), dictOn?nzDictMark(dictKey, t):'')
       +(om?'<span class="nzmean">'+(synOwnMean(t)?esc(om):mm(t, om))+'</span>':'')
       +(x._fo ? '<span class="nzsub"><span class="fitonly">'+x._fo.map(function(z){ return '「'+esc(z)+'」'; }).join('')+'만</span>'+esc(x._fy||x.n||'')+'</span>'
           : ((x.n||x.why)?'<span class="nzsub">'+esc(x.n||x.why)+'</span>':''))+'</div>';
@@ -2301,7 +2743,7 @@ function nzBoxPanel(sense, w, BB){
   body+=sec('뜻이 달라서 뺀 단어 — 교재엔 같은 글자가 적혀 있지만 쓰임이 다름', xList, 'nzb-x', 'x:'+sense);
   var ttl='<span class="nztitle">'+esc(sense)+'</span><span class="nzcount">같은 뜻 '+tot+'개</span>';
   return '<div class="nzpanel nzbx pbox mint"><div class="pbt" data-fk="'+esc('nz:'+sense)+'">'+ttl+'</div>'+body
-    +'<div class="nzfoot">※ 같은 뜻인지 판단과 한 줄 설명은 클로드 정리 · 교재에 없는 설명</div></div>';
+    +'<div class="nzfoot">'+(dictOn?'※ 같은 뜻인지는 Merriam-Webster 뜻풀이로 확인(딱지 붙은 단어 빼고) · 한 줄 설명은 클로드 정리':'※ 같은 뜻인지 판단과 한 줄 설명은 클로드 정리 · 교재에 없는 설명')+'</div></div>';
 }
 
 // ── 교재 표제어 뜻에는 없는 쓰임 ────────────────────────────────
@@ -2382,10 +2824,10 @@ function synonlyNote(word, sense){
 }
 // 이번 문제 선지 중 '동의어로만 나온 뜻'이 있으면 그것만 모아서 보여 준다
 function synonlyBox(q){
-  if(!q || q.kind!=='syn' || !q.opts) return '';
+  if(!q || (q.kind!=='syn' && q.kind!=='en') || !q.opts) return '';
   var rows=[];
   for(var i=0;i<q.opts.length;i++){
-    var o=q.opts[i]; if(!o.ok) continue;
+    var o=q.opts[i]; if(!o.ok || o.sec==='k') continue;
     var e=synonlyNote(o.t, o.sense); if(!e) continue;
     var own=(ghPoolFind(o.t)||{}).m||'';
     rows.push('<div class="sorow">'
@@ -2476,7 +2918,7 @@ function nuanceHTML(w){
   });
   // 나머지 뜻: 뜻 확인이 끝난 박스가 있으면 그것을, 없으면 글자가 같은 단어를 조각별 칸으로
   var LB = NZLEFT && NZLEFT[nzLeftKey(w)];
-  if(LB) out += nzBoxPanel(LB.s, w, LB);
+  if(LB) out += nzBoxPanel(LB.s, w, LB, 'L:'+nzLeftKey(w));
   else if(left.length) out += nuancePanel(null, w, left);
   return out;
 }
@@ -2528,7 +2970,7 @@ function nuancePanel(sense, w, extra){
     var om=synOwnMean(t) || (LEX && LEX[String(t).toLowerCase().trim()]) || '';
     return '<div class="nzrow'+(on?' nzme':'')+'">'
          + '<span class="nzw">'+esc(t)+'</span>'
-         + mark(t, from)
+         + nzTagJoin(mark(t, from), nzDictMark(sense, t))
          + (om?'<span class="nzmean">'+(synOwnMean(t)?esc(om):mm(t, om))+'</span>':'')
          + (sub?'<span class="nzsub">'+esc(sub)+'</span>':'')
          + '</div>';
@@ -2588,7 +3030,7 @@ function nuancePanel(sense, w, extra){
                   : ('<span class="nztitle">'+esc(leftTitle||'같은 뜻으로 적힌 단어')+'</span>'
                      +'<span class="nzcount">글자가 같은 단어 '+tot+'개 · 아직 뜻 확인 전</span>');
   var fk  = sense ? ('nz:'+String(sense).trim()) : 'nz:같은뜻';
-  var foot = g ? '<div class="nzfoot">※ 갈래 설명은 클로드 정리 · 교재에 없는 설명</div>' : '';
+  var foot = g ? '<div class="nzfoot">※ 갈래에 맞는지는 Merriam-Webster 뜻풀이로 확인(딱지 붙은 단어 빼고) · 갈래 설명은 클로드 정리</div>' : '';
   return '<div class="nzpanel pbox mint"><div class="pbt" data-fk="'+esc(fk)+'">'+ttl+'</div>'
     + body + tail + foot + '</div>';
 }
@@ -2619,6 +3061,7 @@ function wordPanel(name){
   var extra='';
   if(r) extra+='<div class="wpr"><em>어원</em> '+rootLinkHTML(r, name)+'</div>';
   extra+=formsLineHTML(name);
+  extra+=dsynHTML(name);
   if(R && R.x && R.x.length){
     var seen={}, rows=[];
     R.x.forEach(function(e){
@@ -2836,6 +3279,10 @@ function refreshRec(rec, key){
 }
 function refreshMap(m){ for(var k in (m||{})) m[k]=refreshRec(m[k],k); return m; }
 function refreshStored(){
+  if(RS.main && RS.en){ recWith('main', _refreshStoredCur); recWith('en', _refreshStoredCur); if(RS.fr) recWith('fr', _refreshStoredCur); return; }
+  _refreshStoredCur();
+}
+function _refreshStoredCur(){
   try{
     _refreshChanged=false; refreshMap(STATS);
     if(_refreshChanged && statsSave) statsSave();
@@ -2846,6 +3293,10 @@ function refreshStored(){
   }catch(e){}
 }
 function ghRefill(){
+  if(RS.main && RS.en){ recWith('main', _ghRefillCur); recWith('en', _ghRefillCur); if(RS.fr) recWith('fr', _ghRefillCur); return; }
+  _ghRefillCur();
+}
+function _ghRefillCur(){
   try{
     ghFattenMap(STATS, null); statsSave&&statsSave();
     if(BANK){ ghFattenMap(BANK.quiz,null); ghFattenMap(BANK.syn,null); bankSave&&bankSave(); }
@@ -2869,12 +3320,89 @@ function ghSlimSes(m){
   }
   return o;
 }
+// ── 영어 → 뜻 기록 분리 (2027.01.07) ──
+// 동의어 매칭이 쓰는 기록(단어별 기록·오답·잘못 고른 단어·날짜별 수·한 번이라도 틀린 단어·회독)과 같은 모양의
+// 기록을 영어 → 뜻용으로 하나 더 두고, 영어 → 뜻을 푸는 동안만 그쪽으로 바꿔 쓴다.
+// 바꾸는 일은 한 번에(동기) 끝나므로 다른 일과 섞이지 않는다. 동기화는 두 쪽을 따로 합친다.
+var REC='main';
+var REC_VARS=['STATS','BANK','MIS','DAILY','EWR','RVR','SKEY','BKEY','MISKEY','DKEY','EWRKEY','RVKEY'];
+var RS={main:null, en:null, fr:null};
+function recInit(){
+  RS.main={}; REC_VARS.forEach(function(v){ RS.main[v]=window[v]; });
+  RS.en={STATS:{}, BANK:{quiz:{},syn:{}}, MIS:{}, DAILY:{}, EWR:{done:0}, RVR:{},
+    SKEY:'voca_stats_en_v1', BKEY:'voca_bank_en_v1', MISKEY:'voca_mis_en_v1', DKEY:'voca_daily_en_v1', EWRKEY:'voca_ewr_en_v1', RVKEY:'voca_rvround_en_v1'};
+  // 최종 복습 기록도 따로 (2027.01.14)
+  RS.fr={STATS:{}, BANK:{quiz:{},syn:{}}, MIS:{}, DAILY:{}, EWR:{done:0}, RVR:{},
+    SKEY:'voca_stats_fr_v1', BKEY:'voca_bank_fr_v1', MISKEY:'voca_mis_fr_v1', DKEY:'voca_daily_fr_v1', EWRKEY:'voca_ewr_fr_v1', RVKEY:'voca_rvround_fr_v1'};
+  ['en','fr'].forEach(function(nm){
+    recUse(nm);
+    try{ bankLoad(); }catch(x){}
+    try{ statsLoad(); }catch(x){}
+    try{ ewrLoad(); }catch(x){}
+    try{ dailyLoad(); }catch(x){}
+    try{ var _r=LS.getItem(RVKEY); RVR=_r?(JSON.parse(_r)||{}):{}; }catch(x){ RVR={}; }
+    try{ var _m=LS.getItem(MISKEY); MIS=_m?(JSON.parse(_m)||{}):{}; }catch(x){ MIS={}; }
+    recUse('main');
+  });
+}
+// 모드 → 기록 이름 (영어 → 뜻 = en · 최종 복습 = fr · 나머지 = main)
+function recOfMode(m){ return m==='en' ? 'en' : m==='fr' ? 'fr' : 'main'; }
+function recUse(name){
+  if(!RS.main || !RS.en) return REC;
+  if(name!=='en' && name!=='fr') name='main';
+  if(name==='fr' && !RS.fr) name='main';
+  if(name===REC) return REC;
+  var prev=REC;
+  REC_VARS.forEach(function(v){ RS[prev][v]=window[v]; window[v]=RS[name][v]; });
+  REC=name;
+  try{ _rvDirty=true; _rvCache={}; }catch(x){}
+  return prev;
+}
+function recWith(name, fn){ var p=recUse(name); try{ return fn(); } finally { recUse(p); } }
+// 오답 목록에서 뺀 표시도 따로 (동의어 매칭 bs·bq / 영어 → 뜻 es·eq)
+function delCat(base){ return REC==='en' ? (base==='bs'?'es':'eq') : REC==='fr' ? (base==='bs'?'fs':'fq') : base; }
+function _enDels(d, nm){ d=d||{}; var f=(nm==='fr')?'f':'e'; return {bq:d[f+'q']||{}, bs:d[f+'s']||{}, pen:{}, memo:{}, req:{}, all:{stats:((d.all||{})['stats_'+(nm||'en')])||0}}; }
+function ghMergeEn(local, remote, nm){
+  nm=nm||'en';
+  var la=local[nm], ra=remote[nm];
+  if(!ra) return la;
+  if(!la) la={};
+  var L={stats:la.stats, bank:la.bank, daily:la.daily, mis:la.mis, ewr:la.ewr, rvr:la.rvr, dels:_enDels(local.dels, nm)};
+  var R={stats:ra.stats, bank:ra.bank, daily:ra.daily, mis:ra.mis, ewr:ra.ewr, rvr:ra.rvr, dels:_enDels(remote.dels, nm)};
+  var m=ghMerge(L, R);
+  return {stats:m.stats, bank:m.bank, daily:m.daily, mis:m.mis, ewr:m.ewr, rvr:m.rvr};
+}
+function ghApplyEn(e, nm){
+  nm=nm||'en';
+  if(!e || !RS[nm]) return;
+  var _p=recUse(nm);
+  try{
+    if(e.stats){ var _ls=STATS||{}; STATS=ghFattenMap(e.stats, _ls); statsSave(); }
+    if(e.bank){ var _lb=BANK||{quiz:{},syn:{}};
+      e.bank.quiz=ghFattenMap(e.bank.quiz||{}, _lb.quiz||{}); e.bank.syn=ghFattenMap(e.bank.syn||{}, _lb.syn||{});
+      BANK=e.bank; bankSave(); }
+    if(e.daily){ DAILY=e.daily; dailySave(); }
+    if(e.mis){ MIS=e.mis; try{ LS.setItem(MISKEY, JSON.stringify(MIS)); }catch(x){} }
+    if(e.ewr && (e.ewr.done||0)>(EWR.done||0)){ EWR={done:e.ewr.done}; ewrSave(); }
+    if(e.rvr){ RVR=e.rvr; try{ LS.setItem(RVKEY, JSON.stringify(RVR)); }catch(x){} }
+  } finally { recUse(_p); }
+  try{ if($('setup').classList.contains('on')) homeEnUI(); }catch(x){}
+}
 function ghSnapshot(){
+  var _p=recUse('main');
+  try{
+    var o=ghSnapshotCur();
+    ['en','fr'].forEach(function(nm){ if(!RS[nm]) return; recUse(nm);
+      o[nm]={stats:ghSlimMap(STATS), bank:{quiz:ghSlimMap(BANK&&BANK.quiz), syn:ghSlimMap(BANK&&BANK.syn)}, daily:DAILY, mis:MIS, ewr:EWR, rvr:RVR}; });
+    return o;
+  } finally { recUse(_p); }
+}
+function ghSnapshotCur(){
   return {v:1, t:Date.now(),
     stats:ghSlimMap(STATS),
     bank:{quiz:ghSlimMap(BANK&&BANK.quiz), syn:ghSlimMap(BANK&&BANK.syn)},
     daily:DAILY,
-    pen:ghSlimMap(PENLIST), memo:MEMO, req:ROOTREQ, diary:DIARY, ses:ghSlimSes(SESSIONS), sdel:SESDEL, cmp:CMP, ord:ORDPOS, dels:DELS, wb:WB, mis:MIS, rvr:RVR,
+    pen:ghSlimMap(PENLIST), memo:MEMO, req:ROOTREQ, diary:DIARY, ses:ghSlimSes(SESSIONS), sdel:SESDEL, cmp:CMP, ord:ORDPOS, dels:DELS, wb:WB, mis:MIS, rvr:RVR, ewr:EWR,
     oset:{v:ORDER, t:ORDER_T}};
 }
 // 두 기록을 합치기 (양쪽에서 푼 것이 모두 남게)
@@ -2901,6 +3429,7 @@ function ghMerge(local, remote){
     var m={};
     for(var f in newer) m[f]=newer[f];
     m.wrong = Math.max(a.wrong||0, b.wrong||0);
+    if(a.rw||b.rw) m.rw = Math.max(a.rw||0, b.rw||0);
     m.right = Math.max(a.right||0, b.right||0);
     m.streak = newer.streak||0;
     m.due = Math.max(a.due||0, b.due||0);
@@ -2978,6 +3507,7 @@ function ghMerge(local, remote){
   })();
   // 내 단어장: 단어별로 마지막에 바꾼 쪽 (뺀 것도 기록이 있어 되살아나지 않음)
   out.wb=wbMerge(local.wb, remote.wb);
+  out.ewr={done:Math.max((local.ewr&&local.ewr.done)||0, (remote.ewr&&remote.ewr.done)||0)};
   out.mis=misMerge(local.mis, remote.mis);
   // 복습 회독 설정: 권마다 나중에 바꾼 쪽
   out.rvr={};
@@ -3024,6 +3554,8 @@ function ghMerge(local, remote){
       out.ses[k3] = ((x.ts||0)>=(y.ts||0)) ? x : y;   // 최신 시각 승
     }
   })();
+  if(local.en || remote.en){ var _en=ghMergeEn(local, remote, 'en'); if(_en) out.en=_en; }   // 영어 → 뜻 기록은 따로 합친다
+  if(local.fr || remote.fr){ var _fr=ghMergeEn(local, remote, 'fr'); if(_fr) out.fr=_fr; }   // 최종 복습 기록도 따로 합친다
   return out;
 }
 var _ghApplying=false;
@@ -3033,6 +3565,12 @@ function ghApply(d){
   try{ ghApplyRun(d); } finally { _ghApplying=false; }
 }
 function ghApplyRun(d){
+  var _p=recUse('main');                     // 동의어 매칭 기록에 넣는다 (영어 → 뜻을 푸는 중이어도)
+  try{ ghApplyRunMain(d); } finally { recUse(_p); }
+  if(d && d.en) ghApplyEn(d.en, 'en');
+  if(d && d.fr) ghApplyEn(d.fr, 'fr');
+}
+function ghApplyRunMain(d){
   // 압축본이 올 수 있으므로, 기존 로컬 기록 → 단어 풀 순으로 빠진 필드를 되채운다
   if(d.stats) { var _ls=STATS||{}; STATS=ghFattenMap(d.stats, _ls); statsSave(); }
   if(d.bank)  {
@@ -3077,6 +3615,7 @@ function ghApplyRun(d){
   if(d.ord)   { ORDPOS=d.ord; try{ LS.setItem('voca_ordpos', JSON.stringify(ORDPOS)); }catch(e){} try{ ordStat(); }catch(e){} }
   if(d.cmp)   { CMP=d.cmp; cmpSave(); try{ cmpBtnSync(); if(cmpIsOpen()) cmpDraw(); }catch(e){} }
   if(d.mis)   { MIS=d.mis; try{ LS.setItem(MISKEY, JSON.stringify(MIS)); }catch(e){} try{ misBtnSync(); if(misIsOpen()) misDraw(); }catch(e){} }
+  if(d.ewr && (d.ewr.done||0)>(EWR.done||0)){ EWR={done:d.ewr.done}; ewrSave(); try{ ewrUI(); }catch(e){} }
   if(d.rvr)   { RVR=d.rvr; try{ LS.setItem(RVKEY, JSON.stringify(RVR)); }catch(e){} _rvDirty=true; try{ rvUI(); refreshUnitLabels(); }catch(e){} }
   if(d.wb)    { WB=d.wb; try{ LS.setItem(WBKEY, JSON.stringify(WB)); }catch(e){} try{ wbBtnSync(); if(wbIsOpen()) wbDraw(); }catch(e){} }
   // 동기화로 받은 기록에도 옛 단어 내용이 섞여 있을 수 있으니 풀 기준으로 갱신
@@ -3345,7 +3884,7 @@ function syncDiag(){
 // 합칠 때 '양쪽 합집합'으로 하면 한 기기에서 지운 것이 다른 기기 기록 때문에 되살아난다.
 // 그래서 지운 시각을 남겨 두고, 그보다 먼저 들어간 것은 합칠 때 뺀다.
 //   bq/bs: 오답(사지선다/동의어) · pen: 손글씨 · memo: 메모 · req: 어원 요청 · all: 통째로 비운 시각
-var DELKEY='voca_dels_v1', DELS={bq:{},bs:{},pen:{},memo:{},req:{},all:{}};
+var DELKEY='voca_dels_v1', DELS={bq:{},bs:{},pen:{},memo:{},req:{},all:{},es:{},eq:{}};
 function delsLoad(){
   try{ var r=LS.getItem(DELKEY); if(r){ var d=JSON.parse(r)||{}; for(var c in DELS) DELS[c]=d[c]||{}; } }catch(e){}
   var lim=Date.now()-60*86400000;
@@ -3355,7 +3894,7 @@ function delsSave(){ lsSet(DELKEY, JSON.stringify(DELS)); if(typeof syncSoon==='
 function delMark(cat, k){ if(!DELS[cat]) DELS[cat]={}; DELS[cat][String(k)]=Date.now(); delsSave(); }
 function delUnmark(cat, k){ if(DELS[cat] && DELS[cat][String(k)]){ delete DELS[cat][String(k)]; delsSave(); } }
 function delsMerge(a, b){
-  var o={bq:{},bs:{},pen:{},memo:{},req:{},all:{}};
+  var o={bq:{},bs:{},pen:{},memo:{},req:{},all:{},es:{},eq:{},fs:{},fq:{}};
   [a||{}, b||{}].forEach(function(x){ for(var c in o){ var m=x[c]||{}; for(var k in m){ if(!o[c][k] || m[k]>o[c][k]) o[c][k]=m[k]; } } });
   return o;
 }
@@ -3550,6 +4089,7 @@ function statsEnsure(w){
 function statsWrong(w, mode){
   var r=statsEnsure(w);
   r.wrong++;
+  r.rw=(r.rw||0)+1;                      // 진짜 틀린 횟수 (담기로 채운 1과 구별)
   if(mode==='syn'){
     r.ls=Date.now();                    // 동의어 매칭으로 마지막에 푼 시각 (복습 회독 진도용)
     r.cyc=(r.cyc||0)+1;                // 이번 사이클에서 틀린 횟수 (20개 선별용)
@@ -3622,10 +4162,10 @@ function bankAdd(mode, w){
   var rec={}; for(var f in w) rec[f]=w[f];
   rec.at=Date.now();                         // 들어간 시각 (다른 기기에서 뺀 기록과 비교)
   BANK[mode][w.w] = rec;
-  delUnmark(mode==='syn'?'bs':'bq', w.w);
+  delUnmark(delCat(mode==='syn'?'bs':'bq'), w.w);
 }
 function bankDel(mode, w){
-  if(BANK[mode] && BANK[mode][w.w]){ delete BANK[mode][w.w]; delMark(mode==='syn'?'bs':'bq', w.w); }
+  if(BANK[mode] && BANK[mode][w.w]){ delete BANK[mode][w.w]; delMark(delCat(mode==='syn'?'bs':'bq'), w.w); }
 }
 function bankList(mode){
   var o=[];
@@ -3649,15 +4189,20 @@ function bankListUnit(mode){
   return o;
 }
 function bankUI(){
-  try{ misBtnSync(); }catch(e){}
+  if(RS.main && RS.en && $('setup').classList.contains('on')){ recWith(recOfMode(st.mode), _bankUICur); return; }
+  _bankUICur();
+}
+function _bankUICur(){
+  try{ recWith('main', misBtnSync); }catch(e){}
   // 플래시카드·따라쓰기는 자체 오답이 없으므로 동의어 매칭 기준으로 보여준다
   var m = (st.mode==='card'||st.mode==='copy'||st.mode==='browse'||st.mode==='roots'||st.mode==='conf'||st.mode==='write')
           ? 'syn' : st.mode;
+  var _isEn=(m==='en'); if(_isEn) m='syn';
   var box=$('bank');
   var n = bankList(m).length;
   if(!n){ box.classList.remove('on'); $('bankT').textContent=''; return; }
   var nu = bankListUnit(m).length;
-  var name = (m==='syn') ? '동의어 매칭' : '사지선다';
+  var name = _isEn ? '영어 → 뜻' : (m==='syn') ? '동의어 매칭' : '사지선다';
   $('bankT').textContent = '📌 ' + name + ' 오답 — 이 범위 ' + nu + '개 / 전체 ' + n + '개';
   var ub=$('bankGoUnit');
   if(ub){ ub.disabled = (nu===0); ub.textContent = '이 강 오답 ('+nu+')'; }
@@ -3912,7 +4457,8 @@ function calDraw(){
   });
   h+='</div><div class="calrow">';
   for(var b=0;b<first.getDay();b++) h+='<div class="calc empty"></div>';
-  var todayK=dayKey(), mSyn=0, mQ=0, mCopy=0, mDone=0;
+  var todayK=dayKey(), mSyn=0, mQ=0, mCopy=0, mDone=0, mEn=0;
+  var DE=(RS.en && REC==='main') ? (RS.en.DAILY||{}) : {};
   for(var day=1;day<=last.getDate();day++){
     var k=CAL_Y+'-'+('0'+(CAL_M+1)).slice(-2)+'-'+('0'+day).slice(-2);
     var d=DAILY[k];
@@ -3940,7 +4486,9 @@ function calDraw(){
     h+='<div class="'+cls+'" data-day="'+k+'"><span class="cd">'+day+'</span>'
       +(mark?'<span class="cm">'+mark+'</span>':'')
       +(d&&d.syn?'<span class="cn">'+d.syn+'</span>':'')
+      +((DE[k]&&DE[k].syn)?'<span class="cne">영 '+DE[k].syn+'</span>':'')
       +ustr+'</div>';
+    if(DE[k]&&DE[k].syn) mEn+=DE[k].syn;
     if((first.getDay()+day)%7===0 && day<last.getDate()) h+='</div><div class="calrow">';
   }
   h+='</div>';
@@ -3959,10 +4507,89 @@ function calDraw(){
     + (mQ?'  ·  푼 문제 <b>'+mQ+'</b>개':'')
     + (mCopy?'  ·  따라쓰기 <b>'+mCopy+'</b>개':'')
     + '<div class="calall">1회독 진도 <b>'+seenSynCount()+'</b>개</div>'
+    + ((RS.en && REC==='main') ? '<div class="calall calen">영어 → 뜻 · 이번 달 처음 푼 단어 <b>'+mEn+'</b>개 · 1회독 진도 <b>'+recWith('en', seenSynCount)+'</b>개 <span>(칸 안 「영」 숫자)</span></div>' : '')
     + (streak>1?'<div class="streak">🔥 연속 '+streak+'일 달성 중</div>':'');
   $('calcnt').textContent='목표 '+DAILY_GOAL+'개/일';
   var dp=$('dayPanel'); if(dp && !DAY_KEY) dp.style.display='none';
 }
+// ── 홈: 각 기록 밑에 영어 → 뜻 기록을 작은 줄로 ──
+function homeEnUI(){
+  if(!RS.en || !$('setup')) return;
+  var d=recWith('en', function(){
+    var t=DAILY[dayKey()]||{}, all=statsList(), ew=everWrongList();
+    var kW=0, sW=0; all.forEach(function(r){ kW+=(r.kW||0); sW+=(r.sW||0); });
+    var rv=[]; try{ rv=rvAll(); }catch(e){}
+    var u=null;
+    try{ var ks=keys(), seen=0, tot=0, cor=0, att=0;
+      IDX.filter(function(x){ return ks.indexOf(x.key)>=0; }).forEach(function(x){ var us=unitStats(x.key, x.n); seen+=us.seen; tot+=us.total;
+        if(us.acc!==null){ var a2=0, c2=0; } });
+      for(var k in STATS){ var r=STATS[k]; if(!r || !r.seen_syn) continue;
+        var hit=ks.some(function(kk){ var m=kk.match(/^v(\d)d(\d+)$/); return m && r.vol===+m[1] && r.day===+m[2]; });
+        if(hit){ cor+=(r.right||0); att+=(r.right||0)+(r.wrong||0); } }
+      u={seen:seen, tot:tot, acc:att?Math.round(cor/att*100):null};
+    }catch(e){}
+    return {today:t.syn||0, q:t.q||0, dues:dueList().length, weak:weakList(1).length, pins:pinnedList().length,
+            ewr:ew.length, ewrDue:!!(ew.length && ewrDue()), ewrDone:EWR.done||0, ewrNext:ewrNext(),
+            all:all.length, weakAll:all.filter(function(x){ return x.wrong>x.right; }).length, kW:kW, sW:sW,
+            mis:misLeft(), misAll:misList().length, bank:bankList('syn').length, rv:rv, u:u};
+  });
+  var any = d.all || d.today || d.q || d.misAll || d.bank;
+  function put(id, html){ var el=$(id); if(!el) return; el.innerHTML=html||''; el.style.display=html?'':'none'; }
+  var lab='<span class="enlab">영어 → 뜻</span>';
+  // 3일 알림
+  put('enAlert', (d.ewr && d.ewrDue) ? '<div class="ewrat">⏰ 영어 → 뜻 틀린 단어 복습할 때예요 ('+d.ewr+'개)<small>'+(d.ewrDone?('마지막 복습 '+_md(d.ewrDone)+' · 3일이 지났어요'):'한 번이라도 틀린 단어를 3일마다 다시 풀어요')+'</small></div><button data-engo="ewr">바로 시작</button>' : '');
+  // 오늘 · 회독 · 잘못 고른 단어
+  var h='';
+  if(any){
+    h+='<div>'+lab+'오늘 처음 푼 단어 <b>'+d.today+'</b>'+(d.q?' · 푼 문제 '+d.q+'개':'')+'</div>';
+    (d.rv||[]).forEach(function(p){ var pct=p.wt?Math.round(p.wn/p.wt*100):0;
+      h+='<div class="ensub">🔁 '+p.vol+'권 '+p.round+'회독 · '+p.done+' / '+p.total+'강 끝 · '+pct+'%</div>'; });
+    if(d.misAll) h+='<div class="enbtns"><button data-engo="mis">잘못 고른 단어'+(d.mis?' '+d.mis:'')+'</button></div>';
+  }
+  put('enToday', h);
+  // 복습 줄
+  var s2='';
+  if(d.dues||d.weak||d.pins||d.ewr){
+    s2='<div>'+lab+[d.dues?'⏰ 복습할 때 '+d.dues+'개':'', d.weak?'🔥 계속 걸리는 '+d.weak+'개':'', d.pins?'🔖 담아둔 '+d.pins+'개':'', d.ewr?'📕 한 번이라도 틀린 '+d.ewr+'개':''].filter(Boolean).join(' · ')+'</div>'
+      +'<div class="enbtns">'+(d.dues?'<button data-engo="due">오늘 복습 '+d.dues+'</button>':'')
+      +(d.weak?'<button data-engo="weak">약점 단어만 ('+d.weak+')</button>':'')
+      +(d.pins?'<button data-engo="pin">담아둔 것만 ('+d.pins+')</button>':'')
+      +(d.ewr?'<button data-engo="ewr">한 번이라도 틀린 단어 ('+d.ewr+')</button>':'')
+      +((d.pins||d.weak)?'<button class="clr" data-engo="list">목록</button>':'')+'</div>'
+      +(d.ewr?'<div class="ensub">3일마다 복습 · '+(d.ewrDone?('마지막 '+_md(d.ewrDone)+' · 다음 '+_md(d.ewrNext)):'아직 한 번도 안 했어요')+'</div>':'');
+    var sb=$('srsBank'); if(sb){ sb.style.display=''; sb.classList.add('on'); }
+  }
+  try{ var _me=recWith('main', function(){ return !weakList(1).length && !pinnedList().length && !dueList().length && !everWrongList().length; });
+    var _sb=$('srsBank'); if(_sb) _sb.classList.toggle('enonly', !!(_me && s2)); }catch(e){}
+  put('enSrs', s2);
+  // 오답 (동의어 매칭 화면일 때 영어 → 뜻 오답을 작게)
+  put('enBank', (st.mode!=='en' && d.bank) ? lab+'오답 '+d.bank+'개 <button data-engo="bank">풀기</button>' : '');
+  // 틀린 단어 통계
+  var st3='';
+  if(d.all){ st3=lab+'지금까지 틀린 단어 '+d.all+'개 (약점 '+d.weakAll+'개)'+((d.kW||d.sW)?' · 뜻 칸 틀림 '+d.kW+'번 · 동의어 칸 틀림 '+d.sW+'번':'');
+    var sbk=$('statsBank'); if(sbk) sbk.classList.add('on'); }
+  try{ var _ms=recWith('main', function(){ return !statsList().length; }); var _sk=$('statsBank'); if(_sk) _sk.classList.toggle('enonly', !!(_ms && st3)); }catch(e){}
+  put('enStats', st3);
+  // 진도
+  put('enDstat', (d.u && d.u.seen) ? lab+'이 범위 '+d.u.seen+' / '+d.u.tot+'개 풀었어요'+(d.u.acc!==null?' · 정답률 '+d.u.acc+'%':'') : '');
+}
+function enGo(kind){
+  if(kind==='list'){ var box=$('enPinList'); if(!box) return;
+    if(box.style.display!=='none'){ box.style.display='none'; return; }
+    recWith('en', function(){ var pl=$('pinList'), keep=pl.innerHTML, kd=pl.style.display; pinListUI(); box.innerHTML=pl.innerHTML; pl.innerHTML=keep; pl.style.display=kd; });
+    box.style.display=''; return; }
+  if(kind==='mis'){ _misRec='en'; recUse('en'); misOpen(); return; }
+  if(st.mode!=='en'){ var mb=document.querySelector('#mseg button[data-m="en"]'); if(mb) mb.click(); }
+  if(kind==='due') startDue();
+  else if(kind==='weak') startWeak();
+  else if(kind==='pin') startPinned();
+  else if(kind==='ewr') startEver();
+  else if(kind==='bank') startBank(false);
+}
+document.addEventListener('click', function(e){
+  var b=e.target && e.target.closest && e.target.closest('[data-engo]');
+  if(b && $('setup').classList.contains('on')){ e.preventDefault(); enGo(b.getAttribute('data-engo')); }
+});
 function reqUI(){
   var box=$('reqBank'); if(!box) return;
   var n=rootReqCount();
@@ -3983,6 +4610,78 @@ function weakList(minCount){
   o.sort(function(a,b){ return (b.picked||0)-(a.picked||0) || (b.wrong||0)-(a.wrong||0); });
   return o;
 }
+// ── 한 번이라도 틀린 단어 (3일 주기 복습) ──
+//   진짜 틀린 횟수(rw)가 있으면 그것으로, 예전 기록은 틀린 횟수(wrong)로. 담기만 해서 채운 1(pw)은 뺀다.
+var EWRKEY='voca_ewr_v1', EWR={done:0};
+function ewrLoad(){ try{ var r=LS.getItem(EWRKEY); if(r) EWR=JSON.parse(r)||{done:0}; }catch(e){ EWR={done:0}; } }
+function ewrSave(){ lsSet(EWRKEY, JSON.stringify(EWR)); }
+function everWrongList(){
+  var o=[];
+  for(var k in STATS){ var r=STATS[k]; if(!r) continue;
+    if((r.rw||0)>=1 || ((r.wrong||0)>=1 && !r.pw)) o.push(r); }
+  o.sort(function(a,b){ return ((b.rw||b.wrong||0)-(a.rw||a.wrong||0)); });
+  return o;
+}
+function _dayStart(t){ var d=new Date(t); d.setHours(0,0,0,0); return d.getTime(); }
+function ewrNext(){ if(!EWR.done) return 0; return _dayStart(EWR.done)+3*86400000; }   // 마친 날부터 3일 뒤
+function ewrDue(){ var n=ewrNext(); return !n || Date.now()>=n; }
+function _md(t){ var d=new Date(t); return (d.getMonth()+1)+'월 '+d.getDate()+'일('+'일월화수목금토'.charAt(d.getDay())+')'; }
+function ewrUI(){
+  var list=everWrongList(), n=list.length;
+  var g=$('ewrGo'), info=$('ewrInfo'), al=$('ewrAlert');
+  if(g){ g.style.display = n?'':'none'; g.textContent='한 번이라도 틀린 단어 ('+n+')'; }
+  if(info){
+    if(!n){ info.style.display='none'; info.innerHTML=''; }
+    else {
+      var nx=ewrNext();
+      info.innerHTML='<span>🔁 3일마다 복습 · '+(EWR.done ? ('마지막 '+_md(EWR.done)+' · 다음 <b>'+_md(nx)+'</b>') : '<b>아직 한 번도 안 했어요</b>')+'</span>'
+        +'<button id="ewrIcs">📅 3일마다 알림 달력에 넣기</button>'
+        +'<span class="ewrnote">달력 알림은 이 기기 캘린더가 울려요 (앱이 직접 휴대폰 알림을 보내려면 서버가 필요해서 이 방식을 써요)</span>';
+      info.style.display='';
+    }
+  }
+  if(al){
+    if(n && ewrDue()){
+      al.innerHTML='<div class="ewrat">⏰ 틀린 단어 복습할 때예요 ('+n+'개)<small>'+(EWR.done?('마지막 복습 '+_md(EWR.done)+' · 3일이 지났어요'):'한 번이라도 틀린 단어를 3일마다 다시 풀어요')+'</small></div><button id="ewrAlertGo">바로 시작</button>';
+      al.style.display='';
+    } else { al.style.display='none'; al.innerHTML=''; }
+  }
+  return n;
+}
+function startEver(){
+  recUse(recOfMode(st.mode));
+  var list=everWrongList();
+  if(!list.length){ msg('아직 틀린 단어가 없어요','err'); return; }
+  if(st.mode!=='syn' && st.mode!=='en' && st.mode!=='fr'){ var mb=document.querySelector('#mseg button[data-m="syn"]'); if(mb) mb.click(); }
+  FINRUN=false;
+  msg('불러오는 중…','load');
+  buildFullPool().then(function(){
+    if(POOL.all.length<4) throw new Error('선지를 만들 단어가 부족합니다');
+    SRC='ewr';
+    hide();
+    launch(shuf(list));
+  }).catch(function(e){ msg('❌ '+e.message,'err'); });
+}
+// 3일마다 반복되는 달력 일정(.ics) — 아이패드 캘린더가 알림을 울린다
+function ewrIcs(){
+  var start=ewrNext(); if(!start || start<Date.now()) start=_dayStart(Date.now())+86400000;   // 다음 복습일(지났으면 내일)
+  var d=new Date(start); d.setHours(9,0,0,0);
+  function p2(x){ return (x<10?'0':'')+x; }
+  var dt=d.getFullYear()+p2(d.getMonth()+1)+p2(d.getDate())+'T090000';
+  var now=new Date(), st0=now.getUTCFullYear()+p2(now.getUTCMonth()+1)+p2(now.getUTCDate())+'T'+p2(now.getUTCHours())+p2(now.getUTCMinutes())+'00Z';
+  var ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//yoonghwang-voca//ewr//KO','CALSCALE:GREGORIAN','BEGIN:VEVENT',
+    'UID:ewr-'+Date.now()+'@yoonghwang-voca','DTSTAMP:'+st0,'DTSTART:'+dt,'DURATION:PT30M',
+    'RRULE:FREQ=DAILY;INTERVAL=3','SUMMARY:윤황보카 틀린 단어 복습',
+    'DESCRIPTION:윤황보카 앱 홈의 「한 번이라도 틀린 단어」를 풀어요 (3일마다)',
+    'BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:윤황보카 틀린 단어 복습','TRIGGER:PT0M','END:VALARM',
+    'END:VEVENT','END:VCALENDAR'].join('\r\n')+'\r\n';
+  try{
+    var blob=new Blob([ics], {type:'text/calendar;charset=utf-8'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='윤황보카_틀린단어_3일복습.ics';
+    document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+  }catch(e){ msg('❌ 달력 파일을 만들지 못했어요','err'); }
+  return ics;
+}
 // 내가 직접 담아둔 단어들
 function pinnedList(){
   var o=[];
@@ -3994,7 +4693,8 @@ function srsUI(){
   var pins=pinnedList();
   var weak=weakList(1);
   var dues=dueList();
-  if(!weak.length && !pins.length && !dues.length){ box.classList.remove('on'); box.style.display='none'; return; }
+  var ewrN=ewrUI();
+  if(!weak.length && !pins.length && !dues.length && !ewrN){ box.classList.remove('on'); box.style.display='none'; return; }
   var t='';
   if(dues.length) t+='⏰ 지금 복습할 때가 된 단어 '+dues.length+'개';
   if(weak.length){
@@ -4003,6 +4703,7 @@ function srsUI(){
     if(w2) t+=' (2회 이상 '+w2+'개)';
   }
   if(pins.length) t+=(t?'  ·  ':'')+'🔖 담아둔 단어 '+pins.length+'개';
+  if(ewrN) t+=(t?'  ·  ':'')+'📕 한 번이라도 틀린 단어 '+ewrN+'개';
   $('srsT').textContent=t;
   var pg=$('pinGo'), pv=$('pinView'), wg=$('weakGo');
   if(pg){ pg.style.display = pins.length?'':'none'; pg.textContent='담아둔 것만 ('+pins.length+')'; }
@@ -4027,9 +4728,9 @@ function unitNameOf(key){
 }
 var _resAll=false;
 function resumeModeName(m){
-  return ({syn:'동의어 매칭', quiz:'사지선다', ko:'뜻 → 영어', write:'동의어 쓰기', copy:'따라쓰기', rev:'역방향 확인'})[m] || '퀴즈';
+  return ({syn:'동의어 매칭', quiz:'사지선다', ko:'뜻 → 영어', en:'영어 → 뜻', fr:'최종 복습', write:'동의어 쓰기', copy:'따라쓰기', rev:'역방향 확인'})[m] || '퀴즈';
 }
-function resumeLabel(d){ if(d.fin && d.src!=='retry') return '최종 정리'; return resumeModeName(d.src==='rev'?'rev':d.mode)+(d.src==='retry'?(d.fin?' · 최종 정리 오답':' · 오답'):d.src==='bank'?' · 담긴 단어':d.src==='due'?' · 오늘 복습':d.src==='mis'?' · 잘못 고른 단어':''); }
+function resumeLabel(d){ if(d.fin && d.src!=='retry') return '최종 정리'; return resumeModeName(d.src==='rev'?'rev':d.mode)+(d.src==='retry'?(d.fin?' · 최종 정리 오답':' · 오답'):d.src==='bank'?' · 담긴 단어':d.src==='due'?' · 오늘 복습':d.src==='ewr'?' · 틀린 단어':d.src==='mis'?' · 잘못 고른 단어':''); }
 function resumeUI(){
   var box=$('resumeBank');
   var list=sessionsEntries();
@@ -4103,7 +4804,7 @@ setInterval(function(){
   }catch(e){}
 },1500);
 
-var APP_VER = '2026.12.29';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
+var APP_VER = '2027.01.14';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
 var VER = APP_VER;  // 데이터 URL 캐시 키. 배포 때만 바뀌므로 브라우저 캐시가 제대로 재사용됨
 function loadJ(p){
   // 데이터 파일은 URL에 버전(v=)이 붙어 캐시가 자동 갱신되므로 브라우저 캐시를 허용한다.
@@ -4284,6 +4985,7 @@ function startBoot(){
     __lastStep='6.강목록완료';
     try{ bankLoad(); }catch(e){ __showErr('bankLoad: '+e.message); }
     try{ statsLoad(); }catch(e){ __showErr('statsLoad: '+e.message); }
+    try{ ewrLoad(); }catch(e){}
     try{ rootReqLoad(); }catch(e){}
     try{ dailyLoad(); }catch(e){}
     try{ foldLoad(); }catch(e){}
@@ -4296,6 +4998,7 @@ function startBoot(){
     try{ delsLoad(); }catch(e){}
     try{ wbLoad(); }catch(e){}
     try{ misLoad(); }catch(e){}
+    try{ recInit(); }catch(e){ __showErr('recInit: '+e.message); }
     try{ wposLoad(); }catch(e){}
     try{ cmpLoad(); }catch(e){}
     try{ ghLoad(); }catch(e){}
@@ -4400,7 +5103,8 @@ function stat(){
   var isCard = st.mode==='card';
   $('fset').style.display = isCard ? '' : 'none';
   $('fnum').style.display = isCard ? 'none' : '';
-  try{ $('ford').style.display = (['syn','quiz','write','copy'].indexOf(st.mode)>=0) ? '' : 'none'; ordStat(); }catch(e){}
+  try{ $('ford').style.display = (['syn','quiz','write','copy','en'].indexOf(st.mode)>=0 || (st.mode==='fr' && FRUNIT==='unit')) ? '' : 'none'; ordStat(); }catch(e){}
+  try{ frProgUI(); }catch(e){}
   try{ swapUI(); }catch(e){}
   if(isCard){
     var base = st.target==='phrase' ? (n-w) : (st.target==='both' ? n : w);
@@ -4490,6 +5194,7 @@ function buildFullPool(){
 
 function start(){
   __lastAction='시작클릭(mode='+st.mode+',target='+st.target+',n='+st.n+',cum='+st.cum+')';
+  recUse(recOfMode(st.mode));
   FINRUN = !!(FINMODE && st.mode==='syn');
   SRC = FINRUN ? 'fin' : 'normal';
   if(!IDX){ msg('❌ 데이터가 아직 준비되지 않았습니다. 새로고침 해주세요.','err'); return; }
@@ -4616,9 +5321,10 @@ function start(){
     if(target.length<1) throw new Error('항목이 없습니다');
     var n=st.n===0?target.length:Math.min(st.n,target.length);
     var picked=pickOrder(target, n);
-    if(st.mode==='syn') cycleReset(picked);   // 새 사이클 시작
+    if(st.mode==='syn' || st.mode==='en' || st.mode==='fr') cycleReset(picked);   // 새 사이클 시작
     // 오답 선지 풀을 전체 단어로 확장 (매번 다양한 보기 + 보기 부족 방지)
-    Promise.all([buildFullPool(), FINRUN ? finLoad() : null]).then(function(){
+    Promise.all([buildFullPool(), (FINRUN || st.mode==='en' || st.mode==='fr') ? finLoad() : null, st.mode==='fr' ? frLoad() : null]).then(function(){
+      if(st.mode==='fr' && FRUNIT==='box'){ picked=frBoxPick(target, n); cycleReset(picked); }   // 뜻 상자 단위: 같은 뜻 단어끼리 묶어서
       launch(picked);
     }).catch(function(){ launch(picked); });
   }).catch(function(e){
@@ -5465,9 +6171,72 @@ function synSense(w, syn){
 
 // ========== 따라쓰기 (가볍게, 정답 보고 따라 입력) ==========
 var CQ=[], cqi=0, cGot=[], cWaiting=false;  // cWaiting: 다 채우고 Enter 한 번 더 기다리는 중
+var COPYDONE=false;   // 따라쓰기를 끝까지 마쳤으면 이어하기 기록을 다시 만들지 않는다
+// ── 따라쓰기 이어하기 ──
+//   퀴즈의 '풀던 문제' 목록(SESSIONS)에 같이 보관한다. 단어는 번호만, 위치(몇 번째)와 그 단어에서 이미 쓴 칸만 저장.
+//   Q: [{i:단어 번호}] · ans: 끝낸 단어 1 / 아직 null · qi: 지금 단어 · got: [[칸 번호, 맞음1/지나감0]] · wt: 다 채우고 Enter 대기
+function copySave(){
+  try{
+    if(COPYDONE || !CQ || !CQ.length || !$('copyscr').classList.contains('on')) return;
+    var box=$('canswers');
+    var data={ mode:'copy', key:st.key, cum:st.cum, src:SRC, qi:cqi,
+      Q:CQ.map(function(w){ return {i:w.id}; }),
+      ans:CQ.map(function(w,i){ return i<cqi ? 1 : null; }),
+      got:(cGot||[]).map(function(i){ var el=box && box.querySelector('[data-i="'+i+'"]'); return [i, (el && el.classList.contains('skip')) ? 0 : 1]; }),
+      wt:cWaiting?1:0, ts:Date.now() };
+    var k=sesKeyOf(data);
+    SESSIONS[k]=data;
+    sessionsSave();
+    curSet(k);                           // 페이지가 다시 열려도 따라쓰기로 돌아오게
+    if(typeof syncSoon==='function') syncSoon();
+  }catch(e){}
+}
+function copyResume(d, sesKey){
+  var tok=++_resTok;
+  st.mode='copy'; st.key=d.key; st.cum=d.cum; SRC=d.src||'normal';
+  Promise.all(keys().map(getDay)).then(function(){
+    if(tok!==_resTok) return;
+    var byId={};
+    for(var ck in CACHE){ (CACHE[ck]||[]).forEach(function(x){ if(x && x.id!==undefined) byId[x.id]=x; }); }
+    var list=[], at=0;
+    (d.Q||[]).forEach(function(q, i){ var w=q && byId[q.i]; if(!w) return; if(i<(d.qi||0)) at++; list.push(w); });
+    if(!list.length){ msg('❌ 따라쓰기 기록의 단어를 찾지 못했어요','err'); return; }
+    hide();
+    CQ=list; cqi=Math.min(at, list.length-1); COPYDONE=false;
+    show('copyscr');
+    drawCopy();
+    // 그 단어에서 이미 쓴 칸 되살리기
+    var w=CQ[cqi], box=$('canswers');
+    if(at===(d.qi||0) && d.got && d.got.length && w && w._call){
+      d.got.forEach(function(g){
+        var i=g[0], ok=!!g[1]; if(i>=w._call.length || cGot.indexOf(i)>=0) return;
+        cGot.push(i);
+        var el=box && box.querySelector('[data-i="'+i+'"]');
+        if(el) el.className='cans '+(ok?'done':'skip')+(w._cmode==='sentence'&&i===1?' sent':'');
+        if(w._cmode==='blank' && i===0){ var slot=$('cblank'); if(slot){ slot.textContent=w._call[0]; slot.className='blankslot filled'+(ok?'':' miss'); } }
+      });
+      if(box){
+        box.querySelectorAll('.cans').forEach(function(el){ el.classList.remove('cur'); });
+        var first=-1; for(var j=0;j<w._call.length;j++){ if(cGot.indexOf(j)<0){ first=j; break; } }
+        var fe=first>=0 && box.querySelector('[data-i="'+first+'"]'); if(fe) fe.classList.add('cur');
+      }
+      renderFocus(w);
+      if(cGot.length>=w._call.length){
+        cWaiting=true;
+        $('cfb').textContent='↩ 이어서 — Enter로 다음'; $('cfb').style.color='#4ecca3';
+      } else { $('cfb').textContent='↩ 쓰던 자리부터 이어서'; $('cfb').style.color='#4ecca3'; }
+    }
+    curSet(sesKey || sesKeyOf(d));
+    copySave();
+    setTimeout(function(){
+      fetchAllItems().then(function(){ _rootByWord=null; renderFocus(CQ[cqi]); }).catch(function(){});
+    }, 50);
+  }).catch(function(){ if(tok!==_resTok) return; msg('❌ 따라쓰기 기록을 불러오지 못했어요','err'); });
+  return true;
+}
 function startCopy(list){
   __lastAction='따라쓰기시작('+list.length+'개)';
-  CQ=list; cqi=0;
+  CQ=list; cqi=0; COPYDONE=false;
   show('copyscr');
   try{ drawCopy(); }
   catch(e){ __showErr('따라쓰기 그리기 실패: '+e.message); }
@@ -5792,6 +6561,7 @@ function drawCopy(){
   $('cpcnt').textContent=(cqi+1)+' / '+CQ.length;
   $('prog') && ($('prog').firstElementChild.style.width=((cqi+1)/CQ.length*100)+'%');
   setTimeout(function(){ $('cinput').focus(); },50);
+  copySave();        // 이어하기 기록: 지금 단어 위치
 }
 function copyNext(force){
   var w=CQ[cqi];
@@ -5810,7 +6580,8 @@ function copyNext(force){
   if(cqi<CQ.length-1){ cqi++; drawCopy(); }
   else { finishCopy(); }
 }
-function copySubmit(){
+function copySubmit(){ _copySubmit(); copySave(); }   // 칸을 쓸 때마다 이어하기 기록 갱신
+function _copySubmit(){
   var w=CQ[cqi];
   if(cWaiting){          // 다 채운 뒤 Enter 한 번 더 → 다음 항목으로
     cWaiting=false;
@@ -5909,6 +6680,8 @@ function copyPrev(){
 }
 function finishCopy(){
   // 따라쓰기는 채점/기록 없음 (가벼운 모드). 간단히 완료 후 홈으로
+  COPYDONE=true;
+  try{ sessionClear(); }catch(e){}   // 끝까지 마쳤으면 이어하기 목록에서 뺀다
   show('resscr');
   var rs=$('rs'); if(rs) rs.textContent='📝 '+CQ.length+'개 단어를 따라 썼어요';
   var rp=$('rp'); if(rp) rp.innerHTML='';
@@ -5927,7 +6700,8 @@ function normSyn(s){ return String(s).toLowerCase().replace(/[^a-z]/g,''); }
 function swapUI(){
   var f=$('fswap'); if(!f) return;
   var m=st.mode;
-  if(m!=='syn' && m!=='write'){ f.style.display='none'; return; }
+  if(m!=='syn' && m!=='write' && m!=='en' && m!=='fr'){ f.style.display='none'; return; }
+  if(m==='fr' && FRUNIT!=='unit'){ f.style.display='none'; return; }   // 최종 복습: 문제 자리 섞기는 강 단위에서만
   f.style.display='';
   if(m==='syn' && FINMODE){ f.style.display='none'; return; }   // 최종 정리는 표제어로만
   var v=(typeof SWAP[m]==='number') ? SWAP[m] : (SWAP[m]?2:0);
@@ -6077,7 +6851,19 @@ function launch(list, opts){
     hide(); show('qscr'); draw(); sessionSave();
     return;
   }
-  if(st.mode==='syn'){
+  recUse(recOfMode(st.mode));            // 영어 → 뜻은 따로 둔 기록에
+  if(st.mode==='en' && !FINDATA){ try{ finLoad(); }catch(e){} }
+  if(st.mode==='fr'){
+    if(!FRDATA){ frLoad().then(function(d){ if(d) launch(list, opts); else { msg('❌ 최종 복습 자료를 불러오지 못했어요','err'); show('setup'); } }); return; }
+    var _fl=(FRUNIT==='box') ? list : frOrder(list), _fo=(FRUNIT==='unit') ? {swap:!!SWAP.fr, half:SWAP.fr===1} : {};
+    Q=[];
+    _fl.forEach(function(w, i){ var q=buildFr(w, _fo); if(!q) return;
+      if(FRUNIT==='box' && FRGRP[frKey(w)]) q.grp=FRGRP[frKey(w)];          // 뜻 상자 이름
+      else if(i>0 && frLinked(_fl[i-1], w)) q.from=_fl[i-1].w;          // 앞 단어에서 이어짐
+      Q.push(q); });
+  } else if(st.mode==='en'){
+    Q = list.map(function(w){ return buildEn(w, {swap:!!SWAP.en, half:SWAP.en===1}); }).filter(Boolean);
+  } else if(st.mode==='syn'){
     // 동의어 있으면 동의어 매칭, 없으면 뜻 맞추기로 섞어서 출제
     Q = list.map(function(w){
       var hasSyn = (w.p && w.p.some(function(pr){return pr.s&&pr.s.length;})) || (w.s&&w.s.length);
@@ -6114,7 +6900,7 @@ function sesRepair(d){
   // 문제 종류와 답 모양이 안 맞으면 (여러 개 고르기 문제에 하나 고른 답 등) 그 문제는 다시 풀게
   for(var i=0;i<d.Q.length;i++){
     var a=d.ans[i], q=d.Q[i]; if(!a || !q) continue;
-    var multi=(q.kind==='syn'||q.kind==='ko');
+    var multi=(q.kind==='syn'||q.kind==='ko'||q.kind==='en');
     if(multi !== Array.isArray(a.sel)) d.ans[i]=null;
   }
   if(typeof d.qi!=='number' || d.qi<0 || d.qi>=d.Q.length) d.qi=0;
@@ -6187,7 +6973,7 @@ function sessionSave(){
         wid: q.w.id, wkey: q.w.w,
         opts: q.opts.map(function(o){
           if(typeof o==='string') return o;
-          var oo=_slim({t:o.t, ok:o.ok, sense:o.sense, def:o.def, srcw:o.srcw, fin:o.fin, fn:o.fn, mis:o.mis});
+          var oo=_slim({t:o.t, ok:o.ok, sense:o.sense, def:o.def, srcw:o.srcw, fin:o.fin, fn:o.fn, mis:o.mis, sec:o.sec, fr:o.fr, box:o.box});
           if(o.item) oo.item=o.item;               // 뜻 → 영어: 정답 단어가 나온 자리
           return oo;
         }),
@@ -6197,6 +6983,7 @@ function sessionSave(){
         sense:q.sense, prompt:q.prompt,
         ans:q.ans, need:q.need, isPhrase:q.isPhrase,
         swap:q.swap, swo:q.swo, isFin:q.isFin,
+        nk:q.nk, needK:q.needK, needS:q.needS, needA:q.needA, fr:q.fr, nd:q.nd, from:q.from, grp:q.grp,
         kind: q.kind
       });
     });
@@ -6241,9 +7028,11 @@ function sessionResume(sesKey){
   // 저장된 기록을 통째로 복사해서 쓴다 (푸는 동안 저장 기록이 함께 바뀌지 않게)
   var d; try{ d=sesRepair(JSON.parse(JSON.stringify(d0))); }catch(e){ return false; }
   if(!sesOk(d)) return false;
+  if(d.mode==='copy') return copyResume(d, sesKey);
   var tok=++_resTok;                     // 이어서 풀기를 두 번 눌러도 마지막 것 하나만
   MOPUP=false;
   st.mode=d.mode; st.key=d.key; st.cum=d.cum; SRC=d.src||'normal'; FINRUN=!!d.fin;
+  recUse(recOfMode(d.mode)); if(d.mode==='fr'){ try{ frLoad(); finLoad(); }catch(e){} }
   if(FINRUN) finLoad();
   function build(full){
     return d.Q.map(function(qd){
@@ -6308,6 +7097,14 @@ function _qdRestore(q, qd){
   if(qd.swap) q.swap=qd.swap;
   if(qd.swo) q.swo=qd.swo;
   if(qd.isFin) q.isFin=true;
+  if(qd.nk!==undefined && qd.nk!==null) q.nk=qd.nk;
+  if(qd.needK!==undefined && qd.needK!==null) q.needK=qd.needK;
+  if(qd.needS!==undefined && qd.needS!==null) q.needS=qd.needS;
+  if(qd.needA!==undefined && qd.needA!==null) q.needA=qd.needA;
+  if(qd.fr) q.fr=qd.fr;
+  if(qd.nd) q.nd=qd.nd;
+  if(qd.from) q.from=qd.from;
+  if(qd.grp) q.grp=qd.grp;
 }
 // 뜻 → 영어 이어하기: 다시 내기·오답 거르기에 쓰는 뜻 색인을 다시 만든다
 function _koResumeIdx(){
@@ -6358,9 +7155,11 @@ function retryWrong(){
 
 // 누적 오답 풀기
 function startBank(unitOnly){
+  recUse(recOfMode(st.mode));
   FINRUN=false;
   var m=(st.mode==='card'||st.mode==='copy'||st.mode==='browse'||st.mode==='roots'||st.mode==='conf'||st.mode==='write')
         ? 'syn' : st.mode;
+  if(m==='en' || m==='fr') m='syn';
   var list = unitOnly ? bankListUnit(m) : bankList(m);
   if(list.length<1){ msg(unitOnly?'이 범위에는 오답이 없습니다':'누적 오답이 없습니다','err'); return; }
 
@@ -6383,6 +7182,7 @@ function startBank(unitOnly){
 
 // ---- 약점 단어(20개 목록에 든 것)만 출제 ----
 function startWeak(){
+  recUse(recOfMode(st.mode));
   FINRUN=false;
   var list=weakList(1);
   if(!list.length){ msg('아직 약점 단어가 없습니다','err'); return; }
@@ -6402,6 +7202,7 @@ function startWeak(){
 
 // ---- 내가 담아둔 단어만 출제 ----
 function startPinned(){
+  recUse(recOfMode(st.mode));
   FINRUN=false;
   var list=pinnedList();
   if(!list.length){ msg('담아둔 단어가 없습니다','err'); return; }
@@ -6427,9 +7228,10 @@ function dueList(){
   return o;
 }
 function startDue(){
+  recUse(recOfMode(st.mode));
   var list=dueList();
   if(!list.length){ msg('지금 복습할 단어가 없어요','err'); return; }
-  if(st.mode!=='syn'){ var mb=document.querySelector('#mseg button[data-m="syn"]'); if(mb) mb.click(); }
+  if(st.mode!=='syn' && st.mode!=='en' && st.mode!=='fr'){ var mb=document.querySelector('#mseg button[data-m="syn"]'); if(mb) mb.click(); }
   FINRUN=false;
   $('dueGo').disabled=true;
   msg('불러오는 중…','load');
@@ -6572,7 +7374,7 @@ function ownSyns(w){
 // 이번 문제 선지에 나오지 않은 동의어를 답 공개 화면 맨 위에 모아 보여 준다.
 // (동의어가 많은 단어는 한 문제에 다 못 싣는다. 스크롤 안 해도 눈에 들어오게 맨 위)
 function missedSynHTML(q){
-  if(!q || q.kind!=='syn' || !q.w) return '';
+  if(!q || (q.kind!=='syn' && q.kind!=='en') || !q.w) return '';
   var shown={};
   (q.opts||[]).forEach(function(o){ shown[String(o.t).toLowerCase().trim()]=1; });
   if(q.swap) shown[String(q.swap.t).toLowerCase().trim()]=1;   // 문제 자리에 나온 동의어도 '나온 것'
@@ -6720,12 +7522,16 @@ function koShownSave(q){
 }
 function requeueKo(q){
   if(!q || q.kind!=='ko') return;
-  if(SRC==='retry') return;
+  // 2027.01.10부터: 틀리면 동의어 매칭처럼 이번 회차 안에서 맞힐 때까지 다시 낸다 (「틀린 것만 다시」에서도)
+  var a=ans[qi];
+  var wrong=!!(a && !a.ok);
   var st=koRec(q.sense);
-  if(!q.total || (st.shown||0)>=q.total) return;
-  var at=Math.min(Q.length, qi+6+Math.floor(Math.random()*5));
+  var more=!!(SRC!=='retry' && q.total && (st.shown||0)<q.total);   // 아직 못 본 영어 단어가 남았다 (예전 그대로)
+  if(!wrong && !more) return;
+  var at=wrong ? requeueAt() : Math.min(Q.length, qi+6+Math.floor(Math.random()*5));
   var nq=buildKo(q.sense, q.w);
   if(!nq) return;
+  if(wrong){ nq.again=true; nq.why='w'; }
   Q.splice(at,0,nq); ans.splice(at,0,null);
   try{ $('cnt').textContent=(qi+1)+' / '+Q.length; }catch(e){}
 }
@@ -6733,7 +7539,7 @@ function requeueKo(q){
 // 켜면 같은 뜻 줄(예: 「맡기다」 relegate · commit · consign)에서 한 단어를 골라 문제 자리에 놓고,
 // 그 줄의 나머지 단어(표제어 포함)를 정답으로 낸다. 표제어가 뽑히면 평소 문제 그대로.
 // 모드마다 따로 기억한다: syn(동의어 매칭) · write(동의어 쓰기) · rev(역방향 확인)
-var SWAP={syn:false, write:false, rev:false};
+var SWAP={syn:false, write:false, rev:false, en:0, fr:0};
 // syn·write: 0 표제어만 · 1 반반 · 2 동의어 위주 (예전 '동의어도 랜덤으로' = 2) / rev: 켬·끔
 try{ var _sw=JSON.parse(LS.getItem('voca_swap')||'null'); if(_sw) for(var _k in SWAP){ var _v=_sw[_k]; SWAP[_k] = (_k==='rev') ? !!_v : (_v===true ? 2 : (typeof _v==='number' ? _v : 0)); } }catch(e){}
 function swapSave(){ lsSet('voca_swap', JSON.stringify(SWAP)); }
@@ -6885,6 +7691,316 @@ function buildSyn(w, opt){
           rightList:right.slice(), swo:(_swo.swap?_swo:undefined)};   // 이번에 정답으로 낸 목록 — 다음에 만날 때 그대로 다시 싣는다
 }
 
+// ═══════════ 영어 → 뜻 (2027.01.07) ═══════════
+// 표제어(또는 문제 자리에 온 동의어)를 보고 「뜻」 칸과 「동의어」 칸을 함께 푼다.
+//   고르기: 보기를 누른다 · 보며 쓰기: 보기를 보면서 입력한다 · 직접 쓰기: 보기 없이 쓰고, 교재와 글자가 다른 것은 직접 맞음/틀림을 고른다
+//   칸마다 2개 이상 맞히면 그 칸 정답(1개뿐이면 1개) · 오답을 하나라도 고르면 그 칸 틀림 · 한 칸이라도 틀리면 그 문제는 틀림
+//   기록은 동의어 매칭과 같은 모양으로 따로 쌓는다 (REC='en')
+var EN_STYLE='pick', KO_STYLE='pick';
+try{ var _es0=LS.getItem('voca_enstyle'); if(_es0==='pick'||_es0==='see'||_es0==='write') EN_STYLE=_es0;
+     var _ks0=LS.getItem('voca_kostyle'); if(_ks0==='pick'||_ks0==='see'||_ks0==='write') KO_STYLE=_ks0; }catch(e){}
+function styleOf(q){ return !q ? 'pick' : q.kind==='en' ? EN_STYLE : q.kind==='ko' ? KO_STYLE : (SYN_TYPING ? 'see' : 'pick'); }
+function typingNow(){ var q=Q&&Q[qi]; if(!q) return SYN_TYPING; if(q.kind==='en'||q.kind==='ko') return styleOf(q)!=='pick'; return SYN_TYPING; }
+function enChunks(m){ return String(m||'').split('/').map(function(x){ return x.trim(); }).filter(Boolean); }
+// 뜻 글자 맞추기: 띄어쓰기·문장부호·괄호 표시([to], (연극))는 빼고 비교한다
+function _koN1(s){ return String(s||'').replace(/\[[^\]]*\]/g,'').replace(/\([^)]*\)/g,'').replace(/[\s~∼·,.;:'"!?\-…]/g,'').toLowerCase(); }
+function _koN2(s){ return String(s||'').replace(/[\s~∼·,.;:'"!?\-…\[\]()]/g,'').toLowerCase(); }
+function enKoEq(a, b){ var a1=_koN1(a), a2=_koN2(a); return !!a2 && (a1===_koN1(b) || a2===_koN2(b) || (a1 && a1===_koN2(b))); }
+function _hasEn(s){ return /[A-Za-z]/.test(String(s||'')); }
+// 뜻 칸 오답: 다른 단어의 교재 뜻 한 조각. 이 단어의 동의어·같은 뜻 단어의 뜻, 정답과 겹치는 글자는 쓰지 않는다
+function enKoWrong(w, right, n, sq){
+  _ensurePool();
+  var src=(w.type==='phrase') ? POOL.phrases : POOL.words;
+  if(!src || src.length<5) src=POOL.all;
+  var near={}; near[String(w.w).toLowerCase().trim()]=1;
+  try{ ownSyns(w).forEach(function(t){ near[String(t).toLowerCase().trim()]=1; }); }catch(e){}
+  (w.s||[]).forEach(function(t){ near[String(t).toLowerCase().trim()]=1; });
+  (w.p||[]).forEach(function(pr){ (pr.s||[]).forEach(function(t){ near[String(t).toLowerCase().trim()]=1; }); });
+  (sq && sq.opts || []).forEach(function(o){ if(o.ok) near[String(o.t).toLowerCase().trim()]=1; });
+  try{ var _ri=relIndex(); ((_ri && _ri[String(w.w).toLowerCase().trim()])||[]).forEach(function(t){ near[String(t).toLowerCase().trim()]=1; }); }catch(e){}
+  var rn=right.map(_koN1).filter(Boolean);
+  var _hp=(WPOS && w.id!==undefined && WPOS[String(w.id)]) || '';
+  function posOK(c){ if(!_hp) return true; var cp=(WPOS && WPOS[String(c.id)])||''; if(!cp) return false;
+    for(var z=0; z<cp.length; z++) if(_hp.indexOf(cp.charAt(z))>=0) return true; return false; }
+  var out=[], used={}, cand=shuf(src);
+  for(var pass=0; pass<2 && out.length<n; pass++){
+    for(var i=0; i<cand.length && out.length<n; i++){
+      var c=cand[i]; if(!c || !c.w || !c.m) continue;
+      var ck=String(c.w).toLowerCase().trim();
+      if(near[ck] || used['w:'+ck]) continue;
+      if(pass===0 && (!posOK(c) || (c.src && c.src!=='Y'))) continue;     // 먼저 같은 품사 · 윤황보카 뜻에서
+      var ch=String(c.m).split(/[\/;]/).map(function(x){ return x.trim(); }).filter(function(t){ return !_hasEn(t) && _koN1(t).length>=2; });
+      if(!ch.length) continue;
+      var t=ch[Math.floor(Math.random()*ch.length)], tn=_koN1(t);
+      if(!tn || used[tn]) continue;
+      if(rn.some(function(r){ return r===tn || r.indexOf(tn)>=0 || tn.indexOf(r)>=0; })) continue;
+      used[tn]=1; used['w:'+ck]=1;
+      out.push({t:t, ok:false, sec:'k', srcw:c.w});
+    }
+  }
+  return out;
+}
+function buildEn(w, opt){
+  opt=opt||{};
+  var hasSyn=(w.p && w.p.some(function(pr){ return pr.s && pr.s.length; })) || (w.s && w.s.length);
+  var sq=null;
+  if(hasSyn){
+    try{ sq=buildSyn(w, {swap:!!opt.swap, half:!!opt.half}); }catch(e){ sq=null; }
+    if(sq && sq.kind==='syn' && !sq.swap){ try{ if(FINDATA) finAugment(sq, w); }catch(e){} }
+    if(sq && sq.kind!=='syn') sq=null;
+  }
+  var right = (sq && sq.swap) ? enChunks(sq.swap.d) : enChunks(w.m);
+  if(!right.length) right=[String(w.m||'').trim()];
+  var seenR={}; right=right.filter(function(t){ var k=_koN2(t); if(!k || seenR[k]) return false; seenR[k]=1; return true; });
+  var kw=enKoWrong(w, right, 3+Math.floor(Math.random()*3), sq);
+  var ko=shuf(right.map(function(t){ return {t:t, ok:true, sec:'k'}; }).concat(kw));
+  var sy=((sq && sq.opts) || []).map(function(o){ var c={}; for(var f in o) c[f]=o[f]; c.sec='s'; return c; });
+  var nS=sy.filter(function(o){ return o.ok; }).length;
+  var q={kind:'en', w:w, opts:ko.concat(sy), nk:ko.length,
+         needK:Math.min(2, right.length), needS:(nS ? Math.min(2, nS) : 0), prompt:(sq && sq.swap) ? sq.swap.t : w.w};
+  if(sq){ q.swap=sq.swap; q.swo=sq.swo || (opt.swap ? {swap:true, half:!!opt.half} : undefined); q.shown=sq.shown; q.total=sq.total; q.rightList=sq.rightList; if(sq.misT) q.misT=sq.misT; }
+  return q;
+}
+// 문제 화면: 뜻 칸 + 동의어 칸 (번호는 이어서 붙인다 — 숫자키로 고르기)
+function drawEnOpts(q, box){
+  var k=q.opts.filter(function(o){ return o.sec==='k'; }), s=q.opts.filter(function(o){ return o.sec==='s'; });
+  var nK=k.filter(function(o){ return o.ok; }).length, nS=s.filter(function(o){ return o.ok; }).length;
+  function sec(title, cls, list, start){
+    var d=document.createElement('div'); d.className='ensec '+cls;
+    d.innerHTML='<div class="ensh">'+title+'</div><div class="engrid"></div>';
+    var g=d.querySelector('.engrid');
+    list.forEach(function(o, j){
+      var i=start+j;
+      var b=document.createElement('button');
+      b.className='c '+((o.sec||'k')==='k' ? 'enko' : 'synopt ensy');
+      b.innerHTML='<span class="onum">'+(i+1)+'</span><span class="otxt"></span>';
+      b.querySelector('.otxt').textContent=fixOCR(o.t);
+      b.onclick=(function(x, sc){ return function(){ if(styleOf(Q[qi])!=='write' || sc==='a' || sc==='n') toggle(x); }; })(i, o.sec);
+      g.appendChild(b);
+    });
+    box.appendChild(d);
+  }
+  sec('뜻 <span class="enneed">('+nK+'개 중 '+q.needK+'개 이상)</span>', 'enk', k, 0);
+  var _sn=q.fr ? '같은 뜻' : '동의어';
+  if(s.length) sec(_sn+' <span class="enneed">('+nS+'개 중 '+q.needS+'개 이상)</span>', 'ens', s, k.length);
+  else if(!q.fr){ var nd=document.createElement('div'); nd.className='ensh ennone'; nd.textContent='동의어 — 교재에 실린 동의어가 없는 단어예요 (뜻 칸만)'; box.appendChild(nd); }
+  if(q.fr){                                   // 최종 복습: 반대말 · 뉘앙스 칸 (직접 쓰기에서도 골라서 푼다)
+    var A=q.opts.filter(function(o){ return o.sec==='a'; }), N=q.opts.filter(function(o){ return o.sec==='n'; });
+    var nA=A.filter(function(o){ return o.ok; }).length;
+    if(A.length) sec('반대말 <span class="enneed">(교재 단어 · '+nA+'개 중 '+q.needA+'개 이상)</span>', 'ena enkeep', A, k.length+s.length);
+    if(N.length){ sec('뉘앙스 <span class="enneed">(하나 고르기)</span>', 'enn enkeep', N, k.length+s.length+A.length);
+      var _ns=box.querySelector('.enn .ensh'); if(_ns){ var dd=document.createElement('div'); dd.className='frnu'; dd.textContent=q.nd||''; _ns.parentNode.insertBefore(dd, _ns.nextSibling); } }
+  }
+  var sb=document.createElement('button');
+  sb.id='sub'; sb.style.cssText='margin-top:10px;width:100%;padding:11px';
+  sb.textContent='제출 (Enter)';
+  sb.onclick=function(){ if(styleOf(Q[qi])==='write') enWriteSubmit(Q[qi]); else submitEn(); };
+  box.appendChild(sb);
+  var tp=document.createElement('div'); tp.id='entyped'; box.appendChild(tp);
+}
+// 칸별 채점
+function enSecStat(q, chosen, wr){
+  var R={k:{right:0, wrong:0, tot:0, need:q.needK||1}, s:{right:0, wrong:0, tot:0, need:q.needS||0},
+         a:{right:0, wrong:0, tot:0, need:q.needA||0}, n:{right:0, wrong:0, tot:0, need:1}};
+  q.opts.forEach(function(o,i){
+    var S=R[(o.sec==='s'||o.sec==='a'||o.sec==='n')?o.sec:'k'], p=chosen.indexOf(i)>=0;
+    if(o.ok){ S.tot++; if(p) S.right++; } else if(p) S.wrong++;
+  });
+  (wr||[]).forEach(function(e){ if(e.i>=0) return; var S=R[e.sec==='s'?'s':'k']; if(e.st==='o') S.right++; else if(e.st==='x') S.wrong++; });
+  R.k.ok = R.k.wrong===0 && R.k.right>=Math.min(R.k.need, R.k.tot||R.k.need);
+  R.s.ok = !R.s.tot ? true : (R.s.wrong===0 && R.s.right>=Math.min(R.s.need, R.s.tot));
+  R.a.ok = !R.a.tot ? true : (R.a.wrong===0 && R.a.right>=Math.min(R.a.need, R.a.tot));
+  R.n.ok = !R.n.tot ? true : (R.n.wrong===0 && R.n.right>=1);
+  return R;
+}
+function submitEn(){
+  if(ans[qi]!==null) return;
+  var q=Q[qi]; if(!q || q.kind!=='en') return;
+  var chosen=[]; for(var k in sel) if(sel[k]) chosen.push(parseInt(k));
+  if(!chosen.length){ $('fb').textContent='하나 이상 고르세요'; return; }
+  enFinish(q, chosen, null);
+}
+function enFinish(q, chosen, wr){
+  var R=enSecStat(q, chosen, wr);
+  var ok=R.k.ok && R.s.ok && R.a.ok && R.n.ok;
+  ans[qi]={sel:chosen, ok:ok, en:{k:R.k.ok?1:0, s:(R.s.tot ? (R.s.ok?1:0) : -1), st:styleOf(q)}};
+  if(q.fr){ ans[qi].en.a=R.a.tot?(R.a.ok?1:0):-1; ans[qi].en.n=R.n.tot?(R.n.ok?1:0):-1; }
+  if(wr) ans[qi].wr=wr;
+  // 잘못 고른 단어 (동의어 칸) — 동의어 매칭과 같은 방식, 영어 → 뜻 기록에
+  try{
+    var _mc=false;
+    q.opts.forEach(function(o,i){
+      if(o.sec!=='s') return;
+      var picked=chosen.indexOf(i)>=0, mk=misKey(o.t);
+      if(!o.ok && picked){ misAdd(o.t, q.w.w); _mc=true; }
+      else if(MIS[mk] && !misDone(MIS[mk])){
+        if(o.ok && picked){ misCredit(o.t); _mc=true; }
+        else if(o.mis && !picked){ misCredit(o.t); _mc=true; }
+      }
+    });
+    if(_mc) misSave();
+  }catch(e){}
+  // 칸별 기록 (뜻 kR·kW / 동의어 sR·sW)
+  try{ var r=statsEnsure(q.w);
+    if(R.k.ok) r.kR=(r.kR||0)+1; else r.kW=(r.kW||0)+1;
+    if(R.s.tot){ if(R.s.ok) r.sR=(r.sR||0)+1; else r.sW=(r.sW||0)+1; }
+    if(q.fr){ if(R.a.tot){ if(R.a.ok) r.aR=(r.aR||0)+1; else r.aW=(r.aW||0)+1; }
+      if(R.n.tot){ if(R.n.ok) r.nR=(r.nR||0)+1; else r.nW=(r.nW||0)+1; }
+      if(ok) r.frDone=1; } }catch(e){}
+  synShownSave(q);
+  var mine=chosen.map(function(i){ return q.opts[i].t; }).concat((wr||[]).filter(function(e){ return e.i<0; }).map(function(e){ return e.t+(e.st==='o'?'(맞음)':'(틀림)'); })).join(', ');
+  if(!ok){
+    if(!_wrongHas('syn', q.w.w)) wrongs.push({w:q.w, mine:mine, kind:'syn', enk:R.k.ok?1:0, ens:R.s.tot?(R.s.ok?1:0):-1, ena:R.a.tot?(R.a.ok?1:0):-1, enn:R.n.tot?(R.n.ok?1:0):-1});
+    bankAdd('syn', q.w);
+    statsWrong(q.w, 'syn');
+  } else {
+    if(!q.again) bankDel('syn', q.w);
+    statsRight(q.w, 'syn');
+  }
+  bankSave();
+  requeueSyn(q);
+  replay();
+  try{ applySynMode(); }catch(e){}          // 답을 보면 입력칸은 닫고, 직접 쓰기에서 숨겼던 보기를 보여 준다
+  score();
+  maybeShowFinishBtn();
+  sessionSave();
+}
+// ── 보며 쓰기 · 직접 쓰기 입력 ──
+// 영어 → 뜻에서 동의어 칸이 따로 있는지 (교재 동의어가 없는 단어는 뜻 칸 하나)
+function enTwo(q){ return !!(q && q.kind==='en' && q.opts && q.opts.some(function(o){ return o.sec==='s'; })); }
+var _lastInp='syninput';                    // 마지막으로 쓴 칸 (화면을 누르면 그 칸으로 돌아간다)
+function enTypeSubmit(q, inp){
+  var sty=styleOf(q);
+  inp=inp || $('syninput'); var v=(inp.value||'').trim();
+  if(sty==='pick') return;
+  if(!v){                                   // 빈 칸에서 Enter = 제출
+    if(sty==='write') return enWriteSubmit(q);
+    if(q.kind==='en') return submitEn();
+    return submitSyn();
+  }
+  // 2027.01.11부터 영어 → 뜻은 뜻 칸 · 동의어 칸이 따로다 — 쓴 칸이 곧 어느 쪽인지
+  var sec='s';
+  if(q.kind==='en'){
+    if(enTwo(q)){
+      sec = (inp.id==='syninput2') ? 's' : 'k';
+      if(sec==='k' && !/[가-힣]/.test(v)){ $('fb').textContent='뜻 칸에는 한글 뜻을 써 주세요 · 동의어는 옆 칸에'; $('fb').style.color='#f0a500'; inp.focus(); return; }
+      if(sec==='s' && !_hasEn(v)){ $('fb').textContent='동의어 칸에는 영어로 써 주세요 · 뜻은 옆 칸에'; $('fb').style.color='#f0a500'; inp.focus(); return; }
+    } else sec = _hasEn(v) ? 's' : 'k';
+  }
+  inp.value='';
+  if(sty==='see'){
+    var hit=-1;
+    for(var i=0;i<q.opts.length;i++){
+      var o=q.opts[i];
+      if(q.kind==='en'){ if((o.sec||'k')!==sec) continue;
+        if(sec==='k' ? enKoEq(v, o.t) : normSyn(o.t)===normSyn(v)){ hit=i; break; } }
+      else if(normSyn(o.t)===normSyn(v)){ hit=i; break; }
+    }
+    if(hit<0){ $('fb').textContent='보기에 없는 '+(sec==='k'?'뜻이에요':'단어예요'); $('fb').style.color='#f0a500'; inp.focus(); return; }
+    if(!sel[hit]) toggle(hit);
+    $('fb').textContent=''; inp.focus();
+    return;
+  }
+  // 직접 쓰기: 적은 것을 칸과 함께 모아 둔다 (제출할 때 채점)
+  q._typed=q._typed||[];
+  function tkey(x){ return x.sec+':'+(x.sec==='k' ? _koN2(x.t) : normSyn(x.t)); }
+  var it={t:v, sec:sec};
+  if(!q._typed.some(function(x){ return tkey(x)===tkey(it); })) q._typed.push(it);
+  $('fb').textContent='';
+  enTypedUI(q); inp.focus();
+}
+function enTypedUI(q){
+  var box=$('entyped'); if(!box) return;
+  var a=ans[qi];
+  if(styleOf(q)!=='write' && !(a && a.wr)){ box.innerHTML=''; box.style.display='none'; return; }
+  var h='';
+  if(a && a.wr){                            // 채점 뒤: 적은 것마다 결과
+    var rows=a.wr.map(function(e){
+      var tag = e.i>=0 ? '<span class="enst ok">✓ 교재와 같음</span>' : e.st==='o' ? '<span class="enst ok">✓ 맞음(직접)</span>' : '<span class="enst no">✗ 틀림(직접)</span>';
+      return '<span class="entk">'+esc(e.t)+tag+'</span>';
+    });
+    h='<div class="entl">내가 쓴 것</div><div class="entw">'+rows.join('')+'</div>';
+  } else if(q._check){                       // 직접 체크 중
+    var c=q._check, first=-1;
+    c.forEach(function(e,j){ if(first<0 && e.i<0 && !e.st) first=j; });
+    h='<div class="entl">교재와 글자가 다른 것은 직접 골라 주세요 · 1 맞음 · 2 틀림</div>';
+    c.forEach(function(e,j){
+      var lab = q.kind==='en' ? (e.sec==='s'?(q.fr?'같은 뜻':'동의어'):'뜻') : '단어';
+      h+='<div class="enck'+(j===first?' cur':'')+'"><span class="enckt"><em>'+lab+'</em> '+esc(e.t)+'</span>'
+        +(e.i>=0 ? '<span class="enst ok">✓ 교재와 같음</span>'
+          : e.st ? '<span class="enst '+(e.st==='o'?'ok':'no')+'">'+(e.st==='o'?'✓ 맞음':'✗ 틀림')+'</span>'
+          : '<span class="enckb"><button data-enck="'+j+'" data-v="o">맞음</button><button data-enck="'+j+'" data-v="x">틀림</button></span>')
+        +'</div>';
+    });
+  } else {
+    var t=q._typed||[];
+    h='<div class="entl">쓴 것 '+t.length+'개 — 하나 쓰고 Enter · 다 썼으면 빈 칸에서 Enter (제출)</div><div class="entw">'
+      +t.map(function(x,j){ var lab=(q.kind==='en') ? '<em class="entlab">'+(x.sec==='s'?(q.fr?'같은 뜻':'동의어'):'뜻')+'</em>' : '';
+          return '<span class="entk">'+lab+esc(x.t)+'<button class="entx" data-entx="'+j+'">×</button></span>'; }).join('')+'</div>';
+  }
+  box.innerHTML=h; box.style.display=h?'':'none';
+}
+function enWriteSubmit(q){
+  if(!q || ans[qi]!==null) return;
+  if(q._check) return;                      // 체크 중
+  var inp=$('syninput'); if(inp && inp.value.trim()){ enTypeSubmit(q, inp); }
+  var inp2=$('syninput2'); if(inp2 && enTwo(q) && inp2.value.trim()){ enTypeSubmit(q, inp2); }
+  if(q._check || ans[qi]!==null) return;
+  var t=q._typed||[];
+  if(!t.length){ $('fb').textContent='하나 이상 쓰세요'; $('fb').style.color='#f0a500'; return; }
+  var used={}, c=t.map(function(it){
+    var x=it.t, sec = q.kind==='en' ? it.sec : 's', hit=-1;
+    for(var i=0;i<q.opts.length;i++){ var o=q.opts[i]; if(!o.ok || used[i]) continue;
+      if(q.kind==='en' && o.sec==='k'){ if(sec==='k' && enKoEq(x, o.t)){ hit=i; break; } }
+      else if(sec==='s' && (q.kind!=='en' || o.sec==='s') && normSyn(o.t)===normSyn(x)){ hit=i; break; } }
+    if(hit>=0) used[hit]=1;
+    return {t:x, sec:sec, i:hit, st:hit>=0?'a':''};
+  });
+  q._check=c;
+  enCheckMaybeDone(q);
+}
+function enCheckMark(j, v){
+  var q=Q[qi]; if(!q || !q._check || ans[qi]!==null) return;
+  if(j<0){ for(var z=0;z<q._check.length;z++){ if(q._check[z].i<0 && !q._check[z].st){ j=z; break; } } }
+  var e=q._check[j]; if(!e || e.i>=0) return;
+  e.st=v; enCheckMaybeDone(q);
+}
+function enCheckMaybeDone(q){
+  var left=q._check.some(function(e){ return e.i<0 && !e.st; });
+  if(left){ enTypedUI(q); return; }
+  var chosen=[]; q._check.forEach(function(e){ if(e.i>=0) chosen.push(e.i); });
+  if(q.fr) q.opts.forEach(function(o,i){ if((o.sec==='a'||o.sec==='n') && sel[i] && chosen.indexOf(i)<0) chosen.push(i); });   // 최종 복습: 고른 반대말 · 뉘앙스
+  var wr=q._check.map(function(e){ return {t:e.t, sec:e.sec, i:e.i, st:e.st}; });
+  q._check=null; q._typed=null;
+  if(q.kind==='en') enFinish(q, chosen, wr);
+  else {                                    // 뜻 → 영어 직접 쓰기: 정답 전부(직접 맞음 포함) · 틀림 없음
+    var right=chosen.length + wr.filter(function(e){ return e.i<0 && e.st==='o'; }).length;
+    var bad=wr.some(function(e){ return e.i<0 && e.st==='x'; });
+    submitSyn({chosen:chosen, ok:(!bad && right>=(q.need||1)), wr:wr});
+    try{ applySynMode(); }catch(e){}
+  }
+}
+// 세 칸 버튼 (뜻 → 영어 · 영어 → 뜻)
+function styleSet(v){
+  var q=Q[qi]; if(!q) return;
+  if(q.kind==='en'){ EN_STYLE=v; try{ LS.setItem('voca_enstyle', v); }catch(e){} }
+  else if(q.kind==='ko'){ KO_STYLE=v; try{ LS.setItem('voca_kostyle', v); }catch(e){} }
+  if(ans[qi]===null){ q._typed=null; q._check=null; }
+  if($('syninput')) $('syninput').value=''; if($('syninput2')) $('syninput2').value='';
+  applySynMode();
+  if(v!=='pick') setTimeout(function(){ var i=$('syninput'); if(i) i.focus(); },30);
+}
+// 정답 공개: 뜻 칸 보기
+function enKoReveal(b, o, picked, i){
+  var body='<span class="onum">'+(i+1)+'</span><span class="otxt">'+esc(o.t)+'</span>';
+  if(!o.ok && o.srcw) body+='<span class="ometa"><em class="od odw">'+esc(o.srcw)+'의 뜻</em>'+hwTagHTML(o.srcw, null)+'</span>';
+  b.innerHTML=body;
+  if(o.ok && picked) b.classList.add('ok');
+  else if(o.ok && !picked) b.classList.add('miss');
+  else if(!o.ok && picked) b.classList.add('no');
+  else b.classList.add('dim');
+}
+
 function buildQuiz(w){
   // 정답이 표현이면 오답도 반드시 표현끼리, 단어면 반드시 단어끼리
   var isPhrase = (w.type==='phrase');
@@ -6961,6 +8077,7 @@ function buildQuiz(w){
 }
 
 function tagOf(w){
+  if(!w || !w.src) return (w && w._mis) ? '잘못 고른 단어' : '';   // 잘못 고른 단어 · 뜻 고르기 문제는 교재 자리가 없다 (2027.01.13 고침)
   return w.src==='Y' ? (w.vol+'권 '+w.day+'강') : ('MVP'+w.src.slice(-1));
 }
 
@@ -6969,8 +8086,8 @@ function againBadgeUI(q, revealed){
   var old=$('qagain'); if(old) old.remove();
   var oldf=$('qfin'); if(oldf) oldf.remove();
   if(q && q.isFin){ var fb=document.createElement('span'); fb.id='qfin'; fb.className='againtag fintag'; fb.textContent='최종 정리 · 교재 동의어 + 같은 뜻'; t.appendChild(fb); }
-  if(q && q.kind==='rev' && q.again){ var rb=document.createElement('span'); rb.id='qagain'; rb.className='againtag'; rb.textContent='틀려서 다시 나온 문제'; t.appendChild(rb); return; }
-  if(!q || q.kind!=='syn' || !q.again) return;
+  if(q && (q.kind==='rev' || q.kind==='quiz' || q.kind==='ko') && q.again){ var rb=document.createElement('span'); rb.id='qagain'; rb.className='againtag'; rb.textContent='틀려서 다시 나온 문제'; t.appendChild(rb); return; }
+  if(!q || (q.kind!=='syn' && q.kind!=='en') || !q.again) return;
   var why=q.why||'';
   var txt = why.indexOf('w')>=0 && why.indexOf('m')>=0 ? '틀려서 다시 · 동의어도 늘림'
           : why.indexOf('w')>=0 ? '틀려서 다시 나온 문제'
@@ -6978,7 +8095,7 @@ function againBadgeUI(q, revealed){
           : why.indexOf('u')>=0 ? '눌러서 다시 나온 문제'
           : '다시 나온 문제';
   if(revealed && q.total){
-    var n=(q.opts||[]).filter(function(o){ return o.ok; }).length;
+    var n=(q.opts||[]).filter(function(o){ return o.ok && o.sec!=='k'; }).length;
     txt += ' · ' + (n>=q.total ? '동의어 '+q.total+'개 전부' : '동의어 '+q.total+'개 중 '+n+'개');
   }
   var b=document.createElement('span');
@@ -6997,6 +8114,12 @@ function draw(){
   if(nx){ nx.textContent='다음'; nx.classList.remove('fbtn'); }
   if(q.kind==='ko'){
     $('tag').textContent='뜻 → 영어 · '+(KSCOPE==='all'?'교재 전체에서':'이 강에서')+' · '+(KBOOK_RUN==='y'?'윤황보카만':'MVP까지');
+  } else if(q.kind==='en' && q.fr){
+    $('tag').innerHTML=esc('최종 복습 · '+tagOf(q.w)+' · #'+q.w.id)+(q.grp?'<span class="frchain">「'+esc(q.grp)+'」 상자</span>':q.from?'<span class="frchain">↪ '+esc(q.from)+'에서 이어짐</span>':'');
+  } else if(q.kind==='en'){
+    $('tag').textContent='영어 → 뜻 · '+tagOf(q.w)+' · #'+q.w.id;
+  } else if(q.w && q.w._mis){
+    $('tag').textContent='잘못 고른 단어 · 뜻 고르기';
   } else {
     $('tag').textContent=tagOf(q.w)+' · #'+q.w.id;
   }
@@ -7004,7 +8127,7 @@ function draw(){
   _hereW=q.w;
   $('qw').innerHTML=esc((q.kind==='rev'||q.kind==='ko') ? q.prompt : (q.swap ? q.swap.t : q.w.w))+'<span id="qwmean"></span>';
   $('qw').classList.toggle('kow', q.kind==='ko');
-  try{ var _qe=$('qety'); if(_qe){ _qe.style.display='none'; _qe.innerHTML=''; } againBtnUI(q, false); }catch(e){}
+  try{ var _qe=$('qety'); if(_qe){ _qe.style.display='none'; _qe.innerHTML=''; } var _qr=$('qrel'); if(_qr){ _qr.style.display='none'; _qr.innerHTML=''; } againBtnUI(q, false); }catch(e){}
   $('qw').classList.remove('hassim');
   var _ak=$('ask'); if(_ak) _ak.className='ask';
   if(MOPUP){
@@ -7018,12 +8141,15 @@ function draw(){
   $('info').innerHTML='';
   try{ var _m0=$('qmissed'); if(_m0){ _m0.innerHTML=''; _m0.style.display='none'; } }catch(e){}
   if($('qroot')){ $('qroot').style.display='none'; $('qroot').innerHTML=''; }
-  if($('syninput')) $('syninput').value='';     // 새 문제에선 입력창 비우기
+  if($('syninput')) $('syninput').value=''; if($('syninput2')) $('syninput2').value='';     // 새 문제에선 입력창 비우기
   $('prog').firstElementChild.style.width=(qi/Q.length*100)+'%';
 
   var box=$('ch'); box.innerHTML='';
 
-  if(q.kind==='syn' || q.kind==='ko'){
+  if(q.kind==='en'){
+    $('ask').textContent=q.fr ? '칸마다 2개 이상 고르세요 (1개뿐이면 1개) · 뉘앙스는 하나 · 숫자키로 선택' : '이 단어의 뜻과 동의어를 모두 고르세요 · 숫자키로 선택';
+    drawEnOpts(q, box);
+  } else if(q.kind==='syn' || q.kind==='ko'){
     $('ask').textContent = (q.kind==='ko') ? '이 뜻으로 교재에 적힌 영어 단어를 모두 고르세요 · 숫자키로 선택'
                                            : '동의어를 모두 고르세요 · 숫자키로 선택';
     q.opts.forEach(function(o,i){
@@ -7071,19 +8197,23 @@ function toggle(i){
   bs[i].classList.toggle('sel', !!sel[i]);
 }
 
-function submitSyn(){
+function submitSyn(ov){
   if(ans[qi]!==null) return;
   var q=Q[qi];
+  if(q && q.kind==='en') return submitEn();
   var chosen=[];
-  for(var k in sel) if(sel[k]) chosen.push(parseInt(k));
-  if(!chosen.length){ $('fb').textContent='하나 이상 고르세요'; return; }
+  if(ov && ov.chosen) chosen=ov.chosen.slice();          // 뜻 → 영어 직접 쓰기: 쓴 것으로 채점
+  else { for(var k in sel) if(sel[k]) chosen.push(parseInt(k)); }
+  if(!chosen.length && !(ov && ov.wr)){ $('fb').textContent='하나 이상 고르세요'; return; }
 
   var ok=true;
   q.opts.forEach(function(o,i){
     var picked=chosen.indexOf(i)>=0;
     if(o.ok!==picked) ok=false;
   });
+  if(ov && typeof ov.ok==='boolean') ok=ov.ok;
   ans[qi]={sel:chosen, ok:ok};
+  if(ov && ov.wr) ans[qi].wr=ov.wr;
   // 잘못 고른 단어 쌓기 · 맞힌 횟수 세기
   if(q.kind==='syn'){
     try{
@@ -7132,7 +8262,7 @@ function submitSyn(){
 // 이번 문제에서 정답으로 보여준 동의어 개수를 그 단어 기록에 옮긴다.
 // (buildSyn 시점에는 아직 STATS 기록이 없는 단어가 있어서 여기서 한다)
 function synShownSave(q){
-  if(!q || q.kind!=='syn' || !q.w) return;
+  if(!q || (q.kind!=='syn' && q.kind!=='en') || !q.w) return;
   var r=statsEnsure(q.w);
   r.shown = Math.max(r.shown||0, q.shown||0);
   // 이번에 정답으로 나온 동의어를 기록에 쌓는다 (다음에 만나면 이것들 + 새 것)
@@ -7145,17 +8275,29 @@ function synShownSave(q){
 // 동의어가 많아 한 문제에 다 못 실은 단어는, 같은 회독 안에서 뒤쪽에 다시 넣는다.
 // 그래야 한 번 도는 동안 그 단어의 동의어를 전부 문제로 만난다.
 function requeueSyn(q){
-  if(!q || q.kind!=='syn' || !q.w) return;
-  if(SRC==='retry') return;                       // 오답 다시 풀기에서는 한 번씩만
+  if(!q || (q.kind!=='syn' && q.kind!=='en') || !q.w) return;
+  // (예전엔 「틀린 것만 다시」에서는 한 번씩만 냈다 → 2027.01.08부터 1회차처럼 틀리면 맞힐 때까지 다시 낸다)
   var a=ans[qi];
   var wrong=!!(a && !a.ok);                       // 틀렸으면 맞힐 때까지 다시 낸다
   var r=STATS[q.w.w];
   var seenN=(r&&r.shown)||0;
   var more=!!(q.total && seenN<q.total);          // 아직 못 본 동의어가 남았다
   if(!wrong && !more) return;                     // 맞혔고 동의어도 다 봤으면 끝 (이유가 둘이어도 한 번만 넣는다)
-  var nq=q.isFin ? buildFinQ(q.w) : buildSyn(q.w, q.swo||{});   // 같은 방식(자리 섞기 켬/끔 · 최종 정리)으로 다시 만든다
+  var nq=(q.kind==='en') ? (q.fr ? buildFr(q.w, q.swo||{}) : buildEn(q.w, q.swo||{})) : q.isFin ? buildFinQ(q.w) : buildSyn(q.w, q.swo||{});   // 같은 방식(자리 섞기 켬/끔 · 최종 정리)으로 다시 만든다
   nq.again=true;                                  // 같은 시행 안에서 다시 나온 문제 — 오답 목록은 처음 판정으로만 정한다
   nq.why=(wrong?'w':'')+(more?'m':'');            // w = 틀려서 · m = 동의어를 더 보여 주려고
+  var at=requeueAt();
+  Q.splice(at,0,nq);
+  ans.splice(at,0,null);
+  try{ $('cnt').textContent=(qi+1)+' / '+Q.length; }catch(e){}
+}
+// 사지선다에서 틀린 문제는 몇 문제 뒤에 다시 — 맞힐 때까지 (보기는 새로 뽑는다)
+function requeueQuiz(q){
+  if(!q || q.kind!=='quiz' || !q.w) return;
+  var a=ans[qi]; if(!a || a.ok) return;
+  var nq=null; try{ nq=buildQuiz(q.w); }catch(e){}
+  if(!nq) return;
+  nq.again=true; nq.why='w';
   var at=requeueAt();
   Q.splice(at,0,nq);
   ans.splice(at,0,null);
@@ -7185,28 +8327,46 @@ function _wrongHas(kind, key){
 }
 // 「↻ 이번 회차에 다시」: 맞힌 문제도 이번 회차 안에서 몇 문제 뒤에 한 번 더 (오답·복습 목록에는 안 넣음)
 function againBtnUI(q, answered){
-  var b=$('againQ'); if(!b) return;
   var a=ans[qi];
   // 동의어 매칭에서 정답을 공개한 뒤에만. 틀린 문제는 이미 다시 나오므로 숨긴다.
-  var show = !!(answered && q && q.kind==='syn' && a && a.ok);
-  b.style.display = show ? '' : 'none';
+  var show = !!(answered && q && (q.kind==='syn' || q.kind==='en') && a && a.ok);
   var done = !!(q && q._ua);
-  b.classList.toggle('done', done);
-  b.textContent = done ? '✓ 몇 문제 뒤에 다시 나와요' : '↻ 이번 회차에 다시';
+  var _db=$('dockbar'); if(_db) _db.classList.toggle('ag', show);   // 폰에서 아래 바 간격을 조금 좁혀 한 줄에
+  ['againQ','dockAgain'].forEach(function(id){       // 위쪽 버튼과 아래 바 버튼을 똑같이
+    var b=$(id); if(!b) return;
+    b.style.display = show ? '' : 'none';
+    b.classList.toggle('done', done);
+    if(id==='dockAgain') b.innerHTML = done ? '✓ <span class="dkx">몇 문제 뒤 </span><span class="dkw">다시</span>' : '↻ <span class="dkx">회차에 </span><span class="dkw">다시</span> <kbd class="kk">Tab</kbd>';   // 아래 바는 짧게 (폰에선 ↻만)
+    else b.innerHTML = done ? (q._ap ? '✓ 다시 3번째 · 복습에도 담았어요' : '✓ 몇 문제 뒤에 다시 나와요') : '↻ 이번 회차에 다시 <kbd class="kk">Tab</kbd>';
+  });
 }
 function againUser(){
-  var q=Q[qi]; if(!q || q.kind!=='syn' || q._ua) return;
+  var q=Q[qi]; if(!q || (q.kind!=='syn' && q.kind!=='en') || q._ua) return;
   var a=ans[qi]; if(!a || !a.ok) return;
   var nq=null;
-  try{ nq=q.isFin ? buildFinQ(q.w) : buildSyn(q.w, q.swo||{}); }catch(e){}
+  try{ nq=(q.kind==='en') ? (q.fr ? buildFr(q.w, q.swo||{}) : buildEn(q.w, q.swo||{})) : q.isFin ? buildFinQ(q.w) : buildSyn(q.w, q.swo||{}); }catch(e){}
   if(!nq) return;
   nq.again=true; nq.why='u';                       // u = 내가 눌러서 다시
   var at=requeueAt();
   Q.splice(at,0,nq); ans.splice(at,0,null);
   q._ua=true;
+  // 같은 회차에서 이 단어에 3번째 「다시」를 누르면 자동으로 복습에 담기 (담아둔 목록 + 지금 오답 둘 다)
+  try{
+    var _n=0; Q.forEach(function(x){ if(x && x.why==='u' && x.w && x.w.w===q.w.w) _n++; });
+    if(_n>=3){ autoPinBoth(q.w); q._ap=true; }
+  }catch(e){}
   try{ $('cnt').textContent=(qi+1)+' / '+Q.length; }catch(e){}
   againBtnUI(q, true);
   try{ sessionSave(); }catch(e){}
+}
+function autoPinBoth(w){
+  var r=STATS[w.w];
+  if(!(r && r.pinned)){ pinForReview(w, true); }          // 안 담겨 있으면 목록 + 지금 오답에
+  else if(!r.pinNow){                                      // 목록에만 담겨 있으면 지금 오답에도
+    r.pinNow=1; bankAdd('syn', w); bankAdd('quiz', w); bankSave(); statsSave();
+    if(typeof bankUI==='function') bankUI();
+  }
+  try{ pinBtnUI('pinBtn', w); pinBtnUI('dockPin', w); }catch(e){}
 }
 function requeueAt(){
   // 사이에 최소 6문제, 최대 14문제를 두고 무작위 (7~15번째 뒤에 나온다)
@@ -7229,14 +8389,15 @@ function pick(i){
   }
   if(!ok){
     var mineT = (typeof q.opts[i]==='string') ? q.opts[i] : q.opts[i].t;
-    wrongs.push({w:q.w, mine:mineT, kind:'quiz'});
+    if(!_wrongHas('quiz', q.w.w)) wrongs.push({w:q.w, mine:mineT, kind:'quiz'});   // 여러 번 틀려도 결과 목록엔 한 번만
     bankAdd('quiz', q.w);
     statsWrong(q.w, 'quiz');
   } else {
-    bankDel('quiz', q.w);
+    if(!q.again) bankDel('quiz', q.w);   // 틀렸다가 다시 나와 맞힌 건 복습 목록에서 빼지 않는다 (동의어 매칭과 같게)
     statsRight(q.w, 'quiz');
   }
   bankSave();
+  requeueQuiz(q);                        // 틀리면 이번 회차 안에서 몇 문제 뒤에 다시
   replay();
   score();
   maybeShowFinishBtn();
@@ -7261,17 +8422,21 @@ function replay(){
     if(q0 && q0.kind==='ko'){ var ak0=$('ask'); if(ak0) ak0.textContent=''; if(el) el.textContent=''; }
     else if(el && q0 && q0.w){
       if(q0.swap) el.innerHTML=' · '+esc(q0.swap.d)+'<span class="swapof">('+esc(q0.w.w)+'의 동의어)</span>';   // 자리 바꾼 문제: 그 줄 뜻 + 누구 동의어인지
-      else el.innerHTML=((q0.kind==='syn'||q0.kind==='quiz') ? wposHTML(q0.w) : '')+' · '+esc(q0.w.m);   // 단어 옆에 품사 · 뜻
+      else el.innerHTML=((q0.kind==='syn'||q0.kind==='quiz'||q0.kind==='en') ? wposHTML(q0.w) : '')+' · '+esc(q0.w.m);   // 단어 옆에 품사 · 뜻
       var ak=$('ask'); if(ak) ak.textContent='';  // 안내 문구는 비움
       // 동의어 매칭: 정답 공개 후 표제어 바로 밑에 어원 한 줄(→ 앞부분만, 조각은 누를 수 있음)
       try{ var _qe2=$('qety');
         if(_qe2){
-          var _rr=(q0.kind==='syn' && q0.w.r) ? String(q0.w.r) : '';
+          var _rr=((q0.kind==='syn'||q0.kind==='en') && q0.w.r) ? String(q0.w.r) : '';
           var _hd=_rr ? _rr.split('→')[0].trim() : '';
           if(_hd){ _qe2.innerHTML='<span class="qetyl">어원</span>'+rootLinkHTML(_hd, q0.w.w); _qe2.style.display=''; }
           else { _qe2.innerHTML=''; _qe2.style.display='none'; }
         }
         againBtnUI(q0, true);
+        // 같은 뜻 · 반의어 한 줄씩 (사전으로 확인된 연결)
+        var _qr2=$('qrel');
+        if(_qr2){ var _rh=(q0.kind==='syn'||q0.kind==='quiz'||q0.kind==='en') ? relLineHTML(q0.w.w) : '';
+          _qr2.innerHTML=_rh; _qr2.style.display=_rh?'':'none'; }
       }catch(e){}
       var sims0=similarOf(q0.w.w);
       if(sims0.length||(CONF&&CONF[q0.w.w])||(CONFW&&CONFW[q0.w.w])||posOf(q0.w.w).length){ $('qw').classList.add('hassim'); }
@@ -7287,7 +8452,9 @@ function replay(){
     bs[i].disabled=false;                 // 어원 조회를 위해 클릭 가능 상태 유지
     bs[i].onclick=null;
     bs[i].classList.remove('sel');
-    if(q.kind==='ko'){
+    if(q.kind==='en' && q.opts[i] && q.opts[i].sec==='k'){
+      enKoReveal(bs[i], q.opts[i], (Array.isArray(a.sel)?a.sel:[]).indexOf(i)>=0, i);
+    } else if(q.kind==='ko'){
       var ko=q.opts[i], kpicked=(Array.isArray(a.sel)?a.sel:[]).indexOf(i)>=0;
       var knum=bs[i].querySelector('.onum');
       var kbody='<span class="otxt">'+esc(ko.t)+'</span>';
@@ -7303,7 +8470,7 @@ function replay(){
       else bs[i].classList.add('dim');
       bs[i].setAttribute('data-qw', ko.t);
       bs[i].classList.add('rootable');
-    } else if(q.kind==='syn'){
+    } else if(q.kind==='syn' || q.kind==='en'){
       var picked=(Array.isArray(a.sel)?a.sel:[]).indexOf(i)>=0;
       // 정답: 위에 '메인 단어의 어느 뜻' / 오답: 옆에 '그 단어의 뜻'
       var o=q.opts[i];
@@ -7328,6 +8495,11 @@ function replay(){
       meta += _tg;
       var _fn = o.fin==='S' ? '<span class="finnote s">'+esc(o.fn||'')+'</span>'
               : o.fin==='N' ? '<span class="finnote n">비슷하지만 다름 — '+esc(o.fn||'')+'</span>' : '';
+      if(o.fr==='D') _fn='<span class="finnote s">사전 같은 뜻 · 「'+esc(o.box||'')+'」</span>';
+      else if(o.fr==='A') _fn='<span class="finnote a">반대말 (사전 양쪽 확인)</span>';
+      else if(o.fr==='T') _fn='<span class="finnote n">함정 — 반대말이 아니라 같은 뜻</span>';
+      else if(o.fr==='U') _fn='<span class="finnote u">'+esc(o.fn||'')+'</span>';
+      if(o.fr && o.def && !(o.ok && o.sense) && meta.indexOf('class="od"')<0) meta='<em class="od">'+mm(o.t, o.def)+'</em>'+meta;   // 최종 복습: 정답 선지도 뜻을 보여 준다
       bs[i].innerHTML = (num?num.outerHTML:'') + body
         + (meta?'<span class="ometa">'+meta+'</span>':'') + _fn;
       if(q.opts[i].ok && picked) bs[i].classList.add('ok');
@@ -7358,12 +8530,18 @@ function replay(){
   }
   // 정답 공개 후에는 칸 배열을 건드리지 않는다 — 문제 풀 때 보던 배치가 그대로 유지되어야 한다.
   $('fb').textContent = a.ok ? '✅ 정답!' : '❌ 오답';
+  if(q.kind==='en' && a.en){
+    $('fb').textContent += '  ·  뜻 '+(a.en.k?'✓':'✗')+(a.en.s===-1?'':'  ·  '+(q.fr?'같은 뜻':'동의어')+' '+(a.en.s?'✓':'✗'))
+      +((a.en.a===undefined||a.en.a===-1)?'':'  ·  반대말 '+(a.en.a?'✓':'✗'))+((a.en.n===undefined||a.en.n===-1)?'':'  ·  뉘앙스 '+(a.en.n?'✓':'✗'));
+    try{ enTypedUI(q); }catch(e){}
+  } else if(q.kind==='ko' && a.wr){ try{ enTypedUI(q); }catch(e){} }
 
   // 이번 선지에 나온 동의어를 기록해 두고, 해설에서 색으로 구분
   _shownSyn = null;
-  if(q.kind==='syn'){
+  if(q.kind==='syn' || q.kind==='en'){
     _shownSyn = {};
     for(var si=0; si<q.opts.length; si++){
+      if(q.opts[si].sec==='k') continue;
       _shownSyn[String(q.opts[si].t).toLowerCase().trim()]=1;
     }
     if(q.swap) _shownSyn[String(q.swap.t).toLowerCase().trim()]=1;
@@ -7375,7 +8553,7 @@ function replay(){
   h += srcNote(w);                    // MVP는 책 인쇄면과 대조를 못 했다는 표시
   h += derivedNoteHTML(w);            // 파생 단어 문제면 누구 밑에 실린 단어인지 (답 공개 후에만)
   h += synonlyBox(q);                 // 선지 중 동의어로만 나온 뜻이 있으면 설명
-  h += (q.kind==='syn') ? renderPairs(w, null) : renderFlat(w);
+  h += (q.kind==='syn' || q.kind==='en') ? renderPairs(w, null) : renderFlat(w);
   _shownSyn = null;
 
   if(w.r){
@@ -7387,6 +8565,7 @@ function replay(){
   h += '<div id="qsimHost"></div>';   // 헷갈리는 철자가 열리면 여기에 (다른 박스들과 같은 자리)
   h += phraseWordHTML(w);
   h += nuanceHTML(w);
+  h += dsynHTML(w.w);
   h += relateHTML(w);
   // 표현(구문)이면 예문 자리 마련 → 비동기로 채움
   if(w.type==='phrase'){
@@ -7449,7 +8628,7 @@ function pinForReview(w, nowToo){
     STATS[k].pinned=1;
     STATS[k].pinT=Date.now();
     STATS[k].pinNow = nowToo ? 1 : 0;
-    if(STATS[k].wrong<1) STATS[k].wrong=1;
+    if(STATS[k].wrong<1){ STATS[k].wrong=1; STATS[k].pw=1; }   // pw: 틀린 적 없이 담기만 해서 채운 1
     STATS[k].due=Date.now();
     STATS[k].streak=0;
     if(nowToo){                      // 지금 오답 풀기에도 넣기
@@ -7472,7 +8651,7 @@ function pinBtnUI(id, w){
   var other=(id==='pinBtn')?$('dockPin'):(id==='dockPin'?$('pinBtn'):null);
   if(other){ other.className='pinbtn'+(on?' pinned':''); other.textContent=b.textContent; }
   // 아래 바의 버튼은 자리가 좁아 짧은 글자로
-  var dp=$('dockPin'); if(dp && w) dp.textContent = on ? (now?'담김·오답 (빼기)':'담김 (빼기)') : '복습에 담기';
+  var dp=$('dockPin'); if(dp && w) dp.innerHTML = (on ? ('담김'+(now?'·오답':'')+'<span class="dkx"> (빼기)</span>') : '복습에 담기')+' <kbd class="kk">₩</kbd>';   // 폰에선 (빼기)를 숨겨 아래 바가 화면 밖으로 안 넘치게
 }
 // 담기 선택 팝업 (지금 오답에도 / 나중에만)
 function pinAsk(w, btnId){
@@ -7690,7 +8869,7 @@ function wbMerge(a, b){
 function wbBtnSync(){
   var n=wbList().length, txt='내 단어장'+(n?' '+n:'');
   var narrow=false; try{ narrow=window.innerWidth<=480; }catch(e){}
-  ['dockWb','wbQ','wbC','wbHomeGo'].forEach(function(id){ var b=$(id); if(b){ b.textContent=(id==='dockWb'&&narrow)?('단어장'+(n?' '+n:'')):txt; b.classList.toggle('has', n>0); } });
+  ['dockWb','wbQ','wbC','wbHomeGo'].forEach(function(id){ var b=$(id); if(b){ b.textContent=(id==='dockWb'&&narrow)?('단어장'+(n?' '+n:'')):txt; if(id==='dockWb') b.insertAdjacentHTML('beforeend',' <kbd class="kk">`</kbd>'); b.classList.toggle('has', n>0); } });
   var cq=null, cc=null;
   try{ cq=cmpCtx('quiz'); }catch(e){}
   try{ cc=cmpCtx('copy'); }catch(e){}
@@ -7713,8 +8892,12 @@ function wbOpen(which){
       var t=ev.target;
       if(t.classList && t.classList.contains('cmpwrap')){ wbClose(); return; }
       if(t.closest && t.closest('.cmpx')){ wbClose(); return; }
+      var cf=t.closest && t.closest('[data-wbcf]');
+      if(cf){ var _a=cf.getAttribute('data-wbcf'), _w=_wbAsk; _wbAsk=null; if(_a==='del' && _w && wbHas(_w)) wbToggle(_w); wbDraw(); return; }
       var ch=t.closest && t.closest('[data-wbw]');
-      if(ch){ wbToggle(ch.getAttribute('data-wbw')); wbDraw(); return; }
+      if(ch){ var _cw=ch.getAttribute('data-wbw');
+        if(wbHas(_cw)){ wbAskDel(_cw); return; }          // 이미 담긴 단어를 다시 고르면 바로 빼지 않고 물어본다
+        wbToggle(_cw); wbDraw(); return; }
       var dl=t.closest && t.closest('[data-wbdel]');
       if(dl){ wbToggle(dl.getAttribute('data-wbdel')); wbDraw(); return; }
     });
@@ -7723,7 +8906,22 @@ function wbOpen(which){
   document.body.style.overflow='hidden';
   wbDraw();
 }
+// 내 단어장: 이미 담긴 단어를 다시 고르면 「정말 뺄까요?」를 묻는다 (1·Enter 빼기 / 2·Esc 취소)
+var _wbAsk=null;
+function wbAskOpen(){ return !!_wbAsk; }
+function wbAskDel(w){
+  _wbAsk=w;
+  var box=$('wbBox'); if(!box) return;
+  var old=box.querySelector('.wbask'); if(old) old.remove();
+  var d=document.createElement('div'); d.className='wbask';
+  d.innerHTML='<div class="wbaskc"><div class="wbaskt">「<b>'+esc(w)+'</b>」를 내 단어장에서 뺄까요?</div>'
+    +'<button class="pkbtn now" data-wbcf="del"><span class="pkk">1</span>빼기</button>'
+    +'<button class="pkbtn later" data-wbcf="no"><span class="pkk">2</span>그대로 두기</button></div>';
+  box.appendChild(d);
+}
+function wbAskPick(act){ var w=_wbAsk; _wbAsk=null; if(act==='del' && w && wbHas(w)) wbToggle(w); wbDraw(); }
 function wbClose(){
+  _wbAsk=null;
   var box=$('wbBox'); if(box) box.classList.remove('on');
   document.body.style.overflow='';
   wbBtnSync();
@@ -7758,7 +8956,7 @@ function wbDraw(){
   var chips='';
   if(c){
     var words=_cmpUniq(c.words);
-    chips='<div class="cmplab">이 문제 단어 — 누르면 담기, 한 번 더 누르면 빼기 · 키보드 숫자로도 돼요</div><div class="cmpchips">'
+    chips='<div class="cmplab">이 문제 단어 — 누르면 담기, 담긴 걸 다시 누르면 뺄지 물어봐요 · 키보드 숫자로도 돼요</div><div class="cmpchips">'
       + words.map(function(w, i){
           return '<button class="cmpchip'+(wbHas(w)?' on':'')+'" data-wbw="'+esc(w)+'"><span class="cnum">'+(i+1)+'</span>'+esc(w)
             + ((i===0 && c.w && String(c.w.w).toLowerCase()===String(w).toLowerCase())?'<span class="ctag">표제어</span>':'')+'</button>';
@@ -7840,7 +9038,9 @@ function misPickFor(w, seen){
 }
 var _misScope='head';
 function misIsOpen(){ var b=$('misBox'); return !!(b && b.classList.contains('on')); }
-function misClose(){ var b=$('misBox'); if(b) b.classList.remove('on'); document.body.style.overflow=''; misBtnSync(); }
+var _misRec='main';
+function misClose(){ var b=$('misBox'); if(b) b.classList.remove('on'); document.body.style.overflow=''; misBtnSync();
+  if(_misRec==='en' && $('setup').classList.contains('on')){ recUse('main'); try{ misBtnSync(); homeEnUI(); }catch(e){} } }
 function misOpen(){
   var box=$('misBox');
   if(!box){
@@ -7866,7 +9066,7 @@ function misOpen(){
 function misDraw(){
   var box=$('misBox'); if(!box) return;
   var list=misList(), left=misLeft();
-  var h='<div class="cmpwrap"><div class="cmpcard"><div class="cmphead"><div class="cmpttl">잘못 고른 단어<span>남은 '+left+'개 · 전체 '+list.length+'개</span></div><button class="cmpx">닫기</button></div><div class="cmpbody">'
+  var h='<div class="cmpwrap"><div class="cmpcard"><div class="cmphead"><div class="cmpttl">잘못 고른 단어'+(REC==='en'?' · 영어 → 뜻':'')+'<span>남은 '+left+'개 · 전체 '+list.length+'개</span></div><button class="cmpx">닫기</button></div><div class="cmpbody">'
     +'<div class="misset">퀴즈 알림 기준 <input id="misLim" type="number" min="1" value="'+MISCFG.lim+'">개 · <input id="misNeed" type="number" min="1" value="'+MISCFG.need+'">번 맞히면 「익힘」</div>'
     +(left ? '<div class="misbar"><button data-misq="head">표제어 문제로 풀기</button><button data-misq="mean">뜻 고르기로 풀기</button><button data-misq="mix">섞어서 풀기</button></div>' : '')
     +(left>=MISCFG.lim ? '<div class="cmplab" style="color:#ffd479">'+MISCFG.lim+'개가 쌓였어요 — 퀴즈로 한 번 정리해 보세요</div>' : '')
@@ -7885,7 +9085,9 @@ function misDraw(){
 // 잘못 고른 단어 퀴즈: head = 그 단어가 동의어로 들어 있는 표제어 문제 · mean = 그 단어를 보고 뜻 고르기 · mix = 섞기
 function startMis(scope){
   _misScope=scope||'head';
-  if(st.mode!=='syn'){ var mb=document.querySelector('#mseg button[data-m="syn"]'); if(mb) mb.click(); }
+  var _isEnM=(_misRec==='en');
+  if(_isEnM){ if(st.mode!=='en'){ var mbe=document.querySelector('#mseg button[data-m="en"]'); if(mbe) mbe.click(); } recUse('en'); }
+  else { recUse('main'); if(st.mode!=='syn'){ var mb=document.querySelector('#mseg button[data-m="syn"]'); if(mb) mb.click(); } }
   FINRUN=false;
   msg('불러오는 중…','load');
   buildFullPool().then(function(){
@@ -7900,7 +9102,7 @@ function startMis(scope){
         if(of.length) owner=_allPool.find(function(x){ return x.w===of[0]; });
         if(owner){
           var hasSyn=(owner.p && owner.p.some(function(pr){return pr.s&&pr.s.length;})) || (owner.s&&owner.s.length);
-          var q=hasSyn ? buildSyn(owner, {}) : buildQuiz(owner);
+          var q=_isEnM ? buildEn(owner, {}) : hasSyn ? buildSyn(owner, {}) : buildQuiz(owner);
           if(q){ q.misT=r.w; Qs.push(q); return; }
         }
       }
@@ -8311,12 +9513,15 @@ function finish(){
   $('rp').textContent=p+'%';
 
   var m = st.mode;
-  var left = (m==='card') ? 0 : bankList(m).length;
+  var left = (m==='card') ? 0 : bankList((m==='en'||m==='fr') ? 'syn' : m).length;
   var tail = (m!=='card') ? '  ·  누적 오답 ' + left + '개' : '';
   if(SRC==='rev'){
     $('rm').textContent = '🔄 역방향 확인 완료 — 이제 손으로 정리해볼까요?';
     var pb=$('penGo2'); if(pb) pb.style.display='';
     var pb3=$('penbtn2'); if(pb3) pb3.style.display='none';   // 같은 이름 버튼은 하나만
+  } else if(SRC==='ewr'){
+    try{ EWR.done=Date.now(); ewrSave(); if(typeof syncSoon==='function') syncSoon(); }catch(e){}
+    $('rm').textContent = '📕 틀린 단어 복습 완료 — 다음 복습 '+_md(ewrNext());
   } else if(SRC==='bank'){
     $('rm').textContent = '누적 오답 풀기 완료' + tail;
   } else if(SRC==='retry'){
@@ -8331,7 +9536,7 @@ function finish(){
 
   // ── 이 강의 오답을 0개로 만들었으면 '손으로 쓸 단어'를 자동으로 ──
   // 한 번도 안 틀리고 끝낸 강도 '오답까지 다 잡은 강'이다 — 빠짐없이 풀었는지로만 본다
-  var cleared = (m==='syn') && (SRC!=='card') && unitCleared(st.key);
+  var cleared = (m==='syn' || m==='en' || m==='fr') && (SRC!=='card') && unitCleared(st.key);
   if(cleared){
     {
       dailyUnitDone(st.key);          // 오늘 완료한 강으로 기록
@@ -8476,7 +9681,7 @@ $('dockWb').addEventListener('click',function(){ wbOpen('quiz'); });
 $('wbQ').addEventListener('click',function(){ wbOpen('quiz'); });
 $('wbC').addEventListener('click',function(){ wbOpen('copy'); });
 $('wbHomeGo').addEventListener('click',function(){ wbOpen('home'); });
-$('misHomeGo').addEventListener('click',function(){ misOpen(); });
+$('misHomeGo').addEventListener('click',function(){ _misRec='main'; recUse('main'); misOpen(); });
 $('dstat').addEventListener('click',function(e){ if(e.target.closest && e.target.closest('#lrOpen')) lrOpen(); });
 $('cmpW').addEventListener('click',function(){ cmpOpen('write'); });
 $('dockPin').addEventListener('click',function(){ var q=Q&&Q[qi]; if(q&&q.w) pinAsk(q.w, 'dockPin'); });
@@ -8494,11 +9699,19 @@ $('mseg').addEventListener('click',function(e){
   b.classList.add('on');
   st.mode=b.dataset.m;
   FINMODE = (b.dataset.fin==='1');          // 최종 정리 = 동의어 매칭 + 같은 뜻 단어
+  try{ $('ffr').style.display=(st.mode==='fr')?'':'none'; frUnitUI(); }catch(x){}
+  if(st.mode==='fr' && !_frNset){ _frNset=true; var _n25=document.querySelector('#nseg button[data-n="25"]'); if(_n25) _n25.click(); }   // 최종 복습은 25문제부터
   try{ swapUI(); }catch(x){}
   try{ var _fk=$('fko'); if(_fk) _fk.style.display=(st.mode==='ko')?'':'none'; }catch(x){}
   stat();
   bankUI();
   statsUI();
+  try{ homeEnUI(); }catch(x){}
+});
+$('frseg').addEventListener('click',function(e){
+  var b=e.target.closest('button'); if(!b) return;
+  FRUNIT=b.dataset.u; try{ LS.setItem('voca_frunit', FRUNIT); }catch(x){}
+  frUnitUI(); stat();
 });
 $('nseg').addEventListener('click',function(e){
   if(e.target.tagName!=='BUTTON') return;
@@ -8529,7 +9742,7 @@ $('next').addEventListener('click',next);
 $('prev').addEventListener('click',prev);
 $('retry').addEventListener('click',retryWrong);
 $('again').addEventListener('click',function(){
-  if(SRC==='bank') startBank(); else start();
+  if(SRC==='bank') startBank(); else if(SRC==='ewr') startEver(); else start();
 });
 $('wbtn').addEventListener('click',showWrong);
 $('home').addEventListener('click',function(){ bankUI(); statsUI(); resumeUI(); srsUI(); reqUI(); todayUI(); syncUI(); refreshUnitLabels(); show('setup'); });
@@ -8557,7 +9770,7 @@ $('resumeGo').addEventListener('click',function(){
 });
 $('swseg').addEventListener('click',function(e){
   var b=e.target.closest('button'); if(!b) return;
-  if(st.mode!=='syn' && st.mode!=='write') return;
+  if(st.mode!=='syn' && st.mode!=='write' && st.mode!=='en' && st.mode!=='fr') return;
   SWAP[st.mode]=parseInt(b.dataset.s,10)||0; swapSave(); swapUI();
 });
 $('revSwapChk').addEventListener('change',function(){ SWAP.rev=!!this.checked; swapSave(); });
@@ -8572,7 +9785,7 @@ $('statsClr').addEventListener('click',function(){
   var n=statsList().length;
   if(!n){ return; }
   if(!confirm('약점 단어 기록 '+n+'개를 모두 지울까요?')) return;
-  STATS={}; DELS.all.stats=Date.now(); delsSave(); statsSave(); statsUI();
+  STATS={}; DELS.all[REC==='en'?'stats_en':REC==='fr'?'stats_fr':'stats']=Date.now(); delsSave(); statsSave(); statsUI();
 });
 document.getElementById('stfilter').addEventListener('click',function(e){
   var b=e.target.closest('.stf'); if(!b) return;
@@ -8609,10 +9822,22 @@ $('wsubmit').addEventListener('click',writeSubmit);
 // 따라쓰기 이벤트
 // 동의어 매칭: 입력 모드 토글
 $('againQ').addEventListener('click',function(e){ e.stopPropagation(); againUser(); });
+$('dockAgain').addEventListener('click',function(e){ e.stopPropagation(); againUser(); });
 $('srchQ').addEventListener('click',function(e){ e.stopPropagation(); srOpen(); });
+$('stylebar').addEventListener('click',function(e){
+  var b=e.target.closest && e.target.closest('button[data-st]'); if(!b) return;
+  e.stopPropagation(); styleSet(b.getAttribute('data-st'));
+});
+// 직접 쓰기: 쓴 것 지우기(×) · 맞음/틀림 고르기
+$('ch').addEventListener('click',function(e){
+  var x=e.target.closest && e.target.closest('[data-entx]');
+  if(x){ e.stopPropagation(); var q=Q[qi]; if(q && q._typed && ans[qi]===null && !q._check){ q._typed.splice(+x.getAttribute('data-entx'),1); enTypedUI(q); try{ $(_lastInp).focus(); }catch(z){} } return; }
+  var c=e.target.closest && e.target.closest('[data-enck]');
+  if(c){ e.stopPropagation(); enCheckMark(+c.getAttribute('data-enck'), c.getAttribute('data-v')); }
+});
 $('synmodetog').addEventListener('click',function(){
   SYN_TYPING=!SYN_TYPING;
-  if($('syninput')) $('syninput').value='';
+  if($('syninput')) $('syninput').value=''; if($('syninput2')) $('syninput2').value='';
   applySynMode();
   if(SYN_TYPING) setTimeout(function(){ $('syninput').focus(); },30);
 });
@@ -8624,29 +9849,60 @@ function applySynMode(){
     $('synwrap').style.display='none';
     return;
   }
+  var _mk = q && (q.kind==='syn' || q.kind==='ko' || q.kind==='en');
+  var _three = q && (q.kind==='ko' || q.kind==='en');      // 고르기 · 보며 쓰기 · 직접 쓰기
+  var sty = styleOf(q), typing = _mk && sty!=='pick';
+  var open = _mk && !fin && ans[qi]===null;
   // 입력 모드면 새 문제에서도 바로 타이핑되게 포커스 유지
-  var _mk = q && (q.kind==='syn' || q.kind==='ko');
-  if(SYN_TYPING && _mk && !fin && ans[qi]===null){
+  if(typing && open){
     setTimeout(function(){ var i=$('syninput'); if(i) i.focus(); },30);
   }
-  var isSyn = _mk && !fin && ans[qi]===null;
   $('synmodetog').textContent = SYN_TYPING ? '눌러서 풀기' : '입력으로 풀기';
   $('synmodetog').className = 'modetog'+(SYN_TYPING?' on':'');
+  $('synmodetog').style.display = _three ? 'none' : '';
+  var sb=$('stylebar');
+  if(sb){ sb.style.display = _three ? '' : 'none';
+    sb.querySelectorAll('button').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-st')===sty); }); }
   $('synmodebar').style.display = _mk ? '' : 'none';
-  $('synwrap').style.display = (SYN_TYPING && isSyn) ? '' : 'none';
-  $('ch').className = 'ch'+(SYN_TYPING?' typing':'');
+  $('synwrap').style.display = (typing && open) ? '' : 'none';
+  var inp=$('syninput'), _two=enTwo(q);
+  if($('syninput2')) $('syninput2').style.display = _two ? '' : 'none';
+  if(!_two) _lastInp='syninput';
+  var _nar=(window.innerWidth||800)<560;            // 폰처럼 좁으면 칸 이름만
+  var _sn2=(q && q.fr) ? '같은 뜻' : '동의어';
+  if($('syninput2')) $('syninput2').placeholder = _nar ? _sn2 : _sn2+' 쓰고 Enter';
+  if(inp) inp.placeholder = !q ? '' : q.kind==='en' ? (_two ? (_nar ? '뜻' : '뜻 쓰고 Enter') : '뜻 쓰고 Enter · 빈 칸 Enter = 제출')
+                       : q.kind==='ko' ? (sty==='write' ? '영어 단어 하나 쓰고 Enter · 빈 칸 Enter = 제출' : '동의어를 입력하고 Enter')
+                       : '동의어를 입력하고 Enter';
+  $('ch').className = 'ch'+((typing && !(q && q.kind==='en'))?' typing':'')+((sty==='write' && open && _three)?' enwrite':'');   // 영어 → 뜻은 보기 모양을 그대로
+  try{ if(q && (q.kind==='en' || q.kind==='ko')){ if(!$('entyped') && q.kind==='ko'){ var tp=document.createElement('div'); tp.id='entyped'; $('ch').appendChild(tp); } enTypedUI(q); } }catch(e){}
   if(_mk && ans[qi]===null){
-    if(q.kind==='ko') $('ask').textContent = SYN_TYPING
-      ? '이 뜻에 해당하는 영어 단어를 입력하세요'
+    if(q.kind==='en' && q.fr) $('ask').textContent = sty==='write' ? '뜻 · 같은 뜻은 보기 없이 쓰고, 반대말 · 뉘앙스는 골라요 · 칸마다 2개 이상 (1개뿐이면 1개)'
+      : sty==='see' ? '뜻 · 같은 뜻은 보기를 보며 쓰고, 반대말 · 뉘앙스는 골라요 · 칸마다 2개 이상 (1개뿐이면 1개)'
+      : '칸마다 2개 이상 고르세요 (1개뿐이면 1개) · 뉘앙스는 하나 · 숫자키로 선택';
+    else if(q.kind==='en') $('ask').textContent = sty==='write' ? '보기 없이 뜻과 동의어를 쓰세요 · 칸마다 2개 이상 (1개뿐이면 1개)'
+      : sty==='see' ? '보기를 보면서 뜻과 동의어를 입력하세요 · 칸마다 2개 이상 (1개뿐이면 1개)'
+      : '이 단어의 뜻과 동의어를 모두 고르세요 · 칸마다 2개 이상 (1개뿐이면 1개) · 숫자키로 선택';
+    else if(q.kind==='ko') $('ask').textContent = sty==='write'
+      ? '보기 없이 이 뜻의 영어 단어를 쓰세요 · 정답 '+(q.need||1)+'개'
+      : sty==='see' ? '이 뜻에 해당하는 영어 단어를 입력하세요'
       : '이 뜻으로 교재에 적힌 영어 단어를 모두 고르세요 · 숫자키로 선택';
     else $('ask').textContent = SYN_TYPING
       ? '보기를 보고 동의어를 입력하세요'
       : '동의어를 모두 고르세요 · 숫자키로 선택';
   }
 }
-function synTypeSubmit(){
+function synTypeSubmit(inpEl){
   var q=Q[qi];
-  if(!q || (q.kind!=='syn' && q.kind!=='ko') || fin || ans[qi]!==null) return;
+  if(!q || (q.kind!=='syn' && q.kind!=='ko' && q.kind!=='en') || fin || ans[qi]!==null) return;
+  if(q.kind==='en' && !inpEl && enTwo(q)){       // 「제출」 버튼: 두 칸에 쓴 게 있으면 넣고, 둘 다 비었으면 제출
+    var a1=$('syninput'), a2=$('syninput2');
+    if(!a1.value.trim() && !a2.value.trim()) return enTypeSubmit(q, a1);
+    if(a1.value.trim()) enTypeSubmit(q, a1);
+    if(a2.value.trim() && ans[qi]===null) enTypeSubmit(q, a2);
+    return;
+  }
+  if(q.kind==='en' || (q.kind==='ko' && KO_STYLE==='write')) return enTypeSubmit(q, inpEl);   // 영어 → 뜻 · 뜻 → 영어 직접 쓰기
   var v=$('syninput').value.trim();
   if(!v) return;
   var nv=normSyn(v);
@@ -8667,12 +9923,13 @@ function synTypeSubmit(){
   if(n>=q.need) submitSyn();   // 정답 개수만큼 골랐으면 자동 제출
   else $('syninput').focus();
 }
-$('synsubmit').addEventListener('click',synTypeSubmit);
-$('syninput').addEventListener('keydown',function(e){
+$('synsubmit').addEventListener('click',function(){ synTypeSubmit(); });
+function synKeydown(e){
+  _lastInp=this.id;
   // 입력창 안에서 숫자키를 누르면 '보기 선택'으로 처리 (숫자가 찍히지 않게)
   if(e.key>='0' && e.key<='9' && !this.value){
     var q0=Q[qi];
-    if(q0 && (q0.kind==='syn'||q0.kind==='ko') && ans[qi]===null){
+    if(q0 && (q0.kind==='syn'||q0.kind==='ko'||q0.kind==='en') && ans[qi]===null && (styleOf(q0)!=='write' || q0._check)){
       e.preventDefault(); e.stopPropagation();
       numKey(e.key, q0);
       return;
@@ -8681,11 +9938,15 @@ $('syninput').addEventListener('keydown',function(e){
   if(e.key==='Enter'){
     e.preventDefault(); e.stopPropagation();
     if(ans[qi]!==null){ next(); }        // 이미 채점됨 → 다음 문제
-    else synTypeSubmit();                 // 아직이면 제출
+    else synTypeSubmit(this);             // 아직이면 제출 (어느 칸에서 눌렀는지 같이)
   }
   else if(e.key==='ArrowRight' && !this.value){ e.preventDefault(); e.stopPropagation(); next(); }
   else if(e.key==='ArrowLeft' && !this.value){ e.preventDefault(); e.stopPropagation(); prev(); }
-});
+}
+$('syninput').addEventListener('keydown',synKeydown);
+$('syninput2').addEventListener('keydown',synKeydown);
+$('syninput').addEventListener('focus',function(){ _lastInp='syninput'; });
+$('syninput2').addEventListener('focus',function(){ _lastInp='syninput2'; });
 $('revGo').addEventListener('click',function(){
   var key=PEN_UNIT||st.key;
   var m=String(key).match(/^v(\d)d(\d+)$/);
@@ -8975,6 +10236,11 @@ $('calnext').addEventListener('click',function(){ CAL_M++; if(CAL_M>11){ CAL_M=0
 $('weakGo').addEventListener('click',startWeak);
 $('dueGo').addEventListener('click',startDue);
 $('pinGo').addEventListener('click',startPinned);
+$('ewrGo').addEventListener('click',startEver);
+document.addEventListener('click',function(e){
+  if(e.target.closest && e.target.closest('#ewrAlertGo')){ startEver(); return; }
+  if(e.target.closest && e.target.closest('#ewrIcs')){ ewrIcs(); return; }
+});
 $('pinView').addEventListener('click',function(){
   var pl=$('pinList');
   if(pl.style.display==='none'||!pl.innerHTML){ pinListUI(); this.textContent='닫기'; }
@@ -8987,6 +10253,12 @@ $('pinList').addEventListener('click',function(e){
   srsUI();                 // 배너 개수 갱신 (목록은 여기서 비워짐)
   if(pinnedList().length){ pinListUI(); $('pinView').textContent='닫기'; }   // 다시 그리기
   else { $('pinView').textContent='목록'; }
+});
+$('enPinList').addEventListener('click',function(e){
+  var d=e.target.closest('.pdel'); if(!d) return;
+  var w=d.getAttribute('data-pw');
+  recWith('en', function(){ if(STATS[w]){ STATS[w].pinned=0; STATS[w].pinT=Date.now(); statsSave(); } });
+  var box=$('enPinList'); box.style.display='none'; enGo('list'); homeEnUI();
 });
 $('reqCopy').addEventListener('click',function(){
   var ta=$('reqArea');
@@ -9031,7 +10303,7 @@ document.addEventListener('click',function(e){
     var rr=rootOfWord(nm);
     var h='';
     var _ph=phrsynHTML(nm, false);
-    if(_ph && !rr){ box.innerHTML=_ph; box.style.display=''; return; }   // 교재 동의어 구문: 구문 뜻 · 속 단어
+    if(_ph && !rr){ var _sw0=''; try{ var _qk0=Q[qi]&&Q[qi].kind; if(_qk0==='syn'||_qk0==='en') _sw0=synWhereHTML(nm); }catch(e){} box.innerHTML=_sw0+_ph; box.style.display=''; return; }   // 교재 동의어 구문: 구문 뜻 · 속 단어
     if(rr){
       h='<span class="crootlabel">'+esc(nm)+' 어원</span><span class="byc">'+rootLinkHTML(rr, nm)+'</span>';
       var rw=repWordsFor(rr);
@@ -9053,6 +10325,7 @@ document.addEventListener('click',function(e){
     if((CONF&&CONF[nm]) || similarOf(nm).length || posOf(nm).length){
       h+=simPanelHTML(nm);
     }
+    try{ var _qk=Q[qi]&&Q[qi].kind; if(_qk==='syn'||_qk==='en'){ var _sw=synWhereHTML(nm); if(_sw) h=_sw+h; } }catch(e){}
     box.innerHTML=h;
     box.style.display='';
     return;
@@ -9070,9 +10343,10 @@ document.addEventListener('click',function(e){
 
 document.addEventListener('click',function(e){
   // 동의어 매칭 입력 모드: 버튼 아닌 곳 클릭 시 입력창 포커스 복귀
-  if($('qscr').classList.contains('on') && SYN_TYPING){
-    if(!e.target.closest('button') && e.target.id!=='syninput'){
-      setTimeout(function(){ var i=$('syninput'); if(i && getComputedStyle($('synwrap')).display!=='none') i.focus(); },0);
+  if($('qscr').classList.contains('on') && typingNow()){
+    // 검색·비교 등 떠 있는 창 안을 누른 경우엔 그 창의 입력칸을 쓰게 둔다 (답 칸으로 끌어오지 않음)
+    if(!e.target.closest('button') && !(e.target.closest('.ovbox') && e.target.closest('.ovbox').classList.contains('on')) && e.target.id!=='syninput' && e.target.id!=='syninput2'){
+      setTimeout(function(){ var i=$(_lastInp)||$('syninput'); if(i && getComputedStyle(i).display==='none') i=$('syninput'); if(i && getComputedStyle($('synwrap')).display!=='none') i.focus(); },0);
     }
   }
   if(!$('copyscr').classList.contains('on')) return;
@@ -9199,12 +10473,15 @@ var _nkBuf='', _nkTimer=null;
 function _nkChoose(n, q){
   var i=n-1;
   if(i<0 || i>=q.opts.length) return;
-  if(q.kind==='syn'||q.kind==='ko'){ if(ans[qi]===null) toggle(i); }
+  if(q.fr && styleOf(q)==='write' && q.opts[i].sec!=='a' && q.opts[i].sec!=='n') return;   // 직접 쓰기: 뜻 · 같은 뜻은 숫자로 못 고른다
+  if(q.kind==='syn'||q.kind==='ko'||q.kind==='en'){ if(ans[qi]===null) toggle(i); }
   else pick(i);
 }
 function _nkClear(){ _nkBuf=''; if(_nkTimer){ clearTimeout(_nkTimer); _nkTimer=null; } var f=$('fb'); if(f && f.getAttribute('data-nk')){ f.textContent=''; f.removeAttribute('data-nk'); } }
 function numKey(key, q){
   if(!q || !q.opts) return;
+  if(q._check && ans[qi]===null){ if(key==='1') enCheckMark(-1,'o'); else if(key==='2') enCheckMark(-1,'x'); return; }   // 직접 쓰기 체크: 1 맞음 · 2 틀림
+  if((q.kind==='en'||q.kind==='ko') && styleOf(q)==='write' && ans[qi]===null && !q.fr) return;          // 직접 쓰기: 보기가 없다 (최종 복습은 반대말 · 뉘앙스 칸이 남아 있다)
   var n=q.opts.length;
   if(n<=9){ _nkClear(); if(key!=='0') _nkChoose(parseInt(key), q); return; }
   if(_nkBuf){                                   // 두 번째 숫자
@@ -9245,8 +10522,14 @@ document.addEventListener('keydown',function(e){
     if(e.key==='Escape'){ e.preventDefault(); lrClose(); }
     return;
   }
+  if(wbIsOpen() && wbAskOpen()){
+    if(e.key==='1' || e.key==='Enter'){ e.preventDefault(); wbAskPick('del'); }
+    else if(e.key==='2' || e.key==='Escape'){ e.preventDefault(); wbAskPick('no'); }
+    else if(e.key!=='Tab') e.preventDefault();
+    return;
+  }
   if(wbIsOpen()){
-    if(e.key==='Escape'){ e.preventDefault(); wbClose(); }
+    if(e.key==='Escape' || e.key==='Enter'){ e.preventDefault(); wbClose(); }   // 담은 뒤 Enter로 창 닫기
     else if(e.key>='0' && e.key<='9'){ e.preventDefault(); chipKey(e.key, $('wbBox').querySelectorAll('.cmpchip').length, function(n){ _chipClick('wbBox', n); }); }
     else if(e.key!=='Tab') e.preventDefault();
     return;
@@ -9286,8 +10569,13 @@ document.addEventListener('keydown',function(e){
   }
   if(!$('qscr').classList.contains('on')||fin) return;
   var q=Q[qi];
+  // Tab = 「이번 회차에 다시」 (입력 모드 입력칸에서도). 떠 있는 창은 위에서 이미 걸러졌다.
+  if(e.key==='Tab' && !e.altKey && !e.metaKey && !e.ctrlKey){ e.preventDefault(); try{ againUser(); }catch(x){} return; }
+  // ₩(\) = 복습에 담기 · `(백틱) = 내 단어장 — 입력칸에 글자가 들어가지 않게 막는다
+  if(!e.altKey && !e.metaKey && !e.ctrlKey && (e.key==='\\' || e.key==='₩' || e.code==='Backslash')){ e.preventDefault(); try{ if(q&&q.w) pinAsk(q.w, 'dockPin'); }catch(x){} return; }
+  if(!e.altKey && !e.metaKey && !e.ctrlKey && (e.key==='`' || e.code==='Backquote')){ e.preventDefault(); try{ wbOpen('quiz'); }catch(x){} return; }
   // 입력 모드에서 입력창에 포커스가 있으면 전역 단축키가 가로채지 않게
-  if(SYN_TYPING && document.activeElement===$('syninput')) return;
+  if(typingNow() && (document.activeElement===$('syninput') || document.activeElement===$('syninput2'))) return;
   if(e.key>='0'&&e.key<='9'){
     e.preventDefault();          // 숫자가 입력창으로 새어드는 것 방지
     numKey(e.key, q);
@@ -9295,6 +10583,8 @@ document.addEventListener('keydown',function(e){
   else if(e.key==='Enter'){
     e.preventDefault();
     if(q.kind==='syn'&&ans[qi]===null) submitSyn();
+    else if(q.kind==='en'&&ans[qi]===null){ if(styleOf(q)==='write') enWriteSubmit(q); else submitEn(); }
+    else if(q.kind==='ko'&&ans[qi]===null&&KO_STYLE==='write') enWriteSubmit(q);
     else next();
   }
   else if(e.key==='ArrowRight'){ e.preventDefault(); next(); }
