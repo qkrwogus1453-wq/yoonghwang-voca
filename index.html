@@ -2356,7 +2356,8 @@ function buildFr(w, opt){
   // 문맥 (예문 빈칸): 교재 뜻 줄 예문에서 이 단어 자리를 비우고, 들어갈 단어 하나 고르기
   //   오답 = 헷갈리는 철자 단어 + 같은 품사의 관계없는 교재 단어 (같은 뜻 · 비슷한 말은 빈칸에 같이 들어갈 수 있어 안 쓴다)
   var C=[]; q.cs=''; q.cko=''; q.cform='';
-  if(!q.swap){
+  // 2027.01.23: 문맥 칸은 정답이 늘 표제어라 쓸모가 없어 뺐다 (예전에 저장된 문제는 그대로 보여 줌)
+  if(false && !q.swap){
     var hw=String(w.w).split('=')[0].trim();
     var exs=((EXDATA||{})[String(w.id)]||[]).filter(function(e){ return e && e[1] && phraseSpan(hw, e[1]); });
     if(exs.length){
@@ -2398,13 +2399,9 @@ function enRevealExtra(q, a){
     h+='<div class="esr"><span class="esk '+(ok?'ok':'no')+'">'+(ok?'✓ ':'✗ ')+NM[sc]+'</span><span class="esv">'+(txt||'—')+'</span></div>';
   });
   var el=$('ensum'); if(el){ el.innerHTML=h; el.style.display=h?'':'none'; }
-  // 맞힌 칸은 접는다 (제목을 누르면 펼치기)
-  var map={enk:'k', ens:'s', ena:'a', enn:'n', enc:'c'};
-  $('ch').querySelectorAll('.ensec').forEach(function(sec){
-    var sc=null; for(var c in map) if(sec.classList.contains(c)) sc=map[c];
-    var hasDiff=!!sec.querySelector('.simtag, .finnote.u, .finnote.n');   // 선지 차이 설명이 있는 칸은 맞혀도 펼쳐 둔다
-    if(sc && a.en[sc]===1 && !hasDiff){ sec.classList.add('fold'); var hd=sec.querySelector('.ensh'); if(hd){ hd.onclick=function(){ sec.classList.toggle('fold'); }; } }
-  });
+  // 2027.01.23: 맞힌 칸도 접지 않는다(복습 화면이라 다 펼쳐 둠) · 같은 뜻 칸의 「어느 뜻으로」는 이제 보인다
+  $('ch').querySelectorAll('.ensec.fold').forEach(function(sec){ sec.classList.remove('fold'); });
+  $('ch').querySelectorAll('.ensh .enss').forEach(function(x){ x.style.display=''; });
   // 문맥: 빈칸을 채운 문장 + 해석
   var fx=$('ch').querySelector('.enc .frex');
   if(fx && q.cs){ var parts=String(q.cs).split('＿＿＿＿');
@@ -4966,7 +4963,7 @@ setInterval(function(){
   }catch(e){}
 },1500);
 
-var APP_VER = '2027.01.22';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
+var APP_VER = '2027.01.23';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
 var VER = APP_VER;  // 데이터 URL 캐시 키. 배포 때만 바뀌므로 브라우저 캐시가 제대로 재사용됨
 function loadJ(p){
   // 데이터 파일은 URL에 버전(v=)이 붙어 캐시가 자동 갱신되므로 브라우저 캐시를 허용한다.
@@ -7952,7 +7949,8 @@ function drawEnOpts(q, box){
   }
   var _hw='<b class="ensw">'+esc(String(q.prompt||q.w.w).split('=')[0].trim())+'</b> ';
   sec(_hw+'뜻', 'enk', k, 0);
-  var _sn=_hw+(q.fr ? '같은 뜻' : '동의어')+((q.fr && q.ssense) ? ' <span class="enss">· 「'+esc(q.ssense)+'」 뜻으로</span>' : '');
+  // 2027.01.23: 「어느 뜻으로」 한글 뜻은 뜻 칸의 답을 알려 주므로 채점한 뒤에만 보인다
+  var _sn=_hw+(q.fr ? '같은 뜻' : '동의어')+((q.fr && q.ssense) ? ' <span class="enss"'+(ans[qi]===null?' style="display:none"':'')+'>· 「'+esc(q.ssense)+'」 뜻으로</span>' : '');
   if(s.length) sec(_sn, 'ens', s, k.length);
   else if(!q.fr){ var nd=document.createElement('div'); nd.className='ensh ennone'; nd.textContent='동의어 — 교재에 실린 동의어가 없는 단어예요 (뜻 칸만)'; box.appendChild(nd); }
   if(q.fr){                                   // 최종 복습: 반대말 · 뉘앙스 칸 (직접 쓰기에서도 골라서 푼다)
@@ -8331,7 +8329,7 @@ function draw(){
   try{ var _es=$('ensum'); if(_es){ _es.style.display='none'; _es.innerHTML=''; } }catch(e){}
 
   if(q.kind==='en'){
-    $('ask').textContent=q.fr ? '칸마다 맞는 것을 고르세요 · 숫자키로 선택' : '이 단어의 뜻과 동의어를 모두 고르세요 · 숫자키로 선택';
+    $('ask').textContent=q.fr ? '칸마다 맞는 것을 고르세요 · 숫자키로 선택 · ↓↑ 칸 이동' : '이 단어의 뜻과 동의어를 모두 고르세요 · 숫자키로 선택';
     drawEnOpts(q, box);
   } else if(q.kind==='syn' || q.kind==='ko'){
     $('ask').textContent = (q.kind==='ko') ? '이 뜻으로 교재에 적힌 영어 단어를 모두 고르세요 · 숫자키로 선택'
@@ -8887,6 +8885,15 @@ function pinAsk(w, btnId){
 // 담기 창이 떠 있는지 — 떠 있는 동안은 키보드 1·2·Esc가 이 창으로만 간다 (뒤 문제의 보기가 눌리지 않게)
 var _pinAskPick=null;
 // 2027.01.22: 입력 모드(동의어 매칭 등)에서 창을 닫거나 버튼을 누른 뒤 입력칸 커서가 사라져 키가 안 먹던 것 — 입력칸으로 커서를 돌려준다
+// 칸 이동 (2027.01.23): 지금 화면 맨 위 근처에 있는 칸을 기준으로 다음/이전 칸을 맨 위로 올린다
+function secJump(secs, dir){
+  var TOP=10, cur=-1;
+  for(var i=0;i<secs.length;i++){ if(secs[i].getBoundingClientRect().top<=TOP+30) cur=i; }
+  var to = dir>0 ? Math.min(cur+1, secs.length-1) : Math.max(cur-1, 0);
+  if(dir<0 && cur<=0){ window.scrollTo({top:0, behavior:'smooth'}); return; }
+  var y=window.scrollY + secs[to].getBoundingClientRect().top - TOP;
+  window.scrollTo({top:Math.max(0,y), behavior:'smooth'});
+}
 function typingRefocus(){
   try{
     if(!$('qscr').classList.contains('on') || !typingNow()) return;
@@ -10119,7 +10126,7 @@ function applySynMode(){
   if(_mk && ans[qi]===null){
     if(q.kind==='en' && q.fr) $('ask').textContent = sty==='write' ? '뜻 · 같은 뜻은 보기 없이 쓰고, 반대말 · 문맥은 골라요'
       : sty==='see' ? '뜻 · 같은 뜻은 보기를 보며 쓰고, 반대말 · 문맥은 골라요'
-      : '칸마다 맞는 것을 고르세요 · 숫자키로 선택';
+      : '칸마다 맞는 것을 고르세요 · 숫자키로 선택 · ↓↑ 칸 이동';
     else if(q.kind==='en') $('ask').textContent = sty==='write' ? '보기 없이 뜻과 동의어를 쓰세요'
       : sty==='see' ? '보기를 보면서 뜻과 동의어를 입력하세요'
       : '이 단어의 뜻과 동의어를 고르세요 · 숫자키로 선택';
@@ -10815,6 +10822,11 @@ document.addEventListener('keydown',function(e){
   // ₩(\) = 복습에 담기 · =(등호) = 내 단어장 — 입력칸에 글자가 들어가지 않게 막는다 (2027.01.22: 내 단어장 키를 = 로)
   if(!e.altKey && !e.metaKey && !e.ctrlKey && (e.key==='\\' || e.key==='₩' || e.code==='Backslash')){ e.preventDefault(); try{ if(q&&q.w) pinAsk(q.w, 'dockPin'); }catch(x){} return; }
   if(!e.altKey && !e.metaKey && !e.ctrlKey && (e.key==='=' || (e.code==='Equal' && !e.shiftKey))){ e.preventDefault(); try{ wbOpen('quiz'); }catch(x){} return; }
+  // 2027.01.23: ↓ = 다음 칸을 화면 맨 위로 · ↑ = 이전 칸 (최종 복습 · 영어 → 뜻 — 스크롤 안 해도 되게)
+  if((e.key==='ArrowDown' || e.key==='ArrowUp') && q && q.kind==='en' && !e.altKey && !e.metaKey && !e.ctrlKey && !e.shiftKey){
+    var _secs=[].slice.call(document.querySelectorAll('#ch .ensec')).filter(function(x){ return x.offsetParent!==null; });
+    if(_secs.length>1){ e.preventDefault(); secJump(_secs, e.key==='ArrowDown'?1:-1); return; }
+  }
   // 2027.01.22: 입력 모드인데 입력칸에 커서가 없을 때(버튼을 누른 뒤 등) 글자·지우기 키를 입력칸으로 보낸다 — 아무 키도 안 먹던 것 고침
   var _ae=document.activeElement;
   if(typingNow() && ans[qi]===null && !(_ae && /^(INPUT|TEXTAREA|SELECT)$/.test(_ae.tagName)) && !e.ctrlKey && !e.metaKey && !e.altKey
