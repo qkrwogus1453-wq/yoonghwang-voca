@@ -1460,6 +1460,7 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 #ch button.c .finnote.n{color:#ffcf9a!important;font-size:.86em}
 #ch button.c .finnote.u{color:#e0d2ff!important;font-size:.84em}
 #ch button.c .finnote.lk{color:#8fd3ff!important;font-size:.86em}
+#ch .ensh .stmean{display:block;margin-top:4px;font-size:.86em;font-weight:600;color:#ffd27a}
 #ch button.c .stdef{display:block;width:100%;margin-top:5px;font-size:.8em;line-height:1.45;color:#c9d4ee;text-align:left;font-weight:500}
 .ensh .stmk.ok{color:#7fe0c2}.ensh .stmk.no{color:#ff8fa0}
 #frneedbar{display:block;margin-top:7px;font-size:.8em;color:#9fb0cc}
@@ -2233,15 +2234,18 @@ function frStageApply(q, root, scroll){
   st.chosen.forEach(function(i){ pk[i]=1; });
   q.opts.forEach(function(o,i){ var b=bs[i]; if(!b) return; var sc=o.sec||'k';
     if(_ST2[sc]){
-      if(sc==='a' && !b.querySelector('.stdef')){ var d=o.def||frDef(o.t)||''; if(d){ var e=document.createElement('span'); e.className='stdef'; e.textContent=d; b.appendChild(e); } }   // 반대말 보기: 그 단어 뜻 전부
+      // 2027.01.32: 반대말 보기에는 뜻을 안 붙인다(보기에 뜻이 있으면 퀴즈가 안 됨) — 대신 칸 제목 옆에 문제 단어의 뜻을 보여 준다
       return; }
     b.classList.remove('sel'); b.classList.add('mr');
     if(o.ok && pk[i]) b.classList.add('ok'); else if(o.ok) b.classList.add('miss');
     else if(pk[i] && o.fin==='N') b.classList.add('simn','nupk'); else if(pk[i]) b.classList.add('no'); else b.classList.add('dim');
   });
+  var _ah=root.querySelector('.ensec.ena .ensh');
+  if(_ah && !_ah.querySelector('.stmean')){ var _m=(q.swap && q.swap.d) ? q.swap.d : (q.w && q.w.m) || '';
+    if(_m){ var sm=document.createElement('div'); sm.className='stmean'; sm.textContent='「'+String(_m).trim()+'」의 반대말'; _ah.appendChild(sm); } }   // 2027.01.32: 문제 단어 뜻 전부
   [['enk','k'],['ens','s']].forEach(function(p){ var h=root.querySelector('.ensec.'+p[0]+' .ensh'); if(!h || h.querySelector('.stmk')) return; var v=st.R[p[1]]; if(v===-1) return;
     var m=document.createElement('span'); m.className='stmk '+(v?'ok':'no'); m.textContent=v?' ✓':' ✗'; h.appendChild(m); });
-  try{ $('fb').textContent='뜻 '+(st.R.k?'✓':'✗')+(st.R.s!==-1?' · 같은 뜻 '+(st.R.s?'✓':'✗'):'')+' — 이제 반대말을 고르세요 (보기마다 그 단어 뜻) · Enter = 전체 채점'; $('fb').style.color=''; }catch(e){}
+  try{ $('fb').textContent='뜻 '+(st.R.k?'✓':'✗')+(st.R.s!==-1?' · 같은 뜻 '+(st.R.s?'✓':'✗'):'')+' — 이제 반대말을 고르세요 (칸 제목 옆에 이 단어 뜻) · Enter = 전체 채점'; $('fb').style.color=''; }catch(e){}
   if(scroll){ var a=root.querySelector('.ensec.ena'); if(a) try{ a.scrollIntoView({behavior:'smooth', block:'start'}); }catch(e){} }
 }
 try{ var _fu0=LS.getItem('voca_frunit'); if(_fu0==='unit'||_fu0==='box') FRUNIT=_fu0; }catch(e){}
@@ -5094,7 +5098,7 @@ setInterval(function(){
   }catch(e){}
 },1500);
 
-var APP_VER = '2027.01.31';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
+var APP_VER = '2027.01.32';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
 var VER = APP_VER;  // 데이터 URL 캐시 키. 배포 때만 바뀌므로 브라우저 캐시가 제대로 재사용됨
 function loadJ(p){
   // 데이터 파일은 URL에 버전(v=)이 붙어 캐시가 자동 갱신되므로 브라우저 캐시를 허용한다.
