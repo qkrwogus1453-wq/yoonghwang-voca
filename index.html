@@ -1460,6 +1460,18 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 #ch button.c .finnote.n{color:#ffcf9a!important;font-size:.86em}
 #ch button.c .finnote.u{color:#e0d2ff!important;font-size:.84em}
 #ch button.c .finnote.lk{color:#8fd3ff!important;font-size:.86em}
+.ambbtn{position:absolute;top:6px;right:8px;font-size:.68em;font-weight:800;padding:2px 8px;border-radius:9px;background:#3a2f12;color:#ffd27a;border:1px solid #a8822a;cursor:pointer;z-index:2}
+#ch button.c.ambx{opacity:.55!important;border-style:dotted!important}
+.ambhome{margin-top:8px;font-size:.85em;padding:6px 12px;border-radius:10px;background:#2a2410;color:#ffd27a;border:1px solid #7a5a2a}
+.ambov{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;display:flex;align-items:flex-start;justify-content:center;padding:40px 12px;overflow:auto}
+.ambbox{background:#14213d;border:1px solid #2e4a7a;border-radius:14px;max-width:640px;width:100%;padding:14px;color:#dfe6f7}
+.ambh{font-weight:800;margin-bottom:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ambh button,.ambrow button{font-size:.8em;padding:3px 9px;border-radius:8px}
+.ambrow{padding:6px 0;border-bottom:1px dashed #2e4a7a;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ambrow span{color:#9fb0cc;font-size:.85em}
+#ch button.c.tbopt{border-width:3px!important;border-color:#2fd39a!important}
+#ch button.c .tbbadge{display:inline-block;margin-right:7px;padding:1px 7px;border-radius:6px;background:#1f6f55;color:#eafff6;font-size:.72em;font-weight:800;vertical-align:2px}
+.ensum .esv .eso.tbs{font-weight:800}.ensum .esv .est.tb.pre{margin:0 4px 0 0;background:#1f6f55;color:#eafff6;font-weight:800}
 #ch .ensh .stmean{display:block;margin-top:4px;font-size:.86em;font-weight:600;color:#ffd27a}
 #ch button.c .stdef{display:block;width:100%;margin-top:5px;font-size:.8em;line-height:1.45;color:#c9d4ee;text-align:left;font-weight:500}
 .ensh .stmk.ok{color:#7fe0c2}.ensh .stmk.no{color:#ff8fa0}
@@ -1467,6 +1479,8 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 #frneedbar .fng{display:inline-flex;border:1px solid #4a5a8a;border-radius:14px;overflow:hidden;vertical-align:middle;margin:0 8px 0 4px}
 #frneedbar .fng button{background:none;border:0;color:#9fb0cc;padding:2px 9px;font-size:1em;cursor:pointer}
 #frneedbar .fng button.on{background:#2e7d6a;color:#fff}
+#frneedbar .fngap{display:inline-block;width:6px}
+#frneedbar .fnnote{margin-left:4px;color:#ffcf9a}
 #ch button.c.lkb{opacity:1!important;border-color:#3b7fae!important}
 .frlink{display:inline-block;margin:2px 0 8px;padding:2px 10px;border-radius:7px;background:#12304a;border:1px solid #2e7d6a;color:#7fe0c2;font-size:.88em}
 #ch .frex{background:#10243c;border-left:3px solid #4a9be0;padding:8px 11px;border-radius:6px;font-size:1em;line-height:1.55;margin:0 0 8px;color:#e6eefc}
@@ -1874,6 +1888,7 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
       <button data-u="box">뜻 상자 단위</button>
     </div>
     <div class="stat" id="frstat"></div>
+    <button type="button" id="ambbtnHome" class="ambhome" onclick="ambListShow()">애매하게 뺀 연결 0개</button>
   </div>
 
   <div class="fld" id="fnum">
@@ -2186,7 +2201,7 @@ function frApplyNeed(q){
   function c(sc){ return q.opts.filter(function(o){ return (o.sec||'k')===sc && o.ok; }).length; }
   function nd(v,t){ return v==='all' ? t : Math.min(v,t); }
   var nk=c('k'), ns=c('s'), na=c('a');
-  q.needK=Math.max(1, nd(FRNEED.k, nk||1)); q.needS=ns ? nd(FRNEED.s, ns) : 0; q.needA=na ? nd(FRNEED.a, na) : 0;
+  q.needK=nk ? Math.max(1, nd(FRNEED.k, nk)) : (q.only ? 0 : 1); q.needS=ns ? nd(FRNEED.s, ns) : 0; q.needA=na ? nd(FRNEED.a, na) : 0;
 }
 function frNeedUI(){
   var el=$('frneedbar'); if(!el) return;
@@ -2196,6 +2211,7 @@ function frNeedUI(){
   el.innerHTML='맞힐 개수 '+['k','s','a'].map(function(sc){
     return NM[sc]+'<span class="fng">'+[1,2,'all'].map(function(v){ return '<button data-sc="'+sc+'" data-v="'+v+'" class="'+(FRNEED[sc]===v?'on':'')+'">'+(v==='all'?'전부':v)+'</button>'; }).join('')+'</span>';
   }).join('');
+  el.innerHTML+='<span class="fngap"></span>보기<span class="fng"><button data-step="all" class="'+(FRSTEP==='all'?'on':'')+'">한꺼번에</button><button data-step="one" class="'+(FRSTEP==='one'?'on':'')+'">한 칸씩</button></span>'+(FRSTEP==='one' && styleOf(q)==='write'?'<span class="fnnote">(직접 쓰기는 한꺼번에)</span>':'');
   el.style.display='';
 }
 function frNeedSet(sc, v){
@@ -2208,14 +2224,77 @@ function frNeedSet(sc, v){
 }
 // 2027.01.29: 최종 복습 단계 풀이 — ① 뜻 · 같은 뜻 채점(화면 그대로) → ② 반대말(보기마다 그 단어 뜻 전부) · 문맥 → 전체 채점
 var _ST2={a:1, c:1};
-function frHasStage(q){ return !!(q && q.fr && q.kind==='en' && q.opts && q.opts.some(function(o){ return o.sec==='a'; })); }
+var _STAGE1=false, _PEND=_ST2;
+// 2027.01.36: 애매한 연결 담기 — 채점 뒤 같은 뜻·반대말 보기의 「애매」를 누르면 그 연결은 채점에서 빼고(오답 아님), 다음 문제부터 안 나오고, 목록에 남아 나중에 꺼내 다시 분석한다
+var AMB={};
+try{ AMB=JSON.parse(LS.getItem('voca_amb')||'{}')||{}; }catch(e){ AMB={}; }
+function ambKey(a,b){ return [String(a).toLowerCase().trim(), String(b).toLowerCase().trim()].sort().join('|'); }
+function ambHas(a,b){ return !!AMB[ambKey(a,b)]; }
+function ambSave(){ try{ LS.setItem('voca_amb', JSON.stringify(AMB)); }catch(e){} try{ ambUI(); }catch(e){} }
+function ambMark(i){
+  var q=Q[qi]; if(!q || !q.fr || !q.opts[i]) return;
+  var o=q.opts[i], sc=o.sec||'k'; if(sc!=='s' && sc!=='a') return;
+  if(sc==='s' && o.ok && frSrcOf(q,o).tb) return;               // 교재 동의어는 뺄 수 없음(늘 같은 뜻)
+  var hw=String(q.prompt||q.w.w).split('=')[0].trim();
+  var a=ans[qi], st=q._st1, sel=(a && Array.isArray(a.sel)) ? a.sel : (st ? st.chosen : []);
+  var picked=sel.indexOf(i)>=0;
+  var kind = o.ok ? (picked?'정답을 고름':'정답을 놓침') : (picked?'오답을 고름':'안 고른 오답');
+  AMB[ambKey(hw,o.t)]={hw:hw, t:o.t, sec:(sc==='s'?'같은 뜻':'반대말'), ok:o.ok?1:0, kind:kind, box:o.box||q.ssense||'', lec:(q.w&&_atTag(q.w))||'', at:Date.now()};
+  ambSave();
+  o.amb=1;
+  if(a){                                                          // 전체 채점 뒤: 다시 채점 — 이것 때문에 틀렸으면 정답으로 돌린다
+    var R=enSecStat(q, a.sel, a.wr), ok=R.k.ok && R.s.ok && R.a.ok && R.n.ok && R.c.ok;
+    a.en.k=R.k.ok?1:0; a.en.s=R.s.tot?(R.s.ok?1:0):-1; if(q.fr){ a.en.a=R.a.tot?(R.a.ok?1:0):-1; }
+    if(!a.ok && ok){
+      a.ok=true; a.amb=1;
+      for(var j=wrongs.length-1;j>=0;j--){ if(wrongs[j].kind==='syn' && wrongs[j].w && wrongs[j].w.w===q.w.w) wrongs.splice(j,1); }
+      try{ bankDel('syn', q.w); bankSave(); }catch(e){}
+      try{ var r=STATS[q.w.w]; if(r){ r.wrong=Math.max(0,(r.wrong||0)-1); r.rw=Math.max(0,(r.rw||0)-1); if(r.cyc) r.cyc--; r.right=(r.right||0)+1; srsSchedule(r,true); if(r.frw) r.frw={k:a.en.k, s:a.en.s, a:a.en.a, t:Date.now()}; statsSave(); } }catch(e){}
+      for(var k2=Q.length-1;k2>qi;k2--){ if(Q[k2] && Q[k2].again && Q[k2].w && Q[k2].w.w===q.w.w && ans[k2]===null && String(Q[k2].why||'').indexOf('w')>=0){ Q.splice(k2,1); ans.splice(k2,1); } }   // 틀려서 다시 넣은 문제도 뺀다
+      try{ $('cnt').textContent=(qi+1)+' / '+Q.length; }catch(e){}
+    }
+    replay(); try{ score(); }catch(e){} try{ sessionSave(); }catch(e){}
+  } else if(st){                                                  // ① 1차 채점 화면
+    var R1=enSecStat(q, st.chosen, st.wr); st.R={k:R1.k.ok?1:0, s:R1.s.tot?(R1.s.ok?1:0):-1};
+    frStage1Render(q);
+  }
+}
+function ambUndo(key){ if(AMB[key]){ delete AMB[key]; ambSave(); ambListShow(); } }
+function ambText(){
+  var L=Object.keys(AMB).map(function(k){ return AMB[k]; }).sort(function(x,y){ return x.at-y.at; });
+  return L.map(function(x){ return x.hw+' ⇄ '+x.t+'\t'+x.sec+'\t'+x.kind+'\t'+(x.box?'「'+x.box+'」':'')+'\t'+x.lec+'\t'+new Date(x.at).toLocaleDateString('ko-KR'); }).join('\n');
+}
+function ambUI(){ var b=$('ambbtnHome'); if(b){ var n=Object.keys(AMB).length; b.textContent='애매하게 뺀 연결 '+n+'개'; b.style.display=''; } }
+function ambListShow(){
+  var ov=$('ambov'); if(!ov){ ov=document.createElement('div'); ov.id='ambov'; ov.className='ambov'; document.body.appendChild(ov); }
+  var L=Object.keys(AMB).map(function(k){ return [k,AMB[k]]; }).sort(function(x,y){ return y[1].at-x[1].at; });
+  ov.innerHTML='<div class="ambbox"><div class="ambh">애매하게 뺀 연결 '+L.length+'개 <button id="ambcopy">전체 복사</button><button id="ambdl">파일로 받기</button><button id="ambclose">닫기</button></div>'
+    +(L.length?L.map(function(x){ var v=x[1]; return '<div class="ambrow"><b>'+esc(v.hw)+'</b> ⇄ <b>'+esc(v.t)+'</b> <span>'+esc(v.sec)+' · '+esc(v.kind)+(v.box?' · 「'+esc(v.box)+'」':'')+'</span><button data-ambundo="'+esc(x[0])+'">되돌리기</button></div>'; }).join('') : '<div class="ambrow">아직 없어요</div>')+'</div>';
+  ov.style.display='';
+  $('ambclose').onclick=function(){ ov.style.display='none'; };
+  $('ambcopy').onclick=function(){ var t=ambText(); try{ navigator.clipboard.writeText(t); $('ambcopy').textContent='복사됨'; }catch(e){ prompt('복사하세요', t); } };
+  $('ambdl').onclick=function(){ var blob=new Blob([ambText()],{type:'text/plain'}); var u=URL.createObjectURL(blob); var aa=document.createElement('a'); aa.href=u; aa.download='애매한연결_'+new Date().toISOString().slice(0,10)+'.txt'; document.body.appendChild(aa); aa.click(); aa.remove(); };
+  ov.querySelectorAll('[data-ambundo]').forEach(function(b){ b.onclick=function(){ ambUndo(b.getAttribute('data-ambundo')); }; });
+}
+// 2027.01.34: ① 뜻 · 같은 뜻 채점 화면을 전체 채점과 똑같이 (보기마다 뜻 · 교재/사전 · 어감 · 요약 상자) — 반대말 · 문맥 칸만 빼고
+function frStage1Render(q){
+  if(!q || !q._st1 || Q[qi]!==q || ans[qi]!==null) return;
+  var st=q._st1;
+  ans[qi]={sel:st.chosen.slice(), ok:false, en:{k:st.R.k, s:st.R.s, st:styleOf(q)}, wr:st.wr||undefined};
+  _STAGE1=true; _PEND=_ST2;
+  try{ replay(); }catch(e){}
+  finally{ _STAGE1=false; ans[qi]=null; }
+  frStageApply(q, $('ch'), false);
+}
+function frHasStage(q){ return !!(q && q.fr && q.kind==='en' && q.opts && q.opts.some(function(o){ return o.sec==='a'; }) && q.opts.some(function(o){ return o.sec==='k'||o.sec==='s'; })); }
 function frStage1(q, chosen, wr){
   var c1=chosen.filter(function(i){ var o=q.opts[i]; return o && !_ST2[o.sec||'k']; });
   if(!c1.length && !(wr||[]).length){ $('fb').textContent='뜻 · 같은 뜻에서 하나 이상 고르세요'; return; }
   var R=enSecStat(q, c1, wr);
   q._st1={chosen:c1, wr:wr||null, R:{k:R.k.ok?1:0, s:R.s.tot?(R.s.ok?1:0):-1}};
-  frStageApply(q, $('ch'), true);
+  frStage1Render(q);
   try{ applySynMode(); }catch(e){}
+  try{ var _a=$('ch').querySelector('.ensec.ena'); if(_a) _a.scrollIntoView({behavior:'smooth', block:'start'}); }catch(e){}
 }
 function frStage2(q){
   var st=q._st1, chosen=st.chosen.slice();
@@ -2223,6 +2302,67 @@ function frStage2(q){
   if(!q.opts.some(function(o,i){ return o.sec==='a' && sel[i]; })){ $('fb').textContent='반대말을 하나 이상 고르세요'; return; }
   q._stFinal=1;
   enFinish(q, chosen, st.wr);
+}
+// 2027.01.36: 한 칸씩 넘기기 — 뜻 → 같은 뜻 → 반대말(+문맥) 순서로 한 칸만 보이고, Enter = 그 칸 채점(정보 전부) → Enter = 다음 칸
+var FRSTEP='all';
+try{ var _fs0=LS.getItem('voca_frstep'); if(_fs0==='one'||_fs0==='all') FRSTEP=_fs0; }catch(e){}
+var _SECC={enk:'k', ens:'s', enn:'n', ena:'a', enc:'c'};
+function frOneOn(q){ return !!(q && q.fr && q.kind==='en' && FRSTEP==='one' && styleOf(q)!=='write'); }
+function frOneInit(q){
+  if(q._one) return q._one;
+  var steps=['k','s','n','a'].filter(function(sc){ return q.opts.some(function(o){ return (o.sec||'k')===sc; }); });
+  if(!steps.length) steps=['k'];
+  q._one={steps:steps, i:0, graded:false, chosen:[], R:{}};
+  return q._one;
+}
+function frOneCur(q){ var o=q._one; return o ? o.steps[o.i] : null; }
+function frOneApply(q, root){
+  if(!q || !root || ans[qi]!==null) return;
+  var o=frOneInit(q), cur=o.steps[o.i], last=(o.i===o.steps.length-1);
+  root.querySelectorAll('.ensec').forEach(function(d){
+    var sc=null; for(var c in _SECC){ if(d.classList.contains(c)) sc=_SECC[c]; }
+    d.style.display = (sc===cur || (sc==='c' && last)) ? '' : 'none';
+  });
+  if(cur==='a'){ var bs=root.querySelectorAll('button.c'); q.opts.forEach(function(op,i){ if(op.sec==='a' && bs[i] && !bs[i].querySelector('.stdef')){ var d=op.def||frDef(op.t)||''; if(d){ var e=document.createElement('span'); e.className='stdef'; e.textContent=d; bs[i].appendChild(e); } } }); }
+  var NM={k:'뜻', s:'같은 뜻', n:'뉘앙스', a:'반대말'};
+  var sub=root.querySelector('#sub'); if(sub){ sub.style.display=''; sub.textContent = o.graded ? '다음 칸 → '+NM[o.steps[o.i+1]]+' (Enter)' : (last ? '전체 채점 (Enter)' : NM[cur]+' 채점 (Enter)'); }
+  try{ $('ask').textContent=(o.i+1)+' / '+o.steps.length+' 칸 · '+NM[cur]+(o.graded?' 채점 끝 — Enter = 다음 칸':' — 고르고 Enter'); }catch(e){}
+  // 앞에서 채점한 칸의 결과는 위쪽 요약 상자에 그대로 남긴다
+  if(!o.graded && o.i>0){
+    var en={st:styleOf(q)}; for(var j=0;j<o.i;j++){ en[o.steps[j]]=o.R[o.steps[j]]; }
+    var a0={sel:o.chosen.slice(), ok:false, en:en}; _STAGE1=true;
+    try{ enRevealExtra(q, a0); }catch(e){} finally{ _STAGE1=false; }
+    root.querySelectorAll('.ensh .enss').forEach(function(x){ if(o.steps.indexOf('s')>=o.i) x.style.display='none'; });   // 같은 뜻 칸을 아직 안 풀었으면 「어느 뜻으로」는 숨김
+  }
+}
+function frOneEnter(q){
+  var o=frOneInit(q), cur=o.steps[o.i], last=(o.i===o.steps.length-1);
+  if(o.graded){ o.i++; o.graded=false; draw(); try{ window.scrollTo(0,0); }catch(e){} return; }
+  var mine=[]; q.opts.forEach(function(op,i){ var sc=op.sec||'k'; if(sel[i] && (sc===cur || (last && sc==='c'))) mine.push(i); });
+  var hasAns=q.opts.some(function(op){ return (op.sec||'k')===cur && op.ok; });
+  if(!mine.length && hasAns){ $('fb').textContent='이 칸에서 하나 이상 고르세요'; return; }
+  o.chosen=o.chosen.concat(mine.filter(function(i){ return o.chosen.indexOf(i)<0; }));
+  if(last){ q._oneFinal=1; enFinish(q, o.chosen.slice(), null); return; }
+  var R=enSecStat(q, o.chosen, null); o.R[cur]= cur==='k' ? (R.k.ok?1:0) : (R[cur].tot ? (R[cur].ok?1:0) : -1);
+  o.graded=true;
+  frOneRender(q);
+}
+function frOneRender(q){
+  var o=q._one; if(!o || !o.graded || Q[qi]!==q || ans[qi]!==null) return;
+  var pend={c:1}; for(var j=o.i+1;j<o.steps.length;j++) pend[o.steps[j]]=1;
+  var en={st:styleOf(q)}; for(var j2=0;j2<=o.i;j2++){ var sc=o.steps[j2]; en[sc]=o.R[sc]; }
+  ans[qi]={sel:o.chosen.slice(), ok:false, en:en};
+  _STAGE1=true; _PEND=pend;
+  try{ replay(); }catch(e){}
+  finally{ _STAGE1=false; _PEND=_ST2; ans[qi]=null; }
+  frOneApply(q, $('ch'));
+  var NM={k:'뜻', s:'같은 뜻', n:'뉘앙스', a:'반대말'}, cur=o.steps[o.i];
+  try{ $('fb').textContent=NM[cur]+' '+(o.R[cur]===1?'✓':o.R[cur]===0?'✗':'—')+' — Enter = 다음 칸('+NM[o.steps[o.i+1]]+')'; }catch(e){}
+}
+function frStepSet(v){
+  FRSTEP=(v==='one')?'one':'all'; try{ LS.setItem('voca_frstep', FRSTEP); }catch(e){}
+  var q=Q&&Q[qi]; if(q && ans[qi]===null){ q._one=null; q._st1=null; try{ sel={}; }catch(e){} draw(); }
+  frNeedUI();
 }
 function frStageApply(q, root, scroll){
   if(!q || !root || ans[qi]!==null || !frHasStage(q)) return;
@@ -2234,18 +2374,11 @@ function frStageApply(q, root, scroll){
   st.chosen.forEach(function(i){ pk[i]=1; });
   q.opts.forEach(function(o,i){ var b=bs[i]; if(!b) return; var sc=o.sec||'k';
     if(_ST2[sc]){
-      // 2027.01.32: 반대말 보기에는 뜻을 안 붙인다(보기에 뜻이 있으면 퀴즈가 안 됨) — 대신 칸 제목 옆에 문제 단어의 뜻을 보여 준다
+      if(sc==='a' && !b.querySelector('.stdef')){ var d=o.def||frDef(o.t)||''; if(d){ var e=document.createElement('span'); e.className='stdef'; e.textContent=d; b.appendChild(e); } }   // 2027.01.33: 반대말 보기마다 그 단어의 교재 뜻 전부 (재현님: 반의어 뜻이 애매하니 보기에 뜻을)
       return; }
-    b.classList.remove('sel'); b.classList.add('mr');
-    if(o.ok && pk[i]) b.classList.add('ok'); else if(o.ok) b.classList.add('miss');
-    else if(pk[i] && o.fin==='N') b.classList.add('simn','nupk'); else if(pk[i]) b.classList.add('no'); else b.classList.add('dim');
+    return;   // 뜻 · 같은 뜻 칸 표시는 frStage1Render(replay)가 전체 채점과 똑같이 그린다
   });
-  var _ah=root.querySelector('.ensec.ena .ensh');
-  if(_ah && !_ah.querySelector('.stmean')){ var _m=(q.swap && q.swap.d) ? q.swap.d : (q.w && q.w.m) || '';
-    if(_m){ var sm=document.createElement('div'); sm.className='stmean'; sm.textContent='「'+String(_m).trim()+'」의 반대말'; _ah.appendChild(sm); } }   // 2027.01.32: 문제 단어 뜻 전부
-  [['enk','k'],['ens','s']].forEach(function(p){ var h=root.querySelector('.ensec.'+p[0]+' .ensh'); if(!h || h.querySelector('.stmk')) return; var v=st.R[p[1]]; if(v===-1) return;
-    var m=document.createElement('span'); m.className='stmk '+(v?'ok':'no'); m.textContent=v?' ✓':' ✗'; h.appendChild(m); });
-  try{ $('fb').textContent='뜻 '+(st.R.k?'✓':'✗')+(st.R.s!==-1?' · 같은 뜻 '+(st.R.s?'✓':'✗'):'')+' — 이제 반대말을 고르세요 (칸 제목 옆에 이 단어 뜻) · Enter = 전체 채점'; $('fb').style.color=''; }catch(e){}
+  try{ $('fb').textContent='뜻 '+(st.R.k?'✓':'✗')+(st.R.s!==-1?' · 같은 뜻 '+(st.R.s?'✓':'✗'):'')+' — 이제 반대말을 고르세요 (보기마다 그 단어 뜻) · Enter = 전체 채점'; $('fb').style.color=''; }catch(e){}
   if(scroll){ var a=root.querySelector('.ensec.ena'); if(a) try{ a.scrollIntoView({behavior:'smooth', block:'start'}); }catch(e){} }
 }
 try{ var _fu0=LS.getItem('voca_frunit'); if(_fu0==='unit'||_fu0==='box') FRUNIT=_fu0; }catch(e){}
@@ -2446,7 +2579,8 @@ function buildFr(w, opt){
       if(_KEEPQ && _KEEPQ.sense && svsOk.indexOf(_KEEPQ.sense)>=0) pool2=[_KEEPQ.sense];   // 2027.01.27: 틀려서 다시 낼 때는 지난번과 같은 뜻 줄로 (놓친 정답이 들어갈 수 있게)
       if(pool2.length){
         var T=pool2[Math.floor(Math.random()*pool2.length)];
-        S=S.filter(function(o){ return !o.ok || !o.sense || frSameSense(o.sense, T); }); q.ssense=T;
+        S=S.filter(function(o){ return !o.ok || !o.sense || (!o.fr && !o.fin) || frSameSense(o.sense, T); }); q.ssense=T;   // 2027.01.35: 교재 동의어(동의어 매칭 정답)는 뜻 줄 상관없이 전부
+        q.smix=S.some(function(o){ return o.ok && !o.fr && !o.fin && o.sense && !frSameSense(o.sense, T); }) ? 1 : 0;
         try{ if(_r0){ _r0.frLast=T; } }catch(e){}
       }
     }
@@ -2497,6 +2631,19 @@ function buildFr(w, opt){
     }
   }
   q.opts=K.concat(S, A, C);
+  // 2027.01.36: 애매로 뺀 연결은 같은 뜻·반대말 칸에 안 낸다 (정답으로도 보기로도)
+  try{ var _hw0=String(q.prompt||w.w).split('=')[0].trim();
+    if(Object.keys(AMB).length){ q.opts=q.opts.filter(function(o){ var sc=o.sec||'k'; return !((sc==='s'||sc==='a') && ambHas(_hw0, o.t)); });
+      ['s','a'].forEach(function(sc){ if(!q.opts.some(function(o){ return o.sec===sc && o.ok; })) q.opts=q.opts.filter(function(o){ return o.sec!==sc; }); }); } }catch(e){}
+  // 2027.01.36: 복습(틀린 것만 다시 · 오답 복습 · 오늘 복습)에서는 지난번에 틀린 칸만 낸다 (문맥 칸은 함께)
+  try{
+    var _rw=STATS[w.w] && STATS[w.w].frw;
+    if(_rw && (SRC==='retry'||SRC==='bank'||SRC==='due') && (_rw.k===0||_rw.s===0||_rw.a===0)){
+      var keep={c:1, n:1}; ['k','s','a'].forEach(function(sc){ if(_rw[sc]===0) keep[sc]=1; });
+      var f=q.opts.filter(function(o){ return keep[o.sec||'k']; });
+      if(f.some(function(o){ return o.ok && (o.sec||'k')!=='c'; })){ q.opts=f; q.only=Object.keys(keep).filter(function(x){ return x!=='c'&&x!=='n'; }); }
+    }
+  }catch(e){}
   frApplyNeed(q);   // 2027.01.29: 칸별 맞힐 개수 설정
   return q;
 }
@@ -2513,13 +2660,16 @@ function enRevealExtra(q, a){
     var v=a.en[sc]; if(v===undefined) return;
     if(v===-1 && sc!=='c') return;
     var ok=(v===1), bad=[], nuP=[], rights=[];
+    var ambL=[];
     os.forEach(function(x){ var o=x[0], p=!!picked[x[1]];
+      if(o.amb){ ambL.push('<s>'+esc(o.t)+'</s>'); return; }
       if(o.ok){
         var tg='';
         if(sc==='s'){ var sr=frSrcOf(q, o); tg=sr.tb ? '<span class="est tb">교재</span>' : '<span class="est dc">사전</span>'; }
         else if(sc==='a') tg='<span class="est dc">사전</span>';
         var mk = sc==='c' ? '' : (p ? '<span class="esm">✓</span>' : '<span class="esm x">놓침</span>');
-        rights.push('<span class="eso">'+esc(o.t)+tg+mk+'</span>');
+        if(sc==='s' && tg.indexOf('est tb')>=0) rights.push('<span class="eso tbs"><span class="est tb pre">교재</span>'+esc(o.t)+mk+'</span>');   // 2027.01.35: 교재 동의어는 앞에 굵게
+        else rights.push('<span class="eso">'+esc(o.t)+tg+mk+'</span>');
       }
       else if(p && o.fin==='N') nuP.push('<s>'+esc(o.t)+'</s>');
       else if(p) bad.push('<b>'+esc(o.t)+'</b>');   // 2027.01.28: 함정 표시 안 함
@@ -2529,6 +2679,7 @@ function enRevealExtra(q, a){
     if(sc==='c') txt+=' <span class="esm x">(채점 안 함)</span>';
     if(bad.length) txt+='<span class="esw">틀리게 고름 '+bad.join(', ')+'</span>';
     if(nuP.length) txt+='<span class="esw">△ 비슷하지만 다름 고름 '+nuP.join(', ')+' (오답 아님)</span>';
+    if(ambL.length) txt+='<span class="esw">애매로 뺌 '+ambL.join(', ')+' (채점 안 함)</span>';
     var hk = sc==='c' ? '<span class="esk na">· '+NM[sc]+'</span>' : '<span class="esk '+(ok?'ok':'no')+'">'+(ok?'✓ ':'✗ ')+NM[sc]+'</span>';
     h+='<div class="esr">'+hk+'<span class="esv">'+txt+'</span></div>';
   });
@@ -2538,10 +2689,11 @@ function enRevealExtra(q, a){
   $('ch').querySelectorAll('.ensh .enss').forEach(function(x){ x.style.display=''; });
   // 문맥: 빈칸을 채운 문장 + 해석
   var fx=$('ch').querySelector('.enc .frex');
-  if(fx && q.cs){ var parts=String(q.cs).split('＿＿＿＿');
+  if(fx && q.cs && !_STAGE1){ var parts=String(q.cs).split('＿＿＿＿');
     fx.innerHTML=esc(parts[0]||'')+'<b class="frfill">'+esc(q.cform||'')+'</b>'+esc(parts.slice(1).join('＿＿＿＿'))+(q.cko?'<div class="frko">'+esc(q.cko)+'</div>':'')+'<div class="frby">※ 클로드가 만든 예문</div>'; }
 }
 function frUnitUI(){
+  try{ ambUI(); }catch(e){}
   var sg=$('frseg'); if(sg) sg.querySelectorAll('button').forEach(function(b){ b.classList.toggle('on', b.dataset.u===FRUNIT); });
   var t=$('frstat');
   if(t) t.textContent = FRUNIT==='box'
@@ -5098,7 +5250,7 @@ setInterval(function(){
   }catch(e){}
 },1500);
 
-var APP_VER = '2027.01.32';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
+var APP_VER = '2027.01.36';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
 var VER = APP_VER;  // 데이터 URL 캐시 키. 배포 때만 바뀌므로 브라우저 캐시가 제대로 재사용됨
 function loadJ(p){
   // 데이터 파일은 URL에 버전(v=)이 붙어 캐시가 자동 갱신되므로 브라우저 캐시를 허용한다.
@@ -7282,7 +7434,7 @@ function sessionSave(){
         sense:q.sense, prompt:q.prompt,
         ans:q.ans, need:q.need, isPhrase:q.isPhrase,
         swap:q.swap, swo:q.swo, isFin:q.isFin,
-        nk:q.nk, needK:q.needK, needS:q.needS, needA:q.needA, fr:q.fr, nd:q.nd, from:q.from, grp:q.grp, cs:q.cs, cko:q.cko, cform:q.cform, cfun:q.cfun, ssense:q.ssense,
+        nk:q.nk, needK:q.needK, needS:q.needS, needA:q.needA, fr:q.fr, nd:q.nd, from:q.from, grp:q.grp, cs:q.cs, cko:q.cko, cform:q.cform, cfun:q.cfun, ssense:q.ssense, only:q.only, smix:q.smix,
         kind: q.kind
       });
     });
@@ -7410,6 +7562,7 @@ function _qdRestore(q, qd){
   if(qd.cko) q.cko=qd.cko;
   if(qd.cform) q.cform=qd.cform;
   if(qd.ssense) q.ssense=qd.ssense;
+  if(qd.only) q.only=qd.only; if(qd.smix) q.smix=qd.smix;
   if(qd.cfun) q.cfun=qd.cfun;
 }
 // 뜻 → 영어 이어하기: 다시 내기·오답 거르기에 쓰는 뜻 색인을 다시 만든다
@@ -8008,7 +8161,7 @@ var EN_STYLE='pick', KO_STYLE='pick';
 try{ var _es0=LS.getItem('voca_enstyle'); if(_es0==='pick'||_es0==='see'||_es0==='write') EN_STYLE=_es0;
      var _ks0=LS.getItem('voca_kostyle'); if(_ks0==='pick'||_ks0==='see'||_ks0==='write') KO_STYLE=_ks0; }catch(e){}
 function styleOf(q){ return !q ? 'pick' : q.kind==='en' ? EN_STYLE : q.kind==='ko' ? KO_STYLE : (SYN_TYPING ? 'see' : 'pick'); }
-function typingNow(){ var q=Q&&Q[qi]; if(!q) return SYN_TYPING; if(q.fr && q._st1 && ans[qi]===null) return false; if(q.kind==='en'||q.kind==='ko') return styleOf(q)!=='pick'; return SYN_TYPING; }   // 2027.01.29: ② 반대말 단계는 고르기만
+function typingNow(){ var q=Q&&Q[qi]; if(!q) return SYN_TYPING; if(q.fr && q._st1 && ans[qi]===null) return false; if(frOneOn(q) && q._one && (q._one.graded || q._one.steps[q._one.i]==='a') && ans[qi]===null) return false; if(q.kind==='en'||q.kind==='ko') return styleOf(q)!=='pick'; return SYN_TYPING; }   // 2027.01.29: ② 반대말 단계는 고르기만
 function enChunks(m){ return String(m||'').split('/').map(function(x){ return x.trim(); }).filter(Boolean); }
 // 뜻 글자 맞추기: 띄어쓰기·문장부호·괄호 표시([to], (연극))는 빼고 비교한다
 function _koN1(s){ return String(s||'').replace(/\[[^\]]*\]/g,'').replace(/\([^)]*\)/g,'').replace(/[\s~∼·,.;:'"!?\-…]/g,'').toLowerCase(); }
@@ -8090,9 +8243,9 @@ function drawEnOpts(q, box){
     box.appendChild(d);
   }
   var _hw='<b class="ensw">'+esc(String(q.prompt||q.w.w).split('=')[0].trim())+'</b> ';
-  sec(_hw+'뜻', 'enk', k, 0);
+  if(k.length || !q.only) sec(_hw+'뜻', 'enk', k, 0);   // 2027.01.36: 복습에서 뜻 칸을 뺀 문제는 안 그림
   // 2027.01.23: 「어느 뜻으로」 한글 뜻은 뜻 칸의 답을 알려 주므로 채점한 뒤에만 보인다
-  var _sn=_hw+(q.fr ? '같은 뜻' : '동의어')+((q.fr && q.ssense) ? ' <span class="enss"'+(ans[qi]===null?' style="display:none"':'')+'>· 「'+esc(q.ssense)+'」 뜻으로</span>' : '');
+  var _sn=_hw+(q.fr ? '같은 뜻' : '동의어')+((q.fr && q.ssense) ? ' <span class="enss"'+(ans[qi]===null?' style="display:none"':'')+'>· 「'+esc(q.ssense)+'」 뜻으로'+(q.smix?' · 교재 동의어는 모든 뜻':'')+'</span>' : '');
   if(s.length) sec(_sn, 'ens', s, k.length);
   else if(!q.fr){ var nd=document.createElement('div'); nd.className='ensh ennone'; nd.textContent='동의어 — 교재에 실린 동의어가 없는 단어예요 (뜻 칸만)'; box.appendChild(nd); }
   if(q.fr){                                   // 최종 복습: 반대말 · 뉘앙스 칸 (직접 쓰기에서도 골라서 푼다)
@@ -8111,7 +8264,9 @@ function drawEnOpts(q, box){
   sb.onclick=function(){ if(styleOf(Q[qi])==='write') enWriteSubmit(Q[qi]); else submitEn(); };
   box.appendChild(sb);
   var tp=document.createElement('div'); tp.id='entyped'; box.appendChild(tp);
-  if(q.fr && ans[qi]===null) frStageApply(q, box, false);   // 2027.01.29: 단계 풀이
+  if(frOneOn(q) && ans[qi]===null){ frOneApply(q, box); if(q._one && q._one.graded) setTimeout(function(){ frOneRender(q); }, 0); }   // 2027.01.36: 한 칸씩
+  else if(q.fr && ans[qi]===null) frStageApply(q, box, false);   // 2027.01.29: 단계 풀이
+  if(q.fr && ans[qi]===null && q._st1 && !frOneOn(q)) setTimeout(function(){ frStage1Render(q); }, 0);   // 다시 그려도 ① 채점 화면 유지
 }
 // 칸별 채점
 function enSecStat(q, chosen, wr){
@@ -8119,10 +8274,11 @@ function enSecStat(q, chosen, wr){
          a:{right:0, wrong:0, tot:0, need:q.needA||0}, n:{right:0, wrong:0, tot:0, need:1}, c:{right:0, wrong:0, tot:0, need:1}};
   q.opts.forEach(function(o,i){
     var S=R[(o.sec==='s'||o.sec==='a'||o.sec==='n'||o.sec==='c')?o.sec:'k'], p=chosen.indexOf(i)>=0;
+    if(o.amb) return;   // 2027.01.36: 애매로 뺀 보기는 채점에 안 넣음
     if(o.ok){ S.tot++; if(p) S.right++; } else if(p){ if(o.fin==='N') S.nu=(S.nu||0)+1; else S.wrong++; }   // 2027.01.27: 「비슷하지만 다름」은 몇 개를 골라도 오답이 아니다
   });
   (wr||[]).forEach(function(e){ if(e.i>=0) return; var S=R[e.sec==='s'?'s':'k']; if(e.st==='o') S.right++; else if(e.st==='x') S.wrong++; });
-  R.k.ok = R.k.wrong===0 && R.k.right>=Math.min(R.k.need, R.k.tot||R.k.need);
+  R.k.ok = (!R.k.tot && q.fr && q.only) ? true : (R.k.wrong===0 && R.k.right>=Math.min(R.k.need, R.k.tot||R.k.need));   // 2027.01.36: 복습에서 뜻 칸을 뺀 문제
   R.s.ok = !R.s.tot ? true : (R.s.wrong===0 && R.s.right>=Math.min(R.s.need, R.s.tot));
   R.a.ok = !R.a.tot ? true : (R.a.wrong===0 && R.a.right>=Math.min(R.a.need, R.a.tot));
   R.n.ok = !R.n.tot ? true : (R.n.wrong===0 && R.n.right>=1);
@@ -8132,13 +8288,14 @@ function enSecStat(q, chosen, wr){
 function submitEn(){
   if(ans[qi]!==null) return;
   var q=Q[qi]; if(!q || q.kind!=='en') return;
+  if(frOneOn(q)) return frOneEnter(q);   // 2027.01.36: 한 칸씩
   if(q.fr && q._st1) return frStage2(q);
   var chosen=[]; for(var k in sel) if(sel[k]) chosen.push(parseInt(k));
   if(!chosen.length){ $('fb').textContent='하나 이상 고르세요'; return; }
   enFinish(q, chosen, null);
 }
 function enFinish(q, chosen, wr){
-  if(frHasStage(q) && !q._st1 && !q._stFinal) return frStage1(q, chosen, wr);   // 2027.01.29: ① 뜻 · 같은 뜻만 먼저 채점
+  if(frHasStage(q) && !q._st1 && !q._stFinal && !q._oneFinal) return frStage1(q, chosen, wr);   // 2027.01.29: ① 뜻 · 같은 뜻만 먼저 채점
   var R=enSecStat(q, chosen, wr);
   var ok=R.k.ok && R.s.ok && R.a.ok && R.n.ok && R.c.ok;
   var _nuOnly=false;
@@ -8173,7 +8330,9 @@ function enFinish(q, chosen, wr){
     if(q.fr){ if(R.a.tot){ if(R.a.ok) r.aR=(r.aR||0)+1; else r.aW=(r.aW||0)+1; }
       if(R.n.tot){ if(R.n.ok) r.nR=(r.nR||0)+1; else r.nW=(r.nW||0)+1; }
       // 문맥 칸은 채점 안 함 → 기록도 안 남긴다 (2027.01.25)
-      if(ok) r.frDone=1; } }catch(e){}
+      if(ok) r.frDone=1;
+      r.frw={k:R.k.ok?1:0, s:R.s.tot?(R.s.ok?1:0):-1, a:R.a.tot?(R.a.ok?1:0):-1, t:Date.now()};   // 2027.01.36: 칸별 마지막 결과 — 복습 때 틀린 칸만
+    } }catch(e){}
   synShownSave(q);
   var mine=chosen.map(function(i){ return q.opts[i].t; }).concat((wr||[]).filter(function(e){ return e.i<0; }).map(function(e){ return e.t+(e.st==='o'?'(맞음)':'(틀림)'); })).join(', ');
   if(!ok){
@@ -8520,7 +8679,8 @@ function draw(){
 function toggle(i){
   if(ans[qi]!==null) return;
   var q0=Q[qi];
-  if(q0 && q0.fr && q0.opts && q0.opts[i] && frHasStage(q0)){ var _sc=q0.opts[i].sec||'k'; if(q0._st1 ? !_ST2[_sc] : _ST2[_sc]) return; }   // 2027.01.29: 단계마다 그 칸만
+  if(q0 && q0.fr && q0.opts && q0.opts[i] && frOneOn(q0)){ var _o1=frOneInit(q0), _c1=_o1.steps[_o1.i], _sc1=q0.opts[i].sec||'k'; if(_o1.graded || !(_sc1===_c1 || (_sc1==='c' && _o1.i===_o1.steps.length-1))) return; }   // 2027.01.36: 한 칸씩 — 지금 칸만
+  else if(q0 && q0.fr && q0.opts && q0.opts[i] && frHasStage(q0)){ var _sc=q0.opts[i].sec||'k'; if(q0._st1 ? !_ST2[_sc] : _ST2[_sc]) return; }   // 2027.01.29: 단계마다 그 칸만
   if(q0 && q0.kind==='rev'){          // 역방향은 하나만 고르는 방식
     sel={}; sel[i]=true;
     var bs0=$('ch').querySelectorAll('button.c');
@@ -8853,9 +9013,10 @@ function replay(){
   var q=Q[qi], a=ans[qi];
   var bs=$('ch').querySelectorAll('button.c');
   var sub=$('sub');
-  if(sub) sub.style.display='none';
+  if(sub && !_STAGE1) sub.style.display='none';
 
   for(var i=0;i<bs.length;i++){
+    if(_STAGE1 && q.opts[i] && _PEND[q.opts[i].sec||'k']) continue;   // 2027.01.34: ① 채점 때 반대말 · 문맥 칸은 아직 풀어야 하니 그대로
     bs[i].disabled=false;                 // 어원 조회를 위해 클릭 가능 상태 유지
     bs[i].onclick=null;
     bs[i].classList.remove('sel');
@@ -8889,7 +9050,10 @@ function replay(){
       // 그 갈래가 이 단어의 교재 표제어 뜻에 없으면 교재 뜻을 한 줄 더 띄운다 (오해 방지)
       var _note = o.ok ? synonlyNote(o.t, o.sense) : null;
       var _own  = _note ? (ghPoolFind(o.t)||{}).m : '';
-      var body = '<span class="otxt">'+esc(o.t)+'</span>'
+      bs[i].classList.remove('ok','miss','no','dim','simn','nupk','lkb','ambx','tbopt');   // 다시 그릴 때(애매로 빼기 등) 예전 표시 지우기
+      var _tbo = (q.kind==='en' && q.fr && o.sec==='s' && o.ok) ? frSrcOf(q, o).tb : false;   // 2027.01.35: 교재 동의어 더 잘 보이게
+      if(_tbo) bs[i].classList.add('tbopt');
+      var body = (_tbo ? '<span class="tbbadge">교재</span>' : '')+'<span class="otxt">'+esc(o.t)+'</span>'
         + ((o.ok && o.sense) ? '<em class="sns">'+esc(fitSense(o.sense, o.t))+'</em>' : '')
         + (_own ? '<em class="sown">교재에 실린 '+esc(o.t)+' 뜻은 '+esc(_own)+'</em>' : '');
       var meta = (!o.ok && o.def) ? '<em class="od">'+mm(o.t, o.def)+'</em>' : '';
@@ -8923,9 +9087,12 @@ function replay(){
       else if(o.fr==='C') _fn='<span class="finnote s">이 문제 단어 · 문장 속 형태 「'+esc(q.cform||'')+'」</span>';
       if(o.fr && o.def && !(o.ok && o.sense) && meta.indexOf('class="od"')<0) meta='<em class="od">'+mm(o.t, o.def)+'</em>'+meta;   // 최종 복습: 정답 선지도 뜻을 보여 준다
       if(o.fin==='N') body=body.replace('<span class="otxt">'+esc(o.t)+'</span>', '<span class="otxt">'+esc(o.t)+'</span><span class="simtag">비슷하지만 다름</span>');
+      var _ambOK = q.kind==='en' && q.fr && (o.sec==='s'||o.sec==='a') && !_tbo && !(o.sec==='s' && o.ok && frSrcOf(q,o).tb);   // 2027.01.36: 애매 버튼 (교재 동의어 빼고)
+      if(o.amb) _fn='<span class="finnote n">애매로 뺌 — 채점에 안 넣고, 다음부터 안 나와요 (홈 「애매하게 뺀 연결」에서 되돌리기)</span>'+_fn;
       bs[i].innerHTML = (num?num.outerHTML:'') + body
-        + (meta?'<span class="ometa">'+meta+'</span>':'') + _fn;
-      if(q.opts[i].ok && picked) bs[i].classList.add('ok');
+        + (meta?'<span class="ometa">'+meta+'</span>':'') + _fn + (_ambOK && !o.amb ? '<span class="ambbtn" data-amb="'+i+'">애매</span>' : '');
+      if(o.amb) bs[i].classList.add('ambx');
+      else if(q.opts[i].ok && picked) bs[i].classList.add('ok');
       else if(q.opts[i].ok && !picked) bs[i].classList.add('miss');
       else if(!q.opts[i].ok && picked && o.fin==='N') bs[i].classList.add('simn','nupk');   // 2027.01.27: 비슷하지만 다름은 골라도 오답 아님
       else if(!q.opts[i].ok && picked) bs[i].classList.add('no');
@@ -8963,6 +9130,7 @@ function replay(){
     try{ enRevealExtra(q, a); }catch(e){}
     try{ enTypedUI(q); }catch(e){}
   } else if(q.kind==='ko' && a.wr){ try{ enTypedUI(q); }catch(e){} }
+  if(_STAGE1) return;   // 2027.01.34: ① 채점 때는 아래 해설(반의어 줄이 있어 반대말 답이 보임)은 전체 채점 뒤에
 
   // 이번 선지에 나온 동의어를 기록해 두고, 해설에서 색으로 구분
   _shownSyn = null;
@@ -10301,12 +10469,13 @@ $('wsubmit').addEventListener('click',writeSubmit);
 $('againQ').addEventListener('click',function(e){ e.stopPropagation(); againUser(); });
 $('dockAgain').addEventListener('click',function(e){ e.stopPropagation(); againUser(); });
 $('srchQ').addEventListener('click',function(e){ e.stopPropagation(); srOpen(); });
-$('frneedbar').addEventListener('click',function(e){ var b=e.target.closest('button[data-sc]'); if(!b) return; e.preventDefault(); frNeedSet(b.getAttribute('data-sc'), b.getAttribute('data-v')); b.blur(); });   // 2027.01.29
+$('frneedbar').addEventListener('click',function(e){ var bs=e.target.closest('button[data-step]'); if(bs){ e.preventDefault(); frStepSet(bs.getAttribute('data-step')); bs.blur(); return; } var b=e.target.closest('button[data-sc]'); if(!b) return; e.preventDefault(); frNeedSet(b.getAttribute('data-sc'), b.getAttribute('data-v')); b.blur(); });   // 2027.01.29
 $('stylebar').addEventListener('click',function(e){
   var b=e.target.closest && e.target.closest('button[data-st]'); if(!b) return;
   e.stopPropagation(); styleSet(b.getAttribute('data-st'));
 });
 // 직접 쓰기: 쓴 것 지우기(×) · 맞음/틀림 고르기
+$('ch').addEventListener('click',function(e){ var ab=e.target.closest && e.target.closest('[data-amb]'); if(ab){ e.preventDefault(); e.stopPropagation(); ambMark(+ab.getAttribute('data-amb')); } }, true);   // 2027.01.36
 $('ch').addEventListener('click',function(e){
   var x=e.target.closest && e.target.closest('[data-entx]');
   if(x){ e.stopPropagation(); var q=Q[qi]; if(q && q._typed && ans[qi]===null && !q._check){ q._typed.splice(+x.getAttribute('data-entx'),1); enTypedUI(q); try{ $(_lastInp).focus(); }catch(z){} } return; }
@@ -10356,7 +10525,8 @@ function applySynMode(){
   $('ch').className = 'ch'+((typing && !(q && q.kind==='en'))?' typing':'')+((sty==='write' && open && _three)?' enwrite':'');   // 영어 → 뜻은 보기 모양을 그대로
   try{ if(q && (q.kind==='en' || q.kind==='ko')){ if(!$('entyped') && q.kind==='ko'){ var tp=document.createElement('div'); tp.id='entyped'; $('ch').appendChild(tp); } enTypedUI(q); } }catch(e){}
   if(_mk && ans[qi]===null){
-    if(q.kind==='en' && q.fr && q._st1) $('ask').textContent = '② 반대말을 고르세요 · 숫자키로 선택 · Enter = 전체 채점';
+    if(frOneOn(q)){ var _o2=frOneInit(q), _N2={k:'뜻', s:'같은 뜻', n:'뉘앙스', a:'반대말'}; $('ask').textContent=(_o2.i+1)+' / '+_o2.steps.length+' 칸 · '+_N2[_o2.steps[_o2.i]]+(_o2.graded?' 채점 끝 — Enter = 다음 칸':' — 고르고 Enter'); }
+    else if(q.kind==='en' && q.fr && q._st1) $('ask').textContent = '② 반대말을 고르세요 · 숫자키로 선택 · Enter = 전체 채점';
     else if(q.kind==='en' && q.fr && frHasStage(q)) $('ask').textContent = (sty==='write' ? '① 뜻 · 같은 뜻을 보기 없이 쓰고' : sty==='see' ? '① 뜻 · 같은 뜻을 보기를 보며 쓰고' : '① 뜻 · 같은 뜻을 고르고')+' Enter → ② 반대말';
     else if(q.kind==='en' && q.fr) $('ask').textContent = sty==='write' ? '뜻 · 같은 뜻은 보기 없이 쓰고, 반대말 · 문맥은 골라요'
       : sty==='see' ? '뜻 · 같은 뜻은 보기를 보며 쓰고, 반대말 · 문맥은 골라요'
