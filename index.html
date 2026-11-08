@@ -12,23 +12,23 @@
 <meta name="apple-mobile-web-app-title" content="편입 보카">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{font-family:'Malgun Gothic',-apple-system,sans-serif;background:#1a1a2e;color:#eee;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:18px 16px 40px;overflow-x:hidden}
+body{font-family:'Malgun Gothic',-apple-system,sans-serif;background:#222b4d;color:#eee;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:18px 16px 40px;overflow-x:hidden}
 h1{color:#e94560;font-size:1.5em;margin-bottom:3px}
 .sub{color:#778;font-size:.85em;margin-bottom:16px}
-.panel{background:#16213e;border-radius:14px;padding:17px;width:100%;max-width:600px;margin-bottom:12px}
+.panel{background:#263463;border-radius:14px;padding:17px;width:100%;max-width:600px;margin-bottom:12px}
 label{display:block;font-size:.88em;color:#4ecca3;margin-bottom:7px;font-weight:bold;letter-spacing:.02em}
 .fld{margin-bottom:15px}
 .row{display:flex;gap:8px;align-items:center}
 select,button{font-family:inherit;font-size:1.02em;cursor:pointer;border:none;border-radius:8px}
-select{background:#0f3460;color:#eee;border:1px solid #2a4a7a;padding:12px 14px;flex:1;min-width:0}
+select{background:#1f477f;color:#eee;border:1px solid #2a4a7a;padding:12px 14px;flex:1;min-width:0}
 button{background:#e94560;color:#fff;font-weight:bold;padding:12px 16px}
 button:disabled{background:#3a3a4a;color:#778;cursor:not-allowed}
-.b2{background:#0f3460;border:1px solid #2a4a7a}
-.seg{display:flex;background:#0f3460;border-radius:8px;overflow:hidden;border:1px solid #2a4a7a}
+.b2{background:#1f477f;border:1px solid #2a4a7a}
+.seg{display:flex;background:#1f477f;border-radius:8px;overflow:hidden;border:1px solid #2a4a7a}
 .seg button{flex:1;background:transparent;color:#889;border-radius:0;padding:12px 4px;font-size:.98em}
 .seg button.on{background:#e94560;color:#fff}
 .mode{display:flex;flex-direction:column;gap:8px}
-.mode button{background:#0f3460;border:2px solid #0f3460;border-radius:10px;padding:15px 16px;text-align:left;color:#eee;font-weight:normal}
+.mode button{background:#1f477f;border:2px solid #1f477f;border-radius:10px;padding:15px 16px;text-align:left;color:#eee;font-weight:normal}
 .mode button.on{border-color:#e94560;background:#1a2a52}
 .mode .t{font-weight:bold;font-size:1.08em;display:block;margin-bottom:2px}
 .mode .d{font-size:.84em;color:#889;display:block}
@@ -37,28 +37,28 @@ button:disabled{background:#3a3a4a;color:#778;cursor:not-allowed}
 .stat b{color:#4ecca3}
 #msg{padding:14px;border-radius:10px;font-size:.95em;line-height:1.6;display:none;margin-bottom:12px;width:100%;max-width:600px;white-space:pre-line}
 #msg.err{background:#3d1a1a;border:1px solid #e94560;color:#fb9;display:block}
-#msg.load{background:#16213e;border:1px solid #2a4a7a;color:#8ab;display:block}
+#msg.load{background:#263463;border:1px solid #2a4a7a;color:#8ab;display:block}
 .scr{display:none;width:100%;max-width:600px}
 .scr.on{display:block}
-#bar{background:#16213e;border-radius:9px;padding:10px 14px;margin-bottom:10px;font-size:.95em;color:#4ecca3;text-align:center}
+#bar{background:#263463;border-radius:9px;padding:10px 14px;margin-bottom:10px;font-size:.95em;color:#4ecca3;text-align:center}
 #bar .qtimer{color:#9fb0cc;margin-left:10px;font-variant-numeric:tabular-nums}   /* 2027.01.43: 푸는 시간 */
 .rtime{color:#9fb0cc;font-size:.9em;margin:6px 0 4px}
 .todayt{margin:6px 0 2px;color:#cfe0ff;font-size:.9em}
 .todayt b{color:#4ecca3}
-#prog{height:4px;background:#0f3460;border-radius:9px;overflow:hidden;margin-bottom:12px}
+#prog{height:4px;background:#1f477f;border-radius:9px;overflow:hidden;margin-bottom:12px}
 #prog i{display:block;height:100%;background:#e94560;width:0;transition:width .25s}
-.box{background:#16213e;border-radius:14px;padding:20px;margin-bottom:11px;overflow-wrap:break-word}
+.box{background:#263463;border-radius:14px;padding:20px;margin-bottom:11px;overflow-wrap:break-word}
 .tag{color:#778;font-size:.84em;margin-bottom:5px}
 .wd{font-size:1.95em;font-weight:bold;color:#fff;margin-bottom:4px;word-break:break-word;overflow-wrap:break-word;line-height:1.3}
 .ask{overflow-wrap:anywhere;word-break:break-word;color:#8ab;font-size:.92em;margin-bottom:15px}
 .ch{display:flex;flex-direction:column;gap:8px}
-.c{background:#0f3460;border:2px solid #0f3460;border-radius:10px;padding:14px 15px;font-size:1.05em;line-height:1.5;text-align:left;color:#eee;transition:border-color .1s;width:100%;font-weight:normal;word-break:break-word;overflow-wrap:break-word;white-space:normal;min-width:0}
+.c{background:#1f477f;border:2px solid #1f477f;border-radius:10px;padding:14px 15px;font-size:1.05em;line-height:1.5;text-align:left;color:#eee;transition:border-color .1s;width:100%;font-weight:normal;word-break:break-word;overflow-wrap:break-word;white-space:normal;min-width:0}
 .c:hover:not(:disabled){border-color:#e94560}
 .c.ok{background:#1a4731!important;border-color:#4ecca3!important;color:#4ecca3!important}
 .c.no{background:#3d1a1a!important;border-color:#e94560!important;color:#e94560!important}
 .c.dim{color:#b8c4d4!important;border-color:#2a3a5c!important;opacity:.92!important}
 .c.sel{border-color:#f0a500!important;background:#2a2540!important}
-.c.miss{border-color:#4ecca3!important;border-style:dashed!important;color:#4ecca3!important}
+.c.miss{border-color:#ff8a5c!important;border-style:dashed!important;border-width:2px!important;color:#ffb08f!important;background:#3a2418!important}   /* 2027.01.51: 놓친 정답은 주황 점선 — 확실히 놓친 것으로 */
 .fb{margin-top:12px;font-size:.98em;min-height:20px;color:#f0a500;font-weight:bold}
 .info{display:none;margin-top:10px;padding:10px 13px;background:#0a2040;border-radius:9px;border-left:3px solid #4ecca3;overflow-wrap:anywhere;overflow-x:hidden;max-width:100%}
 .info.on{display:block}
@@ -75,7 +75,7 @@ button:disabled{background:#3a3a4a;color:#778;cursor:not-allowed}
 .pp{margin:6px 0 4px;overflow-wrap:anywhere;word-break:break-word;max-width:100%;font-size:.86em;color:#f0a500}
 .pp::before{content:'전치사 ';font-weight:bold;color:#c89000}
 .pp b{color:#ffc857;font-weight:bold}
-.pr{padding:6px 0;border-bottom:1px solid #16213e;max-width:100%;overflow-wrap:anywhere}
+.pr{padding:6px 0;border-bottom:1px solid #263463;max-width:100%;overflow-wrap:anywhere}
 .pr:last-of-type{border-bottom:none}
 .pr.hl{background:#1a3a2e;margin:0 -8px;padding:5px 8px;border-radius:5px;border-bottom:none}
 .pd{display:block;font-size:.93em;color:#ddd;line-height:1.45;margin-bottom:3px;word-break:break-word}
@@ -97,7 +97,7 @@ button:disabled{background:#3a3a4a;color:#778;cursor:not-allowed}
 .c.miss .od{color:#7d9}
 .c.dim .od{color:#9fb0c4!important}
 .pr.hl .ps{color:#6f9}
-.wi .pr{border-bottom:1px solid #0f3460;padding:5px 0}
+.wi .pr{border-bottom:1px solid #1f477f;padding:5px 0}
 .wi .pr:last-of-type{border-bottom:none}
 .wi .pd{display:block;font-size:.92em;color:#ddd;line-height:1.45;margin-bottom:3px;overflow-wrap:anywhere;word-break:break-word;max-width:100%}
 .wi .pr.hl .pd{color:#fff;font-weight:bold}
@@ -109,7 +109,7 @@ button:disabled{background:#3a3a4a;color:#778;cursor:not-allowed}
 .card{perspective:1000px;height:280px;margin-bottom:14px;cursor:pointer}
 .inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .45s}
 .inner.flip{transform:rotateY(180deg)}
-.face{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:14px;padding:20px;display:flex;flex-direction:column;justify-content:center;text-align:center;background:#16213e;border:2px solid #e94560;overflow-x:hidden;overflow-y:auto;max-width:100%}
+.face{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:14px;padding:20px;display:flex;flex-direction:column;justify-content:center;text-align:center;background:#263463;border:2px solid #e94560;overflow-x:hidden;overflow-y:auto;max-width:100%}
 .face.b{transform:rotateY(180deg);border-color:#4ecca3;justify-content:flex-start;overflow-y:auto;text-align:left}
 .face .num{position:absolute;top:10px;left:14px;font-size:.82em;color:#778}
 .face .w{font-size:2.2em;font-weight:bold;color:#fff;word-break:break-word;overflow-wrap:break-word;line-height:1.2;max-width:100%}
@@ -119,15 +119,15 @@ button:disabled{background:#3a3a4a;color:#778;cursor:not-allowed}
 .face.b .s::before{content:'동의어 ';font-weight:bold}
 .face.b .r{overflow-wrap:anywhere;word-break:break-word;max-width:100%;font-size:.86em;color:#f0a500;line-height:1.45}
 .face.b .r::before{content:'어원 ';font-weight:bold}
-#res{background:#16213e;border-radius:14px;padding:24px;text-align:center}
+#res{background:#263463;border-radius:14px;padding:24px;text-align:center}
 #rs{font-size:2.6em;font-weight:bold;color:#e94560;margin:5px 0}
 #rp{color:#4ecca3;font-weight:bold;margin-bottom:5px}
 #rm{color:#778;font-size:.95em;margin-bottom:16px}
 .rb{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
 .rb button{padding:13px 17px;font-size:1em}
-#wrong{background:#16213e;border-radius:14px;padding:18px;margin-top:11px;display:none}
+#wrong{background:#263463;border-radius:14px;padding:18px;margin-top:11px;display:none}
 #wrong h3{color:#e94560;font-size:1.1em;margin-bottom:12px}
-.wi{border-bottom:1px solid #0f3460;padding:11px 0;max-width:100%;overflow-x:hidden}
+.wi{border-bottom:1px solid #1f477f;padding:11px 0;max-width:100%;overflow-x:hidden}
 .wi:last-child{border-bottom:none}
 .wi .n{font-size:.82em;color:#667;margin-bottom:2px}
 .wi .w{font-size:1.2em;font-weight:bold;color:#fff;margin-bottom:3px;word-break:break-word}
@@ -135,10 +135,10 @@ button:disabled{background:#3a3a4a;color:#778;cursor:not-allowed}
 .wi .m{overflow-wrap:anywhere;word-break:break-word;max-width:100%;font-size:.92em;color:#4ecca3;margin-bottom:2px}
 .wi .s{overflow-wrap:anywhere;word-break:break-word;max-width:100%;font-size:.87em;color:#4ecca3;line-height:1.4;margin-bottom:2px}
 .wi .r{overflow-wrap:anywhere;word-break:break-word;max-width:100%;font-size:.86em;color:#f0a500;line-height:1.4}
-.done{background:#16213e;border-radius:12px;padding:20px;text-align:center;color:#4ecca3;font-size:.9em}
+.done{background:#263463;border-radius:12px;padding:20px;text-align:center;color:#4ecca3;font-size:.9em}
 #brtop{display:flex;align-items:center;gap:12px;margin-bottom:14px}
 #brcnt{color:#889;font-size:.9em}
-.bw{background:#16213e;border-radius:12px;padding:14px 16px;margin-bottom:9px;overflow-wrap:anywhere}
+.bw{background:#263463;border-radius:12px;padding:14px 16px;margin-bottom:9px;overflow-wrap:anywhere}
 .bw .h{display:flex;justify-content:space-between;align-items:baseline;cursor:pointer;gap:10px}
 .bw .bword{font-size:1.25em;font-weight:bold;color:#fff;word-break:break-word}
 .bw .btag{font-size:.75em;color:#667;white-space:nowrap}
@@ -149,7 +149,7 @@ button:disabled{background:#3a3a4a;color:#778;cursor:not-allowed}
 .bw .br::before{content:"어원 ";font-weight:bold}
 .bw .none{color:#566;font-size:.85em;margin-top:6px}
 .winrow{display:flex;gap:8px;margin-top:12px}
-.winrow input{flex:1;background:#0f3460;color:#fff;border:2px solid #2a4a7a;border-radius:10px;padding:14px 15px;font-size:1.1em;font-family:inherit;min-width:0}
+.winrow input{flex:1;background:#1f477f;color:#fff;border:2px solid #2a4a7a;border-radius:10px;padding:14px 15px;font-size:1.1em;font-family:inherit;min-width:0}
 .winrow input:focus{outline:none;border-color:#4ecca3}
 .winrow button{padding:14px 20px;font-size:1.05em}
 #wgot{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px;min-height:8px}
@@ -161,9 +161,9 @@ button:disabled{background:#3a3a4a;color:#778;cursor:not-allowed}
 .bank.srs .t{color:#f0a500}
 .bank.resume .t{color:#4ecca3}
 .bank.resume #resumeGo{background:#4ecca3;color:#0a1128;font-weight:bold}
-.stf{background:#0f3460;border:1px solid #2a4a7a;color:#8ab;border-radius:8px;padding:8px 16px;font-size:.9em;margin-right:8px}
+.stf{background:#1f477f;border:1px solid #2a4a7a;color:#8ab;border-radius:8px;padding:8px 16px;font-size:.9em;margin-right:8px}
 .stf.on{background:#e94560;border-color:#e94560;color:#fff;font-weight:bold}
-.sw{background:#16213e;border-radius:12px;padding:13px 16px;margin-bottom:8px;overflow-wrap:anywhere;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.sw{background:#263463;border-radius:12px;padding:13px 16px;margin-bottom:8px;overflow-wrap:anywhere;display:flex;justify-content:space-between;align-items:center;gap:12px}
 .sw .swl{flex:1;min-width:0}
 .sw .swe{font-size:1.15em;font-weight:bold;color:#fff;word-break:break-word}
 .sw .swm{font-size:.85em;color:#8ab;margin-top:2px;word-break:break-word}
@@ -171,26 +171,26 @@ button:disabled{background:#3a3a4a;color:#778;cursor:not-allowed}
 .sw .swc .wc{color:#e94560;font-weight:bold}
 .sw .swc .rc{color:#4ecca3}
 .sw.solved{opacity:.55}
-#rtsearch{width:100%;background:#0f3460;color:#fff;border:2px solid #2a4a7a;border-radius:10px;padding:12px 14px;font-size:1em;font-family:inherit;margin-bottom:14px}
+#rtsearch{width:100%;background:#1f477f;color:#fff;border:2px solid #2a4a7a;border-radius:10px;padding:12px 14px;font-size:1em;font-family:inherit;margin-bottom:14px}
 #rtsearch:focus{outline:none;border-color:#4ecca3}
-#cfsearch{width:100%;background:#0f3460;color:#fff;border:2px solid #2a4a7a;border-radius:10px;padding:12px 14px;font-size:1em;font-family:inherit;margin-bottom:10px}
+#cfsearch{width:100%;background:#1f477f;color:#fff;border:2px solid #2a4a7a;border-radius:10px;padding:12px 14px;font-size:1em;font-family:inherit;margin-bottom:10px}
 #cfsearch:focus{outline:none;border-color:#4ecca3}
 .fseg{display:flex;gap:7px;margin-bottom:14px;flex-wrap:wrap}
 .cfnone2{color:#9fb0c8;font-size:.9em;margin-top:6px}
 .cfbar{display:flex;gap:8px;align-items:flex-start;flex-wrap:wrap;margin-bottom:6px}
-.cfbar select{flex:0 0 auto;max-width:100%;padding:8px 10px;border-radius:8px;background:#0f3460;color:#e8eef8;border:1px solid #3a4a70;font-size:.95em}
+.cfbar select{flex:0 0 auto;max-width:100%;padding:8px 10px;border-radius:8px;background:#1f477f;color:#e8eef8;border:1px solid #3a4a70;font-size:.95em}
 .cfbar .fseg{margin-bottom:8px}
-.fseg button{background:#16213e;color:#8ab;border:1px solid #2a4a7a;border-radius:8px;
+.fseg button{background:#263463;color:#8ab;border:1px solid #2a4a7a;border-radius:8px;
   padding:7px 15px;font-size:.9em;font-family:inherit;cursor:pointer}
-.fseg button.on{background:#0f3460;color:#fff;border-color:#4ecca3}
+.fseg button.on{background:#1f477f;color:#fff;border-color:#4ecca3}
 .rg .rtype{font-size:.72em;color:#7a8aa8;border:1px solid #2f4468;border-radius:5px;padding:1px 6px;margin-left:8px;vertical-align:2px}
 .rg .rmore{margin-top:8px;background:#1b2542;color:#9fb4d6;border:1px solid #2f4468;
   border-radius:8px;padding:6px 12px;font-size:.85em;font-family:inherit;cursor:pointer}
 .rg .rw .rwe.hit{color:#ffd76e}
-.cfc{background:#16213e;border-radius:12px;padding:14px 16px;margin-bottom:9px;overflow-wrap:anywhere}
+.cfc{background:#263463;border-radius:12px;padding:14px 16px;margin-bottom:9px;overflow-wrap:anywhere}
 .cfc .cfh{font-size:1.2em;font-weight:bold;color:#fff}
 .cfc .cfhm{font-size:.85em;color:#8ab;margin:3px 0 10px}
-.cfrow{display:flex;align-items:baseline;gap:9px;padding:7px 0;border-top:1px solid #0f3460;flex-wrap:wrap}
+.cfrow{display:flex;align-items:baseline;gap:9px;padding:7px 0;border-top:1px solid #1f477f;flex-wrap:wrap}
 .cfrow .cfw{font-weight:bold;color:#ffd76e;font-size:1.02em}
 .cfrow .cfd{font-size:.75em;color:#e08a8a;border:1px solid #6b3a3a;border-radius:5px;padding:1px 7px;white-space:nowrap}
 .cfrow .cfm{font-size:.86em;color:#9ab;flex:1 1 200px}
@@ -238,7 +238,7 @@ button:disabled{background:#3a3a4a;color:#778;cursor:not-allowed}
   padding:8px 14px calc(23px + env(safe-area-inset-bottom, 0px));background:rgba(12,18,36,.93);border-top:1px solid #1e2a48;
   backdrop-filter:saturate(1.2) blur(6px)}
 #dockbar.on{display:flex}
-#dockbar button{background:#16213e;color:#b9c9e0;border:1px solid #2a3a5c;border-radius:9px;white-space:nowrap;
+#dockbar button{background:#263463;color:#b9c9e0;border:1px solid #2a3a5c;border-radius:9px;white-space:nowrap;
   padding:10px 22px;font-size:.98em;font-family:inherit;cursor:pointer;line-height:1.3;min-height:42px}
 #dockbar button:hover{border-color:#4ecca3;color:#dff}
 #dockbar #dockCnt{font-size:.84em;color:#6b7a92;min-width:56px;text-align:center}
@@ -255,7 +255,7 @@ button:disabled{background:#3a3a4a;color:#778;cursor:not-allowed}
 body.hasdock #qscr{padding-bottom:calc(84px + env(safe-area-inset-bottom, 0px))}
 body.hasdock #qnav{display:none}
 /* 간단히 보기 — 필수 정보만 */
-.viewtog{display:block;margin:0 0 8px auto;background:#16213e;color:#8ab;
+.viewtog{display:block;margin:0 0 8px auto;background:#263463;color:#8ab;
   border:1px solid #2a3a5c;border-radius:7px;padding:4px 12px;font-size:.8em;
   font-family:inherit;cursor:pointer}
 /* 보기 전환 · 전체 접기 버튼을 한 줄에 나란히 */
@@ -279,7 +279,7 @@ body.hasdock #qnav{display:none}
 .fmline .fmw .hwat{font-weight:400}
 .fmline .fmsep{color:#5d6f93;margin:0 4px}
 .srtog{display:flex;gap:6px;margin:0 0 8px}
-.srtog button{flex:1;padding:6px;border-radius:8px;border:1px solid #2a4a80;background:#0f3460;color:#cbd6ee;font-size:.9em}
+.srtog button{flex:1;padding:6px;border-radius:8px;border:1px solid #2a4a80;background:#1f477f;color:#cbd6ee;font-size:.9em}
 .srtog button.on{background:#e94560;border-color:#e94560;color:#fff}
 .srfam{border:1px solid #2a3a63;border-radius:10px;padding:6px 8px;margin:6px 0}
 .srfh{font-weight:700;color:#ffd28a;font-size:.92em;margin:2px 0 4px}
@@ -294,7 +294,7 @@ body.hasdock #qnav{display:none}
   border-radius:0 7px 7px 0;padding:7px 11px;margin:2px 0 2px 4px;line-height:1.55}
 .cfnote .cfc2{font-size:.82em;color:#7f9a8a;margin-left:6px}
 .cfoot{font-size:.78em;color:#6b7a92;margin-top:9px;text-align:right}
-.rg{background:#16213e;border-radius:12px;padding:14px 16px;margin-bottom:9px;overflow-wrap:anywhere}
+.rg{background:#263463;border-radius:12px;padding:14px 16px;margin-bottom:9px;overflow-wrap:anywhere}
 .rg .rh{font-size:1.15em;font-weight:bold;color:#4ecca3;margin-bottom:3px}
 .rg .rh b{color:#f0a500}
 .ex .exko{color:#8ab;font-size:.9em}
@@ -302,7 +302,7 @@ body.hasdock #qnav{display:none}
 .c .od{display:block;margin-top:4px;font-size:.9em;color:#a8bcd1;font-style:normal;opacity:1}
 .rg .rrep{font-size:.92em;color:#f0a500;background:#2a2410;border-radius:8px;padding:6px 11px;margin-bottom:7px;font-weight:bold}
 .rg .rgloss{font-size:.8em;color:#889;margin-bottom:9px}
-.rg .rw{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid #0f3460;font-size:.95em}
+.rg .rw{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid #1f477f;font-size:.95em}
 .rg .rw:last-child{border-bottom:none}
 .rg .rw .rwe{color:#fff;font-weight:bold;word-break:break-word}
 .rg .rw .rwm{color:#8ab;font-size:.88em;text-align:right;word-break:break-word}
@@ -312,7 +312,7 @@ body.hasdock #qnav{display:none}
 .bank .r{display:flex;gap:7px}
 .bank button{flex:1;padding:11px 8px;font-size:.95em;background:#f0a500;color:#1a1a2e}
 .bank button:hover{background:#d4920a}
-.bank button.clr{background:#0f3460;color:#889;border:1px solid #2a4a7a;flex:0 0 auto;padding:11px 14px}
+.bank button.clr{background:#1f477f;color:#889;border:1px solid #2a4a7a;flex:0 0 auto;padding:11px 14px}
 .bank button.clr:hover{background:#3d1a1a;color:#e94560}
 
 #stdash{margin-bottom:14px}
@@ -490,7 +490,7 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 #ewrGo{background:#3a1f22;border:1.5px solid #e2706a;color:#ffd6d2;font-weight:700}
 .ewrinfo{margin-top:9px;font-size:.9em;color:#d9c9a6;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
 .ewrinfo b{color:#fff}
-.ewrinfo button{background:#16213e;border:1px solid #3d5270;color:#cfe0f5;border-radius:8px;padding:6px 11px;font-size:.92em}
+.ewrinfo button{background:#263463;border:1px solid #3d5270;color:#cfe0f5;border-radius:8px;padding:6px 11px;font-size:.92em}
 .ewrinfo .ewrnote{width:100%;font-size:.84em;color:#8fa3c0}
 .ewralert{background:#3a1416;border:2px solid #ff6b5e;border-radius:12px;padding:13px 15px;margin-bottom:15px;
   display:flex;align-items:center;gap:12px;flex-wrap:wrap;color:#ffe3df;font-size:1.05em;font-weight:700;box-shadow:0 0 0 3px rgba(255,107,94,.15)}
@@ -754,7 +754,7 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 /* 맨 위 진도 한 줄 */
 .qk{display:flex;gap:8px;align-items:center;margin:10px 0 2px}
 .qk .ql{color:#9fd8c4;font-size:.9em;white-space:nowrap}
-.qk select{flex:1;min-width:0;padding:9px;border-radius:10px;background:#0f3460;color:#fff;border:1.5px solid #2a4a7a;font-size:1em}
+.qk select{flex:1;min-width:0;padding:9px;border-radius:10px;background:#1f477f;color:#fff;border:1.5px solid #2a4a7a;font-size:1em}
 .qk button{padding:9px 14px;border-radius:10px}
 .qk #qkGo{background:#e94560;color:#fff;font-weight:700;padding:9px 20px}
 .qkm{font-size:.8em;color:#8aa0b8;margin:2px 0 4px}
@@ -1208,7 +1208,7 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 #cmpBox .cmpbody{overflow-y:auto;overscroll-behavior:contain;padding:12px 16px 18px}
 #cmpBox .cmplab{color:#8fa8cc;font-size:.84em;margin:2px 0 7px}
 #cmpBox .cmpchips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
-#cmpBox .cmpchip{background:#16213e;border:1px solid #2f4270;color:#c9d6ec;border-radius:16px;padding:7px 13px;
+#cmpBox .cmpchip{background:#263463;border:1px solid #2f4270;color:#c9d6ec;border-radius:16px;padding:7px 13px;
   font-family:inherit;font-size:.95em;cursor:pointer}
 #cmpBox .cmpchip.on{background:#1d3566;border-color:#7fb4ff;color:#fff}
 #cmpBox .cmpchip.on::before{content:'\2713 ';color:#7fb4ff}
@@ -1247,7 +1247,7 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 .ovbox .cmpbody{overflow-y:auto;overscroll-behavior:contain;padding:12px 16px 18px}
 .ovbox .cmplab{color:#8fa8cc;font-size:.84em;margin:2px 0 7px}
 .ovbox .cmpchips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
-.ovbox .cmpchip{background:#16213e;border:1px solid #2f4270;color:#c9d6ec;border-radius:16px;padding:7px 13px;
+.ovbox .cmpchip{background:#263463;border:1px solid #2f4270;color:#c9d6ec;border-radius:16px;padding:7px 13px;
   font-family:inherit;font-size:.95em;cursor:pointer}
 .ovbox .cmpchip.on{background:#1d3566;border-color:#7fb4ff;color:#fff}
 .ovbox .cmpchip.on::before{content:'\2713 ';color:#7fb4ff}
@@ -1335,7 +1335,7 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 .ovbox .lrgl{color:#c9d6ec}
 .ovbox .lrall{margin-left:auto;background:none;border:1px solid #2f4270;color:#8fa8cc;border-radius:8px;padding:3px 10px;font-family:inherit;font-size:.82em;cursor:pointer}
 .ovbox .lrws{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
-.ovbox .lrw{background:#16213e;border:1px solid #2f4270;color:#c9d6ec;border-radius:16px;padding:6px 12px;font-family:inherit;font-size:.93em;cursor:pointer}
+.ovbox .lrw{background:#263463;border:1px solid #2f4270;color:#c9d6ec;border-radius:16px;padding:6px 12px;font-family:inherit;font-size:.93em;cursor:pointer}
 .ovbox .lrw.on{background:#1d3566;border-color:#7fb4ff;color:#fff}
 .ovbox .lrcard{margin-top:8px}
 .ovbox .lrtot{margin-top:8px}
@@ -1425,6 +1425,17 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 .enalert{font-size:.86em;padding:8px 12px!important;margin-top:-4px}
 .enalert button{padding:7px 12px!important;font-size:.95em!important}
 .calc .cne{display:block;font-size:.62em;color:#f0c040}
+.calc .cne.cnf{color:#c9b3ff}   /* 2027.01.49: 최종 복습 */
+.dfr{margin:8px 0 4px;color:#cfe0ff;font-size:.92em}
+/* 2027.01.50: 목록 삭제 */
+.lstclr{background:#2a1a1a;border:1px solid #5a2a2a;color:#ff9a9a;border-radius:8px;font-size:.8em;padding:3px 10px;margin-left:8px;cursor:pointer}
+.lstdel{background:#2a1a1a;border:1px solid #5a2a2a;color:#ff9a9a;border-radius:8px;font-size:.78em;padding:2px 9px;margin-left:auto;cursor:pointer;flex:0 0 auto}
+.lstrow{display:flex;align-items:center;gap:8px;padding:5px 2px;border-bottom:1px dashed #2e4a7a;font-size:.92em}
+.lstrow .lw{font-weight:700;color:#e8eefc}.lstrow .lm{color:#9fb0cc;font-size:.88em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lstbox{margin-top:8px;max-height:360px;overflow:auto}
+.penrow{position:relative}.penrow .lstdel{position:absolute;top:8px;right:8px}
+.misrow{position:relative}.misrow .lstdel{position:absolute;top:6px;right:6px}
+.calall.calfr{color:#c9b3ff}
 .calall.calen{color:#f0c040}
 /* 영어 → 뜻 · 세 칸 버튼 */
 #synmodebar .stylebar{display:inline-flex;border:1px solid #4a5a8a;border-radius:20px;overflow:hidden;vertical-align:middle;margin-left:6px}
@@ -1456,7 +1467,7 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 #ch button.c.mr{position:relative}
 #ch button.c.mr.ok::before{content:"✓ 내가 고름";position:absolute;bottom:4px;right:9px;font-size:.7em;color:#7fe0c2;font-weight:800}
 #ch button.c.mr.no::before{content:"✗ 내가 고름";position:absolute;bottom:4px;right:9px;font-size:.7em;color:#ff8fa0;font-weight:800}
-#ch button.c.mr.miss::before{content:"놓침";position:absolute;bottom:4px;right:9px;font-size:.7em;color:#7fe0c2;font-weight:800}
+#ch button.c.mr.miss::before{content:"✗ 놓침";position:absolute;bottom:4px;right:9px;font-size:.78em;color:#ff8a5c;font-weight:800}
 #ch button.c.mr.dim{opacity:.6!important}
 #ch button.c.simn{opacity:1!important;border-color:#7a5a2a!important}
 #ch button.c.simn.nupk{border-color:#f0a500!important;border-width:2px}
@@ -1478,11 +1489,11 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 .ambrow{padding:6px 0;border-bottom:1px dashed #2e4a7a;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .ambrow span{color:#9fb0cc;font-size:.85em}
 /* 2027.01.37: 교재 동의어 칸은 금색 — 고른 것은 실선, 놓친 것은 점선 (한눈에 들어오게) */
-#ch button.c.tbopt{background:#3d300a!important;border:3px solid #f5c542!important;color:#ffe9a8!important;opacity:1!important}
-#ch button.c.tbopt.miss{border-style:dashed!important;background:#2c2510!important}
-#ch button.c.tbopt .otxt{color:#ffe08a!important}
-#ch button.c .tbbadge{display:inline-block;margin-right:7px;padding:1px 7px;border-radius:6px;background:#f5c542;color:#2a2000;font-size:.72em;font-weight:800;vertical-align:2px}
-.ensum .esv .eso.tbs{font-weight:800}.ensum .esv .est.tb.pre{margin:0 4px 0 0;background:#f5c542;color:#2a2000;font-weight:800}
+#ch button.c.tbopt{box-shadow:inset 7px 0 0 #5fb0ff!important;opacity:1!important}   /* 2027.01.51: 교재 동의어 — 칸 색은 결과(초록 고름 · 주황 놓침) 그대로, 왼쪽 파란 띠만 */
+#ch button.c .tbbadge{display:inline-block;margin-right:7px;padding:1px 8px;border-radius:6px;background:linear-gradient(135deg,#6cc0ff,#3d8bff);color:#fff;font-size:.72em;font-weight:800;vertical-align:2px;text-shadow:0 1px 1px rgba(0,30,80,.35)}
+.ensum .esv .eso.tbs{font-weight:800}.ensum .esv .est.tb.pre{margin:0 4px 0 0;background:linear-gradient(135deg,#6cc0ff,#3d8bff);color:#fff;font-weight:800}
+.ensum .esv .esm.x{color:#fff!important;background:#d9480f;border-radius:5px;padding:0 5px;font-weight:800;margin-left:3px}   /* 2027.01.51: 요약 — 놓친 것은 주황 바탕 「✗ 놓침」 */
+.ensum .esv .eso.mis{color:#ffb08f}
 #ch .ensh .stmean{display:block;margin-top:4px;font-size:.86em;font-weight:600;color:#ffd27a}
 #ch button.c .stdef{display:block;width:100%;margin-top:5px;font-size:.8em;line-height:1.45;color:#c9d4ee;text-align:left;font-weight:500}
 .ensh .stmk.ok{color:#7fe0c2}.ensh .stmk.no{color:#ff8fa0}
@@ -1814,7 +1825,9 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
       <button id="bankGoUnit">이 강 오답</button>
       <button id="bankGo">전체 오답</button>
       <button class="clr" id="bankClr">비우기</button>
+      <button class="clr" id="bankView">목록</button>
     </div>
+    <div id="bankList" class="lstbox" style="display:none"></div>
   </div>
   <div class="enrow enbank" id="enBank" style="display:none"></div>
 
@@ -1825,6 +1838,7 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
       <button class="clr" id="reqClr">비우기</button>
     </div>
     <textarea id="reqArea" readonly></textarea>
+    <div id="reqList" class="lstbox"></div>
   </div>
 
   <div class="bank stats" id="statsBank">
@@ -1937,8 +1951,8 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 
 <!-- 플래시카드 -->
 <div class="scr" id="cardscr">
-  <div id="cbar" style="background:#16213e;border-radius:9px;padding:8px 14px;margin-bottom:10px;font-size:.8em;color:#4ecca3;text-align:center"></div>
-  <div id="cprog" style="height:4px;background:#0f3460;border-radius:9px;overflow:hidden;margin-bottom:12px"><i style="display:block;height:100%;background:#e94560;width:0;transition:width .25s"></i></div>
+  <div id="cbar" style="background:#263463;border-radius:9px;padding:8px 14px;margin-bottom:10px;font-size:.8em;color:#4ecca3;text-align:center"></div>
+  <div id="cprog" style="height:4px;background:#1f477f;border-radius:9px;overflow:hidden;margin-bottom:12px"><i style="display:block;height:100%;background:#e94560;width:0;transition:width .25s"></i></div>
   <div class="card" id="card">
     <div class="inner" id="cinner">
       <div class="face"><span class="num" id="cn1"></span><div class="w" id="cw"></div><div class="hint">탭하면 뜻</div></div>
@@ -2333,13 +2347,14 @@ function ambUI(){ var b=$('ambbtnHome'); if(b){ var n=Object.keys(AMB).length; b
 function ambListShow(){
   var ov=$('ambov'); if(!ov){ ov=document.createElement('div'); ov.id='ambov'; ov.className='ambov'; document.body.appendChild(ov); }
   var L=Object.keys(AMB).map(function(k){ return [k,AMB[k]]; }).sort(function(x,y){ return y[1].at-x[1].at; });
-  ov.innerHTML='<div class="ambbox"><div class="ambh">애매한 연결 '+L.length+'개 (오답 안 침) <button id="ambcopy">전체 복사</button><button id="ambdl">파일로 받기</button><button id="ambclose">닫기</button></div>'
+  ov.innerHTML='<div class="ambbox"><div class="ambh">애매한 연결 '+L.length+'개 (오답 안 침) <button id="ambcopy">전체 복사</button><button id="ambdl">파일로 받기</button>'+(L.length?'<button id="ambclr" class="lstclr">전체 삭제</button>':'')+'<button id="ambclose">닫기</button></div>'
     +(L.length?L.map(function(x){ var v=x[1]; return '<div class="ambrow"><b>'+esc(v.hw)+'</b> ⇄ <b>'+esc(v.t)+'</b> <span>'+esc(v.sec)+' · '+esc(v.kind)+(v.box?' · 「'+esc(v.box)+'」':'')+'</span><button data-ambundo="'+esc(x[0])+'">삭제</button></div>'; }).join('') : '<div class="ambrow">아직 없어요</div>')+'</div>';
   ov.style.display='';
   $('ambclose').onclick=function(){ ov.style.display='none'; };
   $('ambcopy').onclick=function(){ var t=ambText(); try{ navigator.clipboard.writeText(t); $('ambcopy').textContent='복사됨'; }catch(e){ prompt('복사하세요', t); } };
   $('ambdl').onclick=function(){ var blob=new Blob([ambText()],{type:'text/plain'}); var u=URL.createObjectURL(blob); var aa=document.createElement('a'); aa.href=u; aa.download='애매한연결_'+new Date().toISOString().slice(0,10)+'.txt'; document.body.appendChild(aa); aa.click(); aa.remove(); };
   ov.querySelectorAll('[data-ambundo]').forEach(function(b){ b.onclick=function(){ ambUndo(b.getAttribute('data-ambundo')); }; });
+  var _ac=$('ambclr'); if(_ac) _ac.onclick=function(){ if(!lstConfirmAll('애매한 연결', Object.keys(AMB).length)) return; AMB={}; ambSave(); ambListShow(); };   // 2027.01.50
 }
 // 2027.01.34: ① 뜻 · 같은 뜻 채점 화면을 전체 채점과 똑같이 (보기마다 뜻 · 교재/사전 · 어감 · 요약 상자) — 반대말 · 문맥 칸만 빼고
 function frStage1Render(q){
@@ -2444,6 +2459,18 @@ function frOneShowAll(q){
   try{ var box=document.querySelector('#qscr .box'); if(box) window.scrollTo(0, Math.max(0, box.getBoundingClientRect().top+(window.scrollY||0)-8)); }catch(e){}
 }
 // 2027.01.38: 한 칸씩에서 그 칸을 채점한 뒤 (보기 · 문제 단어를 누르면 정보가 나온다)
+// 2027.01.51: 채점이 끝난 전체 화면에서 Enter — 뜻 → 같은 뜻 → 반대말 칸으로 한 칸씩 내려가고, 마지막 칸에서 Enter면 다음 문제
+function frFinEnter(q){
+  if(!q || !q.fr || q.kind!=='en' || ans[qi]===null) return false;
+  var secs=[].slice.call(document.querySelectorAll('#ch .ensec')).filter(function(x){ return x.offsetParent!==null; });
+  if(secs.length<2) return false;
+  var i=(q._finI||0)+1;
+  if(i>=secs.length){ q._finI=0; return false; }   // 마지막 칸 → 다음 문제
+  q._finI=i;
+  var dock=$('dockbar'), Y=window.scrollY||0;
+  try{ window.scrollTo(0, Math.max(0, secs[i].getBoundingClientRect().top+Y-8)); }catch(e){}
+  return true;
+}
 function frOneGradedNow(){ var q=Q&&Q[qi]; return !!(q && frOneOn(q) && ans[qi]===null && q._one && q._one.graded); }
 // 2027.01.37: 칸 이동 (Enter · → = 다음 칸, ← = 이전 칸). 채점 전에 → 를 누르면 그 칸은 건너뛰고, ← 로 돌아와 풀 수 있다
 function frOneGo(q, d){
@@ -2673,6 +2700,8 @@ function frLookAlike(hw, n, skip){
   return shuf(out.slice(0,8)).slice(0,n).map(function(x){ return x[1]; });
 }
 // 2027.01.47: 4차 판정에서 같은 뜻으로 확인된 짝 (fr.json s) — 예전 「비슷하지만 다름」 기록보다 이긴다
+// 2027.01.50: 목록 전체 삭제 — 되돌릴 수 없으니 한 번 더 묻는다
+function lstConfirmAll(name, n){ if(!n) return false; return confirm(name+' '+n+'개를 모두 지울까요? 되돌릴 수 없어요.'); }
 function frIsSame(a, b){ try{ var L=(FRDATA && FRDATA.s && FRDATA.s[String(a).toLowerCase().trim()])||[]; b=String(b).toLowerCase().trim(); return L.some(function(x){ return String(x[0]).toLowerCase().trim()===b; }); }catch(e){ return false; } }
 function frNoSame(key){ var o={}; try{ var F=FINDATA && FINDATA[key]; if(F) for(var d in F){ (F[d].n||[]).forEach(function(x){ if(frIsSame(key, x[0])) return; o[String(x[0]).toLowerCase().trim()]=1; }); } }catch(e){} return o; }
 function buildFr(w, opt){
@@ -2805,9 +2834,9 @@ function enRevealExtra(q, a){
         var tg='';
         if(sc==='s'){ var sr=frSrcOf(q, o); tg=sr.tb ? '<span class="est tb">교재</span>' : '<span class="est dc">사전</span>'; }
         else if(sc==='a') tg='<span class="est dc">사전</span>';
-        var mk = sc==='c' ? '' : (p ? '<span class="esm">✓</span>' : '<span class="esm x">놓침</span>');
-        if(sc==='s' && tg.indexOf('est tb')>=0) tbR.push('<span class="eso tbs"><span class="est tb pre">교재</span>'+esc(o.t)+mk+'</span>');   // 2027.01.35: 교재 동의어는 앞에 굵게 · 01.45: 맨 앞에
-        else rights.push('<span class="eso">'+esc(o.t)+tg+mk+'</span>');
+        var mk = sc==='c' ? '' : (p ? '<span class="esm">✓</span>' : '<span class="esm x">✗ 놓침</span>');
+        if(sc==='s' && tg.indexOf('est tb')>=0) tbR.push('<span class="eso tbs'+(p||sc==='c'?'':' mis')+'"><span class="est tb pre">교재</span>'+esc(o.t)+mk+'</span>');   // 2027.01.35: 교재 동의어는 앞에 굵게 · 01.45: 맨 앞에
+        else rights.push('<span class="eso'+(p||sc==='c'?'':' mis')+'">'+esc(o.t)+tg+mk+'</span>');
       }
       else if(p && o.fin==='N') nuP.push('<s>'+esc(o.t)+'</s>');
       else if(p) bad.push('<b>'+esc(o.t)+'</b>');   // 2027.01.28: 함정 표시 안 함
@@ -4677,6 +4706,7 @@ function statsWrong(w, mode){
   var r=statsEnsure(w);
   r.wrong++;
   r.rw=(r.rw||0)+1;                      // 진짜 틀린 횟수 (담기로 채운 1과 구별)
+  r.lw=Date.now();                       // 2027.01.50: 마지막으로 틀린 시각 (한 번이라도 틀린 단어 목록에서 지운 뒤 다시 틀리면 돌아오게)
   if(mode==='syn'){
     r.ls=Date.now();                    // 동의어 매칭으로 마지막에 푼 시각 (복습 회독 진도용)
     r.cyc=(r.cyc||0)+1;                // 이번 사이클에서 틀린 횟수 (20개 선별용)
@@ -4803,16 +4833,16 @@ function pinListUI(){
   if(!weak.length && !mine.length){ pl.style.display='none'; return; }
   var h='';
   if(weak.length){
-    h+='<div class="pensec">🔥 계속 걸리는 단어 '+weak.length+'개</div>';
+    h+='<div class="pensec">🔥 계속 걸리는 단어 '+weak.length+'개<button class="lstclr" data-weakall="1">전체 삭제</button></div>';
     for(var i=0;i<weak.length && i<60;i++){
       var w=weak[i];
       h+='<div class="pinrow"><span class="pw">'+esc(w.w)+'</span>'
         +'<span class="pm">'+esc(String(w.m||'').split('/')[0].trim())+'</span>'
-        +'<span class="pk">'+(w.picked||0)+'회</span></div>';
+        +'<span class="pk">'+(w.picked||0)+'회</span><button class="pdel" data-weak="'+esc(w.w)+'">삭제</button></div>';
     }
   }
   if(mine.length){
-    h+='<div class="pensec mine">🔖 내가 담은 단어 '+mine.length+'개</div>';
+    h+='<div class="pensec mine">🔖 내가 담은 단어 '+mine.length+'개<button class="lstclr" data-pinall="1">전체 삭제</button></div>';
     mine.sort(function(a,b){ return (a.vol-b.vol)||(a.day-b.day)||0; });
     for(var j=0;j<mine.length;j++){
       var m2=mine[j];
@@ -4885,6 +4915,7 @@ function _penDraw(){
   }
   function row(w, i, mine){
     return '<div class="penrow'+(mine?' mine':'')+'">'
+      +'<button class="lstdel" data-pendel="'+esc(w.w)+'" data-penmine="'+(mine?1:0)+'">삭제</button>'   // 2027.01.50
       +'<div class="pnum">'+(i)+'</div>'
       +'<div class="pbody">'
       +'<div class="pw">'+esc(w.w)+ (!mine && w.wrong ? '<span class="pcnt">'+w.wrong+'회 틀림</span>' : '') +'</div>'
@@ -5047,6 +5078,7 @@ function calDraw(){
   for(var b=0;b<first.getDay();b++) h+='<div class="calc empty"></div>';
   var todayK=dayKey(), mSyn=0, mQ=0, mCopy=0, mDone=0, mEn=0;
   var DE=(RS.en && REC==='main') ? (RS.en.DAILY||{}) : {};
+  var DF=(RS.fr && REC==='main') ? (RS.fr.DAILY||{}) : {}, mFr=0;   // 2027.01.49: 최종 복습 기록도 달력에
   for(var day=1;day<=last.getDate();day++){
     var k=CAL_Y+'-'+('0'+(CAL_M+1)).slice(-2)+'-'+('0'+day).slice(-2);
     var d=DAILY[k];
@@ -5075,8 +5107,10 @@ function calDraw(){
       +(mark?'<span class="cm">'+mark+'</span>':'')
       +(d&&d.syn?'<span class="cn">'+d.syn+'</span>':'')
       +((DE[k]&&DE[k].syn)?'<span class="cne">영 '+DE[k].syn+'</span>':'')
+      +((DF[k]&&DF[k].syn)?'<span class="cne cnf">최 '+DF[k].syn+'</span>':'')
       +ustr+'</div>';
     if(DE[k]&&DE[k].syn) mEn+=DE[k].syn;
+    if(DF[k]&&DF[k].syn) mFr+=DF[k].syn;
     if((first.getDay()+day)%7===0 && day<last.getDate()) h+='</div><div class="calrow">';
   }
   h+='</div>';
@@ -5096,6 +5130,7 @@ function calDraw(){
     + (mCopy?'  ·  따라쓰기 <b>'+mCopy+'</b>개':'')
     + '<div class="calall">1회독 진도 <b>'+seenSynCount()+'</b>개</div>'
     + ((RS.en && REC==='main') ? '<div class="calall calen">영어 → 뜻 · 이번 달 처음 푼 단어 <b>'+mEn+'</b>개 · 1회독 진도 <b>'+recWith('en', seenSynCount)+'</b>개 <span>(칸 안 「영」 숫자)</span></div>' : '')
+    + ((RS.fr && REC==='main') ? '<div class="calall calfr">최종 복습 · 이번 달 처음 푼 단어 <b>'+mFr+'</b>개 · 1회독 진도 <b>'+recWith('fr', seenSynCount)+'</b>개 <span>(칸 안 「최」 숫자)</span></div>' : '')
     + (streak>1?'<div class="streak">🔥 연속 '+streak+'일 달성 중</div>':'');
   $('calcnt').textContent='목표 '+DAILY_GOAL+'개/일';
   var dp=$('dayPanel'); if(dp && !DAY_KEY) dp.style.display='none';
@@ -5184,6 +5219,7 @@ function reqUI(){
   if(!n){ box.classList.remove('on'); box.style.display='none'; return; }
   $('reqT').textContent='📝 어원 요청 목록 '+n+'개 — 복사해서 Claude에게 전달하세요';
   $('reqArea').value=rootReqText();
+  try{ var _rl=$('reqList'); if(_rl){ _rl.innerHTML=Object.keys(ROOTREQ).map(function(k){ return '<div class="lstrow"><span class="lw">'+esc(k)+'</span><button class="lstdel" data-reqdel="'+esc(k)+'">삭제</button></div>'; }).join(''); } }catch(e){}   // 2027.01.50
   box.style.display='';
   box.classList.add('on');
 }
@@ -5206,6 +5242,7 @@ function ewrSave(){ lsSet(EWRKEY, JSON.stringify(EWR)); }
 function everWrongList(){
   var o=[];
   for(var k in STATS){ var r=STATS[k]; if(!r) continue;
+    if(r.ewx && !((r.lw||0) > r.ewx)) continue;   // 2027.01.50: 목록에서 지웠고 그 뒤로 안 틀렸으면 뺀다
     if((r.rw||0)>=1 || ((r.wrong||0)>=1 && !r.pw)) o.push(r); }
   o.sort(function(a,b){ return ((b.rw||b.wrong||0)-(a.rw||a.wrong||0)); });
   return o;
@@ -5223,7 +5260,7 @@ function ewrUI(){
     else {
       var nx=ewrNext();
       info.innerHTML='<span>🔁 3일마다 복습 · '+(EWR.done ? ('마지막 '+_md(EWR.done)+' · 다음 <b>'+_md(nx)+'</b>') : '<b>아직 한 번도 안 했어요</b>')+'</span>'
-        +'<button id="ewrIcs">📅 3일마다 알림 달력에 넣기</button>'
+        +'<button id="ewrIcs">📅 3일마다 알림 달력에 넣기</button><button id="ewrView" class="clr">목록</button>'   // 2027.01.50
         +'<span class="ewrnote">달력 알림은 이 기기 캘린더가 울려요 (앱이 직접 휴대폰 알림을 보내려면 서버가 필요해서 이 방식을 써요)</span>';
       info.style.display='';
     }
@@ -5392,7 +5429,7 @@ setInterval(function(){
   }catch(e){}
 },1500);
 
-var APP_VER = '2027.01.48';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
+var APP_VER = '2027.01.51';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
 var VER = APP_VER;  // 데이터 URL 캐시 키. 배포 때만 바뀌므로 브라우저 캐시가 제대로 재사용됨
 function loadJ(p){
   // 데이터 파일은 URL에 버전(v=)이 붙어 캐시가 자동 갱신되므로 브라우저 캐시를 허용한다.
@@ -5688,7 +5725,7 @@ function stat(){
   ds.forEach(function(d){n+=d.n;w+=d.words;sy+=d.syn;r+=d.root;});
   var pre = st.cum ? '📖 <b>누적</b> — ' : '';
   $('dstat').innerHTML = pre+'<b>'+n+'</b>개 · 단어 '+w+' · 동의어 '+sy+' · '+(st.cum ? '어원 '+r : '<span id="lrOpen">어원 '+r+' ›</span>');
-  $('cum').style.background = st.cum ? '#e94560' : '#0f3460';
+  $('cum').style.background = st.cum ? '#e94560' : '#1f477f';
 
   // 플래시카드 세트 옵션
   var isCard = st.mode==='card';
@@ -9751,6 +9788,7 @@ function wbOpen(which){
         wbToggle(_cw); wbDraw(); return; }
       var dl=t.closest && t.closest('[data-wbdel]');
       if(dl){ wbToggle(dl.getAttribute('data-wbdel')); wbDraw(); return; }
+      if(t.closest && t.closest('[data-wball]')){ var _wl=wbList(); if(!lstConfirmAll('내 단어장', _wl.length)) return; var _now=Date.now(); _wl.forEach(function(r){ r.on=0; r.t=_now; }); wbSave(); wbBtnSync(); wbDraw(); return; }   // 2027.01.50
     });
   }
   box.classList.add('on');
@@ -9814,7 +9852,7 @@ function wbDraw(){
             + ((i===0 && c.w && String(c.w.w).toLowerCase()===String(w).toLowerCase())?'<span class="ctag">표제어</span>':'')+'</button>';
         }).join('')+'</div>';
   }
-  var head='<div class="cmpwrap"><div class="cmpcard"><div class="cmphead"><div class="cmpttl">내 단어장<span>전체 누적 · '+list.length+'개</span></div><button class="cmpx">닫기</button></div>'
+  var head='<div class="cmpwrap"><div class="cmpcard"><div class="cmphead"><div class="cmpttl">내 단어장<span>전체 누적 · '+list.length+'개</span></div>'+(list.length?'<button class="lstclr" data-wball="1">전체 삭제</button>':'')+'<button class="cmpx">닫기</button></div>'
     +'<div class="cmpbody">'+chips+'<div class="cmplab">최근에 담은 순</div><div id="wbItems">';
   var tail='</div></div></div></div>';
   if(!list.length){ box.innerHTML=head+'<div class="cmpempty">아직 담은 단어가 없어요</div>'+tail; return; }
@@ -9851,6 +9889,7 @@ function misOwners(t){
 function misAdd(t, qw){
   var k=misKey(t); if(!k) return;
   var now=Date.now(), r=MIS[k];
+  if(r && r.x){ r=null; }   // 2027.01.50: 지운 단어를 다시 잘못 고르면 새로 쌓는다
   if(!r){ r=MIS[k]={w:String(t).trim(), n:0, ok:0, q:[], of:[], a:now, t:now}; }
   r.n=(r.n||0)+1; r.t=now;
   if(qw && r.q.indexOf(qw)<0){ r.q.unshift(qw); if(r.q.length>5) r.q.length=5; }
@@ -9871,7 +9910,7 @@ function misMerge(a, b){
   return o;
 }
 function misList(){
-  var o=[]; for(var k in MIS) if(MIS[k]) o.push(MIS[k]);
+  var o=[]; for(var k in MIS) if(MIS[k] && !MIS[k].x) o.push(MIS[k]);   // 2027.01.50: x = 지운 표시
   o.sort(function(a,b){ var d=(misDone(a)?1:0)-(misDone(b)?1:0); return d || (b.t||0)-(a.t||0); });
   return o;
 }
@@ -9904,6 +9943,9 @@ function misOpen(){
       if(t.closest && t.closest('.cmpx')){ misClose(); return; }
       var qb=t.closest && t.closest('[data-misq]');
       if(qb){ misClose(); startMis(qb.getAttribute('data-misq')); return; }
+      var md=t.closest && t.closest('[data-misdel]');   // 2027.01.50
+      if(md){ var _mk=md.getAttribute('data-misdel'); if(MIS[_mk]){ MIS[_mk]={w:MIS[_mk].w, x:Date.now(), t:Date.now()}; misSave(); } misDraw(); return; }
+      if(t.closest && t.closest('[data-misall]')){ var _ml=misList(); if(!lstConfirmAll('잘못 고른 단어', _ml.length)) return; var _mn=Date.now(); _ml.forEach(function(r){ var k=misKey(r.w); MIS[k]={w:r.w, x:_mn, t:_mn}; }); misSave(); misDraw(); return; }
     });
     box.addEventListener('change', function(ev){
       var t=ev.target;
@@ -9922,12 +9964,12 @@ function misDraw(){
     +'<div class="misset">퀴즈 알림 기준 <input id="misLim" type="number" min="1" value="'+MISCFG.lim+'">개 · <input id="misNeed" type="number" min="1" value="'+MISCFG.need+'">번 맞히면 「익힘」</div>'
     +(left ? '<div class="misbar"><button data-misq="head">표제어 문제로 풀기</button><button data-misq="mean">뜻 고르기로 풀기</button><button data-misq="mix">섞어서 풀기</button></div>' : '')
     +(left>=MISCFG.lim ? '<div class="cmplab" style="color:#ffd479">'+MISCFG.lim+'개가 쌓였어요 — 퀴즈로 한 번 정리해 보세요</div>' : '')
-    +'<div class="cmplab">잘못 고를 때마다 자동으로 쌓여요 · 빼지 않고 맞힌 횟수만 표시해요</div>';
+    +'<div class="cmplab">잘못 고를 때마다 자동으로 쌓여요 · 줄마다 「삭제」로 뺄 수 있어요'+(list.length?'<button class="lstclr" data-misall="1">전체 삭제</button>':'')+'</div>';
   if(!list.length) h+='<div class="cmpempty">아직 없어요. 동의어 매칭에서 오답을 고르면 여기 쌓여요</div>';
   list.forEach(function(r){
     var m=''; try{ m=defOf(r.w)||relMean(r.w,''); }catch(e){}
     var done=misDone(r);
-    h+='<div class="misrow"><b class="wtap" data-w="'+esc(r.w)+'">'+esc(r.w)+'</b>'
+    h+='<div class="misrow"><button class="lstdel" data-misdel="'+esc(misKey(r.w))+'">삭제</button><b class="wtap" data-w="'+esc(r.w)+'">'+esc(r.w)+'</b>'
       +'<span class="misst'+(done?' done':'')+'">'+(done?'익힘':(r.ok?'✓ '+r.ok+'번 맞힘':'×'+r.n+'번 잘못 고름'))+'</span>'
       +(m?'<div class="mism">'+esc(m)+((r.of&&r.of.length)?' · '+esc(r.of.join(', '))+'의 동의어':'')+'</div>':'')
       +((r.q&&r.q.length)?'<div class="misq">헷갈린 문제: '+r.q.map(esc).join(', ')+'</div>':'')+'</div>';
@@ -10242,6 +10284,12 @@ function cmpOpen(which){
       if(dl){ cmpToggle(dl.getAttribute('data-cmpu')||_cmpCtx.unit, dl.getAttribute('data-cmpdel')); cmpDraw(); return; }
       var cv=t.closest && t.closest('[data-cv]');
       if(cv){ CMPVIEW=cv.getAttribute('data-cv'); cmpDraw(); return; }
+      if(t.closest && t.closest('[data-cmpall]')){   // 2027.01.50: 비교 목록 전체 삭제 (지금 보는 범위)
+        var _cl=(CMPVIEW==='all') ? cmpListAll() : cmpList(_cmpCtx.unit);
+        if(!lstConfirmAll('비교 목록'+(CMPVIEW==='all'?'':' (이 강)'), _cl.length)) return;
+        var _cn=Date.now();
+        for(var _u in CMP){ if(CMPVIEW!=='all' && _u!==_cmpCtx.unit) continue; for(var _k in CMP[_u]){ var _r=CMP[_u][_k]; if(_r && _r.on){ _r.on=0; _r.t=_cn; } } }
+        cmpSave(); cmpBtnSync(); if(typeof syncSoon==='function') syncSoon(); cmpDraw(); return; }
       if(t.closest && t.closest('.cmpadd')){ cmpTyped(); return; }
     });
   }
@@ -10288,7 +10336,7 @@ function cmpDraw(){
     return '<button class="cmpchip'+(cmpHas(c.unit,w)?' on':'')+'" data-cmpw="'+esc(w)+'"><span class="cnum">'+(i+1)+'</span>'+esc(w)+'</button>';
   }).join('');
   var head='<div class="cmpwrap"><div class="cmpcard"><div class="cmphead"><div class="cmpttl">비교 목록<span>'
-    +(CMPVIEW==='all' ? '모든 강 전체' : esc(cmpUnitLabel(c.unit)))+' · '+list.length+'개</span></div><button class="cmpx">닫기</button></div>'
+    +(CMPVIEW==='all' ? '모든 강 전체' : esc(cmpUnitLabel(c.unit)))+' · '+list.length+'개</span></div>'+(list.length?'<button class="lstclr" data-cmpall="1">'+(CMPVIEW==='all'?'전체 삭제':'이 강 전체 삭제')+'</button>':'')+'<button class="cmpx">닫기</button></div>'
     +'<div class="cmpbody"><div class="cmpview"><button data-cv="unit" class="'+(CMPVIEW==='unit'?'on':'')+'">이 강만</button><button data-cv="all" class="'+(CMPVIEW==='all'?'on':'')+'">모든 강 전체</button></div>'
     +'<div class="cmpinrow"><input id="cmpIn" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="단어를 쳐서 담기 (예: cautious)"><button class="cmpadd">담기</button></div>'
     +'<div class="cmplab">이 문제 단어 — 누르면 담기, 한 번 더 누르면 빼기 · 키보드 숫자로도 돼요</div>'
@@ -10612,7 +10660,7 @@ function qkSync(){
   var s=$('qkSel'), d=$('dsel'); if(!s || !d) return;
   if(s.innerHTML!==d.innerHTML) s.innerHTML=d.innerHTML;
   s.value=d.value;
-  $('qkCum').style.background = st.cum ? '#e94560' : '#0f3460';
+  $('qkCum').style.background = st.cum ? '#e94560' : '#1f477f';
   var mb=document.querySelector('#mseg button.on .t'), mn=mb?mb.textContent:'';
   var parts=[mn, (st.mode==='card') ? '' : (st.n ? st.n+'문제' : '전체')];
   if(['syn','quiz','write','copy','en'].indexOf(st.mode)>=0 || (st.mode==='fr' && FRUNIT==='unit')) parts.push(ORDER==='book'?'순서대로':'랜덤');
@@ -10857,7 +10905,7 @@ function synKeydown(e){
   }
   if(e.key==='Enter'){
     e.preventDefault(); e.stopPropagation();
-    if(ans[qi]!==null){ next(); }        // 이미 채점됨 → 다음 문제
+    if(ans[qi]!==null){ if(!frFinEnter(Q[qi])) next(); }        // 이미 채점됨 → (최종 복습은 칸마다 내려가다가) 다음 문제
     else synTypeSubmit(this);             // 아직이면 제출 (어느 칸에서 눌렀는지 같이)
   }
   else if(e.key==='ArrowRight' && !this.value){ e.preventDefault(); e.stopPropagation(); if(!frOneArrowKey(1)) next(); }   // 2027.01.37: 한 칸씩이면 칸 이동
@@ -11108,6 +11156,16 @@ function dayOpen(k){
   // ── 복습한 것 (강별) ──
   h+=unitRowsHTML('복습한 단어', d.rv, 'drev');
   if(d.copy) h+='<div class="dcopy">✏️ 따라쓰기 '+d.copy+'개</div>';
+  // 2027.01.49: 최종 복습 기록 · 그날 푼 시간
+  try{ var _df=(RS.fr && REC==='main') ? (RS.fr.DAILY||{})[k] : null;
+    if(_df && (_df.syn || _df.q)){
+      h+='<div class="dfr">🧩 최종 복습 · 처음 푼 단어 <b>'+(_df.syn||0)+'</b>개 · 푼 문제 <b>'+(_df.q||0)+'</b>개</div>';
+      h+=unitRowsHTML('최종 복습 · 새로 푼 단어', _df.nu, 'dnew');
+      h+=unitRowsHTML('최종 복습 · 복습한 단어', _df.rv, 'drev');
+    }
+    var _dt=(typeof DAYT!=='undefined') && DAYT[k];
+    if(_dt && _dt.s) h+='<div class="dfr">⏱ 퀴즈 푼 시간 <b>'+qtFmt(_dt.s)+'</b> · 채점한 문제 '+(_dt.n||0)+'개 <span style="color:#8a9bbb">(모든 퀴즈 합계 · 이 기기)</span></div>';
+  }catch(e){}
   if(us.length || d.nu || d.rv) h+='<div class="dtap">강 이름을 누르면 진도가 그 강으로 바뀌어요</div>';
   $('dayAuto').innerHTML=h;
 
@@ -11167,7 +11225,20 @@ $('pinView').addEventListener('click',function(){
   if(pl.style.display==='none'||!pl.innerHTML){ pinListUI(); this.textContent='닫기'; }
   else { pl.style.display='none'; this.textContent='목록'; }
 });
+// 2027.01.50: 계속 걸리는 단어 · 담아둔 단어 — 줄마다 삭제 · 전체 삭제 (rec: main / en)
+function pinListAct(e, rec){
+  var t=e.target; if(!t.closest) return false;
+  var wk=t.closest('[data-weak]'), wa=t.closest('[data-weakall]'), pa=t.closest('[data-pinall]');
+  if(!wk && !wa && !pa) return false;
+  recWith(rec, function(){
+    if(wk){ var r=STATS[wk.getAttribute('data-weak')]; if(r){ r.picked=0; statsSave(); } }
+    else if(wa){ var L=weakList(1); if(lstConfirmAll('계속 걸리는 단어', L.length)){ L.forEach(function(r){ r.picked=0; }); statsSave(); } }
+    else if(pa){ var P=pinnedList(); if(lstConfirmAll('담아둔 단어', P.length)){ var n=Date.now(); P.forEach(function(r){ var x=STATS[r.w]; if(x){ x.pinned=0; x.pinT=n; } }); statsSave(); } }
+  });
+  return true;
+}
 $('pinList').addEventListener('click',function(e){
+  if(pinListAct(e, 'main')){ srsUI(); if(weakList(1).length||pinnedList().length){ pinListUI(); $('pinView').textContent='닫기'; } else { $('pinList').style.display='none'; $('pinView').textContent='목록'; } return; }
   var d=e.target.closest('.pdel'); if(!d) return;
   var w=d.getAttribute('data-pw');
   if(STATS[w]){ STATS[w].pinned=0; STATS[w].pinT=Date.now(); statsSave(); }
@@ -11176,6 +11247,7 @@ $('pinList').addEventListener('click',function(e){
   else { $('pinView').textContent='목록'; }
 });
 $('enPinList').addEventListener('click',function(e){
+  if(pinListAct(e, 'en')){ var bx=$('enPinList'); bx.style.display='none'; enGo('list'); homeEnUI(); return; }
   var d=e.target.closest('.pdel'); if(!d) return;
   var w=d.getAttribute('data-pw');
   recWith('en', function(){ if(STATS[w]){ STATS[w].pinned=0; STATS[w].pinT=Date.now(); statsSave(); } });
@@ -11199,6 +11271,39 @@ $('reqClr').addEventListener('click',function(){
   ROOTREQ={}; rootReqSave(); reqUI();
 });
 $('csubmit').addEventListener('click',copySubmit);
+// 2027.01.50: 목록 줄마다 삭제 (어원 요청 · 누적 오답 · 손으로 쓸 단어 · 한 번이라도 틀린 단어)
+function bankListUI(){
+  var box=$('bankList'); if(!box) return;
+  var m=st.mode; if(m==='card'){ box.style.display='none'; return; }
+  var L=bankList(m);
+  box.innerHTML = L.length ? L.map(function(r){ return '<div class="lstrow"><span class="lw">'+esc(r.w)+'</span><span class="lm">'+esc(String(r.m||'').split('/')[0].trim())+'</span><button class="lstdel" data-bankdel="'+esc(r.w)+'">삭제</button></div>'; }).join('') : '<div class="lstrow">누적 오답이 없어요</div>';
+}
+function ewrListUI(){
+  var box=$('ewrList');
+  if(!box){ var info=$('ewrInfo'); if(!info) return; box=document.createElement('div'); box.id='ewrList'; box.className='lstbox'; info.parentNode.insertBefore(box, info.nextSibling); }
+  var L=everWrongList();
+  box.innerHTML=(L.length?'<div class="lstrow"><span class="lm">다시 틀리면 목록에 돌아와요</span><button class="lstclr" data-ewrall="1">전체 삭제</button></div>':'')
+    +(L.length ? L.map(function(r){ return '<div class="lstrow"><span class="lw">'+esc(r.w)+'</span><span class="lm">'+esc(String(r.m||'').split('/')[0].trim())+' · '+(r.rw||r.wrong||0)+'번 틀림</span><button class="lstdel" data-ewrdel="'+esc(r.w)+'">삭제</button></div>'; }).join('') : '<div class="lstrow">없어요</div>');
+  box.style.display='';
+}
+document.addEventListener('click', function(e){
+  var t=e.target; if(!t || !t.closest || !$('setup').classList.contains('on')) return;
+  var b;
+  if((b=t.closest('#bankView'))){ var bl=$('bankList'); if(bl.style.display==='none'){ bankListUI(); bl.style.display=''; b.textContent='닫기'; } else { bl.style.display='none'; b.textContent='목록'; } return; }
+  if((b=t.closest('[data-bankdel]'))){ var m=st.mode, w=b.getAttribute('data-bankdel'), r=(BANK[m]||{})[w]; if(r){ bankDel(m, r); bankSave(); } try{ bankUI(); }catch(x){} bankListUI(); return; }
+  if((b=t.closest('[data-reqdel]'))){ var k=b.getAttribute('data-reqdel'); DELS.req[k]=Date.now(); delsSave(); delete ROOTREQ[k]; rootReqSave(); reqUI(); return; }
+  if((b=t.closest('#ewrView'))){ var el=$('ewrList'); if(el && el.style.display!=='none'){ el.style.display='none'; b.textContent='목록'; } else { ewrListUI(); var b2=$('ewrView'); if(b2) b2.textContent='닫기'; } return; }
+  if((b=t.closest('[data-ewrdel]'))){ var r2=STATS[b.getAttribute('data-ewrdel')]; if(r2){ r2.ewx=Date.now(); statsSave(); } ewrUI(); ewrListUI(); var b3=$('ewrView'); if(b3) b3.textContent='닫기'; return; }
+  if((b=t.closest('[data-ewrall]'))){ var L=everWrongList(); if(!lstConfirmAll('한 번이라도 틀린 단어', L.length)) return; var n=Date.now(); L.forEach(function(r){ r.ewx=n; }); statsSave(); ewrUI(); ewrListUI(); return; }
+}, true);
+document.addEventListener('click', function(e){
+  var t=e.target; if(!t || !t.closest) return;
+  var b=t.closest('[data-pendel]'); if(!b || !$('penscr').classList.contains('on')) return;
+  var w=b.getAttribute('data-pendel'), mine=b.getAttribute('data-penmine')==='1';
+  if(mine){ var k=String(w).toLowerCase().trim(); var kk=PENLIST[w]?w:(PENLIST[k]?k:null); if(kk){ DELS.pen[kk]=Date.now(); delsSave(); delete PENLIST[kk]; penSave(); } }
+  else { var r=STATS[w]; if(r){ r.cyc=0; statsSave(); } }   // 많이 틀린 단어: 이번 사이클 틀린 횟수를 0으로 → 목록에서 빠진다
+  penDraw();
+}, true);
 // 퀴즈 화면: 정답 공개 후 선지를 누르면 그 단어의 어원 보기
 document.addEventListener('click',function(e){
   if(!$('qscr').classList.contains('on')) return;
@@ -11534,7 +11639,7 @@ document.addEventListener('keydown',function(e){
     if(q.kind==='syn'&&ans[qi]===null) submitSyn();
     else if(q.kind==='en'&&ans[qi]===null){ if(styleOf(q)==='write') enWriteSubmit(q); else submitEn(); }
     else if(q.kind==='ko'&&ans[qi]===null&&KO_STYLE==='write') enWriteSubmit(q);
-    else next();
+    else { if(!frFinEnter(q)) next(); }   // 2027.01.51: 최종 복습은 칸마다 내려가다가 다음 문제
   }
   else if(e.key==='ArrowRight'){ e.preventDefault(); if(!frOneArrowKey(1)) next(); }   // 2027.01.37: 한 칸씩이면 칸 이동
   else if(e.key==='ArrowLeft'){ e.preventDefault(); if(!frOneArrowKey(-1)) prev(); }
