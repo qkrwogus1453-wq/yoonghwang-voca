@@ -58,7 +58,7 @@ button:disabled{background:#3a3a4a;color:#778;cursor:not-allowed}
 .c.no{background:#3d1a1a!important;border-color:#e94560!important;color:#e94560!important}
 .c.dim{color:#b8c4d4!important;border-color:#2a3a5c!important;opacity:.92!important}
 .c.sel{border-color:#f0a500!important;background:#2a2540!important}
-.c.miss{border-color:#b48cff!important;border-style:dashed!important;border-width:2px!important;color:#d6c2ff!important;background:#2c2150!important}   /* 2027.01.52: 놓친 정답은 보라 점선 (채점 전 고른 보기 주황과 헷갈리지 않게) */
+.c.miss{border-color:#4ecca3!important;border-style:dashed!important;color:#4ecca3!important}
 .fb{margin-top:12px;font-size:.98em;min-height:20px;color:#f0a500;font-weight:bold}
 .info{display:none;margin-top:10px;padding:10px 13px;background:#0a2040;border-radius:9px;border-left:3px solid #4ecca3;overflow-wrap:anywhere;overflow-x:hidden;max-width:100%}
 .info.on{display:block}
@@ -1467,7 +1467,7 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 #ch button.c.mr{position:relative}
 #ch button.c.mr.ok::before{content:"✓ 내가 고름";position:absolute;bottom:4px;right:9px;font-size:.7em;color:#7fe0c2;font-weight:800}
 #ch button.c.mr.no::before{content:"✗ 내가 고름";position:absolute;bottom:4px;right:9px;font-size:.7em;color:#ff8fa0;font-weight:800}
-#ch button.c.mr.miss::before{content:"✗ 놓침";position:absolute;bottom:4px;right:9px;font-size:.78em;color:#b48cff;font-weight:800}
+#ch button.c.mr.miss::before{content:"놓침";position:absolute;bottom:4px;right:9px;font-size:.7em;color:#7fe0c2;font-weight:800}
 #ch button.c.mr.dim{opacity:.6!important}
 #ch button.c.simn{opacity:1!important;border-color:#7a5a2a!important}
 #ch button.c.simn.nupk{border-color:#f0a500!important;border-width:2px}
@@ -1489,11 +1489,16 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 .ambrow{padding:6px 0;border-bottom:1px dashed #2e4a7a;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .ambrow span{color:#9fb0cc;font-size:.85em}
 /* 2027.01.37: 교재 동의어 칸은 금색 — 고른 것은 실선, 놓친 것은 점선 (한눈에 들어오게) */
-#ch button.c.tbopt{box-shadow:inset 7px 0 0 #5fb0ff!important;opacity:1!important}   /* 2027.01.51: 교재 동의어 — 칸 색은 결과(초록 고름 · 주황 놓침) 그대로, 왼쪽 파란 띠만 */
-#ch button.c .tbbadge{display:inline-block;margin-right:7px;padding:1px 8px;border-radius:6px;background:linear-gradient(135deg,#6cc0ff,#3d8bff);color:#fff;font-size:.72em;font-weight:800;vertical-align:2px;text-shadow:0 1px 1px rgba(0,30,80,.35)}
-.ensum .esv .eso.tbs{font-weight:800}.ensum .esv .est.tb.pre{margin:0 4px 0 0;background:linear-gradient(135deg,#6cc0ff,#3d8bff);color:#fff;font-weight:800}
-.ensum .esv .esm.x{color:#fff!important;background:#7c4dff;border-radius:5px;padding:0 5px;font-weight:800;margin-left:3px}   /* 2027.01.52: 요약 — 놓친 것은 보라 바탕 「✗ 놓침」 */
-.ensum .esv .eso.mis{color:#d6c2ff}
+#ch button.c.tbopt{background:#3d300a!important;border:3px solid #f5c542!important;color:#ffe9a8!important;opacity:1!important}
+#ch button.c.tbopt.miss{border-style:dashed!important;background:#2c2510!important}
+#ch button.c.tbopt .otxt{color:#ffe08a!important}
+#ch button.c .tbbadge{display:inline-block;margin-right:7px;padding:1px 7px;border-radius:6px;background:#f5c542;color:#2a2000;font-size:.72em;font-weight:800;vertical-align:2px}
+#ch button.c .tbbadge.mvp{background:#c9d1dc;color:#1c2330}   /* 2027.01.57: MVP 동의어 — 은색 표시 */
+#ch button.c.tbopt.ok{background:#6e5508!important;border-color:#ffd84d!important;box-shadow:0 0 0 3px rgba(255,216,77,.35)!important;color:#fff3c4!important}   /* 2027.01.57: 교재 동의어를 맞게 고른 칸은 더 밝은 금색 */
+#ch button.c.tbopt.ok .otxt{color:#fff6d0!important}
+.ensum .esv .eso.tbs{font-weight:800}.ensum .esv .est.tb.pre{margin:0 4px 0 0;background:#f5c542;color:#2a2000;font-weight:800}
+.ensum .esv .est.tb.pre.mvp{background:#c9d1dc;color:#1c2330}
+.finnote.tb.mvp{color:#c9d1dc}
 #ch .ensh .stmean{display:block;margin-top:4px;font-size:.86em;font-weight:600;color:#ffd27a}
 #ch button.c .stdef{display:block;width:100%;margin-top:5px;font-size:.8em;line-height:1.45;color:#c9d4ee;text-align:left;font-weight:500}
 .ensh .stmk.ok{color:#7fe0c2}.ensh .stmk.no{color:#ff8fa0}
@@ -2592,10 +2597,11 @@ function frTbRev(k){ var T=(FRDATA && FRDATA.t)||{}; return T[String(k||'').toLo
 function frSrcOf(q, o){
   if(!q || !o) return {tb:false};
   var t=String(o.t).toLowerCase().trim(), w=q.w||{};
-  if(!o.fr && !o.fin && (o.sec||'s')==='s') return {tb:true, lec:_atTag(w)};
-  if(frTbSyns(w).indexOf(t)>=0) return {tb:true, lec:_atTag(w)};
+  var mk=function(lec){ return {tb:true, lec:lec, mvp:/^MVP/.test(String(lec||''))}; };   // 2027.01.57: MVP에서 온 것은 「MVP」로 따로 표시 (채점은 교재와 똑같이 필수)
+  if(!o.fr && !o.fin && (o.sec||'s')==='s') return mk(_atTag(w));
+  if(frTbSyns(w).indexOf(t)>=0) return mk(_atTag(w));
   var r=frTbRev(frKey(w)).filter(function(x){ return x[0]===t; })[0];
-  if(r) return {tb:true, lec:r[1]};
+  if(r) return mk(r[1]);
   return {tb:false};
 }
 function frTbSyns(w){
@@ -2828,24 +2834,25 @@ function enRevealExtra(q, a){
     if(!os.length) return;
     var v=a.en[sc]; if(v===undefined) return;
     if(v===-1 && sc!=='c') return;
-    var ok=(v===1), bad=[], nuP=[], rights=[], tbR=[];   // 2027.01.45: 교재 동의어 정답(tbR)을 맨 앞에
+    var ok=(v===1), bad=[], nuP=[], rights=[], tbR=[], mvR=[];   // 2027.01.45: 교재 동의어 정답(tbR)을 맨 앞에 · 01.57: 그다음 MVP(mvR)
     if(sc==='a' && a.en.ao) ok=(a.en.ar===1);   // 반대말 안 침: 실제 결과로 표시
     var ambL=[];
     os.forEach(function(x){ var o=x[0], p=!!picked[x[1]];
       if(o.amb){ ambL.push('<s>'+esc(o.t)+'</s>'); return; }
       if(o.ok){
         var tg='';
-        if(sc==='s'){ var sr=frSrcOf(q, o); tg=sr.tb ? '<span class="est tb">교재</span>' : '<span class="est dc">사전</span>'; }
+        var sr=null; if(sc==='s'){ sr=frSrcOf(q, o); tg=sr.tb ? '<span class="est tb">교재</span>' : '<span class="est dc">사전</span>'; }
         else if(sc==='a') tg='<span class="est dc">사전</span>';
-        var mk = sc==='c' ? '' : (p ? '<span class="esm">✓</span>' : '<span class="esm x">✗ 놓침</span>');
-        if(sc==='s' && tg.indexOf('est tb')>=0) tbR.push('<span class="eso tbs'+(p||sc==='c'?'':' mis')+'"><span class="est tb pre">교재</span>'+esc(o.t)+mk+'</span>');   // 2027.01.35: 교재 동의어는 앞에 굵게 · 01.45: 맨 앞에
-        else rights.push('<span class="eso'+(p||sc==='c'?'':' mis')+'">'+esc(o.t)+tg+mk+'</span>');
+        var mk = sc==='c' ? '' : (p ? '<span class="esm">✓</span>' : '<span class="esm x">놓침</span>');
+        if(sc==='s' && sr && sr.tb && sr.mvp) mvR.push('<span class="eso tbs"><span class="est tb pre mvp">MVP</span>'+esc(o.t)+mk+'</span>');   // 2027.01.57
+        else if(sc==='s' && tg.indexOf('est tb')>=0) tbR.push('<span class="eso tbs"><span class="est tb pre">교재</span>'+esc(o.t)+mk+'</span>');   // 2027.01.35: 교재 동의어는 앞에 굵게 · 01.45: 맨 앞에
+        else rights.push('<span class="eso">'+esc(o.t)+tg+mk+'</span>');
       }
       else if(p && o.fin==='N') nuP.push('<s>'+esc(o.t)+'</s>');
       else if(p) bad.push('<b>'+esc(o.t)+'</b>');   // 2027.01.28: 함정 표시 안 함
     });
     (a.wr||[]).forEach(function(e){ if(e.i<0 && (e.sec||'k')===sc){ if(e.st==='x') bad.push('<b>'+esc(e.t)+'</b>'); else if(e.st==='o') rights.push('<span class="eso">'+esc(e.t)+'<span class="esm">✓ 직접 씀</span></span>'); } });
-    rights=tbR.concat(rights);
+    rights=tbR.concat(mvR, rights);
     var txt='정답 '+rights.join(' · ');
     if(sc==='a' && a.en.ao) txt+=' <span class="esm x">(채점 안 함)</span>';
     if(sc==='c') txt+=' <span class="esm x">(채점 안 함)</span>';
@@ -5432,7 +5439,7 @@ setInterval(function(){
   }catch(e){}
 },1500);
 
-var APP_VER = '2027.01.54';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
+var APP_VER = '2027.01.59';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
 var VER = APP_VER;  // 데이터 URL 캐시 키. 배포 때만 바뀌므로 브라우저 캐시가 제대로 재사용됨
 function loadJ(p){
   // 데이터 파일은 URL에 버전(v=)이 붙어 캐시가 자동 갱신되므로 브라우저 캐시를 허용한다.
@@ -9142,9 +9149,18 @@ function requeueSyn(q){
   if(!wrong && !more) return;                     // 맞혔고 동의어도 다 봤으면 끝 (이유가 둘이어도 한 번만 넣는다)
   var nq=wrong ? rebuildKeep(q, keepOpts(q), true) : ((q.kind==='en') ? (q.fr ? buildFr(q.w, q.swo||{}) : buildEn(q.w, q.swo||{})) : q.isFin ? buildFinQ(q.w) : buildSyn(q.w, q.swo||{}));   // 같은 방식(자리 섞기 켬/끔 · 최종 정리)으로 다시 만든다 · 틀렸으면 놓친 정답을 꼭 넣어서 (2027.01.27)
   if(!nq) return;
+  // 2027.01.58: 최종 복습에서 틀려서 다시 낼 때는 틀린 칸만 (반대말만 틀렸으면 반대말 칸만 · 놓친 정답은 그 칸에 그대로)
+  if(wrong && nq.kind==='en' && nq.fr && a && a.en){
+    var _ws=['k','s','a'].filter(function(sc){ return a.en[sc]===0; });
+    if(_ws.length){
+      var _okS={c:1, n:1}; _ws.forEach(function(sc){ _okS[sc]=1; });
+      var _f=nq.opts.filter(function(x){ return _okS[x.sec||'k']; });
+      if(_f.some(function(x){ return x.ok && (x.sec||'k')!=='c'; })){ nq.opts=_f; nq.only=_ws.slice(); nq._one=null; nq._st1=null; }
+    }
+  }
   nq.again=true;                                  // 같은 시행 안에서 다시 나온 문제 — 오답 목록은 처음 판정으로만 정한다
   nq.why=(wrong?'w':'')+(more?'m':'');            // w = 틀려서 · m = 동의어를 더 보여 주려고
-  var at=requeueAt();
+  var at=(nq.kind==='en' && nq.fr) ? requeueAt(2,4) : requeueAt();   // 2027.01.59: 최종 복습은 2~4문제 뒤
   Q.splice(at,0,nq);
   ans.splice(at,0,null);
   try{ $('cnt').textContent=(qi+1)+' / '+Q.length; }catch(e){}
@@ -9233,13 +9249,15 @@ function autoPinBoth(w){
   }
   try{ pinBtnUI('pinBtn', w); pinBtnUI('dockPin', w); }catch(e){}
 }
-function requeueAt(){
+function requeueAt(lo, hi){
   // 사이에 최소 6문제, 최대 14문제를 두고 무작위 (7~15번째 뒤에 나온다)
+  // 2027.01.59: 최종 복습은 한 문제가 길어서 사이를 2~4문제로 (lo, hi로 따로 준다)
+  if(lo==null){ lo=6; hi=14; }
   var left=Q.length-(qi+1);                         // 지금 문제 뒤에 남은 문제 수
-  var between=6+Math.floor(Math.random()*9);        // 6~14
+  var between=lo+Math.floor(Math.random()*(hi-lo+1));
   if(between<=left) return qi+1+between;
-  if(left>=6) return qi+1+6+Math.floor(Math.random()*(left-6+1));   // 남은 게 모자라면 6~남은 수 사이
-  return Q.length;                                  // 6문제도 안 남았으면 맨 끝으로 (가장 멀리)
+  if(left>=lo) return qi+1+lo+Math.floor(Math.random()*(left-lo+1));   // 남은 게 모자라면 lo~남은 수 사이
+  return Q.length;                                  // lo문제도 안 남았으면 맨 끝으로 (가장 멀리)
 }
 
 function pick(i){
@@ -9349,8 +9367,9 @@ function replay(){
       var _own  = _note ? (ghPoolFind(o.t)||{}).m : '';
       bs[i].classList.remove('ok','miss','no','dim','simn','nupk','lkb','ambx','tbopt','hasamb');   // 다시 그릴 때(애매로 빼기 등) 예전 표시 지우기
       var _tbo = (q.kind==='en' && q.fr && o.sec==='s' && o.ok) ? frSrcOf(q, o).tb : false;   // 2027.01.35: 교재 동의어 더 잘 보이게
-      if(_tbo) bs[i].classList.add('tbopt');
-      var body = (_tbo ? '<span class="tbbadge">교재</span>' : '')+'<span class="otxt">'+esc(o.t)+'</span>'
+      var _mvo = _tbo && frSrcOf(q, o).mvp;   // 2027.01.57: MVP에서 온 것은 칸 색 없이 은색 「MVP」 표시만
+      if(_tbo && !_mvo) bs[i].classList.add('tbopt');
+      var body = (_tbo ? (_mvo ? '<span class="tbbadge mvp">MVP</span>' : '<span class="tbbadge">교재</span>') : '')+'<span class="otxt">'+esc(o.t)+'</span>'
         + ((o.ok && o.sense) ? '<em class="sns">'+esc(fitSense(o.sense, o.t))+'</em>' : '')
         + (_own ? '<em class="sown">교재에 실린 '+esc(o.t)+' 뜻은 '+esc(_own)+'</em>' : '');
       var meta = (!o.ok && o.def) ? '<em class="od">'+mm(o.t, o.def)+'</em>' : '';
@@ -9373,7 +9392,7 @@ function replay(){
       if(q.kind==='en' && o.sec==='s' && o.ok){
         var _sr=frSrcOf(q, o);
         if(_sr.tb) _fn=_fn.replace(/(<span class="finnote s">)교재 동의어\([^)]*\) · /, '$1');
-        _fn=(_sr.tb ? '<span class="finnote tb">교재 동의어 · '+esc(_sr.lec)+'</span>'
+        _fn=(_sr.tb ? (_sr.mvp ? '<span class="finnote tb mvp">MVP 동의어 · '+esc(_sr.lec)+'</span>' : '<span class="finnote tb">교재 동의어 · '+esc(_sr.lec)+'</span>')
                     : '<span class="finnote s">사전 같은 뜻'+(o.box?' · 「'+esc(o.box)+'」':'')+'</span>')+_fn;
       }
       if(o.fr==='D'){}
@@ -9582,6 +9601,11 @@ function pinAsk(w, btnId){
 var _pinAskPick=null;
 // 2027.01.22: 입력 모드(동의어 매칭 등)에서 창을 닫거나 버튼을 누른 뒤 입력칸 커서가 사라져 키가 안 먹던 것 — 입력칸으로 커서를 돌려준다
 // 칸 이동 (2027.01.23): 지금 화면 맨 위 근처에 있는 칸을 기준으로 다음/이전 칸을 맨 위로 올린다
+// 2027.01.55: 문제 화면에서 ↓ · ↑ — 보이는 화면(아래 버튼 줄 빼고)의 60%씩 내리고 올린다
+function qArrowScroll(d){
+  var dock=$('dockbar'), vh=(window.innerHeight||800)-((dock && getComputedStyle(dock).display!=='none') ? dock.getBoundingClientRect().height : 0);
+  try{ window.scrollBy({top:d*Math.round(vh*0.6), behavior:'smooth'}); }catch(e){ window.scrollBy(0, d*Math.round(vh*0.6)); }
+}
 function secJump(secs, dir){
   var TOP=10, cur=-1;
   for(var i=0;i<secs.length;i++){ if(secs[i].getBoundingClientRect().top<=TOP+30) cur=i; }
@@ -10935,6 +10959,7 @@ function synKeydown(e){
     if(ans[qi]!==null){ if(!frFinEnter(Q[qi])) next(); }        // 이미 채점됨 → (최종 복습은 칸마다 내려가다가) 다음 문제
     else synTypeSubmit(this);             // 아직이면 제출 (어느 칸에서 눌렀는지 같이)
   }
+  else if(e.key==='ArrowDown' || e.key==='ArrowUp'){ e.preventDefault(); e.stopPropagation(); qArrowScroll(e.key==='ArrowDown'?1:-1); }   // 2027.01.55: 입력칸에 커서가 있어도 ↓ · ↑ 로 화면 이동
   else if(e.key==='ArrowRight' && !this.value){ e.preventDefault(); e.stopPropagation(); if(!frOneArrowKey(1)) next(); }   // 2027.01.37: 한 칸씩이면 칸 이동
   else if(e.key==='ArrowLeft' && !this.value){ e.preventDefault(); e.stopPropagation(); if(!frOneArrowKey(-1)) prev(); }
 }
@@ -11648,6 +11673,8 @@ document.addEventListener('keydown',function(e){
     var _secs=[].slice.call(document.querySelectorAll('#ch .ensec')).filter(function(x){ return x.offsetParent!==null; });
     if(_secs.length>1){ e.preventDefault(); secJump(_secs, e.key==='ArrowDown'?1:-1); return; }
   }
+  // 2027.01.55: ↓ · ↑ = 화면을 크게 내리고 올린다 (한 칸씩 · 동의어 매칭 등 보기가 길어 아래가 잘릴 때 — 예전엔 조금씩만 움직이거나 안 움직였다)
+  if((e.key==='ArrowDown' || e.key==='ArrowUp') && !e.altKey && !e.metaKey && !e.ctrlKey && !e.shiftKey){ e.preventDefault(); qArrowScroll(e.key==='ArrowDown'?1:-1); return; }
   // 2027.01.22: 입력 모드인데 입력칸에 커서가 없을 때(버튼을 누른 뒤 등) 글자·지우기 키를 입력칸으로 보낸다 — 아무 키도 안 먹던 것 고침
   var _ae=document.activeElement;
   if(typingNow() && ans[qi]===null && !(_ae && /^(INPUT|TEXTAREA|SELECT)$/.test(_ae.tagName)) && !e.ctrlKey && !e.metaKey && !e.altKey
