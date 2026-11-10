@@ -803,7 +803,7 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 #canswers .cans.done .canssub{color:#8fc7ae}
 
 /* ── 오늘 진행 배너 ── */
-.bank.today{border-color:#2f5a45!important;background:#132a22!important}
+.bank.today{border-color:#2a4a7a!important;background:#16213e!important}   /* 2027.01.66 초안: 초록 배경 → 남색 */
 .bank.today .t{color:#9fe0c0}
 .bank.today .t b{color:#6ee7b7;font-size:1.2em}
 .rvline{margin:8px 0 2px;padding:7px 10px;border-radius:8px;background:#1b3329;color:#cfeee0;font-size:.92em;line-height:1.5;cursor:pointer}
@@ -1177,18 +1177,34 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 #dockbar #dockCmp{background:#16234a;border:1.5px solid #7fb4ff;color:#9cc4ff;border-radius:20px;font-weight:600;
   font-size:.9em;padding:9px 16px;margin-right:auto}
 #dockbar #dockCmp.has{border-color:#a9c9ff;color:#d4e4ff}
+/* 2027.01.60: 메모 (문제 풀며 헷갈린 것 · 느낀 것) */
+#dockbar #dockNote.has{border-color:#c9a7ff;color:#e6d7ff}
+.ntin{width:100%;box-sizing:border-box;min-height:74px;resize:vertical;background:#0f1a33;color:#e8f0fc;border:1px solid #2f4270;border-radius:10px;padding:10px 12px;font-family:inherit;font-size:1em;line-height:1.5}
+.ntrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:7px 0 12px}
+.ntrow label{color:#b9c9e0;font-size:.9em;display:flex;align-items:center;gap:6px;cursor:pointer}
+.ntsave{margin-left:auto;background:#4ecca3;color:#06251a;border:0;border-radius:9px;padding:8px 18px;font-weight:700;font-family:inherit;font-size:.95em;cursor:pointer}
+.ntsrch{width:100%;box-sizing:border-box;background:#0f1a33;color:#e8f0fc;border:1px solid #2f4270;border-radius:9px;padding:8px 11px;font-family:inherit;font-size:.95em;margin:2px 0 10px}
+.ntitem{border-top:1px solid #22325a;padding:9px 0 8px}
+.ntitem:first-child{border-top:0}
+.ntmeta{display:flex;align-items:center;gap:7px;flex-wrap:wrap;color:#8fa8cc;font-size:.82em;margin-bottom:3px}
+.ntmeta b{color:#ffd479;font-size:1.12em}
+.ntmeta .ntdel{margin-left:auto;background:none;border:1px solid #3a3a5c;color:#8fa4c2;border-radius:8px;padding:3px 9px;font-family:inherit;font-size:.92em;cursor:pointer}
+.ntt{color:#e8f0fc;white-space:pre-wrap;word-break:break-word;line-height:1.5}
+.ntmine{background:#1a2550;border:1px solid #3d4f86;border-radius:10px;padding:4px 10px;margin-bottom:12px}
+.nthl{background:#5b4a12;color:#fff;border-radius:3px}
+.ntcp{background:#1b2b50;border:1px solid #2f4270;color:#b9c9e0;border-radius:9px;padding:6px 12px;font-family:inherit;font-size:.86em;cursor:pointer}
 #dockbar #dockPin{margin-right:0}
 @media(max-width:480px){
   #dockbar{gap:4px;padding:7px 6px calc(22px + env(safe-area-inset-bottom, 0px))}
   #dockbar button{padding:9px 10px}
-  #dockbar #dockPin,#dockbar #dockCmp,#dockbar #dockWb{padding:7px 8px;font-size:.78em}
+  #dockbar #dockPin,#dockbar #dockCmp,#dockbar #dockWb,#dockbar #dockNote{padding:7px 8px;font-size:.78em}
   #dockbar #dockCnt{min-width:34px;font-size:.74em}
   #dockbar #dockHide{padding:6px 6px;font-size:.72em}
 }
 @media(max-width:370px){
   #dockbar{gap:3px;padding:7px 4px calc(22px + env(safe-area-inset-bottom, 0px))}
   #dockbar button{padding:9px 8px}
-  #dockbar #dockPin,#dockbar #dockCmp,#dockbar #dockWb{padding:6px 6px;font-size:.74em}
+  #dockbar #dockPin,#dockbar #dockCmp,#dockbar #dockWb,#dockbar #dockNote{padding:6px 6px;font-size:.74em}
   #dockbar #dockCnt{min-width:30px}
   #dockbar #dockHide{padding:6px 5px}
 }
@@ -1309,7 +1325,7 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 #dockbar #dockCmp{margin-right:0}
 @media(max-width:480px){
   #dockbar{gap:3px;padding-left:4px;padding-right:4px}
-  #dockbar #dockPin,#dockbar #dockCmp,#dockbar #dockWb{padding:6px 6px;font-size:.74em}
+  #dockbar #dockPin,#dockbar #dockCmp,#dockbar #dockWb,#dockbar #dockNote{padding:6px 6px;font-size:.74em}
   #dockbar #dockPrev,#dockbar #dockNext{padding:8px 9px}
   #dockbar #dockCnt{min-width:28px;font-size:.7em}
   #dockbar #dockHide{padding:5px 4px;font-size:.68em}
@@ -1435,6 +1451,155 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 .lstbox{margin-top:8px;max-height:360px;overflow:auto}
 .penrow{position:relative}.penrow .lstdel{position:absolute;top:8px;right:8px}
 .misrow{position:relative}.misrow .lstdel{position:absolute;top:6px;right:6px}
+/* 2027.01.65: 홈 정리 — 따로 있던 복습 상자 · 오답 상자 · 큰 알림은 오늘 상자 「복습」 줄로 옮겨서 숨긴다 */
+#srsBank,#bank,#enBank,#ewrAlert,#enAlert{display:none!important}
+#syncBank{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:8px 12px}
+#syncBank .t{flex:1 1 auto;margin:0;font-size:.88em}
+#syncBank > .r{margin:0;flex:0 0 auto}
+.bank#syncBank > .r button{flex:0 0 auto;padding:6px 12px;font-size:.84em;min-height:0}
+#syncPanel{flex-basis:100%}
+#todayBank #statsBank{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:7px 10px;margin:8px 0;background:transparent;border:1px dashed #2e4a7a}
+#todayBank #statsBank .t{flex:1 1 auto;margin:0;font-size:.86em}
+#todayBank #statsBank > .r{margin:0;flex:0 0 auto}
+.bank #statsBank > .r button{flex:0 0 auto;padding:5px 11px;font-size:.82em;min-height:0}
+.hweek{margin:6px 0 8px}
+.hwk{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.hwd{background:#13203a;border:1px solid #24365c;border-radius:9px;padding:5px 6px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:1px;min-width:0}
+.hwd b{font-size:.8em;color:#cfe0f5}.hwd span{font-size:.78em;color:#7fe0c2;white-space:nowrap}.hwd em{font-size:.72em;color:#9fb4d6;font-style:normal}
+.hwd.on{border-color:#4ecca3;background:#163a31}.hwd.fut{opacity:.45}
+.hrev{margin:10px 0 6px;border-top:1px dashed #2e4a7a;padding-top:8px}
+.hrvh{color:#cfe0f5;font-weight:700;font-size:.92em;margin-bottom:6px}
+.hrvrow{display:flex;flex-wrap:wrap;gap:6px}
+.hrv{display:inline-flex;align-items:stretch;border:1px solid #2f4270;border-radius:10px;overflow:hidden}
+.hrv.hot{border-color:#e94560}
+.bank button.hrvgo{flex:0 0 auto!important;background:#16213e!important;color:#e8f0fc!important;border:0!important;border-radius:0!important;padding:7px 11px!important;font-size:.88em!important;min-height:0!important;font-weight:600!important}
+.bank button.hrvgo b{color:#ffd479;margin-left:3px}
+.bank button.hrvgo i{font-style:normal;font-size:.85em;color:#9fb4d6;font-weight:400}
+.bank button.hrvgo i.hrvhot{color:#ff8fa0;font-weight:700}
+.bank button.hrvls{flex:0 0 auto!important;background:#0f1a33!important;color:#9fb4d6!important;border:0!important;border-left:1px solid #2f4270!important;border-radius:0!important;padding:7px 9px!important;font-size:.8em!important;min-height:0!important;font-weight:500!important}
+.bank button.hrvls.on{color:#7fe0c2!important}
+.hrvnone{color:#8fa8cc;font-size:.86em}
+.hrvlist{margin-top:8px;max-height:360px;overflow:auto;border:1px solid #24365c;border-radius:9px;padding:4px 8px}
+.hrvwhy{white-space:normal!important;color:#b9c9e0!important}
+.bank button.lstclr.hrvics{background:#16213e!important;border-color:#2f4270!important;color:#b9c9e0!important}
+.r.hsmall button{font-size:.86em}
+.bank #resumeBank,.bank .resume{margin:8px 0}
+/* 2027.01.66: 홈 한 상자 — 진도 한 줄 · 모드 · 설정 */
+#qkMode{display:none!important}
+.hprog{margin:6px 0 10px;padding:9px 11px;background:#101a33;border:1px solid #2a3c66;border-radius:11px}
+.hpg{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.hpgu{font-size:1.12em;color:#fff}.hpgu small{font-size:.7em;color:#e94560;margin-left:3px}
+.hpbar{flex:1 1 140px;height:10px;background:#1e2c50;border-radius:6px;overflow:hidden;min-width:100px}
+.hpbar i{display:block;height:100%;background:linear-gradient(90deg,#4ecca3,#7fe0c2)}
+.hpgp{color:#7fe0c2;font-weight:700}.hpga{color:#ffd479;font-weight:700}.hpgc{color:#cfe0f5;font-weight:700;background:#1b2b50;border-radius:7px;padding:1px 8px}
+.hpgm{color:#8fa8cc;font-size:.8em;margin-top:4px}
+.hmodes .fld,.hset .fld{margin:0 0 6px}
+.hmodes .fld > label{display:none}
+.hmodes .mode{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.hmodes .mode button{display:none;padding:9px 12px;min-height:0}
+.hmodes .mode button .d{display:none}
+.hmodes .mode button[data-m="syn"],.hmodes .mode button[data-m="fr"],.hmodes .mode button.on,.hmodes.open .mode button{display:block}
+.hmodes.open .mode{grid-template-columns:repeat(3,1fr)}
+.bank button.hmoret{flex:0 0 auto!important;background:none!important;border:0!important;color:#8fa8cc!important;font-size:.84em!important;padding:4px 2px!important;min-height:0!important;margin-top:4px;font-weight:500!important}
+.hset{display:flex;flex-direction:column;gap:2px;margin-bottom:6px}
+.hset .fld{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.hset .fld > label{flex:0 0 74px;margin:0;font-size:.8em;color:#8fa8cc}
+.hset .fld .seg{flex:1 1 auto;margin:0}
+.hset .fld .seg button{padding:5px 8px;font-size:.84em;min-height:0}
+.hset .fld .stat{flex-basis:100%;margin:0 0 0 82px;font-size:.76em}
+.hset .fld .row,.hset .fld select{flex:1 1 auto}
+#todayBank .hset .seg button{flex:1;background:transparent;color:#99a;border-radius:0;padding:6px 6px;font-size:.84em;min-height:0;font-weight:500}
+#todayBank .hset .seg button.on{background:#e94560;color:#fff}
+#todayBank .hmodes #mseg button{flex:initial;background:#0f3460;border:2px solid #0f3460;border-radius:10px;padding:9px 12px;text-align:left;color:#eee;font-weight:normal;font-size:.95em;min-height:0}
+#todayBank .hmodes #mseg button.on{border-color:#e94560;background:#1a2a52}
+#todayBank .hmodes #mseg button .t{font-size:1em;margin:0}
+#todayBank .hmodes #mseg button{display:none}
+#todayBank .hmodes #mseg button[data-m="syn"],#todayBank .hmodes #mseg button[data-m="fr"],#todayBank .hmodes #mseg button.on,#todayBank .hmodes.open #mseg button{display:block}
+.bank button.chkopen{flex:0 0 auto!important;background:#16213e!important;border:1px solid #2f4270!important;color:#7fe0c2!important;border-radius:8px!important;font-size:.8em!important;padding:2px 10px!important;min-height:0!important;margin-left:6px;font-weight:600!important}
+/* 2027.01.66 초안: 복습 칸 · 강 진도 줄 */
+.rvgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.rvt{background:#101a33;border:1px solid #2a3c66;border-radius:11px;padding:9px 11px;display:flex;flex-direction:column;gap:2px}
+.rvt .rvn{font-size:1.7em;font-weight:800;color:#ffd479;line-height:1.1}
+.rvt .rvl{font-weight:700;color:#e8f0fc;font-size:.95em}
+.rvt .rvw{color:#8fa8cc;font-size:.76em;line-height:1.35;min-height:2.1em}
+.rvt .rvb{display:flex;gap:5px;margin-top:5px}
+.rvt.zero{opacity:.45}.rvt.zero .rvn{color:#8fa8cc}
+.rvt.hot{border-color:#e94560}.rvt.hot .rvw{color:#ff8fa0;font-weight:700}
+.rvt.open{border-color:#4ecca3}
+.bank .rvt button.hrvgo{flex:1 1 auto!important;background:#e94560!important;color:#fff!important;border-radius:8px!important;padding:6px 8px!important;font-size:.84em!important;min-height:0!important;font-weight:700!important}
+.bank .rvt button.hrvls{flex:0 0 auto!important;background:#1b2b50!important;color:#b9c9e0!important;border:1px solid #2f4270!important;border-radius:8px!important;padding:6px 10px!important;font-size:.82em!important;min-height:0!important}
+.hpstrip{display:flex;flex-wrap:wrap;gap:3px;margin-top:8px}
+.hpc{width:26px;height:22px;border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.7em;color:#cfe0f5;cursor:pointer}
+.hpc.done{color:#06251a;font-weight:700}
+.hpc.cur{outline:2px solid #ffd479;outline-offset:1px}
+/* 2027.01.64: 묶음 */
+.chk{margin:8px 0 10px}
+.chkh{color:#cfe0f5;font-weight:700;font-size:.92em;margin-bottom:6px}.chkh small{color:#8fa8cc;font-weight:400;margin-left:6px}
+.chkg{display:flex;gap:7px;flex-wrap:wrap}
+.chkc{flex:1 1 130px;background:#16213e;border:1px solid #2f4270;border-radius:10px;padding:8px 10px;cursor:pointer;display:flex;flex-direction:column;gap:3px}
+.chkc b{color:#e8f0fc;font-size:.98em}.chkc span{color:#9fb4d6;font-size:.84em}
+.chkc.on{border-color:#4ecca3;background:#163a31}.chkc.on b{color:#7fe0c2}
+.bank button.chkw{flex:0 0 auto!important;align-self:flex-start;background:#2a1a1a!important;border:1px solid #5a2a2a!important;color:#ff9a9a!important;border-radius:8px!important;font-size:.8em!important;padding:3px 9px!important;min-height:0!important;font-weight:600!important;margin-top:2px}
+.chkrvh{color:#ffd479;font-weight:700;font-size:.9em;margin:10px 0 3px}
+.chkcrit{color:#8fa8cc;font-size:.8em;line-height:1.45;margin-bottom:5px}
+.chkrvl{max-height:260px;overflow:auto;border-top:1px dashed #2e4a7a}
+.chkrv{display:flex;align-items:baseline;gap:8px;padding:5px 2px;border-bottom:1px dashed #2e4a7a;font-size:.9em;flex-wrap:wrap}
+.chkrv b{color:#e8eefc}.chkrv span{color:#9fb0cc;font-size:.9em}.chkrv em{margin-left:auto;color:#ff9a9a;font-style:normal;font-size:.85em}
+.chkres{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin:10px 0 4px}
+.chkres .chkrl{color:#8fa8cc;font-size:.88em;margin-right:4px}
+.chkres button{background:#16213e;border:1px solid #4ecca3;color:#7fe0c2;border-radius:9px;padding:8px 14px;font-family:inherit;font-size:.92em;cursor:pointer}
+/* 2027.01.66 초안 2: 깔끔하게 — 줄마다 한 가지 */
+#todayBank{padding:12px 14px!important}
+#todayBank .t{font-size:.9em;margin-bottom:4px}#todayBank .t b{font-size:1.05em}
+#todayBank .tbar{display:none}
+#todayBank .todayt{font-size:.8em;color:#8fa8cc;margin:0 0 6px}
+.hweek{margin:0 0 8px}.hwk{gap:3px}.hwd{padding:3px 4px;border-radius:7px;gap:0}.hwd b{font-size:.72em}.hwd span{font-size:.7em}.hwd em{display:none}
+#todayBank #resumeBank{margin:0 0 8px!important;padding:6px 10px!important;background:#163a31!important;border:1px solid #4ecca3!important;display:flex!important;flex-wrap:wrap;align-items:center;gap:6px 10px}
+#todayBank #resumeBank .t{margin:0;font-size:.86em;flex:0 0 auto;white-space:nowrap}
+#todayBank #resumeBank #resumeList{flex:1 1 300px;display:flex;flex-direction:column;gap:3px}
+#todayBank #resumeBank .resrow{padding:3px 8px;background:transparent;border:0;gap:8px;font-size:.9em}
+#todayBank #resumeBank .resrow .rsu{min-width:0}
+#todayBank #resumeBank > .r{flex:0 0 auto;margin:0;gap:5px}
+.bank#todayBank #resumeBank > .r button{flex:0 0 auto;padding:6px 14px;font-size:.86em;min-height:0}
+.hprog{margin:0 0 6px;padding:8px 10px}
+.hpg{gap:8px}.hpgu{font-size:1.05em}.hpbar{height:8px}.hpgm{font-size:.74em;margin-top:3px}
+.hpstrip{margin-top:6px;gap:2px}.hpc{width:22px;height:18px;font-size:.62em;border-radius:4px}
+#todayBank .qk{margin:4px 0 6px}
+.chk{margin:0 0 8px}
+.chkline{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.chkline .chkh{margin:0;font-size:.82em;color:#8fa8cc;font-weight:600;flex:0 0 auto}
+.chkg{gap:5px;flex:1 1 auto}
+.chkc{flex:0 1 auto;flex-direction:row;align-items:center;gap:6px;padding:5px 10px;border-radius:8px;font-weight:700;color:#e8f0fc;font-size:.88em}
+.chkc small{font-weight:400;color:#9fb4d6;font-size:.86em}
+.chkc.on{border-color:#ffd479;background:#2a2410;color:#ffd479}.chkc.full{opacity:.7}
+.bank button.chkw{margin:0!important;padding:2px 7px!important;font-size:.76em!important}
+.chkrvh{margin:5px 0 0;font-size:.84em}
+.hrev{margin:0 0 8px;padding-top:7px}
+.hrvh{font-size:.9em;margin-bottom:5px}.hrvh small{color:#8fa8cc;font-weight:400;font-size:.85em;margin-left:6px}
+.rvgrid{grid-template-columns:repeat(6,1fr);gap:5px}
+.rvt{padding:7px 8px;border-radius:9px;cursor:pointer;position:relative;gap:1px}
+.rvt:not(.zero):hover{border-color:#e94560}
+.rvt .rvn{font-size:1.45em}.rvt .rvl{font-size:.82em}.rvt .rvw{font-size:.68em;min-height:2.6em}
+.bank .rvt button.hrvls{position:absolute;top:6px;right:6px;padding:2px 7px!important;font-size:.72em!important;border-radius:6px!important;background:#1b2b50!important;color:#b9c9e0!important;border:1px solid #2f4270!important;min-height:0!important;flex:0 0 auto!important}
+.hmodes{margin:0 0 4px}.hmodes .fld{margin:0;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.hmodes .mode{display:flex;flex-wrap:wrap;gap:6px;flex:1 1 auto}
+#todayBank .hmodes #mseg button{padding:7px 14px;font-size:.9em}
+.bank button.hmoret{margin:0}
+.hsetsum{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin:0 0 8px;font-size:.84em}
+.hsetsum .hssl{color:#8fa8cc;margin-right:2px}
+.hsetsum .hssc{background:#1b2b50;border:1px solid #2f4270;border-radius:7px;padding:2px 9px;color:#cfe0f5}
+.bank button.hsst{flex:0 0 auto!important;background:none!important;border:0!important;color:#7fe0c2!important;font-size:.84em!important;padding:2px 4px!important;min-height:0!important;font-weight:600!important}
+.hset{margin-bottom:8px}
+.r.hsmall{flex-wrap:wrap;gap:6px}
+.r.hsmall button{font-size:.82em;padding:7px 12px;min-height:0}
+.bank .r.hsmall #calGo{flex:0 0 auto;padding:7px 18px}
+#todayBank #statsBank{display:inline-flex!important;flex-wrap:wrap;align-items:center;gap:4px 8px;padding:4px 8px!important;margin:0!important;background:transparent!important;border:1px dashed #2e4a7a!important;flex:1 1 auto}
+#todayBank #statsBank .t{font-size:.78em;margin:0}
+.bank #statsBank > .r button{padding:4px 9px;font-size:.76em}
+/* 2027.01.63: 홈 복습 상자(.bank) 안 목록의 삭제 버튼 — 상자 버튼 규칙(노란 큰 버튼 · 줄 끝까지)이 덮어써서 커지던 것 고침 */
+.bank button.lstdel,.bank button.lstclr{flex:0 0 auto!important;width:auto!important;min-height:0!important;background:#2a1a1a!important;border:1px solid #5a2a2a!important;color:#ff9a9a!important;border-radius:8px!important;font-weight:500!important;line-height:1.4!important;cursor:pointer}
+.bank button.lstdel{font-size:.78em!important;padding:2px 9px!important;margin-left:auto!important}
+.bank button.lstclr{font-size:.8em!important;padding:3px 10px!important;margin-left:auto!important}
 .calall.calfr{color:#c9b3ff}
 .calall.calen{color:#f0c040}
 /* 영어 → 뜻 · 세 칸 버튼 */
@@ -1474,7 +1639,7 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 #ch button.c.mr.nupk::before{content:"△ 내가 고름 · 오답 아님";position:absolute;bottom:4px;right:9px;font-size:.7em;color:#ffcf9a;font-weight:800}
 #ch .simtag{display:inline-block;margin-left:8px;padding:1px 8px;border-radius:7px;background:#3a2a10;border:1px solid #c08a3a;color:#ffd08a;font-size:.72em;font-weight:800;vertical-align:3px}
 #ch button.c .finnote.n{color:#ffcf9a!important;font-size:.86em}
-#ch button.c .finnote.u{color:#e0d2ff!important;font-size:.84em}
+#ch button.c .finnote.u{color:#e0d2ff!important;font-size:1em;line-height:1.5}   /* 2027.01.61: 뉘앙스 · 어감 글씨 크게 (.84em → 1em) */
 #ch button.c .finnote.lk{color:#8fd3ff!important;font-size:.86em}
 #ch button.c .finnote.tr{color:#7fe8c8!important;font-size:.86em;font-weight:700}
 .ambbtn{position:absolute;bottom:5px;left:9px;font-size:.68em;font-weight:800;padding:2px 8px;border-radius:9px;background:#3a2f12;color:#ffd27a;border:1px solid #a8822a;cursor:pointer;z-index:2}
@@ -1498,6 +1663,7 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 #ch button.c.tbopt.ok .otxt{color:#fff6d0!important}
 .ensum .esv .eso.tbs{font-weight:800}.ensum .esv .est.tb.pre{margin:0 4px 0 0;background:#f5c542;color:#2a2000;font-weight:800}
 .ensum .esv .est.tb.pre.mvp{background:#c9d1dc;color:#1c2330}
+.ensum .esr.esold{opacity:.88}.ensum .esoldt{font-size:.8em;color:#8fa8cc;font-weight:400}
 .finnote.tb.mvp{color:#c9d1dc}
 #ch .ensh .stmean{display:block;margin-top:4px;font-size:.86em;font-weight:600;color:#ffd27a}
 #ch button.c .stdef{display:block;width:100%;margin-top:5px;font-size:.8em;line-height:1.45;color:#c9d4ee;text-align:left;font-weight:500}
@@ -1529,7 +1695,7 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 #ch .frnu{background:#12253f;border-left:3px solid #6d58a8;padding:7px 10px;border-radius:6px;font-size:.95em;margin:0 0 8px;color:#e0d6ff}
 #tag .frchain{display:inline-block;margin-left:8px;padding:1px 9px;border-radius:7px;background:#12304a;border:1px solid #2e7d6a;color:#7fe0c2;font-size:.92em}
 .finnote.a{color:#ffb4c0}
-.finnote.u{color:#cdb6ff}
+.finnote.u{color:#cdb6ff;font-size:.96em}
 .frprog{margin-top:6px;font-size:.88em;color:#9fd8c4}
 #ch #entyped{margin-top:10px}
 #entyped .entl{font-size:.82em;color:#8fa8cc;margin:4px 0 6px}
@@ -1789,16 +1955,25 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
     <div class="t" id="todayT"></div>
     <div class="tbar"><div class="tfill" id="todayFill"></div></div>
     <div class="todayt" id="todayTime" style="display:none"></div>
+    <div class="hweek" id="hWeek" style="display:none"></div>
+    <div id="hResAnchor"></div>
+    <div class="hprog" id="hProg" style="display:none"></div>
+    <div class="qk" id="qkRow"><span class="ql">진도</span><select id="qkSel"></select><button class="b2" id="qkCum">누적</button><button id="qkGo">시작</button></div>
+    <div class="qkm" id="qkMode"></div>
+    <div class="chk" id="chkRow" style="display:none"></div>
+    <div class="hrev" id="hRev" style="display:none"></div>
+    <div class="hmodes" id="hModes"></div>
+    <div class="hsetsum" id="hSetSum"></div>
+    <div class="hset" id="hSet" style="display:none"></div>
     <div class="rvline" id="rvLine" style="display:none"></div>
     <div class="rvset" id="rvSet" style="display:none"></div>
     <div class="enrow" id="enToday" style="display:none"></div>
-    <div class="qk" id="qkRow"><span class="ql">진도</span><select id="qkSel"></select><button class="b2" id="qkCum">누적</button><button id="qkGo">시작</button></div>
-    <div class="qkm" id="qkMode"></div>
-    <div class="r">
+    <div class="r hsmall">
       <button id="calGo">달력</button>
       <button class="clr" id="penHomeGo">손으로 쓸 단어</button>
       <button class="clr wbbtn" id="wbHomeGo">내 단어장</button>
       <button class="clr misbtn" id="misHomeGo">잘못 고른 단어</button>
+      <button class="clr" id="ntHomeGo">메모</button>
     </div>
   </div>
 
@@ -1869,7 +2044,7 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
       <button data-m="conf"><span class="t">헷갈리는 철자</span><span class="d">누르면 바로 열림 · 비슷하게 생긴 단어 나란히 비교</span></button>
       <button data-m="ko"><span class="t">뜻 → 영어</span><span class="d">한글 뜻 보고 해당하는 영어 단어 고르기 · 쓰기</span></button>
       <button data-m="en"><span class="t">영어 → 뜻</span><span class="d">영어 보고 뜻 · 동의어 고르기 · 쓰기 (기록은 따로)</span></button>
-      <button data-m="syn" data-fin="1"><span class="t">최종 정리</span><span class="d">교재 동의어 + 같은 뜻 단어까지 · 비슷하지만 다른 단어 구별</span></button>
+      <!-- 2027.01.64: 「최종 정리」 칸 뺌 (기록 · 풀던 회차는 그대로) -->
       <button data-m="fr"><span class="t">최종 복습</span><span class="d">뜻 · 같은 뜻 · 반대말 · 뉘앙스 한 번에 · 이어진 단어로 (기록은 따로)</span></button>
     </div>
   </div>
@@ -2012,6 +2187,7 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
   <button id="dockPin">복습에 담기</button>
   <button id="dockCmp" class="cmpbtn">비교 목록</button>
   <button id="dockWb" class="cmpbtn wbbtn">내 단어장</button>
+  <button id="dockNote" class="cmpbtn notebtn">메모</button>
   <button id="dockAgain" class="againtog" title="이번 회차에 다시 (Tab)" style="display:none">↻ <span class="dkx">회차에 </span><span class="dkw">다시</span> <kbd class="kk">Tab</kbd></button>
   <button id="dockPrev">이전</button>
   <span id="dockCnt"></span>
@@ -2027,6 +2203,7 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
     <div id="rp"></div>
     <div id="rm"></div>
     <div id="rtime" class="rtime"></div>
+    <div id="chkRes" class="chkres" style="display:none"></div>
     <div class="rb">
       <button id="retry">틀린 것만 다시</button>
       <button class="b2" id="again">새로 풀기</button>
@@ -2402,9 +2579,19 @@ function frOneInit(q){
   return q._one;
 }
 function frOneCur(q){ var o=q._one; return o ? o.steps[o.i] : null; }
+// 2027.01.61: 한 칸씩이면 보기 번호를 칸마다 1번부터 (문맥 칸은 마지막 칸 번호 뒤에 이어서)
+function frOneGrp(q, sc){ var o=q._one; if(sc!=='c' || !o) return sc; return o.steps[o.steps.length-1]; }
+function frOneNums(q){ var cnt={}, nums=[]; (q.opts||[]).forEach(function(op, i){ var g=frOneGrp(q, op.sec||'k'); cnt[g]=(cnt[g]||0)+1; nums[i]=cnt[g]; }); return nums; }
+function frOneStepIdx(q){ var o=q._one, cur=o.steps[o.i], L=[]; (q.opts||[]).forEach(function(op, i){ if(frOneGrp(q, op.sec||'k')===cur) L.push(i); }); return L; }
+function frOneRenumber(q){
+  if(!frOneOn(q) || !q._one) return;
+  var nums=frOneNums(q), bs=$('ch').querySelectorAll('button.c');
+  for(var i=0;i<bs.length && i<nums.length;i++){ var n=bs[i].querySelector('.onum'); if(n) n.textContent=nums[i]; }
+}
 function frOneApply(q, root){
   if(!q || !root || ans[qi]!==null) return;
   var o=frOneInit(q), cur=o.steps[o.i], last=(o.i===o.steps.length-1);
+  try{ frOneRenumber(q); }catch(e){}
   root.querySelectorAll('.ensec').forEach(function(d){
     var sc=null; for(var c in _SECC){ if(d.classList.contains(c)) sc=_SECC[c]; }
     d.style.display = (sc===cur || (sc==='c' && last)) ? '' : 'none';
@@ -2461,6 +2648,7 @@ function frOneStepDone(q, mine, wr){
 // 2027.01.38: 마지막 칸까지 채점하면 전체 채점 화면을 한 페이지로 — 숨겼던 칸을 모두 보이고 문제 맨 위부터
 function frOneShowAll(q){
   if(Q[qi]!==q || ans[qi]===null) return;
+  try{ frOneRenumber(q); }catch(e){}   // 2027.01.61: 다 채점한 화면도 칸마다 1번부터
   document.querySelectorAll('#ch .ensec').forEach(function(d){ d.style.display=''; });
   document.querySelectorAll('#ch .ensh .enss').forEach(function(x){ x.style.display=''; });
   try{ var box=document.querySelector('#qscr .box'); if(box) window.scrollTo(0, Math.max(0, box.getBoundingClientRect().top+(window.scrollY||0)-8)); }catch(e){}
@@ -2713,6 +2901,16 @@ function frLookAlike(hw, n, skip){
 function lstConfirmAll(name, n){ if(!n) return false; return confirm(name+' '+n+'개를 모두 지울까요? 되돌릴 수 없어요.'); }
 function frIsSame(a, b){ try{ var L=(FRDATA && FRDATA.s && FRDATA.s[String(a).toLowerCase().trim()])||[]; b=String(b).toLowerCase().trim(); return L.some(function(x){ return String(x[0]).toLowerCase().trim()===b; }); }catch(e){ return false; } }
 function frNoSame(key){ var o={}; try{ var F=FINDATA && FINDATA[key]; if(F) for(var d in F){ (F[d].n||[]).forEach(function(x){ if(frIsSame(key, x[0])) return; o[String(x[0]).toLowerCase().trim()]=1; }); } }catch(e){} return o; }
+// 2027.01.61: 복습 · 다시 나오기에서 칸을 뺄 때, 뺀 칸의 정답은 따로 남겨 둔다 (채점 뒤 요약 상자에 보여 주려고)
+function frHide(q, keepFn){
+  var hid=q.hid||{};
+  (q.opts||[]).forEach(function(o){ if(!o || !o.ok || keepFn(o)) return; var sc=o.sec||'k'; if(sc==='c'||sc==='n') return;
+    var L=hid[sc]=hid[sc]||[], k=String(o.t).toLowerCase().trim();
+    if(L.some(function(x){ return String(x.t).toLowerCase().trim()===k; })) return;
+    var c={t:o.t, sec:sc, ok:true}; if(o.fr) c.fr=o.fr; if(o.fin) c.fin=o.fin; if(o.lec) c.lec=o.lec; L.push(c); });
+  q.hid=hid;
+  return (q.opts||[]).filter(keepFn);
+}
 function buildFr(w, opt){
   var q=buildEn(w, opt||{}); if(!q) return null;
   q.fr=1;
@@ -2816,11 +3014,25 @@ function buildFr(w, opt){
     if(_rw && !_NOONLY && (SRC==='retry'||SRC==='bank'||SRC==='due') && (_rw.k===0||_rw.s===0||_rw.a===0)){
       var keep={c:1, n:1}; ['k','s','a'].forEach(function(sc){ if(_rw[sc]===0 || _mk[sc]) keep[sc]=1; });
       var f=q.opts.filter(function(o){ return keep[o.sec||'k']; });
-      if(f.some(function(o){ return o.ok && (o.sec||'k')!=='c'; })){ q.opts=f; q.only=Object.keys(keep).filter(function(x){ return x!=='c'&&x!=='n'; }); }
+      if(f.some(function(o){ return o.ok && (o.sec||'k')!=='c'; })){ q.opts=frHide(q, function(o){ return keep[o.sec||'k']; }); q.only=Object.keys(keep).filter(function(x){ return x!=='c'&&x!=='n'; }); }
     }
   }catch(e){}
   frApplyNeed(q);   // 2027.01.29: 칸별 맞힐 개수 설정
   return q;
+}
+// 2027.01.61: 지난번에 맞혀서 이번엔 안 나온 칸도 정답을 보여 준다 (전체 채점 뒤에만 · 풀 때 힌트가 안 되게)
+function enHidRow(q, sc, NM){
+  var L=q.hid && q.hid[sc]; if(!L || !L.length || _STAGE1) return '';
+  var tb=[], mv=[], rest=[];
+  L.forEach(function(o){
+    if(sc==='s'){ var sr=frSrcOf(q, o);
+      if(sr.tb && sr.mvp) mv.push('<span class="eso tbs"><span class="est tb pre mvp">MVP</span>'+esc(o.t)+'</span>');
+      else if(sr.tb) tb.push('<span class="eso tbs"><span class="est tb pre">교재</span>'+esc(o.t)+'</span>');
+      else rest.push('<span class="eso">'+esc(o.t)+'<span class="est dc">사전</span></span>'); }
+    else if(sc==='a') rest.push('<span class="eso">'+esc(o.t)+'<span class="est dc">사전</span></span>');
+    else rest.push('<span class="eso">'+esc(o.t)+'</span>');
+  });
+  return '<div class="esr esold"><span class="esk na">✓ '+NM[sc]+'</span><span class="esv"><span class="esoldt">지난번 맞힘 · 이번엔 안 나옴</span><br>정답 '+tb.concat(mv, rest).join(' · ')+'</span></div>';
 }
 // 정답 확인 뒤 (영어 → 뜻 · 최종 복습): 칸별 요약 상자 · 맞힌 칸 접기 · 문맥 칸 해석
 function enRevealExtra(q, a){
@@ -2831,7 +3043,7 @@ function enRevealExtra(q, a){
   // 2027.01.27: 맞든 틀리든 칸마다 정답 전체를 먼저 (고름 ✓ · 놓침) → 그 뒤에 틀리게 고른 것 · 같은 뜻 · 반대말 정답엔 교재/사전 표시
   ['k','s','a','n','c'].forEach(function(sc){
     var os=[]; q.opts.forEach(function(o,i){ if((o.sec||'k')===sc) os.push([o,i]); });
-    if(!os.length) return;
+    if(!os.length){ if(q.hid && (sc==='k'||sc==='s'||sc==='a')) h+=enHidRow(q, sc, NM); return; }
     var v=a.en[sc]; if(v===undefined) return;
     if(v===-1 && sc!=='c') return;
     var ok=(v===1), bad=[], nuP=[], rights=[], tbR=[], mvR=[];   // 2027.01.45: 교재 동의어 정답(tbR)을 맨 앞에 · 01.57: 그다음 MVP(mvR)
@@ -4028,7 +4240,7 @@ function ghSnapshotCur(){
     stats:ghSlimMap(STATS),
     bank:{quiz:ghSlimMap(BANK&&BANK.quiz), syn:ghSlimMap(BANK&&BANK.syn)},
     daily:DAILY,
-    pen:ghSlimMap(PENLIST), memo:MEMO, req:ROOTREQ, diary:DIARY, ses:ghSlimSes(SESSIONS), sdel:SESDEL, cmp:CMP, ord:ORDPOS, dels:DELS, wb:WB, mis:MIS, rvr:RVR, ewr:EWR,
+    pen:ghSlimMap(PENLIST), memo:MEMO, nt:NOTES, req:ROOTREQ, diary:DIARY, ses:ghSlimSes(SESSIONS), sdel:SESDEL, cmp:CMP, ord:ORDPOS, dels:DELS, wb:WB, mis:MIS, rvr:RVR, ewr:EWR,
     oset:{v:ORDER, t:ORDER_T}};
 }
 // 두 기록을 합치기 (양쪽에서 푼 것이 모두 남게)
@@ -4110,6 +4322,7 @@ function ghMerge(local, remote){
   }
   out.pen=delsFilter(mergeMap(local.pen, remote.pen), DL.pen, function(it){ return it&&it.t; });
   out.memo=delsFilter(mergeMap(local.memo, remote.memo, true), DL.memo, function(it){ return it&&it.u; });
+  out.nt=delsFilter(mergeMap(local.nt, remote.nt, true), DL.nt, function(it){ return it&&it.u; });   // 2027.01.60: 메모
   out.req=delsFilter(mergeMap(local.req, remote.req), DL.req, function(it){ return it&&it.t; });
   out.diary=mergeMap(local.diary, remote.diary, true);
   // 비교 목록: 강별 · 단어별로 마지막에 바꾼 쪽이 이긴다 (뺀 것도 기록이 있어 되살아나지 않음)
@@ -4208,6 +4421,7 @@ function ghApplyRunMain(d){
   if(d.daily) { DAILY=d.daily; dailySave(); }
   if(d.pen)   { var _lp=PENLIST||{}; PENLIST=ghFattenMap(d.pen, _lp); penSave(); }
   if(d.memo)  { MEMO=d.memo; memoSave(); }
+  if(d.nt)    { NOTES=d.nt; try{ lsSet(NTKEY, JSON.stringify(NOTES)); }catch(e){} try{ ntBtnSync(); if(ntIsOpen()) ntDrawList(); }catch(e){} }   // 2027.01.60
   if(d.req)   { ROOTREQ=d.req; rootReqSave(); }
   if(d.diary) { DIARY=d.diary; diarySave(); }
   if(d.dels)  { for(var dc in DELS) DELS[dc]=d.dels[dc]||{}; try{ LS.setItem(DELKEY, JSON.stringify(DELS)); }catch(e){} }
@@ -4520,7 +4734,7 @@ function delsSave(){ lsSet(DELKEY, JSON.stringify(DELS)); if(typeof syncSoon==='
 function delMark(cat, k){ if(!DELS[cat]) DELS[cat]={}; DELS[cat][String(k)]=Date.now(); delsSave(); }
 function delUnmark(cat, k){ if(DELS[cat] && DELS[cat][String(k)]){ delete DELS[cat][String(k)]; delsSave(); } }
 function delsMerge(a, b){
-  var o={bq:{},bs:{},pen:{},memo:{},req:{},all:{},es:{},eq:{},fs:{},fq:{}};
+  var o={bq:{},bs:{},pen:{},memo:{},req:{},all:{},es:{},eq:{},fs:{},fq:{},nt:{}};
   [a||{}, b||{}].forEach(function(x){ for(var c in o){ var m=x[c]||{}; for(var k in m){ if(!o[c][k] || m[k]>o[c][k]) o[c][k]=m[k]; } } });
   return o;
 }
@@ -5439,7 +5653,7 @@ setInterval(function(){
   }catch(e){}
 },1500);
 
-var APP_VER = '2027.01.59';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
+var APP_VER = '2027.01.67';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
 var VER = APP_VER;  // 데이터 URL 캐시 키. 배포 때만 바뀌므로 브라우저 캐시가 제대로 재사용됨
 function loadJ(p){
   // 데이터 파일은 URL에 버전(v=)이 붙어 캐시가 자동 갱신되므로 브라우저 캐시를 허용한다.
@@ -5633,6 +5847,7 @@ function startBoot(){
     try{ setTimeout(function(){ frDataLoad(); finLoad(); }, 2500); }catch(e){}   // 「같은 뜻 =」 줄 자료 (사전 확인)
     try{ phrsynLoad(); }catch(e){}
     try{ memoLoad(); }catch(e){}
+    try{ ntLoad(); }catch(e){}   // 2027.01.60: 메모
     try{ delsLoad(); }catch(e){}
     try{ wbLoad(); }catch(e){}
     try{ misLoad(); }catch(e){}
@@ -5699,7 +5914,299 @@ function ordKey(){ return (st.mode||'')+'|'+keys().join(',')+'|'+(st.target||'')
 function ordGet(k){ var v=ORDPOS[k]; return (v && typeof v==='object') ? (v.a|0) : (v|0); }
 function ordSet(k, a){ ORDPOS[k]={a:a, t:Date.now()}; try{ LS.setItem('voca_ordpos', JSON.stringify(ORDPOS)); }catch(e){} if(typeof syncSoon==='function') syncSoon(); }
 // 순서대로면 지난번 끝난 다음부터 n개 (남은 게 n보다 적으면 남은 것만, 다 풀면 처음으로)
+// ── 2027.01.66: 홈 한 상자 — 진도 한 줄 · 모드 · 설정까지 오늘 상자 안으로 (아래 칸 없앰) ──
+var _CHKINFO=null, _CHKOPEN=false;
+document.addEventListener('click', function(e){ var t=e.target; if(t && t.closest && t.closest('#hSet') && t.tagName==='BUTTON'){ setTimeout(function(){ try{ hSetSumUI(); chunkUI(); hProgUI(); }catch(x){} }, 0); } });
+function hSetSumUI(){
+  var el=$('hSetSum'); if(!el) return;
+  var tg=[]; var tb=document.querySelector('#tseg button.on'); if(tb) tg.push(tb.textContent.trim());
+  tg.push(st.n ? st.n+'문제' : '전체');
+  if(['syn','quiz','write','copy','en'].indexOf(st.mode)>=0 || (st.mode==='fr' && FRUNIT==='unit')) tg.push(ORDER==='book'?'순서대로':'랜덤');
+  if(st.mode==='fr') tg.push(FRUNIT==='box'?'뜻 상자 단위':'강 단위');
+  var sw=document.querySelector('#swseg button.on'); if(sw && $('fswap') && getComputedStyle($('fswap')).display!=='none') tg.push(sw.textContent.trim());
+  var open=$('hSet') && $('hSet').style.display!=='none';
+  el.innerHTML='<span class="hssl">설정</span>'+tg.map(function(x){ return '<span class="hssc">'+esc(x)+'</span>'; }).join('')+'<button id="hSetT" class="hsst">'+(open?'접기 ▴':'바꾸기 ▾')+'</button>';
+}
+function hProgUI(){
+  var el=$('hProg'); if(!el || !IDX) return;
+  var d=null; for(var i=0;i<IDX.length;i++){ if(IDX[i].key===st.key){ d=IDX[i]; break; } }
+  if(!d){ el.style.display='none'; return; }
+  var u=null; try{ u=recWith(recOfMode(st.mode), function(){ return unitStats(d.key, d.n); }); }catch(e){}
+  var pct=(u && u.total) ? Math.min(100, Math.round(u.seen/u.total*100)) : 0;
+  var h='<div class="hpg"><b class="hpgu">'+esc(d.label)+(st.cum?' <small>누적</small>':'')+'</b>'
+    +'<div class="hpbar"><i style="width:'+pct+'%"></i></div>'
+    +'<span class="hpgp">진도 '+pct+'%'+(u && u.done ? ' ✅' : '')+'</span>'
+    +(u && u.acc!==null ? '<span class="hpga">정답 '+u.acc+'%</span>' : '')
+    +(_CHKINFO && chunkOn() ? '<span class="hpgc">묶음 '+(_CHKINFO.cur+1)+'/'+_CHKINFO.cnt+'</span>' : '')
+    +'</div><div class="hpgm">'+esc(rvModeName())+' 기록 기준'+(u && u.unsolved ? ' · 아직 못 맞힌 오답 '+u.unsolved+'개' : '')+'</div>';
+  // 같은 권 전체 강 한 줄 (칸 색 = 진도 · 누르면 그 강으로)
+  try{
+    var pre=String(d.key).replace(/\d+$/,''), same=IDX.filter(function(x){ return String(x.key).replace(/\d+$/,'')===pre; });
+    if(same.length>1){
+      var cells=recWith(recOfMode(st.mode), function(){ return same.map(function(x){ var v=unitStats(x.key, x.n), p=v.total?Math.min(100, Math.round(v.seen/v.total*100)):0;
+        var num=String(x.key).match(/(\d+)$/); num=num?parseInt(num[1],10):'';
+        var bg = v.done ? '#4ecca3' : (p ? 'rgba(78,204,163,'+(0.18+p/100*0.6).toFixed(2)+')' : '#1e2c50');
+        return '<span class="hpc'+(x.key===st.key?' cur':'')+(v.done?' done':'')+'" data-hpk="'+esc(x.key)+'" title="'+esc(x.label)+' '+p+'%" style="background:'+bg+'">'+num+'</span>'; }).join(''); });
+      h+='<div class="hpstrip">'+cells+'</div><div class="hpgm">칸 = 강 · 진할수록 많이 푼 강 · 초록 = 다 푼 강 · 누르면 그 강으로</div>';
+    }
+  }catch(e){}
+  el.innerHTML=h; el.style.display='';
+}
+// 모드 · 설정 칸을 오늘 상자 안으로 (한 번만). 메인 두 모드(동의어 매칭 · 최종 복습)만 크게, 나머지는 「다른 모드」로 접는다
+function hubTidy(){
+  try{
+    var tb=$('todayBank'), hm=$('hModes'), hs=$('hSet'); if(!tb || !hm || !hs || tb.getAttribute('data-hub')) return;
+    tb.setAttribute('data-hub','1');
+    var setup=$('setup'), mf=$('mseg') && $('mseg').closest('.fld');
+    if(mf){ hm.appendChild(mf); var tg=document.createElement('button'); tg.id='hMoreT'; tg.className='hmoret'; tg.textContent='다른 모드 ▾'; mf.appendChild(tg); }
+    [].slice.call(setup.children).forEach(function(x){
+      if(!x.classList || !x.classList.contains('fld') || x===mf) return;
+      if(x.querySelector && x.querySelector('#dsel')) return;   // 위와 같은 진도 칸 (숨김)
+      hs.appendChild(x);
+    });
+  }catch(e){}
+}
+document.addEventListener('click', function(e){
+  var t=e.target; if(!t || !t.closest) return;
+  if(t.closest('#hSetT')){ var hs=$('hSet'); var on=hs.style.display==='none'; hs.style.display=on?'':'none'; hSetSumUI(); return; }
+  if(t.closest('#hMoreT')){ var hm=$('hModes'); hm.classList.toggle('open'); t.closest('#hMoreT').textContent=hm.classList.contains('open')?'다른 모드 ▴':'다른 모드 ▾'; return; }
+  if(t.closest('[data-chkopen]')){ _CHKOPEN=!_CHKOPEN; chunkUI(); return; }
+  var hk=t.closest('[data-hpk]'); if(hk){ var ds=$('dsel'); if(ds){ ds.value=hk.getAttribute('data-hpk'); ds.dispatchEvent(new Event('change')); } return; }
+});
+
+// ── 2027.01.65: 홈 정리 — 오늘 상자 하나에 이번 주 달력 · 진도 · 묶음 · 복습(종류마다 목록) · 이어서 풀기 · 작은 버튼을 모은다 ──
+var _RVOPEN='';   // 펼친 목록 종류
+function rvBankMode(){ return st.mode==='quiz' ? 'quiz' : 'syn'; }
+function rvModeName(){ var mb=document.querySelector('#mseg button.on .t'); return mb ? mb.textContent : ''; }
+function rvData(){
+  var bm=rvBankMode();
+  return recWith(recOfMode(st.mode), function(){
+    var ewr=everWrongList(), due=false; try{ due=ewr.length && ewrDue(); }catch(e){}
+    var nx=0; try{ nx=ewrNext(); }catch(e){}
+    return {due:dueList(), unit:bankListUnit(bm), all:bankList(bm), ewr:ewr, ewrDue:due, ewrNext:nx, ewrDone:(typeof EWR!=='undefined' && EWR && EWR.done)||0, weak:weakList(1), pin:pinnedList()};
+  });
+}
+var RV_KINDS=[   // 2027.01.67: 왼쪽부터 중요한 순 (한 번이라도 틀린 단어는 3일이 지나면 오늘 복습 바로 뒤로)
+  {k:'due',  nm:'오늘 복습',          why:'틀린 적 있는 단어 중 다시 볼 날이 된 것 · 틀리면 10분 뒤, 맞히면 1일 → 3일 → 7일 → 15일 → 30일 뒤에 다시', del:false},
+  {k:'unit', nm:'이 강 오답',         why:'지금 진도 범위에서 틀리고 아직 못 맞힌 단어 · 다른 회차에서 처음 나왔을 때 맞히면 빠져요', del:true},
+  {k:'ewr',  nm:'한 번이라도 틀린 단어', why:'한 번이라도 틀린 모든 단어 · 3일마다 다시 풀어요 · 지워도 다시 틀리면 돌아와요', del:true},
+  {k:'all',  nm:'전체 오답',          why:'모든 범위에서 틀리고 아직 못 맞힌 단어 · 다른 회차에서 처음 나왔을 때 맞히면 빠져요', del:true},
+  {k:'weak', nm:'약점 단어',          why:'회차 끝 오답 목록에 여러 번 든 단어 · 지울 때까지 남아요', del:true},
+  {k:'pin',  nm:'담아둔 것',          why:'「복습에 담기」로 직접 넣은 단어 · 뺄 때까지 남아요', del:true}
+];
+function rvStart(k){
+  if(k==='due') startDue(); else if(k==='unit') startBank(true); else if(k==='all') startBank(false);
+  else if(k==='ewr') startEver(); else if(k==='weak') startWeak(); else if(k==='pin') startPinned();
+}
+function rvInfo(k, r){
+  var t=[];
+  if(k==='weak') t.push('오답 목록에 '+(r.picked||0)+'번');
+  else if(k==='pin'){ if(r.pinT){ var d=new Date(r.pinT); t.push('담은 날 '+(d.getMonth()+1)+'/'+d.getDate()); } }
+  else t.push((r.rw||r.wrong||0)+'번 틀림');
+  if(st.mode==='fr' && r.frw){ var NM={k:'뜻', s:'같은 뜻', a:'반대말'}, bad=['k','s','a'].filter(function(sc){ return r.frw[sc]===0; }).map(function(sc){ return NM[sc]; }); if(bad.length) t.push('틀린 칸 '+bad.join(' · ')); }
+  return t.join(' · ');
+}
+function rvDel(k, w){
+  var bm=rvBankMode();
+  recWith(recOfMode(st.mode), function(){
+    if(k==='unit' || k==='all'){ var b=(BANK[bm]||{})[w]; if(b){ bankDel(bm, b); bankSave(); } }
+    else { var r=STATS[w]; if(!r) return;
+      if(k==='ewr') r.ewx=Date.now(); else if(k==='weak') r.picked=0; else if(k==='pin'){ r.pinned=0; r.pinT=Date.now(); }
+      statsSave(); }
+  });
+}
+function rvUI(){
+  var box=$('hRev'); if(!box) return;
+  if(st.mode==='card' || st.mode==='browse' || st.mode==='roots' || st.mode==='conf'){ box.style.display='none'; return; }
+  var d; try{ d=rvData(); }catch(e){ box.style.display='none'; return; }
+  var h='';
+  var SHORT={due:'틀린 단어 중 다시 볼 날이 된 것', unit:'이 강에서 틀리고 아직 못 맞힘', all:'전체에서 틀리고 아직 못 맞힘', ewr:'한 번이라도 틀림 · 3일마다', weak:'오답 목록에 여러 번', pin:'내가 직접 담음'};
+  var KS=RV_KINDS.slice(); if(d.ewrDue){ var ei=KS.findIndex(function(x){ return x.k==='ewr'; }); if(ei>1){ var E=KS.splice(ei,1)[0]; KS.splice(1,0,E); } }
+  KS.forEach(function(K){
+    var L=d[K.k]||[], n=L.length, sub=SHORT[K.k];
+    if(K.k==='ewr' && n) sub = d.ewrDue ? '3일 지남 · 복습할 때예요' : (d.ewrNext ? '다음 복습 '+_md(d.ewrNext) : sub);
+    h+='<div class="rvt'+(n?'':' zero')+(K.k==='ewr' && d.ewrDue && n ? ' hot' : '')+(_RVOPEN===K.k?' open':'')+'"'+(n?' data-rvgo="'+K.k+'"':'')+'>'
+      +'<div class="rvn">'+n+'</div><div class="rvl">'+K.nm+'</div><div class="rvw">'+esc(sub)+'</div>'
+      +(n ? '<button class="hrvls'+(_RVOPEN===K.k?' on':'')+'" data-rvls="'+K.k+'">'+(_RVOPEN===K.k?'닫기':'목록')+'</button>' : '')
+      +'</div>';
+  });
+  var lst='';
+  if(_RVOPEN){
+    var K=RV_KINDS.filter(function(x){ return x.k===_RVOPEN; })[0], L=(d[_RVOPEN]||[]);
+    if(!K || !L.length){ _RVOPEN=''; }
+    else {
+      var rows=recWith(recOfMode(st.mode), function(){ return L.map(function(r){
+        return '<div class="lstrow"><span class="lw">'+esc(r.w)+'</span><span class="lm">'+esc(String(r.m||'').split('/')[0].trim())+' · '+esc(rvInfo(_RVOPEN, r))+'</span>'
+          +(K.del ? '<button class="lstdel" data-rvdel="'+esc(r.w)+'">삭제</button>' : '')+'</div>'; }).join(''); });
+      lst='<div class="hrvlist"><div class="lstrow"><span class="lm hrvwhy">'+K.nm+' '+L.length+'개 — '+esc(K.why)+'</span>'
+        +(_RVOPEN==='ewr' ? '<button class="lstclr hrvics" data-rvics="1">📅 3일마다 알림</button>' : '')
+        +(K.del ? '<button class="lstclr" data-rvall="1">전체 삭제</button>' : '')+'</div>'+rows+'</div>';
+    }
+  }
+  box.innerHTML='<div class="hrvh">복습 <small>'+esc(rvModeName())+' 기록 · 칸을 누르면 바로 풀어요</small></div>'
+    +'<div class="rvgrid">'+h+'</div>'+lst;
+  box.style.display='';
+}
+document.addEventListener('click', function(e){
+  var t=e.target; if(!t || !t.closest || !t.closest('#hRev')) return;
+  var b;
+  if((b=t.closest('[data-rvls]'))){ var k=b.getAttribute('data-rvls'); _RVOPEN=(_RVOPEN===k)?'':k; rvUI(); return; }
+  if((b=t.closest('[data-rvgo]'))){ rvStart(b.getAttribute('data-rvgo')); return; }
+  if((b=t.closest('[data-rvdel]'))){ rvDel(_RVOPEN, b.getAttribute('data-rvdel')); rvAfter(); return; }
+  if(t.closest('[data-rvics]')){ try{ ewrIcs(); }catch(x){} return; }
+  if(t.closest('[data-rvall]')){
+    var d=rvData(), L=d[_RVOPEN]||[], K=RV_KINDS.filter(function(x){ return x.k===_RVOPEN; })[0];
+    if(!K || !lstConfirmAll(K.nm, L.length)) return;
+    L.slice().forEach(function(r){ rvDel(_RVOPEN, r.w); });
+    rvAfter(); return;
+  }
+});
+function rvAfter(){ try{ srsUI(); }catch(e){} try{ bankUI(); }catch(e){} try{ chunkUI(); }catch(e){} rvUI(); }
+// 이번 주 달력 7칸 (날짜마다 푼 시간 · 채점한 문제 · 누르면 큰 달력)
+function hWeekUI(){
+  var el=$('hWeek'); if(!el) return;
+  var now=new Date(), dow=(now.getDay()+6)%7, mon=new Date(now.getFullYear(), now.getMonth(), now.getDate()-dow), today=dayKey(now), h='';
+  var fmt=function(s){ s=s||0; if(s<60) return s?'1분 미만':''; var m=Math.round(s/60); return m>=60 ? Math.floor(m/60)+'시간'+(m%60?' '+(m%60)+'분':'') : m+'분'; };
+  for(var i=0;i<7;i++){
+    var d=new Date(mon.getFullYear(), mon.getMonth(), mon.getDate()+i), k=dayKey(d), T=(DAYT||{})[k]||{};
+    var fut=(k>today);
+    h+='<div class="hwd'+(k===today?' on':'')+(fut?' fut':'')+'" data-hwk="'+k+'"><b>'+'월화수목금토일'.charAt(i)+' '+d.getDate()+'</b><span>'+(T.s ? fmt(T.s) : (fut?'':'—'))+'</span>'+(T.n ? '<em>'+T.n+'문제</em>' : '')+'</div>';
+  }
+  el.innerHTML='<div class="hwk">'+h+'</div>';
+  el.style.display='';
+}
+document.addEventListener('click', function(e){
+  var t=e.target; if(!t || !t.closest) return;
+  if(t.closest('#hWeek .hwd')){ var b=$('calGo'); if(b) b.click(); }
+});
+// 홈으로 돌아올 때마다 (오늘 상자를 다시 그릴 때) 달력 · 복습 줄 · 묶음도 같이
+var _todayUI0=todayUI; todayUI=function(){ _todayUI0.apply(this, arguments); try{ homeTidy(); hubTidy(); hWeekUI(); rvUI(); chunkUI(); hProgUI(); hSetSumUI(); }catch(e){} };
+// 홈 칸 옮기기 (한 번만): 진도 아래 정보 줄 · 이어서 풀기를 오늘 상자로, 아래 「진도 · 시작」은 숨긴다(위 오늘 상자와 같은 칸)
+function homeTidy(){
+  try{
+    var tb=$('todayBank'), anchor=$('hRev'); if(!tb || !anchor || tb.getAttribute('data-tidy')) return;
+    tb.setAttribute('data-tidy','1');
+    ['dstat','enDstat','frprog'].forEach(function(id){ var x=$(id); if(x) tb.insertBefore(x, $('chkRow')); });
+    var rb=$('resumeBank'); if(rb) tb.insertBefore(rb, $('hResAnchor'));   // 하던 것 = 맨 위쪽
+    var sb=$('statsBank'), sm=tb.querySelector('.r.hsmall'); if(sb && sm) sm.appendChild(sb);   // 틀린 단어 통계는 맨 아래 작은 버튼 줄 끝에
+    var f=$('dsel') && $('dsel').closest('.fld'); if(f) f.style.display='none';
+    var g=$('go'); if(g) g.style.display='none';
+  }catch(e){}
+}
+
+// ── 2027.01.64: 묶음 — 문항 수(25·50·100)로 고른 범위를 교재 순서대로 나눠 푼다 (동의어 매칭 · 최종 복습 강 단위) ──
+//   묶음 i = 교재 순서 i*n+1 ~ (i+1)*n. 「순서대로」면 묶음 안도 교재 순서, 「랜덤」이면 묶음 안 순서만 섞는다.
+//   지금 차례 묶음 = 이어 풀 위치(ORDPOS). 홈에서 묶음을 눌러 바꾸고, 회차가 끝나면 「이 묶음 다시 · 틀린 것만 · 다음 묶음」.
+var CHUNK_LAST=null;
+try{ CHUNK_LAST=JSON.parse(LS.getItem('voca_chunklast')||'null'); }catch(e){ CHUNK_LAST=null; }
+function chunkOn(){ return (st.mode==='syn' || (st.mode==='fr' && FRUNIT==='unit')) && st.n>0; }
+function chunkPick(list, n){
+  var k=ordKey(), at=ordGet(k);
+  if(at>=list.length) at=0;
+  var i=Math.floor(at/n), start=i*n, out=list.slice(start, start+n);
+  ordSet(k, (start+n>=list.length) ? 0 : start+n);
+  CHUNK_LAST={k:k, i:i, n:n, start:start, total:list.length, mode:st.mode, key:st.key, cum:!!st.cum, ws:out.map(function(w){ return w.w; })};
+  try{ LS.setItem('voca_chunklast', JSON.stringify(CHUNK_LAST)); }catch(e){}
+  try{ ordStat(); }catch(e){}
+  return ORDER==='book' ? out : shuf(out);
+}
+function chunkLabel(i, n, total){ return (i*n+1)+'–'+Math.min((i+1)*n, total); }
+// 범위 단어(출제 대상까지 거른 것)를 교재 순서로
+function chunkWords(){
+  return Promise.all(keys().map(getDay)).then(function(cs){ var it=[]; (cs||[]).forEach(function(c){ it=it.concat(c||[]); }); return filterTarget(it); });
+}
+// 그 단어들 중 지금 남은 오답 (틀린 것만 다시에 쓰는 오답 목록)
+function chunkWrongOf(ws){
+  var set={}; ws.forEach(function(w){ set[String(w).toLowerCase()]=1; });
+  return recWith(recOfMode(st.mode), function(){ return bankList('syn').filter(function(r){ return r && set[String(r.w).toLowerCase()]; }); });
+}
+function chunkSeenOf(ws){
+  return recWith(recOfMode(st.mode), function(){ var n=0; ws.forEach(function(w){ var r=STATS[w]; if(r && (r.seen_syn || (r.right||0)+(r.wrong||0)>0)) n++; }); return n; });
+}
+var _chunkTok=0;
+function chunkUI(){
+  var box=$('chkRow'); if(!box) return;
+  if(!chunkOn() || !IDX){ box.style.display='none'; box.innerHTML=''; _CHKINFO=null; try{ hProgUI(); }catch(e){} return; }
+  var tok=++_chunkTok, n=st.n;
+  chunkWords().then(function(list){
+    if(tok!==_chunkTok) return;
+    if(list.length<=n){ box.style.display='none'; box.innerHTML=''; _CHKINFO=null; try{ hProgUI(); }catch(e){} return; }
+    var cnt=Math.ceil(list.length/n), at=ordGet(ordKey()); if(at>=list.length) at=0;
+    var cur=Math.floor(at/n), h='';
+    for(var i=0;i<cnt;i++){
+      var ws=list.slice(i*n, (i+1)*n).map(function(w){ return w.w; });
+      var seen=chunkSeenOf(ws), wr=chunkWrongOf(ws).length;
+      h+='<span class="chkc'+(i===cur?' on':'')+(seen>=ws.length?' full':'')+'" data-chk="'+i+'">'+(i===cur?'▶ ':'')+chunkLabel(i, n, list.length)
+        +'<small>'+(seen ? (seen>=ws.length ? '다 품' : '푼 '+seen) : '안 품')+(wr ? ' · 오답 '+wr : '')+'</small>'
+        +(wr ? '<button class="chkw" data-chkw="'+i+'">틀린 것만</button>' : '')+'</span>';
+    }
+    // ▶ 묶음의 복습할 단어 — 기본은 개수만, 「보기」를 눌러야 단어 · 틀린 횟수 · 틀린 칸 · 기준이 펼쳐진다 (2027.01.66)
+    var cws=list.slice(cur*n, (cur+1)*n).map(function(w){ return w.w; }), rv=chunkWrongOf(cws);
+    _CHKINFO={cur:cur, cnt:cnt, rv:rv.length};
+    var rvh=rv.length ? '<div class="chkrvh">▶ '+chunkLabel(cur, n, list.length)+' 복습할 단어 '+rv.length+'개 <button class="chkopen" data-chkopen="1">'+(_CHKOPEN?'접기':'보기')+'</button></div>' : '';
+    if(_CHKOPEN && rv.length){
+      var NM={k:'뜻', s:'같은 뜻', a:'반대말'};
+      var rows=recWith(recOfMode(st.mode), function(){ return rv.map(function(b){ var r=STATS[b.w]||{}, why=[];
+        why.push('틀림 '+(r.rw||r.wrong||1)+'번');
+        if(st.mode==='fr' && r.frw){ var bad=['k','s','a'].filter(function(sc){ return r.frw[sc]===0; }).map(function(sc){ return NM[sc]; }); if(bad.length) why.push('틀린 칸 '+bad.join(' · ')); }
+        if(r.last){ var d=new Date(r.last); why.push('마지막 '+(d.getMonth()+1)+'/'+d.getDate()); }
+        return '<div class="chkrv"><b>'+esc(b.w)+'</b><span>'+esc(String(b.m||r.m||'').split('/')[0].trim())+'</span><em>'+why.join(' · ')+'</em></div>'; }); });
+      rvh+='<div class="chkcrit">복습할 단어 = 이 묶음에서 틀리고, 그 뒤 다른 회차에서 처음 나왔을 때 아직 못 맞힌 단어'+(st.mode==='fr'?' (최종 복습은 한 칸이라도 틀리면 · 뜻을 일부만 맞혀도 들어가요)':'')+'. 그렇게 한 번 맞히면 빠져요. 같은 회차 안에서 다시 나와 맞힌 건 안 빠져요.</div>'
+        +'<div class="chkrvl">'+rows.join('')+'</div>';
+    }
+    box.innerHTML='<div class="chkline"><span class="chkh">묶음 '+n+'개씩</span><div class="chkg">'+h+'</div></div>'+rvh;
+    box.style.display='';
+    try{ hProgUI(); }catch(e){}
+  }).catch(function(){});
+}
+function chunkSet(i){ ordSet(ordKey(), i*st.n); chunkUI(); }
+// 그 묶음의 남은 오답만 풀기 (최종 복습이면 틀린 칸만)
+function chunkRetry(ws){
+  recUse(recOfMode(st.mode)); FINRUN=false;
+  var list=chunkWrongOf(ws);
+  if(!list.length){ msg('이 묶음에는 남은 오답이 없어요','ok'); return; }
+  msg('불러오는 중…','load');
+  buildFullPool().then(function(){ SRC='bank'; hide(); launch(shuf(list)); })
+    .catch(function(e){ msg('❌ '+(e&&e.message||e),'err'); });
+}
+function chunkListAt(i){ return chunkWords().then(function(list){ return list.slice(i*st.n, (i+1)*st.n).map(function(w){ return w.w; }); }); }
+document.addEventListener('click', function(e){
+  var t=e.target; if(!t || !t.closest) return;
+  var b=t.closest('[data-chkw]');
+  if(b){ e.stopPropagation(); chunkListAt(+b.getAttribute('data-chkw')).then(chunkRetry); return; }
+  var c=t.closest('[data-chk]');
+  if(c && c.closest('#chkRow')){ chunkSet(+c.getAttribute('data-chk')); return; }
+});
+// 회차 끝 화면: 이 묶음 다시 · 이 묶음 틀린 것만 · 다음 묶음 (마지막이면 다음 강)
+function chunkResUI(){
+  var row=$('chkRes'); if(!row) return;
+  var L=CHUNK_LAST;
+  if(SRC!=='normal' || !L || L.mode!==st.mode || L.key!==st.key || !!L.cum!==!!st.cum || L.n!==st.n || !chunkOn()){ row.style.display='none'; row.innerHTML=''; return; }
+  var last=(L.start+L.n>=L.total), wr=chunkWrongOf(L.ws).length;
+  var nx=null; if(last && !st.cum){ for(var i=0;i<IDX.length;i++){ if(IDX[i].key===st.key){ nx=IDX[i+1]||null; break; } } }
+  row.innerHTML='<span class="chkrl">묶음 '+chunkLabel(L.i, L.n, L.total)+'</span>'
+    +'<button data-chkres="same">이 묶음 다시</button>'
+    +(wr ? '<button data-chkres="wrong">이 묶음 틀린 것만 ('+wr+')</button>' : '')
+    +(last ? (nx ? '<button data-chkres="nextunit">다음 강 '+esc(nx.label||nx.key)+' →</button>' : '') : '<button data-chkres="next">다음 묶음 '+chunkLabel(L.i+1, L.n, L.total)+' →</button>');
+  row.style.display='';
+}
+document.addEventListener('click', function(e){
+  var t=e.target; if(!t || !t.closest) return;
+  var b=t.closest('[data-chkres]'); if(!b) return;
+  var L=CHUNK_LAST, a=b.getAttribute('data-chkres'); if(!L) return;
+  if(a==='same'){ ordSet(L.k, L.start); start(); }
+  else if(a==='next'){ ordSet(L.k, L.start+L.n); start(); }
+  else if(a==='wrong'){ chunkRetry(L.ws); }
+  else if(a==='nextunit'){
+    var nx=null; for(var i=0;i<IDX.length;i++){ if(IDX[i].key===st.key){ nx=IDX[i+1]||null; break; } }
+    if(!nx) return;
+    var d=$('dsel'); if(d){ d.value=nx.key; d.dispatchEvent(new Event('change')); }
+    setTimeout(function(){ ordSet(ordKey(), 0); start(); }, 50);
+  }
+});
+
 function pickOrder(list, n){
+  if(chunkOn() && list.length>n) return chunkPick(list, n);   // 2027.01.64: 묶음
   if(ORDER!=='book') return shuf(list).slice(0, n);
   if(n>=list.length){ ordSet(ordKey(), 0); return list.slice(); }
   var k=ordKey(), at=ordGet(k);
@@ -7614,7 +8121,7 @@ function sessionSave(quiet){
       var _un=(ans[_ix]===null || ans[_ix]===undefined), _ps=null;
       if(_un && _ix===qi){ _ps=[]; for(var _k in sel) if(sel[_k]) _ps.push(+_k); if(!_ps.length) _ps=null; }
       return _slim({
-        one:(_un && q._one) ? JSON.parse(JSON.stringify(q._one)) : null, st1:(_un && q._st1) ? JSON.parse(JSON.stringify(q._st1)) : null, psel:_ps,
+        hid:q.hid||null, one:(_un && q._one) ? JSON.parse(JSON.stringify(q._one)) : null, st1:(_un && q._st1) ? JSON.parse(JSON.stringify(q._st1)) : null, psel:_ps,
         wid: q.w.id, wkey: q.w.w,
         opts: q.opts.map(function(o){
           if(typeof o==='string') return o;
@@ -7777,6 +8284,7 @@ function _qdRestore(q, qd){
   if(qd.ssense) q.ssense=qd.ssense;
   if(qd.only) q.only=qd.only; if(qd.smix) q.smix=qd.smix;
   if(qd.cfun) q.cfun=qd.cfun;
+  if(qd.hid) q.hid=qd.hid;   // 2027.01.61: 이번엔 안 나온 칸의 정답
   // 2027.01.52: 푸는 중이던 칸 상태 (번호가 보기 수를 넘으면 버린다)
   var _n=(q.opts||[]).length, _okI=function(a){ return !a || a.every(function(i){ return typeof i==='number' && i>=0 && i<_n; }); };
   if(qd.one && qd.one.steps && _okI(qd.one.chosen)) q._one=qd.one;
@@ -9103,7 +9611,7 @@ function rebuildKeep(q, missed, exact){
   // 2027.01.44: 복습에서 몇 칸만 냈던 문제는 다시 낼 때도 같은 칸만 (예전엔 맞힌 칸의 정답이 오답 보기 없이 다시 붙어서 「정답만 있는 칸」이 생겼다)
   if(nq && nq.kind==='en' && nq.fr && q.only && q.only.length){
     var _ok={c:1, n:1}; q.only.forEach(function(sc){ _ok[sc]=1; });
-    nq.opts=nq.opts.filter(function(x){ return _ok[x.sec||'k']; }); nq.only=q.only.slice();
+    nq.opts=(nq.fr ? frHide(nq, function(x){ return _ok[x.sec||'k']; }) : nq.opts.filter(function(x){ return _ok[x.sec||'k']; })); nq.only=q.only.slice();
     if(missed) missed=missed.filter(function(o){ return _ok[o.sec||'k']; });
   }
   if(!nq || !missed || !missed.length) return nq;
@@ -9147,6 +9655,11 @@ function requeueSyn(q){
   var seenN=(r&&r.shown)||0;
   var more=!!(q.total && seenN<q.total);          // 아직 못 본 동의어가 남았다
   if(!wrong && !more) return;                     // 맞혔고 동의어도 다 봤으면 끝 (이유가 둘이어도 한 번만 넣는다)
+  // 2027.01.62: 최종 복습은 같은 회차 안에서 3번까지만 다시 — 그래도 틀리면 이 회차에선 빼고 다음 복습(오늘 복습 · 틀린 것만 다시)으로
+  if(wrong && q.kind==='en' && q.fr){
+    var _rn=0; for(var _j=0;_j<=qi && _j<Q.length;_j++){ var _x=Q[_j]; if(_x && _x.again && _x.w && _x.w.w===q.w.w && String(_x.why||'').indexOf('w')>=0) _rn++; }
+    if(_rn>=3){ setTimeout(function(){ try{ var _fb=$('fb'); if(_fb && Q[qi]===q) _fb.textContent+='  ·  3번 다시 풀어도 틀려서 「오늘 복습」으로 넘겼어요'; }catch(e){} }, 0); return; }
+  }
   var nq=wrong ? rebuildKeep(q, keepOpts(q), true) : ((q.kind==='en') ? (q.fr ? buildFr(q.w, q.swo||{}) : buildEn(q.w, q.swo||{})) : q.isFin ? buildFinQ(q.w) : buildSyn(q.w, q.swo||{}));   // 같은 방식(자리 섞기 켬/끔 · 최종 정리)으로 다시 만든다 · 틀렸으면 놓친 정답을 꼭 넣어서 (2027.01.27)
   if(!nq) return;
   // 2027.01.58: 최종 복습에서 틀려서 다시 낼 때는 틀린 칸만 (반대말만 틀렸으면 반대말 칸만 · 놓친 정답은 그 칸에 그대로)
@@ -9155,7 +9668,7 @@ function requeueSyn(q){
     if(_ws.length){
       var _okS={c:1, n:1}; _ws.forEach(function(sc){ _okS[sc]=1; });
       var _f=nq.opts.filter(function(x){ return _okS[x.sec||'k']; });
-      if(_f.some(function(x){ return x.ok && (x.sec||'k')!=='c'; })){ nq.opts=_f; nq.only=_ws.slice(); nq._one=null; nq._st1=null; }
+      if(_f.some(function(x){ return x.ok && (x.sec||'k')!=='c'; })){ nq.opts=frHide(nq, function(x){ return _okS[x.sec||'k']; }); nq.only=_ws.slice(); nq._one=null; nq._st1=null; }
     }
   }
   nq.again=true;                                  // 같은 시행 안에서 다시 나온 문제 — 오답 목록은 처음 판정으로만 정한다
@@ -9298,7 +9811,9 @@ function maybeShowFinishBtn(){
   }
 }
 
-function replay(){
+// 2027.01.61: 다시 그린 뒤에도 한 칸씩이면 칸마다 1번부터 번호
+function replay(){ _replay0.apply(this, arguments); try{ var q=Q[qi]; if(q && q.fr) frOneRenumber(q); }catch(e){} }
+function _replay0(){
   // 정답이 공개되면 맨 위 단어 옆에 전체 뜻을 함께 표시
   (function(){
     var q0=Q[qi], el=$('qwmean');
@@ -9918,6 +10433,102 @@ function wbDraw(){
   });
 }
 
+// ── 2027.01.60: 메모 — 문제 풀며 헷갈린 것 · 느낀 것을 쌓아 두고 보기 (아래 버튼 줄 「메모」) ──
+//   NOTES = { id: {t:글, w:붙인 표제어(없으면 ''), lec:강, at:쓴 시각, u:고친 시각} }
+var NTKEY='voca_notes_v1', NOTES={}, _ntQ='';
+function ntLoad(){ try{ var r=LS.getItem(NTKEY); if(r) NOTES=JSON.parse(r)||{}; }catch(e){ NOTES={}; } }
+function ntSave(){ lsSet(NTKEY, JSON.stringify(NOTES)); if(typeof syncSoon==='function') syncSoon(); ntBtnSync(); }
+function ntIsOpen(){ var b=$('ntBox'); return !!(b && b.classList.contains('on')); }
+function ntCurW(){ try{ if($('qscr').classList.contains('on') && !fin && Q && Q[qi] && Q[qi].w && Q[qi].w.w) return Q[qi].w; }catch(e){} return null; }
+function ntHw(w){ return String((w && w.w) || w || '').split('=')[0].trim(); }
+function ntList(){ var o=[]; for(var k in NOTES){ var n=NOTES[k]; if(n && n.t){ var c={id:k}; for(var f in n) c[f]=n[f]; o.push(c); } } o.sort(function(a,b){ return (b.at||0)-(a.at||0); }); return o; }
+function ntOf(w){ var k=ntHw(w).toLowerCase(); return k ? ntList().filter(function(n){ return String(n.w||'').toLowerCase()===k; }) : []; }
+function ntAdd(txt, w){
+  txt=String(txt||'').trim(); if(!txt) return false;
+  var id=Date.now().toString(36)+Math.random().toString(36).slice(2,6), now=Date.now(), lec='';
+  try{ if(w && w.vol!==undefined) lec=_atTag(w); }catch(e){}
+  NOTES[id]={t:txt, w:w?ntHw(w):'', lec:lec, at:now, u:now};
+  ntSave(); return true;
+}
+function ntDel(id){ if(!NOTES[id]) return; delete NOTES[id]; delMark('nt', id); ntSave(); }
+// 아래 「메모」 버튼: 지금 단어에 메모가 있으면 개수를 붙이고 보라 테두리
+function ntBtnSync(){
+  var b=$('dockNote'); if(!b) return;
+  var w=ntCurW(), n=w ? ntOf(w).length : 0;
+  b.textContent='메모'+(n?' '+n:'');
+  b.classList.toggle('has', n>0);
+}
+function ntTime(t){ var d=new Date(t||0); return (d.getMonth()+1)+'/'+d.getDate()+' '+('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2); }
+function ntText(){ return ntList().map(function(n){ return (n.w ? n.w+(n.lec?' ('+n.lec+')':'') : '(단어 없음)')+' · '+ntTime(n.at)+'\n'+n.t; }).join('\n\n'); }
+function ntOpen(){
+  try{ if(document.activeElement && document.activeElement.blur) document.activeElement.blur(); }catch(e){}
+  var box=$('ntBox');
+  if(!box){
+    box=document.createElement('div'); box.id='ntBox'; box.className='ovbox';
+    document.body.appendChild(box);
+    box.addEventListener('click', function(ev){
+      var t=ev.target;
+      if(t.classList && t.classList.contains('cmpwrap')){ ntClose(); return; }
+      if(t.closest && t.closest('.cmpx')){ ntClose(); return; }
+      if(t.closest && t.closest('.ntsave')){ ntSubmit(); return; }
+      var dl=t.closest && t.closest('[data-ntdel]'); if(dl){ ntDel(dl.getAttribute('data-ntdel')); ntDrawList(); return; }
+      if(t.closest && t.closest('[data-ntall]')){ var L=ntList(); if(!lstConfirmAll('메모', L.length)) return; L.forEach(function(n){ delete NOTES[n.id]; delMark('nt', n.id); }); ntSave(); ntDrawList(); return; }
+      var cb=t.closest && t.closest('[data-ntcopy]');
+      if(cb){ var tx=ntText(); try{ navigator.clipboard.writeText(tx).then(function(){ cb.textContent='복사됨'; }).catch(function(){ prompt('복사하세요', tx); }); }catch(e){ prompt('복사하세요', tx); } return; }
+    });
+    box.addEventListener('input', function(ev){ if(ev.target && ev.target.id==='ntSrch'){ _ntQ=ev.target.value; ntDrawList(); } });
+    box.addEventListener('keydown', function(ev){
+      if(ev.key==='Escape'){ ev.preventDefault(); ev.stopPropagation(); ntClose(); return; }
+      if(ev.target && ev.target.id==='ntIn' && ev.key==='Enter' && !ev.shiftKey && !ev.isComposing){ ev.preventDefault(); ev.stopPropagation(); ntSubmit(); return; }   // Enter = 저장 · Shift+Enter = 줄 바꿈
+      ev.stopPropagation();   // 메모 창에서 누른 키가 문제(숫자 고르기 · Enter 채점)로 가지 않게
+    });
+  }
+  var w=ntCurW();
+  box.innerHTML='<div class="cmpwrap"><div class="cmpcard"><div class="cmphead"><div class="cmpttl">메모<span id="ntCnt"></span></div>'
+    +'<button class="ntcp" data-ntcopy="1">전체 복사</button><button class="lstclr" data-ntall="1">전체 삭제</button><button class="cmpx">닫기</button></div>'
+    +'<div class="cmpbody">'
+    +'<textarea id="ntIn" class="ntin" placeholder="헷갈린 것 · 느낀 것 (Enter = 저장 · Shift+Enter = 줄 바꿈)"></textarea>'
+    +'<div class="ntrow">'+(w ? '<label><input type="checkbox" id="ntW" checked> 지금 단어 <b style="color:#ffd479">'+esc(ntHw(w))+'</b> 붙이기</label>' : '<span style="color:#8fa8cc;font-size:.88em">단어 없이 저장돼요</span>')+'<button class="ntsave">저장</button></div>'
+    +'<input id="ntSrch" class="ntsrch" placeholder="메모 검색 (단어 · 내용)" value="'+esc(_ntQ)+'">'
+    +'<div id="ntItems"></div></div></div></div>';
+  box.classList.add('on');
+  document.body.style.overflow='hidden';
+  ntDrawList();
+  setTimeout(function(){ try{ $('ntIn').focus(); }catch(e){} }, 30);
+}
+function ntSubmit(){
+  var inp=$('ntIn'); if(!inp) return;
+  var w=ntCurW(), cb=$('ntW');
+  if(!ntAdd(inp.value, (w && (!cb || cb.checked)) ? w : null)) return;
+  inp.value=''; ntDrawList(); try{ inp.focus(); }catch(e){}
+}
+function ntItemHTML(n, q){
+  var hl=function(x){ x=String(x||''); if(!q) return esc(x); var i=x.toLowerCase().indexOf(q.toLowerCase()); return i<0 ? esc(x) : esc(x.slice(0,i))+'<span class="nthl">'+esc(x.slice(i, i+q.length))+'</span>'+esc(x.slice(i+q.length)); };
+  return '<div class="ntitem"><div class="ntmeta">'+(n.w ? '<b>'+hl(n.w)+'</b>'+(n.lec?'<span>'+esc(n.lec)+'</span>':'') : '<span>(단어 없음)</span>')+'<span>'+ntTime(n.at)+'</span>'
+    +'<button class="ntdel" data-ntdel="'+esc(n.id)+'">삭제</button></div><div class="ntt">'+hl(n.t)+'</div></div>';
+}
+// 지금 푸는 표제어의 메모를 맨 위에 · 그 아래 전체(최근 순) · 검색하면 단어 · 내용에서 찾는다
+function ntDrawList(){
+  var host=$('ntItems'); if(!host) return;
+  var all=ntList(), q=String(_ntQ||'').trim(), ql=q.toLowerCase();
+  var L=q ? all.filter(function(n){ return String(n.w||'').toLowerCase().indexOf(ql)>=0 || String(n.t).toLowerCase().indexOf(ql)>=0; }) : all;
+  var w=ntCurW(), k=w ? ntHw(w).toLowerCase() : '';
+  var mine=k ? L.filter(function(n){ return String(n.w||'').toLowerCase()===k; }) : [];
+  var rest=L.filter(function(n){ return mine.indexOf(n)<0; });
+  var h='';
+  if(mine.length) h+='<div class="cmplab">이 단어('+esc(ntHw(w))+') 메모 · '+mine.length+'개</div><div class="ntmine">'+mine.map(function(n){ return ntItemHTML(n, q); }).join('')+'</div>';
+  h+='<div class="cmplab">'+(q ? '찾은 메모' : '전체 메모')+' · 최근 순 · '+rest.length+'개</div>';
+  h+= rest.length ? rest.map(function(n){ return ntItemHTML(n, q); }).join('') : '<div class="cmpempty">'+(q ? '찾는 메모가 없어요' : (mine.length ? '다른 메모는 아직 없어요' : '아직 쓴 메모가 없어요'))+'</div>';
+  host.innerHTML=h;
+  var c=$('ntCnt'); if(c) c.textContent='전체 '+all.length+'개';
+}
+function ntClose(){
+  var box=$('ntBox'); if(box) box.classList.remove('on');
+  document.body.style.overflow='';
+  ntBtnSync();
+  try{ typingRefocus(); }catch(e){}
+}
+
 // ── 잘못 고른 단어 (동의어 매칭에서 오답 선지를 골랐을 때 그 선지 단어를 쌓는다 · 빼지 않고 표시만) ──
 //   MIS = { 소문자 단어: {w, n(잘못 고른 횟수), ok(나중에 맞힌 횟수), q:[헷갈린 문제 표제어], of:[이 단어를 동의어로 가진 표제어], a, t} }
 var MISKEY='voca_mis_v1', MIS={}, MISCFGKEY='voca_miscfg_v1', MISCFG={lim:100, need:2};
@@ -10517,6 +11128,7 @@ function finish(){
   $('retry').style.display = wrongs.length ? '' : 'none';
   $('wbtn').style.display = wrongs.length ? '' : 'none';
   $('wrong').style.display='none';
+  try{ chunkResUI(); }catch(e){}   // 2027.01.64: 이 묶음 다시 · 틀린 것만 · 다음 묶음
 
   // ── 이 강의 오답을 0개로 만들었으면 '손으로 쓸 단어'를 자동으로 ──
   // 한 번도 안 틀리고 끝낸 강도 '오답까지 다 잡은 강'이다 — 빠짐없이 풀었는지로만 본다
@@ -10607,6 +11219,7 @@ function dockApply(){
 }
 function dockSync(){
   try{ cmpBtnSync(); }catch(e){}
+  try{ ntBtnSync(); }catch(e){}   // 2027.01.60: 메모 개수
   var c=$('cnt'), d=$('dockCnt'); if(c&&d) d.textContent=c.textContent;
   var qw=(Q&&Q[qi]&&Q[qi].w)||null;
   var dp=$('dockPin'); if(dp){ if(qw){ pinBtnUI('dockPin', qw); dp.style.display=''; } else dp.style.display='none'; }
@@ -10662,6 +11275,8 @@ $('dockCmp').addEventListener('click',function(){ cmpOpen('quiz'); });
 $('cmpQ').addEventListener('click',function(){ cmpOpen('quiz'); });
 $('cmpC').addEventListener('click',function(){ cmpOpen('copy'); });
 $('dockWb').addEventListener('click',function(){ wbOpen('quiz'); });
+$('dockNote').addEventListener('click',function(){ ntOpen(); });
+$('ntHomeGo').addEventListener('click',function(){ ntOpen(); });   // 2027.01.65: 홈에서도 메모   // 2027.01.60: 메모
 $('wbQ').addEventListener('click',function(){ wbOpen('quiz'); });
 $('wbC').addEventListener('click',function(){ wbOpen('copy'); });
 $('wbHomeGo').addEventListener('click',function(){ wbOpen('home'); });
@@ -10716,6 +11331,8 @@ function qkSync(){
   if(['syn','quiz','write','copy','en'].indexOf(st.mode)>=0 || (st.mode==='fr' && FRUNIT==='unit')) parts.push(ORDER==='book'?'순서대로':'랜덤');
   if(st.mode==='fr') parts.push(FRUNIT==='box'?'뜻 상자 단위':'강 단위');
   $('qkMode').textContent='지금 모드: '+parts.filter(Boolean).join(' · ')+' — 바꾸려면 아래에서';
+  try{ chunkUI(); }catch(e){}   // 2027.01.64: 묶음
+  try{ homeTidy(); hubTidy(); hWeekUI(); rvUI(); hProgUI(); hSetSumUI(); }catch(e){}   // 2027.01.65: 홈 정리 · 01.66: 한 상자
 }
 $('qkSel').addEventListener('change',function(){ var d=$('dsel'); d.value=this.value; d.dispatchEvent(new Event('change')); });
 $('qkCum').addEventListener('click',function(){ $('cum').click(); });
@@ -11557,7 +12174,8 @@ function _nkChoose(n, q){
   else pick(i);
 }
 // 2027.01.52: 두 자리 번호를 기다리는 중에 Enter를 누르면, 그 번호를 먼저 고른 뒤 채점한다
-function _nkFlush(){ if(!_nkBuf) return; var b=_nkBuf, q=Q&&Q[qi]; _nkClear(); if(q && ans[qi]===null) _nkChoose(parseInt(b), q); }
+var _nkMap=null;   // 2027.01.61: 한 칸씩일 때 칸 안 번호 → 보기
+function _nkFlush(){ if(!_nkBuf) return; var b=_nkBuf, q=Q&&Q[qi], mp=_nkMap; _nkClear(); if(q && ans[qi]===null){ if(mp) mp(parseInt(b)); else _nkChoose(parseInt(b), q); } }
 function _nkClear(){ _nkBuf=''; if(_nkTimer){ clearTimeout(_nkTimer); _nkTimer=null; } var f=$('fb'); if(f && f.getAttribute('data-nk')){ f.textContent=''; f.removeAttribute('data-nk'); } }
 // 2027.01.38: 한 칸씩 풀 때 그 번호가 지금 칸 보기인지 (1 → 2를 빨리 누르면 12번으로 잡혀 아무것도 안 골라지던 것 고침)
 function numInStep(q, num){
@@ -11569,6 +12187,21 @@ function numKey(key, q){
   if(!q || !q.opts) return;
   if(q._check && ans[qi]===null){ if(key==='1') enCheckMark(-1,'o'); else if(key==='2') enCheckMark(-1,'x'); return; }   // 직접 쓰기 체크: 1 맞음 · 2 틀림
   if((q.kind==='en'||q.kind==='ko') && styleOf(q)==='write' && ans[qi]===null && !q.fr) return;          // 직접 쓰기: 보기가 없다 (최종 복습은 반대말 · 뉘앙스 칸이 남아 있다)
+  // 2027.01.61: 한 칸씩 — 번호가 칸마다 1번부터라서 지금 칸 보기 안에서 고른다
+  if(frOneOn(q) && ans[qi]===null && q._one && !q._one.graded){
+    var _L=frOneStepIdx(q), _n=_L.length;
+    var _ch=function(m){ var gi=_L[m-1]; if(gi!==undefined) _nkChoose(gi+1, q); };
+    _nkMap=_ch;
+    if(_n<=9){ _nkClear(); if(key!=='0') _ch(parseInt(key)); return; }
+    if(_nkBuf){ var _two=parseInt(_nkBuf+key), _first=parseInt(_nkBuf); _nkClear(); if(_two>=10 && _two<=_n) _ch(_two); else { _ch(_first); if(key!=='0') numKey(key, q); } return; }
+    if(key==='0'){ _nkClear(); _ch(10); return; }
+    if(parseInt(key)*10>_n){ _nkClear(); _ch(parseInt(key)); return; }
+    _nkBuf=key;
+    var _f=$('fb'); if(_f && !_f.textContent){ _f.textContent=key+'…  (두 자리 번호면 다음 숫자, 아니면 잠시 기다리세요)'; _f.setAttribute('data-nk','1'); }
+    _nkTimer=setTimeout(function(){ var b=_nkBuf; _nkClear(); if(b) _ch(parseInt(b)); }, 600);
+    return;
+  }
+  _nkMap=null;
   var n=q.opts.length;
   if(n<=9){ _nkClear(); if(key!=='0') _nkChoose(parseInt(key), q); return; }
   // 2027.01.52: 한 칸씩이면 지금 칸 보기 번호만 센다 — 지금 칸에 그 숫자로 시작하는 두 자리 번호가 없으면 기다리지 않고 바로 고른다
@@ -11594,6 +12227,7 @@ function numKey(key, q){
   _nkTimer=setTimeout(function(){ var b=_nkBuf; _nkClear(); if(b) _nkChoose(parseInt(b), q); }, 600);
 }
 document.addEventListener('keydown',function(e){
+  if(ntIsOpen()){ if(e.key==='Escape'){ e.preventDefault(); ntClose(); } return; }   // 2027.01.60: 메모 창에서는 문제 단축키를 쓰지 않는다
   if(pinAskIsOpen()){
     if(e.key==='1'){ e.preventDefault(); _pinAskPick('now'); }
     else if(e.key==='2'){ e.preventDefault(); _pinAskPick('later'); }
