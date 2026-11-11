@@ -1532,6 +1532,21 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 .hpc{width:26px;height:22px;border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.7em;color:#cfe0f5;cursor:pointer}
 .hpc.done{color:#06251a;font-weight:700}
 .hpc.cur{outline:2px solid #ffd479;outline-offset:1px}
+/* 2027.01.68: 교재 동의어 한눈에 */
+.ensum .tbhead{font-size:.86em;color:#cfe0f5;margin-bottom:4px}.ensum .tbhead b{color:#ff8fa0}
+.ensum .tbsum{display:flex;flex-direction:column;gap:4px}
+.ensum .tbg{display:flex;align-items:baseline;gap:8px}
+.ensum .tbl{flex:0 0 auto;min-width:92px;max-width:210px;font-size:.78em;font-weight:700;border-radius:6px;padding:1px 7px;text-align:center}
+.ensum .tbg.tb .tbl,.ensum .tbg.tb2 .tbl{background:#f5c542;color:#2a2000}
+.ensum .tbc small{font-size:.7em;opacity:.75;margin-left:4px}.ensum .tbg.mvp .tbl{background:#c9d1dc;color:#1c2330}.ensum .tbg.dc .tbl{background:#2a2147;color:#cdb6ff}
+.ensum .tbcs{display:flex;flex-wrap:wrap;gap:4px 5px}
+.ensum .tbc{border-radius:7px;padding:1px 8px;font-size:.95em;white-space:nowrap}
+.ensum .tbc.ok{border:1px solid #2e7d6a;color:#7fe0c2}
+.ensum .tbc.miss{background:#e94560;color:#fff;font-weight:800;border:1px solid #ff8fa0}
+.ensum .tbc.miss i{font-style:normal;font-size:.72em;font-weight:600;margin-left:5px;opacity:.95}
+/* 2027.01.68: 오답에서 빼기 */
+.unwbtn{display:inline-block;margin:0 0 10px;background:#16213e;border:1px solid #5a6a8c;color:#cfe0f5;border-radius:9px;padding:6px 14px;font-family:inherit;font-size:.88em;cursor:pointer}
+.unwbtn.on{border-color:#4ecca3;color:#7fe0c2;background:#163a31}
 /* 2027.01.64: 묶음 */
 .chk{margin:8px 0 10px}
 .chkh{color:#cfe0f5;font-weight:700;font-size:.92em;margin-bottom:6px}.chkh small{color:#8fa8cc;font-weight:400;margin-left:6px}
@@ -1553,6 +1568,9 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 #todayBank .t{font-size:.9em;margin-bottom:4px}#todayBank .t b{font-size:1.05em}
 #todayBank .tbar{display:none}
 #todayBank .todayt{font-size:.8em;color:#8fa8cc;margin:0 0 6px}
+.halarm{display:flex;align-items:center;gap:10px;background:#3d1a1a;border:1px solid #e94560;border-radius:9px;padding:7px 11px;margin:0 0 8px;color:#ffd0d6;font-weight:700;font-size:.95em}
+.halarm b{color:#fff;font-size:1.15em}
+.bank .halarm button{flex:0 0 auto;margin-left:auto;background:#e94560;color:#fff;border-radius:8px;padding:6px 16px;font-size:.9em;min-height:0;font-weight:700}
 .hweek{margin:0 0 8px}.hwk{gap:3px}.hwd{padding:3px 4px;border-radius:7px;gap:0}.hwd b{font-size:.72em}.hwd span{font-size:.7em}.hwd em{display:none}
 #todayBank #resumeBank{margin:0 0 8px!important;padding:6px 10px!important;background:#163a31!important;border:1px solid #4ecca3!important;display:flex!important;flex-wrap:wrap;align-items:center;gap:6px 10px}
 #todayBank #resumeBank .t{margin:0;font-size:.86em;flex:0 0 auto;white-space:nowrap}
@@ -1955,6 +1973,7 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
     <div class="t" id="todayT"></div>
     <div class="tbar"><div class="tfill" id="todayFill"></div></div>
     <div class="todayt" id="todayTime" style="display:none"></div>
+    <div class="halarm" id="hAlarm" style="display:none"></div>
     <div class="hweek" id="hWeek" style="display:none"></div>
     <div id="hResAnchor"></div>
     <div class="hprog" id="hProg" style="display:none"></div>
@@ -2112,6 +2131,7 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
     <div class="seg" id="oseg">
       <button data-o="rand" class="on">랜덤</button>
       <button data-o="book">순서대로</button>
+      <button data-o="synm">동의어 많은 순</button>
     </div>
     <div class="stat" id="ostat"></div>
   </div>
@@ -2163,6 +2183,7 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
     <div id="qmissed"></div>
     <div id="synmodebar"><button id="againQ" class="modetog againtog" style="display:none">↻ 이번 회차에 다시 <kbd class="kk">Tab</kbd></button><button id="synmodetog" class="modetog">입력으로 풀기</button><span id="frneedbar" style="display:none"></span><span id="stylebar" class="stylebar" style="display:none"><button data-st="pick">고르기</button><button data-st="see">보며 쓰기</button><button data-st="write">직접 쓰기</button></span></div>
     <div id="ensum" class="ensum" style="display:none"></div>
+    <button id="unwBtn" class="unwbtn" style="display:none"></button>
     <div class="ch" id="ch"></div>
     <div class="winrow" id="synwrap" style="display:none">
       <input id="syninput" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="동의어를 입력하고 Enter">
@@ -2404,7 +2425,10 @@ var FRDATA=null, _frP=null, _frNset=false;
 var FRUNIT='unit';
 // 2027.01.29: 최종 복습 칸별 맞힐 개수 (재현님이 풀이 화면에서 정함) — 1 · 2 · 'all'(전부). 기본 뜻 1 · 같은 뜻 2 · 반대말 2
 var FRNEED={k:1, s:2, a:2};
-try{ var _fn0=JSON.parse(LS.getItem('voca_frneed')||'null'); if(_fn0) ['k','s','a'].forEach(function(x){ if(_fn0[x]===1||_fn0[x]===2||_fn0[x]==='all'||(x==='a'&&_fn0[x]==='off')) FRNEED[x]=_fn0[x]; }); }catch(e){}
+try{ var _fn0=JSON.parse(LS.getItem('voca_frneed')||'null'); if(_fn0) ['k','s','a'].forEach(function(x){ if(_fn0[x]===1||_fn0[x]===2||_fn0[x]==='all'||(x==='a'&&(_fn0[x]==='off'||_fn0[x]==='show'))) FRNEED[x]=_fn0[x]; }); }catch(e){}
+// 2027.01.68: 반대말 「보기만」(FRNEED.a='show') — 반대말 칸을 풀지 않고, 다 채점한 뒤 요약 상자에 정답만 보여 준다
+function frAShowStrip(q){ if(!q || !q.fr || FRNEED.a!=='show' || !q.opts) return; if(!q.opts.some(function(o){ return o.sec==='a'; })) return;
+  q.opts=frHide(q, function(o){ return o.sec!=='a'; }); q.ashow=1; if(q.only) q.only=q.only.filter(function(x){ return x!=='a'; }); q._one=null; q._st1=null; }
 // 2027.01.45: 반대말 「안 침」(FRNEED.a='off') — 풀고 결과는 보지만 정답/오답 · 다시 나오기 · 복습에 안 넣는다
 function frAOff(q){ return !!(q && q.fr && FRNEED.a==='off'); }
 // 2027.01.45: 반대말 보기마다 뜻 켜기/끄기 (채점 전) — 켜면 33~36처럼 보기마다 그 단어 교재 뜻
@@ -2420,7 +2444,7 @@ function frApplyNeed(q){
   function c(sc){ return q.opts.filter(function(o){ return (o.sec||'k')===sc && o.ok; }).length; }
   function nd(v,t){ return v==='all' ? t : Math.min(v,t); }
   var nk=c('k'), ns=c('s'), na=c('a');
-  q.needK=nk ? Math.max(1, nd(FRNEED.k, nk)) : (q.only ? 0 : 1); q.needS=ns ? nd(FRNEED.s, ns) : 0; q.needA=na ? nd(FRNEED.a==='off' ? 1 : FRNEED.a, na) : 0;
+  q.needK=nk ? Math.max(1, nd(FRNEED.k, nk)) : (q.only ? 0 : 1); q.needS=ns ? nd(FRNEED.s, ns) : 0; q.needA=na ? nd((FRNEED.a==='off'||FRNEED.a==='show') ? 1 : FRNEED.a, na) : 0;
 }
 function frNeedUI(){
   var el=$('frneedbar'); if(!el) return;
@@ -2428,7 +2452,7 @@ function frNeedUI(){
   if(!q || !q.fr || q.kind!=='en'){ el.style.display='none'; return; }
   var NM={k:'뜻', s:'같은 뜻', a:'반대말'};
   el.innerHTML='맞힐 개수 '+['k','s','a'].map(function(sc){
-    return NM[sc]+'<span class="fng">'+(sc==='a'?[1,2,'all','off']:[1,2,'all']).map(function(v){ return '<button data-sc="'+sc+'" data-v="'+v+'" class="'+(FRNEED[sc]===v?'on':'')+'">'+(v==='all'?'전부':v==='off'?'안 침':v)+'</button>'; }).join('')+'</span>';
+    return NM[sc]+'<span class="fng">'+(sc==='a'?[1,2,'all','off','show']:[1,2,'all']).map(function(v){ return '<button data-sc="'+sc+'" data-v="'+v+'" class="'+(FRNEED[sc]===v?'on':'')+'">'+(v==='all'?'전부':v==='off'?'안 침':v==='show'?'보기만':v)+'</button>'; }).join('')+'</span>';
   }).join('');
   el.innerHTML+='<span class="fngap"></span>반대말 보기 뜻<span class="fng"><button data-adef="0" class="'+(FRADEF?'':'on')+'">끔</button><button data-adef="1" class="'+(FRADEF?'on':'')+'">켬</button></span>';   // 2027.01.45
   el.innerHTML+='<span class="fngap"></span>보기<span class="fng"><button data-step="all" class="'+(FRSTEP==='all'?'on':'')+'">한꺼번에</button><button data-step="one" class="'+(FRSTEP==='one'?'on':'')+'">한 칸씩</button></span>';
@@ -2436,9 +2460,9 @@ function frNeedUI(){
 }
 function frNeedSet(sc, v){
   if(!(sc in FRNEED)) return;
-  FRNEED[sc]=(v==='all')?'all':(v==='off' && sc==='a')?'off':parseInt(v,10);
+  FRNEED[sc]=(v==='all')?'all':(v==='off' && sc==='a')?'off':(v==='show' && sc==='a')?'show':parseInt(v,10);
   try{ LS.setItem('voca_frneed', JSON.stringify(FRNEED)); }catch(e){}
-  try{ (Q||[]).forEach(function(x, i){ if(x && x.fr && ans[i]===null) frApplyNeed(x); }); sessionSave(); }catch(e){}
+  try{ (Q||[]).forEach(function(x, i){ if(x && x.fr && ans[i]===null){ frAShowStrip(x); frApplyNeed(x); } }); sessionSave(); if(FRNEED.a==='show' && Q && Q[qi] && ans[qi]===null) draw(); }catch(e){}
   frNeedUI();
   try{ typingRefocus(); }catch(e){}
 }
@@ -2570,7 +2594,7 @@ function frStage2(q){
 var FRSTEP='one';   // 2027.01.37: 처음부터 한 칸씩 (재현님: 한 문제 안에서 화면이 딱딱 바뀌게)
 try{ var _fs0=LS.getItem('voca_frstep2'); if(_fs0==='one'||_fs0==='all') FRSTEP=_fs0; }catch(e){}
 var _SECC={enk:'k', ens:'s', enn:'n', ena:'a', enc:'c'};
-function frOneOn(q){ return !!(q && q.fr && q.kind==='en' && FRSTEP==='one'); }   // 2027.01.37: 직접 쓰기도
+function frOneOn(q){ return !!(q && q.fr && q.kind==='en' && FRSTEP==='one' && !q.short); }   // 2027.01.37: 직접 쓰기도
 function frOneInit(q){
   if(q._one) return q._one;
   var steps=['k','s','n','a'].filter(function(sc){ return q.opts.some(function(o){ return (o.sec||'k')===sc; }); });
@@ -3017,6 +3041,7 @@ function buildFr(w, opt){
       if(f.some(function(o){ return o.ok && (o.sec||'k')!=='c'; })){ q.opts=frHide(q, function(o){ return keep[o.sec||'k']; }); q.only=Object.keys(keep).filter(function(x){ return x!=='c'&&x!=='n'; }); }
     }
   }catch(e){}
+  frAShowStrip(q);   // 2027.01.68: 반대말 보기만
   frApplyNeed(q);   // 2027.01.29: 칸별 맞힐 개수 설정
   return q;
 }
@@ -3032,6 +3057,7 @@ function enHidRow(q, sc, NM){
     else if(sc==='a') rest.push('<span class="eso">'+esc(o.t)+'<span class="est dc">사전</span></span>');
     else rest.push('<span class="eso">'+esc(o.t)+'</span>');
   });
+  if(sc==='a' && q.ashow) return '<div class="esr esold"><span class="esk na">· '+NM[sc]+'</span><span class="esv"><span class="esoldt">풀지 않고 보기만</span><br>'+tb.concat(mv, rest).join(' · ')+'</span></div>';
   return '<div class="esr esold"><span class="esk na">✓ '+NM[sc]+'</span><span class="esv"><span class="esoldt">지난번 맞힘 · 이번엔 안 나옴</span><br>정답 '+tb.concat(mv, rest).join(' · ')+'</span></div>';
 }
 // 정답 확인 뒤 (영어 → 뜻 · 최종 복습): 칸별 요약 상자 · 맞힌 칸 접기 · 문맥 칸 해석
@@ -3046,7 +3072,12 @@ function enRevealExtra(q, a){
     if(!os.length){ if(q.hid && (sc==='k'||sc==='s'||sc==='a')) h+=enHidRow(q, sc, NM); return; }
     var v=a.en[sc]; if(v===undefined) return;
     if(v===-1 && sc!=='c') return;
-    var ok=(v===1), bad=[], nuP=[], rights=[], tbR=[], mvR=[];   // 2027.01.45: 교재 동의어 정답(tbR)을 맨 앞에 · 01.57: 그다음 MVP(mvR)
+    var ok=(v===1), bad=[], nuP=[], rights=[], tbR=[], mvR=[], _G={}, _GO=[], _gn=0, _gm=0;
+    var _mo=null; try{ _mo=(STATS[q.w.w]||{}).mo||null; }catch(e){}
+    var _gput=function(lab, cls, o, p, note){ if(!_G[lab]){ _G[lab]={cls:cls, c:[]}; _GO.push(lab); }
+      var m=_mo && _mo[frMissKey(o)], cnt=(m && m.c)||0, nt=note ? '<small>'+esc(note)+'</small>' : '';
+      var chip = p ? '<span class="tbc ok">'+esc(o.t)+nt+(o.show?'':' ✓')+'</span>' : '<span class="tbc miss">'+esc(o.t)+nt+'<i>놓침'+(cnt>=2?' '+cnt+'번째':'')+'</i></span>';
+      if(p) _G[lab].c.push(chip); else _G[lab].c.unshift(chip); };   // 2027.01.45: 교재 동의어 정답(tbR)을 맨 앞에 · 01.57: 그다음 MVP(mvR)
     if(sc==='a' && a.en.ao) ok=(a.en.ar===1);   // 반대말 안 침: 실제 결과로 표시
     var ambL=[];
     os.forEach(function(x){ var o=x[0], p=!!picked[x[1]];
@@ -3055,7 +3086,13 @@ function enRevealExtra(q, a){
         var tg='';
         var sr=null; if(sc==='s'){ sr=frSrcOf(q, o); tg=sr.tb ? '<span class="est tb">교재</span>' : '<span class="est dc">사전</span>'; }
         else if(sc==='a') tg='<span class="est dc">사전</span>';
-        var mk = sc==='c' ? '' : (p ? '<span class="esm">✓</span>' : '<span class="esm x">놓침</span>');
+        var mk = (sc==='c' || o.show) ? '' : (p ? '<span class="esm">✓</span>' : '<span class="esm x">놓침</span>');
+        if(q.fr && sc==='s' && sr){   // 2027.01.68: 같은 뜻 정답을 출처 · 뜻 줄별로 묶어서 한눈에
+          if(sr.tb){ _gn++; if(!p) _gm++; }
+          if(sr.tb && sr.mvp) _gput('MVP', 'mvp', o, p);
+          else if(sr.tb){ var _ds=frTbSense(q, o); if(_ds) _gput('교재 「'+_ds+'」', 'tb', o, p); else _gput('교재 · 다른 강', 'tb2', o, p, sr.lec||''); }
+          else _gput('사전', 'dc', o, p);
+        }
         if(sc==='s' && sr && sr.tb && sr.mvp) mvR.push('<span class="eso tbs"><span class="est tb pre mvp">MVP</span>'+esc(o.t)+mk+'</span>');   // 2027.01.57
         else if(sc==='s' && tg.indexOf('est tb')>=0) tbR.push('<span class="eso tbs"><span class="est tb pre">교재</span>'+esc(o.t)+mk+'</span>');   // 2027.01.35: 교재 동의어는 앞에 굵게 · 01.45: 맨 앞에
         else rights.push('<span class="eso">'+esc(o.t)+tg+mk+'</span>');
@@ -3066,12 +3103,20 @@ function enRevealExtra(q, a){
     (a.wr||[]).forEach(function(e){ if(e.i<0 && (e.sec||'k')===sc){ if(e.st==='x') bad.push('<b>'+esc(e.t)+'</b>'); else if(e.st==='o') rights.push('<span class="eso">'+esc(e.t)+'<span class="esm">✓ 직접 씀</span></span>'); } });
     rights=tbR.concat(mvR, rights);
     var txt='정답 '+rights.join(' · ');
+    if(q.fr && sc==='s' && _GO.length){
+      var _ord=function(l){ var c=_G[l].cls; return c==='tb'?0:c==='tb2'?1:c==='mvp'?2:3; };
+      _GO.sort(function(a,b){ return _ord(a)-_ord(b); });
+      txt=(_gn ? '<div class="tbhead">'+((q.short && q.short.done) ? '교재 동의어 '+_gn+'개'+(_gm ? ' · <b>놓친 것 '+_gm+'개</b>' : '') : '교재 동의어 '+_gn+'개 중 '+(_gn-_gm)+'개 고름'+(_gm ? ' · <b>놓친 것 '+_gm+'개</b>' : ' · 다 골랐어요'))+'</div>' : '')
+        +'<div class="tbsum">'+_GO.map(function(l){ return '<div class="tbg '+_G[l].cls+'"><span class="tbl">'+esc(l)+'</span><span class="tbcs">'+_G[l].c.join('')+'</span></div>'; }).join('')+'</div>';
+      var _wrT=(a.wr||[]).filter(function(e){ return e.i<0 && (e.sec||'k')===sc && e.st==='o'; }).map(function(e){ return esc(e.t); });
+      if(_wrT.length) txt+='<div class="tbg dc"><span class="tbl">직접 씀</span><span class="tbcs">'+_wrT.map(function(t){ return '<span class="tbc ok">'+t+' ✓</span>'; }).join('')+'</span></div>';
+    }
     if(sc==='a' && a.en.ao) txt+=' <span class="esm x">(채점 안 함)</span>';
     if(sc==='c') txt+=' <span class="esm x">(채점 안 함)</span>';
     if(bad.length) txt+='<span class="esw">틀리게 고름 '+bad.join(', ')+'</span>';
     if(nuP.length) txt+='<span class="esw">△ 비슷하지만 다름 고름 '+nuP.join(', ')+' (오답 아님)</span>';
     if(ambL.length) txt+='<span class="esw">애매 '+ambL.join(', ')+' (오답 아님)</span>';
-    var hk = sc==='c' ? '<span class="esk na">· '+NM[sc]+'</span>' : '<span class="esk '+(ok?'ok':'no')+'">'+(ok?'✓ ':'✗ ')+NM[sc]+'</span>';
+    var hk = (sc==='c' || (q.short && q.short.done && sc!==q.short.sec)) ? '<span class="esk na">· '+NM[sc]+'</span>' : '<span class="esk '+(ok?'ok':'no')+'">'+(ok?'✓ ':'✗ ')+NM[sc]+'</span>';
     h+='<div class="esr">'+hk+'<span class="esv">'+txt+'</span></div>';
   });
   var el=$('ensum'); if(el){ el.innerHTML=h; el.style.display=h?'':'none'; }
@@ -4909,8 +4954,18 @@ function statsSave(){
 }
 // 간격반복(SRS): 연속 정답 단계별로 복습 간격을 늘림 (분 단위)
 var SRS_STEPS=[0, 1440, 4320, 10080, 21600, 43200]; // 0분,1일,3일,7일,15일,30일
+function srsDayOf(t){ var d=new Date(t-4*3600000); return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); }   // 새벽 4시에 날이 바뀌는 걸로 센다
+function srsNext4(t){ var d=new Date(t); var n=new Date(d.getFullYear(), d.getMonth(), d.getDate(), 4, 0, 0, 0).getTime(); return n>t ? n : n+86400000; }
 function srsSchedule(rec, correct){
   var now=Date.now();
+  if(REC==='fr'){   // 2027.01.68: 최종 복습
+    if(!correct){ rec.pdue=rec.due||0; rec.pstreak=rec.streak||0; rec.pwd=rec.wd||'';   // 「오답에서 빼기」로 되돌릴 때 쓰는 이전 값
+      rec.streak=0; rec.wd=srsDayOf(now); rec.due=srsNext4(now); rec.last=now; return; }   // 틀림 → 다음 날 복습에
+    if(rec.wd===srsDayOf(now)){ rec.last=now; return; }   // 오늘 틀린 단어를 같은 날 다시 맞힌 건 복습 날짜를 안 민다
+    rec.streak=(rec.streak||0)+1;
+    var FS=[4320, 10080, 21600, 43200];   // 3일 · 7일 · 15일 · 30일
+    rec.due=now + FS[Math.min(rec.streak-1, FS.length-1)]*60000; rec.last=now; return;
+  }
   if(correct){
     rec.streak=(rec.streak||0)+1;
     var step=Math.min(rec.streak, SRS_STEPS.length-1);
@@ -5653,7 +5708,7 @@ setInterval(function(){
   }catch(e){}
 },1500);
 
-var APP_VER = '2027.01.67';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
+var APP_VER = '2027.01.69';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
 var VER = APP_VER;  // 데이터 URL 캐시 키. 배포 때만 바뀌므로 브라우저 캐시가 제대로 재사용됨
 function loadJ(p){
   // 데이터 파일은 URL에 버전(v=)이 붙어 캐시가 자동 갱신되므로 브라우저 캐시를 허용한다.
@@ -5901,27 +5956,43 @@ function startBoot(){
 
 // 출제 대상(단어/표현/둘다)에 맞게 항목 거르기
 // ── 문제 순서 (랜덤 / 순서대로) ──
-var ORDER=(function(){ try{ return LS.getItem('voca_order')==='book' ? 'book' : 'rand'; }catch(e){ return 'rand'; } })();
+var ORDER=(function(){ try{ var v=LS.getItem('voca_order'); return (v==='book'||v==='synm') ? v : 'rand'; }catch(e){ return 'rand'; } })();
 var ORDER_T=(function(){ try{ return +LS.getItem('voca_order_t')||0; }catch(e){ return 0; } })();
 function orderApply(v){
-  ORDER=(v==='book')?'book':'rand';
+  ORDER=(v==='book'||v==='synm')?v:'rand';
+  if(ORDER==='synm'){ try{ frDataLoad(); }catch(e){} }
   try{ LS.setItem('voca_order', ORDER); LS.setItem('voca_order_t', String(ORDER_T)); }catch(e){}
   try{ $('oseg').querySelectorAll('button').forEach(function(x){ x.classList.toggle('on', x.dataset.o===ORDER); }); ordStat(); }catch(e){}
 }
 var ORDPOS={};   // 순서대로: 범위마다 다음에 시작할 자리
 try{ ORDPOS=JSON.parse(LS.getItem('voca_ordpos')||'{}')||{}; }catch(e){ ORDPOS={}; }
-function ordKey(){ return (st.mode||'')+'|'+keys().join(',')+'|'+(st.target||''); }
+function ordKey(){ return (st.mode||'')+'|'+keys().join(',')+'|'+(st.target||'')+(ORDER==='synm'?'|synm':''); }
+// 2027.01.69: 동의어 많은 순: 교재 동의어(이 단어 항목 + 다른 항목에 이 단어가 실린 것, MVP 포함) 개수가 많은 단어부터 · 같으면 교재 순서
+function synCntOf(w){ try{ var o={}, k=frKey(w); frTbSyns(w).forEach(function(t){ o[t]=1; }); frTbRev(k).forEach(function(x){ o[String(x[0]).toLowerCase().trim()]=1; }); delete o[k]; return Object.keys(o).length; }catch(e){ return 0; } }
+function synSort(list){ return (list||[]).map(function(w,i){ return [synCntOf(w), i, w]; }).sort(function(a,b){ return (b[0]-a[0]) || (a[1]-b[1]); }).map(function(x){ return x[2]; }); }
+function ordName(){ return ORDER==='book' ? '순서대로' : ORDER==='synm' ? '동의어 많은 순' : '랜덤'; }
 function ordGet(k){ var v=ORDPOS[k]; return (v && typeof v==='object') ? (v.a|0) : (v|0); }
 function ordSet(k, a){ ORDPOS[k]={a:a, t:Date.now()}; try{ LS.setItem('voca_ordpos', JSON.stringify(ORDPOS)); }catch(e){} if(typeof syncSoon==='function') syncSoon(); }
 // 순서대로면 지난번 끝난 다음부터 n개 (남은 게 n보다 적으면 남은 것만, 다 풀면 처음으로)
 // ── 2027.01.66: 홈 한 상자 — 진도 한 줄 · 모드 · 설정까지 오늘 상자 안으로 (아래 칸 없앰) ──
 var _CHKINFO=null, _CHKOPEN=false;
 document.addEventListener('click', function(e){ var t=e.target; if(t && t.closest && t.closest('#hSet') && t.tagName==='BUTTON'){ setTimeout(function(){ try{ hSetSumUI(); chunkUI(); hProgUI(); }catch(x){} }, 0); } });
+// 2027.01.68: 복습 알림 — 최종 복습에서 틀린 단어가 복습할 날이 되면 오늘 상자 맨 위에
+function hAlarmUI(){
+  var el=$('hAlarm'); if(!el) return;
+  var n=0; try{ if(RS.fr) n=recWith('fr', function(){ return dueList().length; }); }catch(e){}
+  if(!n){ el.style.display='none'; el.innerHTML=''; return; }
+  el.innerHTML='<span>⏰ 최종 복습 · 오늘 복습할 단어 <b>'+n+'</b>개</span><button id="hAlarmGo">지금 풀기</button>';
+  el.style.display='';
+}
+document.addEventListener('click', function(e){ var t=e.target; if(!t || !t.closest || !t.closest('#hAlarmGo')) return;
+  if(st.mode!=='fr'){ var mb=document.querySelector('#mseg button[data-m="fr"]'); if(mb) mb.click(); }
+  startDue(); });
 function hSetSumUI(){
   var el=$('hSetSum'); if(!el) return;
   var tg=[]; var tb=document.querySelector('#tseg button.on'); if(tb) tg.push(tb.textContent.trim());
   tg.push(st.n ? st.n+'문제' : '전체');
-  if(['syn','quiz','write','copy','en'].indexOf(st.mode)>=0 || (st.mode==='fr' && FRUNIT==='unit')) tg.push(ORDER==='book'?'순서대로':'랜덤');
+  if(['syn','quiz','write','copy','en'].indexOf(st.mode)>=0 || (st.mode==='fr' && FRUNIT==='unit')) tg.push(ordName());
   if(st.mode==='fr') tg.push(FRUNIT==='box'?'뜻 상자 단위':'강 단위');
   var sw=document.querySelector('#swseg button.on'); if(sw && $('fswap') && getComputedStyle($('fswap')).display!=='none') tg.push(sw.textContent.trim());
   var open=$('hSet') && $('hSet').style.display!=='none';
@@ -6038,7 +6109,8 @@ function rvUI(){
       var rows=recWith(recOfMode(st.mode), function(){ return L.map(function(r){
         return '<div class="lstrow"><span class="lw">'+esc(r.w)+'</span><span class="lm">'+esc(String(r.m||'').split('/')[0].trim())+' · '+esc(rvInfo(_RVOPEN, r))+'</span>'
           +(K.del ? '<button class="lstdel" data-rvdel="'+esc(r.w)+'">삭제</button>' : '')+'</div>'; }).join(''); });
-      lst='<div class="hrvlist"><div class="lstrow"><span class="lm hrvwhy">'+K.nm+' '+L.length+'개 — '+esc(K.why)+'</span>'
+      var _whyT=(K.k==='due' && st.mode==='fr') ? '최종 복습에서 틀린 단어는 다음 날(새벽 4시 뒤)부터 떠요 · 복습에서 맞히면 3일 → 7일 → 15일 → 30일 뒤에 다시' : K.why;
+      lst='<div class="hrvlist"><div class="lstrow"><span class="lm hrvwhy">'+K.nm+' '+L.length+'개 — '+esc(_whyT)+'</span>'
         +(_RVOPEN==='ewr' ? '<button class="lstclr hrvics" data-rvics="1">📅 3일마다 알림</button>' : '')
         +(K.del ? '<button class="lstclr" data-rvall="1">전체 삭제</button>' : '')+'</div>'+rows+'</div>';
     }
@@ -6080,7 +6152,7 @@ document.addEventListener('click', function(e){
   if(t.closest('#hWeek .hwd')){ var b=$('calGo'); if(b) b.click(); }
 });
 // 홈으로 돌아올 때마다 (오늘 상자를 다시 그릴 때) 달력 · 복습 줄 · 묶음도 같이
-var _todayUI0=todayUI; todayUI=function(){ _todayUI0.apply(this, arguments); try{ homeTidy(); hubTidy(); hWeekUI(); rvUI(); chunkUI(); hProgUI(); hSetSumUI(); }catch(e){} };
+var _todayUI0=todayUI; todayUI=function(){ _todayUI0.apply(this, arguments); try{ homeTidy(); hubTidy(); hWeekUI(); rvUI(); chunkUI(); hProgUI(); hSetSumUI(); hAlarmUI(); }catch(e){} };
 // 홈 칸 옮기기 (한 번만): 진도 아래 정보 줄 · 이어서 풀기를 오늘 상자로, 아래 「진도 · 시작」은 숨긴다(위 오늘 상자와 같은 칸)
 function homeTidy(){
   try{
@@ -6108,12 +6180,14 @@ function chunkPick(list, n){
   CHUNK_LAST={k:k, i:i, n:n, start:start, total:list.length, mode:st.mode, key:st.key, cum:!!st.cum, ws:out.map(function(w){ return w.w; })};
   try{ LS.setItem('voca_chunklast', JSON.stringify(CHUNK_LAST)); }catch(e){}
   try{ ordStat(); }catch(e){}
-  return ORDER==='book' ? out : shuf(out);
+  return ORDER==='rand' ? shuf(out) : out;
 }
 function chunkLabel(i, n, total){ return (i*n+1)+'–'+Math.min((i+1)*n, total); }
 // 범위 단어(출제 대상까지 거른 것)를 교재 순서로
 function chunkWords(){
-  return Promise.all(keys().map(getDay)).then(function(cs){ var it=[]; (cs||[]).forEach(function(c){ it=it.concat(c||[]); }); return filterTarget(it); });
+  var p=Promise.all(keys().map(getDay)).then(function(cs){ var it=[]; (cs||[]).forEach(function(c){ it=it.concat(c||[]); }); return filterTarget(it); });
+  if(ORDER!=='synm') return p;
+  return Promise.all([p, frDataLoad()]).then(function(r){ return synSort(r[0]); });
 }
 // 그 단어들 중 지금 남은 오답 (틀린 것만 다시에 쓰는 오답 목록)
 function chunkWrongOf(ws){
@@ -6154,7 +6228,7 @@ function chunkUI(){
       rvh+='<div class="chkcrit">복습할 단어 = 이 묶음에서 틀리고, 그 뒤 다른 회차에서 처음 나왔을 때 아직 못 맞힌 단어'+(st.mode==='fr'?' (최종 복습은 한 칸이라도 틀리면 · 뜻을 일부만 맞혀도 들어가요)':'')+'. 그렇게 한 번 맞히면 빠져요. 같은 회차 안에서 다시 나와 맞힌 건 안 빠져요.</div>'
         +'<div class="chkrvl">'+rows.join('')+'</div>';
     }
-    box.innerHTML='<div class="chkline"><span class="chkh">묶음 '+n+'개씩</span><div class="chkg">'+h+'</div></div>'+rvh;
+    box.innerHTML='<div class="chkline"><span class="chkh">묶음 '+n+'개씩'+(ORDER==='synm'?' · 동의어 많은 순':'')+'</span><div class="chkg">'+h+'</div></div>'+rvh;
     box.style.display='';
     try{ hProgUI(); }catch(e){}
   }).catch(function(){});
@@ -6206,8 +6280,9 @@ document.addEventListener('click', function(e){
 });
 
 function pickOrder(list, n){
+  if(ORDER==='synm') list=synSort(list);
   if(chunkOn() && list.length>n) return chunkPick(list, n);   // 2027.01.64: 묶음
-  if(ORDER!=='book') return shuf(list).slice(0, n);
+  if(ORDER==='rand') return shuf(list).slice(0, n);
   if(n>=list.length){ ordSet(ordKey(), 0); return list.slice(); }
   var k=ordKey(), at=ordGet(k);
   if(at>=list.length) at=0;
@@ -6218,9 +6293,9 @@ function pickOrder(list, n){
 }
 function ordStat(){
   var el=$('ostat'); if(!el) return;
-  if(ORDER!=='book'){ el.textContent='섞어서 냅니다'; return; }
-  var at=ordGet(ordKey());
-  el.textContent = at ? ('교재 순서 · 이번엔 '+(at+1)+'번째 단어부터 (지난번 이어서)') : '교재 순서 · 처음부터';
+  if(ORDER==='rand'){ el.textContent='섞어서 냅니다'; return; }
+  var at=ordGet(ordKey()), nm=(ORDER==='synm') ? '고른 범위 안에서 교재 동의어가 많은 단어부터' : '교재 순서';
+  el.textContent = at ? (nm+' · 이번엔 '+(at+1)+'번째 단어부터 (지난번 이어서)') : (nm+' · 처음부터');
 }
 function filterTarget(items){
   if(st.target==='word') return items.filter(function(x){return x.type==='word';});
@@ -8121,11 +8196,11 @@ function sessionSave(quiet){
       var _un=(ans[_ix]===null || ans[_ix]===undefined), _ps=null;
       if(_un && _ix===qi){ _ps=[]; for(var _k in sel) if(sel[_k]) _ps.push(+_k); if(!_ps.length) _ps=null; }
       return _slim({
-        hid:q.hid||null, one:(_un && q._one) ? JSON.parse(JSON.stringify(q._one)) : null, st1:(_un && q._st1) ? JSON.parse(JSON.stringify(q._st1)) : null, psel:_ps,
+        hid:q.hid||null, ashow:q.ashow||null, short:q.short||null, one:(_un && q._one) ? JSON.parse(JSON.stringify(q._one)) : null, st1:(_un && q._st1) ? JSON.parse(JSON.stringify(q._st1)) : null, psel:_ps,
         wid: q.w.id, wkey: q.w.w,
         opts: q.opts.map(function(o){
           if(typeof o==='string') return o;
-          var oo=_slim({t:o.t, ok:o.ok, sense:o.sense, def:o.def, srcw:o.srcw, fin:o.fin, fn:o.fn, mis:o.mis, sec:o.sec, fr:o.fr, box:o.box});
+          var oo=_slim({t:o.t, ok:o.ok, sense:o.sense, def:o.def, srcw:o.srcw, fin:o.fin, fn:o.fn, mis:o.mis, sec:o.sec, fr:o.fr, box:o.box, show:o.show});
           if(o.item) oo.item=o.item;               // 뜻 → 영어: 정답 단어가 나온 자리
           return oo;
         }),
@@ -8285,6 +8360,8 @@ function _qdRestore(q, qd){
   if(qd.only) q.only=qd.only; if(qd.smix) q.smix=qd.smix;
   if(qd.cfun) q.cfun=qd.cfun;
   if(qd.hid) q.hid=qd.hid;   // 2027.01.61: 이번엔 안 나온 칸의 정답
+  if(qd.short) q.short=qd.short;
+  if(qd.ashow) q.ashow=1;
   // 2027.01.52: 푸는 중이던 칸 상태 (번호가 보기 수를 넘으면 버린다)
   var _n=(q.opts||[]).length, _okI=function(a){ return !a || a.every(function(i){ return typeof i==='number' && i>=0 && i<_n; }); };
   if(qd.one && qd.one.steps && _okI(qd.one.chosen)) q._one=qd.one;
@@ -8331,6 +8408,20 @@ function retryWrong(){
     return;
   }
   var list = wrongs.map(function(x){ return x.w; });
+  if(st.mode==='fr' && FRDATA){
+    var _prev={}; Q.forEach(function(q,i){ if(q && q.w && q.kind==='en' && q.fr && !q.again && !q.short && ans[i] && !_prev[q.w.w]) _prev[q.w.w]={q:q, a:ans[i]}; });
+    var _fo2=(FRUNIT==='unit') ? {swap:!!SWAP.fr, half:SWAP.fr===1} : {}, _nQ=[];
+    wrongs.forEach(function(x){ if(!x || !x.w) return; var P=_prev[x.w.w], nq=null;
+      if(P){ try{ nq=frAgainQ(P.q, P.a); }catch(e){ nq=null; } }
+      if(!nq){ try{ nq=buildFr(x.w, _fo2); }catch(e){ nq=null; } }
+      if(nq){ delete nq.again; delete nq.why; _nQ.push(nq); } });
+    if(_nQ.length){
+      SRC='retry'; try{ qtStart(); }catch(e){}
+      Q=_nQ; qi=0; ans=new Array(Q.length).fill(null); wrongs=[]; fin=false; MOPUP=false;
+      hide(); show('qscr'); draw(); sessionSave();
+      return;
+    }
+  }
   SRC='retry';
   // 오답 선지가 부족하지 않게 전체 풀 확보 후 출제
   buildFullPool().then(function(){
@@ -9045,6 +9136,7 @@ function enFinish(q, chosen, wr){
   ans[qi]={sel:chosen, ok:ok, en:{k:R.k.ok?1:0, s:(R.s.tot ? (R.s.ok?1:0) : -1), st:styleOf(q)}};
   if(_nuOnly) ans[qi].nu=1;
   if(q.fr){ ans[qi].en.a=R.a.tot?(R.a.ok?1:0):-1; ans[qi].en.n=R.n.tot?(R.n.ok?1:0):-1; ans[qi].en.c=-1; if(R.a.off){ ans[qi].en.ao=1; ans[qi].en.ar=R.a.raw?1:0; } }
+  if(q.fr && q.short){ try{ frShortDone(q); }catch(e){ try{ replay(); }catch(e2){} } try{ applySynMode(); }catch(e){} score(); maybeShowFinishBtn(); sessionSave(); return; }   // 2027.01.69: 짧은 문제: 기록은 안 남기고, 긴 문제의 정보를 그대로 펼쳐 보여 준다
   if(wr) ans[qi].wr=wr;
   // 잘못 고른 단어 (동의어 칸) — 동의어 매칭과 같은 방식, 영어 → 뜻 기록에
   try{
@@ -9068,7 +9160,9 @@ function enFinish(q, chosen, wr){
       if(R.n.tot){ if(R.n.ok) r.nR=(r.nR||0)+1; else r.nW=(r.nW||0)+1; }
       // 문맥 칸은 채점 안 함 → 기록도 안 남긴다 (2027.01.25)
       if(ok) r.frDone=1;
-      r.frw={k:R.k.ok?1:0, s:R.s.tot?(R.s.ok?1:0):-1, a:R.a.tot?(R.a.ok?1:0):-1, t:Date.now()};   // 2027.01.36: 칸별 마지막 결과 — 복습 때 틀린 칸만
+      var _nf={k:R.k.ok?1:0, s:R.s.tot?(R.s.ok?1:0):-1, a:R.a.tot?(R.a.ok?1:0):-1, t:Date.now()};
+      if(q.again && r.frw){ ['k','s','a'].forEach(function(sc){ if(r.frw[sc]===0) _nf[sc]=0; }); }   // 2027.01.68: 같은 회차에서 다시 맞혀도 오늘 틀린 칸은 남긴다
+      r.frw=_nf;   // 2027.01.36: 칸별 마지막 결과 — 복습 때 틀린 칸만
       frMissUpdate(q, chosen, r);   // 2027.01.40: 놓친 정답 보기 기억 (복습에서 꼭 나오게)
     } }catch(e){}
   synShownSave(q);
@@ -9331,12 +9425,15 @@ function againBadgeUI(q, revealed){
   if(q && (q.kind==='rev' || q.kind==='quiz' || q.kind==='ko') && q.again){ var rb=document.createElement('span'); rb.id='qagain'; rb.className='againtag'; rb.textContent='틀려서 다시 나온 문제'; t.appendChild(rb); return; }
   if(!q || (q.kind!=='syn' && q.kind!=='en') || !q.again) return;
   var why=q.why||'';
-  var txt = why.indexOf('w')>=0 && why.indexOf('m')>=0 ? '틀려서 다시 · 동의어도 늘림'
+  var txt = /^s[123]$/.test(why) ? '놓친 것만 다시 · '+why.charAt(1)+'/3'
+          : why.indexOf('c')>=0 ? '확인 문제 · 아까 틀렸다가 맞힌 단어'
+          : why.indexOf('i')>=0 ? '방금 틀린 문제 · 바로 다시'
+          : why.indexOf('w')>=0 && why.indexOf('m')>=0 ? '틀려서 다시 · 동의어도 늘림'
           : why.indexOf('w')>=0 ? '틀려서 다시 나온 문제'
           : why.indexOf('m')>=0 ? '동의어 늘려서 다시 나온 문제'
           : why.indexOf('u')>=0 ? '눌러서 다시 나온 문제'
           : '다시 나온 문제';
-  if(revealed && q.total){
+  if(revealed && q.total && !q.short){
     var n=(q.opts||[]).filter(function(o){ return o.ok && o.sec!=='k'; }).length;
     txt += ' · ' + (n>=q.total ? '동의어 '+q.total+'개 전부' : '동의어 '+q.total+'개 중 '+n+'개');
   }
@@ -9351,6 +9448,7 @@ function draw(){
   if(fin) return;
   var q=Q[qi];
   sel={};  // 이전 문제의 선택이 남지 않도록 초기화
+  try{ setTimeout(unwBtnUI, 0); }catch(e){}
   // next 버튼 상태 초기화
   var nx=$('next');
   if(nx){ nx.textContent='다음'; nx.classList.remove('fbtn'); }
@@ -9565,7 +9663,7 @@ function frMissUpdate(q, chosen, r){
     if(sc==='a' && frAOff(q)) return;   // 2027.01.45: 반대말 안 침이면 놓친 반대말은 기억 안 함
     var k=frMissKey(o);
     if(!pk[i]){ var c={}; ['t','sec','fr','fin','def','box','sense','n','lec'].forEach(function(f){ if(o[f]!==undefined) c[f]=o[f]; }); c.ok=true;
-      mo[k]={o:c, ss:(sc==='s' ? (q.ssense||'') : ''), ok:0, t:Date.now()}; }   // 놓침 → 기억 (연속 골라낸 횟수는 0부터)
+      mo[k]={o:c, ss:(sc==='s' ? (q.ssense||'') : ''), ok:0, t:Date.now(), c:((mo[k] && mo[k].c)||0)+1}; }   // c = 지금까지 놓친 횟수   // 놓침 → 기억 (연속 골라낸 횟수는 0부터)
     else if(mo[k]){ mo[k].ok=(mo[k].ok||0)+1; if(mo[k].ok>=MISS_FREE) delete mo[k]; }   // 골라냄 → 세 번 연속이면 풀림
   });
   if(Object.keys(mo).length) r.mo=mo; else delete r.mo;
@@ -9646,6 +9744,105 @@ function rebuildKeep(q, missed, exact){
   } else { nq.need=nq.opts.filter(function(x){ return x.ok; }).length; }
   return nq;
 }
+// 2027.01.69: 다시 나온 문제의 보기 = 지난번과 똑같이 (자리만 섞는다). extra가 있으면 칸마다 새 오답을 extra개까지 더한다 — 보기는 「똑같거나 더」만
+function frSameOpts(nq, q, extra){
+  try{
+    if(!nq || !q || !nq.fr || !q.fr || !nq.opts || !q.opts) return;
+    var secOf=function(o){ return o.sec||'k'; }, key=function(o){ return String(o.t).toLowerCase().trim(); };
+    var prev={}; q.opts.forEach(function(o){ if(o && !o.ok){ var s0=secOf(o); (prev[s0]=prev[s0]||[]).push(o); } });
+    var order=[], by={};
+    nq.opts.forEach(function(o){ var s=secOf(o); if(!by[s]){ by[s]=[]; order.push(s); } by[s].push(o); });
+    var out=[];
+    order.forEach(function(s){
+      var L=by[s];
+      if(s==='n' || !prev[s] || !prev[s].length){ out=out.concat(L); return; }
+      var oks=L.filter(function(o){ return o.ok; }), okSet={}; oks.forEach(function(o){ okSet[key(o)]=1; });
+      var oldSet={}, old=[];
+      prev[s].forEach(function(o){ var k=key(o); if(okSet[k] || oldSet[k]) return; oldSet[k]=1; var c={}; for(var f in o) if(f.charAt(0)!=='_') c[f]=o[f]; old.push(c); });
+      var add=(extra && s!=='c') ? L.filter(function(o){ return !o.ok && !oldSet[key(o)]; }).slice(0, extra) : [];
+      out=out.concat(shuf(oks.concat(old, add)));
+    });
+    nq.opts=out; nq._one=null; nq._st1=null;
+    nq.nk=nq.opts.filter(function(x){ return (x.sec||'k')==='k'; }).length;
+  }catch(e){}
+}
+// 2027.01.69: 조금 틀렸을 때: 놓친 것만 묻는 짧은 문제 — 표제어를 보여 주고 4개 중 놓친 것 하나 고르기 (바로 · 2문제 뒤 · 5문제 뒤)
+//   채점하면 원래 긴 문제의 보기 전체로 펼쳐서 뜻 · 동의어 정리 · 설명을 그대로 보여 준다 (이번에 묻지 않은 정답은 표시만)
+function _optCp(x){ var c={}; for(var f in x) if(f.charAt(0)!=='_' && f!=='amb' && f!=='show') c[f]=x[f]; return c; }
+function frMissTargets(q, a){
+  var picked={}; (Array.isArray(a.sel)?a.sel:[]).forEach(function(i){ picked[i]=1; });
+  var R=enSecStat(q, Array.isArray(a.sel)?a.sel:[], a.wr||null), list=[], heavy=false;
+  if((a.wr||[]).some(function(e){ return e.st==='x'; })) heavy=true;
+  ['k','s','a'].forEach(function(sc){
+    if(!a.en || a.en[sc]!==0) return;
+    var S=R[sc]; if(S.wrong>0){ heavy=true; return; }
+    var un=[]; q.opts.forEach(function(o,i){ if((o.sec||'k')===sc && o.ok && !picked[i] && !o.amb) un.push(o); });
+    var lack=Math.max(0, Math.min(S.need, S.tot||S.need)-S.right);
+    if(sc==='s'){ var tb=un.filter(function(o){ return frSrcOf(q,o).tb; }), rest=un.filter(function(o){ return tb.indexOf(o)<0; });
+      list=list.concat(tb); var more=Math.max(0, lack-tb.length); if(more>0) list=list.concat(rest.slice(0, more)); if(!tb.length && !more && un.length) list.push(un[0]); }
+    else list=list.concat(un.slice(0, Math.max(1, lack)));
+  });
+  if(list.length>=3 || !list.length) heavy=true;
+  return {heavy:heavy, list:list};
+}
+function frShortNo(q, o){ var sc=o.sec||'k'; return shuf(q.opts.filter(function(x){ return !x.ok && (x.sec||'k')===sc && x.fin!=='N' && !x.amb; })).slice(0,3); }
+function frShortQ(q, o, step, no){
+  try{
+    var sc=o.sec||'k'; if(!no || !no.length) return null;
+    var nq=rebuildKeep(q, keepOpts(q), true); if(!nq) return null;
+    nq.short={t:o.t, sec:sc, step:step, full:q.opts.map(_optCp), only:q.only?q.only.slice():null, hid:q.hid||null};
+    nq.opts=shuf([_optCp(o)].concat(no.map(_optCp)));
+    nq.only=[sc]; nq.hid=null; nq._one=null; nq._st1=null; nq.again=true; nq.why='s'+step;
+    frApplyNeed(nq); nq.needK=(sc==='k')?1:0; nq.needS=(sc==='s')?1:0; nq.needA=(sc==='a')?1:0;
+    return nq;
+  }catch(e){ return null; }
+}
+function frShortDone(q){
+  var a=ans[qi], S=q.short; if(!a || !S || S.done) return;
+  var key=function(o){ return (o.sec||'k')+'|'+String(o.t).toLowerCase().trim(); };
+  var full=(S.full||[]).map(_optCp), pk={}; (Array.isArray(a.sel)?a.sel:[]).forEach(function(i){ var o=q.opts[i]; if(o) pk[key(o)]=1; });
+  var tk=S.sec+'|'+String(S.t).toLowerCase().trim(), sel=[];
+  full.forEach(function(o,i){ var k=key(o);
+    if(k===tk){ if(pk[k]) sel.push(i); return; }
+    if(o.ok){ if((o.sec||'k')!=='c'){ o.show=1; sel.push(i); } }      // 이번에 묻지 않은 정답: 보여 주기만
+    else if(pk[k]) sel.push(i); });                                   // 짧은 문제에서 잘못 고른 보기
+  var en={k:-1, s:-1, a:-1, n:-1, c:-1, st:(a.en&&a.en.st)||'pick'};
+  full.forEach(function(o){ var sc=o.sec||'k'; if(o.ok && sc!=='c' && en[sc]===-1) en[sc]=1; });
+  en[S.sec]=a.ok?1:0;
+  q.opts=full; if(S.only) q.only=S.only.slice(); else delete q.only; q.hid=S.hid||null;
+  ans[qi]={sel:sel, ok:a.ok, en:en, short:1};
+  S.done=1; q._one=null; q._st1=null;
+  try{ frApplyNeed(q); }catch(e){}
+  draw();
+  try{ var _fb=$('fb'); if(_fb){ _fb.textContent = a.ok ? ('✅ 맞혔어요  ·  놓친 것만 다시 '+S.step+'/3') : ('❌ 또 놓쳤어요  ·  정답은 '+S.t); _fb.style.color = a.ok ? '#4ecca3' : '#e94560'; } }catch(e){}
+}
+// 틀려서 다시 낼 문제: 지난번과 같은 정답 · 같은 보기, 틀린 칸만 (같은 회차 안 바로 다시 · 「틀린 것만 다시」 회차에서 같이 쓴다)
+function frAgainQ(q, a){
+  var nq=null; try{ nq=rebuildKeep(q, keepOpts(q), true); }catch(e){} if(!nq) return null;
+  if(nq.kind==='en' && nq.fr && a && a.en){
+    var _ws=['k','s','a'].filter(function(sc){ return a.en[sc]===0; });
+    if(!_ws.length && a.part) _ws=['k'];
+    if(_ws.length){
+      var _okS={c:1, n:1}; _ws.forEach(function(sc){ _okS[sc]=1; });
+      var _f=nq.opts.filter(function(x){ return _okS[x.sec||'k']; });
+      if(_f.some(function(x){ return x.ok && (x.sec||'k')!=='c'; })){ nq.opts=frHide(nq, function(x){ return _okS[x.sec||'k']; }); nq.only=_ws.slice(); nq._one=null; nq._st1=null; }
+    }
+  }
+  frSameOpts(nq, q, 0);
+  return nq;
+}
+// 2027.01.68: 이 교재 동의어가 표제어의 어느 뜻 줄에 실렸는지
+function frTbSense(q, o){
+  try{ var t=String(o.t).toLowerCase().trim(), P=(q.w && q.w.p)||[];
+    for(var i=0;i<P.length;i++){ if((P[i].s||[]).some(function(x){ return String(x).toLowerCase().trim()===t; })) return String(P[i].d||''); } }catch(e){}
+  return '';
+}
+// 2027.01.68: 외울 게 많은 단어 = 교재 뜻이 3개 이상이거나 교재(MVP 포함) 동의어가 3개 이상
+function frHeavy(w){
+  try{ var nm=String(w.m||'').split('/').filter(function(x){ return x.trim(); }).length;
+    var set={}; frTbSyns(w).forEach(function(t){ set[t]=1; }); frTbRev(frKey(w)).forEach(function(x){ set[x[0]]=1; });
+    return nm>=3 || Object.keys(set).length>=3; }catch(e){ return false; }
+}
 function requeueSyn(q){
   if(!q || (q.kind!=='syn' && q.kind!=='en') || !q.w) return;
   // (예전엔 「틀린 것만 다시」에서는 한 번씩만 냈다 → 2027.01.08부터 1회차처럼 틀리면 맞힐 때까지 다시 낸다)
@@ -9654,12 +9851,31 @@ function requeueSyn(q){
   var r=STATS[q.w.w];
   var seenN=(r&&r.shown)||0;
   var more=!!(q.total && seenN<q.total);          // 아직 못 본 동의어가 남았다
-  if(!wrong && !more) return;                     // 맞혔고 동의어도 다 봤으면 끝 (이유가 둘이어도 한 번만 넣는다)
-  // 2027.01.62: 최종 복습은 같은 회차 안에서 3번까지만 다시 — 그래도 틀리면 이 회차에선 빼고 다음 복습(오늘 복습 · 틀린 것만 다시)으로
-  if(wrong && q.kind==='en' && q.fr){
-    var _rn=0; for(var _j=0;_j<=qi && _j<Q.length;_j++){ var _x=Q[_j]; if(_x && _x.again && _x.w && _x.w.w===q.w.w && String(_x.why||'').indexOf('w')>=0) _rn++; }
-    if(_rn>=3){ setTimeout(function(){ try{ var _fb=$('fb'); if(_fb && Q[qi]===q) _fb.textContent+='  ·  3번 다시 풀어도 틀려서 「오늘 복습」으로 넘겼어요'; }catch(e){} }, 0); return; }
+  // 2027.01.69: 최종 복습 회차 안 흐름
+  //   조금 틀림(놓친 것 1~2개 · 오답은 안 고름) → 놓친 것만 묻는 짧은 문제를 바로 · 2문제 뒤 · 5문제 뒤에 세 번
+  //   많이 틀림(놓친 것 3개 이상 · 오답을 고름) → 틀린 칸 전체를 바로 한 번 다시
+  //   그 뒤로는 이 회차에서 다시 안 낸다 → 회차가 끝나면 「틀린 것만 다시」에서 틀린 칸 전체를 (보기는 처음과 똑같이)
+  var _frWhy='', _frNext=false;
+  if(q.kind==='en' && q.fr){
+    if(q.short || q.again) return;
+    var _say=function(t){ setTimeout(function(){ try{ var _fb=$('fb'); if(_fb && Q[qi]===q) _fb.textContent+='  ·  '+t; }catch(e){} }, 0); };
+    if(wrong){
+      var _T=null; try{ _T=frMissTargets(q, a); }catch(e){ _T={heavy:true, list:[]}; }
+      if(!_T.heavy){
+        var _packs=_T.list.map(function(o){ return {o:o, no:frShortNo(q, o)}; });
+        if(_packs.every(function(p){ return p.no.length; })){
+          var _made=0, _P=_packs.length, _at=qi+1;
+          [1,2,3].forEach(function(step){
+            if(step===2) _at=_at+_P+2; else if(step===3) _at=_at+_P+3;
+            _packs.forEach(function(p, j){ var x=frShortQ(q, p.o, step, p.no); if(!x) return; var at=Math.min(_at+j, Q.length); Q.splice(at,0,x); ans.splice(at,0,null); _made++; });
+          });
+          if(_made){ try{ $('cnt').textContent=(qi+1)+' / '+Q.length; }catch(e){} _say('놓친 것만 짧게 세 번 다시 나와요'); return; }
+        }
+      }
+      _frNext=true; _frWhy='wi'; _say('틀린 칸을 바로 한 번 다시 풀어요');
+    }
   }
+  if(!wrong && !more) return;                     // 맞혔고 동의어도 다 봤으면 끝 (이유가 둘이어도 한 번만 넣는다)
   var nq=wrong ? rebuildKeep(q, keepOpts(q), true) : ((q.kind==='en') ? (q.fr ? buildFr(q.w, q.swo||{}) : buildEn(q.w, q.swo||{})) : q.isFin ? buildFinQ(q.w) : buildSyn(q.w, q.swo||{}));   // 같은 방식(자리 섞기 켬/끔 · 최종 정리)으로 다시 만든다 · 틀렸으면 놓친 정답을 꼭 넣어서 (2027.01.27)
   if(!nq) return;
   // 2027.01.58: 최종 복습에서 틀려서 다시 낼 때는 틀린 칸만 (반대말만 틀렸으면 반대말 칸만 · 놓친 정답은 그 칸에 그대로)
@@ -9671,9 +9887,10 @@ function requeueSyn(q){
       if(_f.some(function(x){ return x.ok && (x.sec||'k')!=='c'; })){ nq.opts=frHide(nq, function(x){ return _okS[x.sec||'k']; }); nq.only=_ws.slice(); nq._one=null; nq._st1=null; }
     }
   }
+  if(wrong && nq.kind==='en' && nq.fr) frSameOpts(nq, q, 0);   // 2027.01.69: 틀려서 다시 낼 때 보기는 지난번과 똑같이
   nq.again=true;                                  // 같은 시행 안에서 다시 나온 문제 — 오답 목록은 처음 판정으로만 정한다
-  nq.why=(wrong?'w':'')+(more?'m':'');            // w = 틀려서 · m = 동의어를 더 보여 주려고
-  var at=(nq.kind==='en' && nq.fr) ? requeueAt(2,4) : requeueAt();   // 2027.01.59: 최종 복습은 2~4문제 뒤
+  nq.why=_frWhy || ((wrong?'w':'')+(more?'m':''));   // w = 틀려서 · m = 동의어를 더 보여 주려고 · wi = 틀려서 바로 다음에 · c = 확인
+  var at=(nq.kind==='en' && nq.fr) ? (_frNext ? qi+1 : requeueAt(3,5)) : requeueAt();   // 최종 복습은 3~5문제 뒤 (뜻 · 교재 동의어가 많은 단어는 바로 다음에 먼저)
   Q.splice(at,0,nq);
   ans.splice(at,0,null);
   try{ $('cnt').textContent=(qi+1)+' / '+Q.length; }catch(e){}
@@ -9812,7 +10029,52 @@ function maybeShowFinishBtn(){
 }
 
 // 2027.01.61: 다시 그린 뒤에도 한 칸씩이면 칸마다 1번부터 번호
-function replay(){ _replay0.apply(this, arguments); try{ var q=Q[qi]; if(q && q.fr) frOneRenumber(q); }catch(e){} }
+function replay(){ _replay0.apply(this, arguments); try{ var q=Q[qi]; if(q && q.fr) frOneRenumber(q); }catch(e){} try{ unwBtnUI(); }catch(e){} }
+// 2027.01.68: 「오답에서 빼기」 — 틀린 걸로 채점된 문제를 내 판단으로 오답에서 뺀다 (애매 목록에는 안 넣는다 · 한 번 더 누르면 취소)
+//   빼면: 정답으로 바뀌고, 오답 목록 · 내일 복습 · 틀린 횟수 · 놓친 보기 기억에서 빠지고, 이 회차에 다시 나오기로 넣은 문제도 뺀다
+function unwBtnUI(){
+  var b=$('unwBtn'); if(!b) return;
+  var q=Q&&Q[qi], a=ans&&ans[qi];
+  var on=!!(q && (q.kind==='en'||q.kind==='syn') && !q.short && a && !_STAGE1 && !fin && ((!a.ok && !a.unw) || (a.unw && q._unwSnap)));
+  if(!on){ b.style.display='none'; return; }
+  b.textContent = a.unw ? '오답에서 뺐어요 · 취소' : '오답에서 빼기';
+  b.classList.toggle('on', !!a.unw);
+  b.style.display='';
+}
+function unwToggle(){
+  var q=Q&&Q[qi], a=ans&&ans[qi]; if(!q || !a || !q.w) return;
+  var w=q.w.w;
+  if(!a.unw){
+    if(a.ok) return;
+    var snap={wr:[], qs:[], st:null, bk:null};
+    try{ if(STATS[w]) snap.st=JSON.stringify(STATS[w]); }catch(e){}
+    try{ if(BANK.syn && BANK.syn[w]) snap.bk=BANK.syn[w]; }catch(e){}
+    for(var j=wrongs.length-1;j>=0;j--){ if(wrongs[j].kind==='syn' && wrongs[j].w && wrongs[j].w.w===w){ snap.wr.unshift([j, wrongs[j]]); wrongs.splice(j,1); } }
+    try{ bankDel('syn', q.w); bankSave(); }catch(e){}
+    try{ var r=STATS[w]; if(r){
+      r.wrong=Math.max(0,(r.wrong||0)-1); r.rw=Math.max(0,(r.rw||0)-1); if(r.cyc) r.cyc--; r.right=(r.right||0)+1;
+      if(REC==='fr' && r.wd===srsDayOf(Date.now())){ r.due=r.pdue||0; r.streak=r.pstreak||0; r.wd=r.pwd||''; if(!r.due) delete r.due; }
+      else if(REC!=='fr') srsSchedule(r, true);
+      if(r.frw){ ['k','s','a'].forEach(function(sc){ if(r.frw[sc]===0) r.frw[sc]=1; }); }
+      if(r.mo){ var pk={}; (Array.isArray(a.sel)?a.sel:[]).forEach(function(i){ pk[i]=1; });
+        q.opts.forEach(function(o,i){ if(!o.ok || pk[i]) return; var k=frMissKey(o), m=r.mo[k]; if(!m) return; m.c=(m.c||1)-1; if(m.c<=0) delete r.mo[k]; });
+        if(!Object.keys(r.mo).length) delete r.mo; }
+      statsSave(); } }catch(e){}
+    for(var k2=Q.length-1;k2>qi;k2--){ var x=Q[k2]; if(x && x.again && x.w && x.w.w===w && ans[k2]===null && /[wcs]/.test(String(x.why||''))){ snap.qs.unshift([k2, x]); Q.splice(k2,1); ans.splice(k2,1); } }
+    a.ok=true; a.unw=1; q._unwSnap=snap;
+  } else {
+    var sn=q._unwSnap; if(!sn) return;
+    a.ok=false; delete a.unw;
+    sn.wr.forEach(function(x){ wrongs.splice(Math.min(x[0], wrongs.length), 0, x[1]); });
+    try{ if(sn.st){ STATS[w]=JSON.parse(sn.st); statsSave(); } }catch(e){}
+    try{ if(sn.bk){ BANK.syn[w]=sn.bk; delUnmark(delCat('bs'), w); bankSave(); } }catch(e){}
+    sn.qs.forEach(function(x){ Q.splice(Math.min(x[0], Q.length), 0, x[1]); ans.splice(Math.min(x[0], ans.length), 0, null); });
+    q._unwSnap=null;
+  }
+  try{ $('cnt').textContent=(qi+1)+' / '+Q.length; }catch(e){}
+  replay(); try{ score(); }catch(e){} try{ sessionSave(); }catch(e){} try{ dockSync(); }catch(e){}
+}
+document.addEventListener('click', function(e){ var t=e.target; if(t && t.closest && t.closest('#unwBtn')) unwToggle(); });
 function _replay0(){
   // 정답이 공개되면 맨 위 단어 옆에 전체 뜻을 함께 표시
   (function(){
@@ -9955,7 +10217,7 @@ function _replay0(){
     }
   }
   // 정답 공개 후에는 칸 배열을 건드리지 않는다 — 문제 풀 때 보던 배치가 그대로 유지되어야 한다.
-  $('fb').textContent = a.ok ? (a.nu ? '✅ 정답 (비슷하지만 다른 단어를 골랐지만 뉘앙스 차이라 복습엔 안 넣어요)' : '✅ 정답!') : '❌ 오답';
+  $('fb').textContent = a.unw ? '➖ 오답에서 뺌 (정답 처리)' : a.ok ? (a.nu ? '✅ 정답 (비슷하지만 다른 단어를 골랐지만 뉘앙스 차이라 복습엔 안 넣어요)' : '✅ 정답!') : '❌ 오답';
   if(q.kind==='en' && a.en){
     $('fb').textContent += '  ·  뜻 '+(a.en.k?'✓':'✗')+(a.en.s===-1?'':'  ·  '+(q.fr?'같은 뜻':'동의어')+' '+(a.en.s?'✓':'✗'))
       +((a.en.a===undefined||a.en.a===-1)?'':'  ·  반대말 '+(a.en.ao ? (a.en.ar?'✓':'✗')+' (채점 안 함)' : (a.en.a?'✓':'✗')))+((a.en.n===undefined||a.en.n===-1)?'':'  ·  뉘앙스 '+(a.en.n?'✓':'✗'))+((a.en.c===undefined||a.en.c===-1)?'':'  ·  문맥 '+(a.en.c?'✓':'✗'));
@@ -11038,7 +11300,7 @@ function score(){
   ['revGo','penGo2','revSwap'].forEach(function(id){ var b=$(id); if(b) b.style.display='none'; });
   var _pb2=$('penbtn2'); if(_pb2) _pb2.style.display='';
   var d=0, o=0;
-  ans.forEach(function(a){ if(a!==null){ d++; if(a.ok) o++; } });
+  ans.forEach(function(a){ if(a!==null && !a.short){ d++; if(a.ok) o++; } });   // 놓친 것만 묻는 짧은 문제는 점수에 안 넣는다
   $('bar').textContent='점수 '+o+' / '+d+'   ·   '+(d?Math.round(o/d*100)+'%':'-');
   try{ var _qt=document.createElement('span'); _qt.id='qtimer'; _qt.className='qtimer'; _qt.textContent='⏱ '+qtFmt(QT.s,true); $('bar').appendChild(_qt); }catch(e){}   // 2027.01.43
 }
@@ -11328,11 +11590,11 @@ function qkSync(){
   $('qkCum').style.background = st.cum ? '#e94560' : '#0f3460';
   var mb=document.querySelector('#mseg button.on .t'), mn=mb?mb.textContent:'';
   var parts=[mn, (st.mode==='card') ? '' : (st.n ? st.n+'문제' : '전체')];
-  if(['syn','quiz','write','copy','en'].indexOf(st.mode)>=0 || (st.mode==='fr' && FRUNIT==='unit')) parts.push(ORDER==='book'?'순서대로':'랜덤');
+  if(['syn','quiz','write','copy','en'].indexOf(st.mode)>=0 || (st.mode==='fr' && FRUNIT==='unit')) parts.push(ordName());
   if(st.mode==='fr') parts.push(FRUNIT==='box'?'뜻 상자 단위':'강 단위');
   $('qkMode').textContent='지금 모드: '+parts.filter(Boolean).join(' · ')+' — 바꾸려면 아래에서';
   try{ chunkUI(); }catch(e){}   // 2027.01.64: 묶음
-  try{ homeTidy(); hubTidy(); hWeekUI(); rvUI(); hProgUI(); hSetSumUI(); }catch(e){}   // 2027.01.65: 홈 정리 · 01.66: 한 상자
+  try{ homeTidy(); hubTidy(); hWeekUI(); rvUI(); hProgUI(); hSetSumUI(); hAlarmUI(); }catch(e){}   // 2027.01.65: 홈 정리 · 01.66: 한 상자
 }
 $('qkSel').addEventListener('change',function(){ var d=$('dsel'); d.value=this.value; d.dispatchEvent(new Event('change')); });
 $('qkCum').addEventListener('click',function(){ $('cum').click(); });
