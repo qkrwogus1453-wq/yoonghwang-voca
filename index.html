@@ -843,8 +843,7 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 .calc .cmd-fr{color:#ffd479}.calc .cmd-syn{color:#7bdcb0}.calc .cmd-en{color:#9fc7f0}
 .calc .cmt{font-size:.7em;color:#e8f0fc;line-height:1.2;white-space:nowrap}
 .calc .cmv{font-size:.68em;color:#b9c8e4;line-height:1.2;white-space:nowrap}
-#ch button.c.given{border:2px dashed #f0c060!important}
-#ch button.c.given .otxt{color:#ffe9a8}
+#ch button.c.given{border:2px dashed #c9a24a!important}   /* 2027.01.73: 글씨는 다른 칸과 같은 흰색 (금색 점선 + 금색 글씨는 눈이 아팠다) */
 #ch button.c.given.sel{border:2px solid #f0a500!important;background:#2a2540!important}
 #ch button.c .lastw{display:inline-block;margin-left:10px;padding:1px 8px;border-radius:6px;font-size:.6em;font-weight:800;background:#e94560;color:#fff;vertical-align:middle;white-space:nowrap}
 /* 2027.01.71: 교재 동의어를 맞게 고른 금색 칸 — 안쪽 작은 글씨가 금색 바탕에 묻히지 않게 */
@@ -5753,7 +5752,7 @@ setInterval(function(){
   }catch(e){}
 },1500);
 
-var APP_VER = '2027.01.72';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
+var APP_VER = '2027.01.73';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
 var VER = APP_VER;  // 데이터 URL 캐시 키. 배포 때만 바뀌므로 브라우저 캐시가 제대로 재사용됨
 function loadJ(p){
   // 데이터 파일은 URL에 버전(v=)이 붙어 캐시가 자동 갱신되므로 브라우저 캐시를 허용한다.
@@ -9841,12 +9840,15 @@ function frMissTargets(q, a){
   if((a.wr||[]).some(function(e){ return e.st==='x'; })) heavy=true;
   ['k','s','a'].forEach(function(sc){
     if(!a.en || a.en[sc]!==0) return;
-    var S=R[sc]; if(S.wrong>0){ heavy=true; return; }
+    var S=R[sc];
     var un=[]; q.opts.forEach(function(o,i){ if((o.sec||'k')===sc && o.ok && !picked[i] && !o.amb) un.push(o); });
     var lack=Math.max(0, Math.min(S.need, S.tot||S.need)-S.right);
     // 2027.01.70: 화면에 「놓침」으로 표시되는 것과 맞춘다 — 개수가 모자라서 틀린 칸은 놓친 정답 전부, 교재 동의어만 놓쳐서 틀린 칸은 놓친 교재 동의어만
-    if(sc==='s' && !lack){ var tb=un.filter(function(o){ return frSrcOf(q,o).tb; }); list=list.concat(tb.length ? tb : un.slice(0,1)); }
-    else list=list.concat(un);
+    // 2027.01.73: 오답을 같이 골랐어도 놓친 것은 놓친 것대로 센다 (전에는 오답을 하나라도 고르면 놓친 것이 빠져서 「놓친 것 고르기」가 안 나왔다)
+    var tbu=(sc==='s') ? un.filter(function(o){ return frSrcOf(q,o).tb; }) : [];
+    var t=lack>0 ? un : tbu;
+    if(!t.length && !S.wrong && un.length) t=un.slice(0,1);
+    list=list.concat(t);
   });
   if(list.length>=3 || !list.length) heavy=true;
   return {heavy:heavy, list:list};
@@ -9871,7 +9873,9 @@ function frShortQ(q, sc, targets, step, of, a){
   }catch(e){ return null; }
 }
 // 2027.01.72: 놓친 것 고르기 — 표제어를 보여 주고 4개 중에서 놓친 것 하나 (01.70의 짧은 문제). 오답 3개는 처음 문제의 그 칸에 있던 것, 두 번 다 같은 보기
-function frShortNo(q, o){ var sc=o.sec||'k'; return shuf(q.opts.filter(function(x){ return !x.ok && (x.sec||'k')===sc && x.fin!=='N' && !x.amb; })).slice(0,3); }
+function frShortNo(q, o, a){ var sc=o.sec||'k', pk={}; (a && Array.isArray(a.sel) ? a.sel : []).forEach(function(i){ pk[i]=1; });
+  var mine=[], rest=[]; q.opts.forEach(function(x,i){ if(x.ok || (x.sec||'k')!==sc || x.fin==='N' || x.amb) return; (pk[i] ? mine : rest).push(x); });
+  return shuf(mine).concat(shuf(rest)).slice(0,3); }   // 2027.01.73: 아까 잘못 고른 보기를 먼저
 function frPickQ(q, o, step, of, no){
   try{
     var sc=o.sec||'k'; if(!no || !no.length) return null;
@@ -9975,7 +9979,7 @@ function requeueSyn(q){
   // 2027.01.72: 최종 복습 회차 안 흐름 — 쉬운 것부터 차례로
   //   처음 틀림 → 놓친 것 고르기(4개 중 하나 · 바로) → 놓친 것 고르기(2문제 뒤) → 금색 칸 다시 고르기(3문제 뒤) → 전체 문제(4문제 뒤 · 틀린 칸 전체를 처음 그대로)
   //   전체 문제에서 또 틀림 → 놓친 것 고르기(바로) → 금색 칸 다시 고르기(3문제 뒤) → 이 회차에서는 끝, 「틀린 것만 다시」로
-  //   놓친 게 3개 이상이거나 오답만 고른 경우는 놓친 것 고르기를 건너뛰고 금색 칸 다시 고르기부터
+  //   놓친 게 3개 이상이면 금색 표시 없이 틀린 칸 전체를 바로 한 번 → 4문제 뒤 전체 문제 (2027.01.73) · 오답만 고른 경우는 금색 칸 다시 고르기 → 전체 문제
   //   금색 칸 다시 고르기 = 원래 그 칸 그대로(자리 안 섞음) · 정답은 점선 금색 칸 · 금색 칸도 전부 누르고 놓친 것도 찾아 고른다
   var _frWhy='', _frNext=false;
   if(q.kind==='en' && q.fr){
@@ -9991,15 +9995,19 @@ function requeueSyn(q){
       if(_secs.length){
         var _first=!q.again, _at=qi+1, _made=0;
         var _ins=function(x){ if(!x) return; var at=Math.min(_at, Q.length); Q.splice(at,0,x); ans.splice(at,0,null); _at=at+1; _made++; };
-        var _packs=(_T.list||[]).map(function(o){ return {o:o, no:frShortNo(q, o)}; });
+        var _packs=(_T.list||[]).map(function(o){ return {o:o, no:frShortNo(q, o, a)}; });
         var _use4=_packs.length>=1 && _packs.length<=2 && _packs.every(function(p){ return p.no.length; });
         var _n4=_use4 ? (_first ? 2 : 1) : 0;
-        for(var _st=1; _st<=_n4; _st++){ if(_st===2) _at=_at+2; _packs.forEach(function(p){ _ins(frPickQ(q, p.o, _st, _n4, p.no)); }); }   // 놓친 것 고르기
-        if(_n4) _at=_at+3;                                                                                                              // 그 3문제 뒤
-        _secs.forEach(function(sc){ _ins(frShortQ(q, sc, _by[sc]||[], 1, 1, a)); });                                                     // 금색 칸 다시 고르기
+        var _heavy=(_T.list||[]).length>=3;   // 2027.01.73: 놓친 게 3개 이상이면 금색 표시 없이 틀린 칸 전체를 바로 다시 (01.70까지와 같게)
+        if(_heavy){ var _iq=null; try{ _iq=frAgainQ(q, a); }catch(e){} if(_iq){ _iq.again=true; _iq.why='wi'; _ins(_iq); } }
+        else {
+          for(var _st=1; _st<=_n4; _st++){ if(_st===2) _at=_at+2; _packs.forEach(function(p){ _ins(frPickQ(q, p.o, _st, _n4, p.no)); }); }   // 놓친 것 고르기
+          if(_n4) _at=_at+3;                                                                                                              // 그 3문제 뒤
+          _secs.forEach(function(sc){ _ins(frShortQ(q, sc, _by[sc]||[], 1, 1, a)); });                                                     // 금색 칸 다시 고르기
+        }
         if(_first){ _at=_at+4; var _fq=null; try{ _fq=frAgainQ(q, a); }catch(e){} if(_fq){ _fq.again=true; _fq.why='w'; _ins(_fq); } }   // 그 4문제 뒤 전체 문제
         if(_made){ try{ $('cnt').textContent=(qi+1)+' / '+Q.length; }catch(e){}
-          _say(_first ? (_n4 ? '놓친 것 고르기 2번 → 금색 칸 → 전체 문제로 다시 나와요' : '금색 칸 → 전체 문제로 다시 나와요') : '한 번씩 더 보고, 끝나면 「틀린 것만 다시」에 나와요'); return; }
+          _say(_heavy ? (_first ? '틀린 칸 전체를 바로 한 번, 조금 뒤에 한 번 더 풀어요' : '틀린 칸 전체를 바로 한 번 더 · 끝나면 「틀린 것만 다시」에 나와요') : _first ? (_n4 ? '놓친 것 고르기 2번 → 금색 칸 → 전체 문제로 다시 나와요' : '금색 칸 → 전체 문제로 다시 나와요') : '한 번씩 더 보고, 끝나면 「틀린 것만 다시」에 나와요'); return; }
       }
       _frNext=true; _frWhy='wi';
     }
