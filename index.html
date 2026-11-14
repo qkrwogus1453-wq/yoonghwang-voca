@@ -2035,6 +2035,27 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 #exq .exk{margin-top:5px;color:#aab4d8;font-size:.96em;display:none}
 #exq.done .exk{display:block}
 #exqtog.on{border-color:#4ecca3;color:#4ecca3}
+
+/* 2027.01.95: 예문이 먼저 — 처음에는 예문만 크게(표제어 · 보기 없음) → Enter → 예문이 위로 올라가고 표제어 → Enter → 보기 */
+body.exst0 #exq ~ *{display:none!important}
+body.exst0 #exq{margin:7vh 0 9vh;padding:46px 36px 30px;border-color:#4ecca3;min-height:28vh;display:flex;flex-direction:column;justify-content:center}
+body.exst0 #exq .exh{font-size:1em;margin-bottom:12px}
+body.exst0 #exq .exs{font-size:1.95em;line-height:1.5}
+body.exst0 #exq .exr + .exr{margin-top:22px;padding-top:22px}
+#exq .exn{display:none;margin-top:22px;color:#4ecca3;font-size:.92em}
+body.exst0 #exq .exn{display:block}
+
+/* 2027.01.96: 채점 뒤 「뜻 갈라 보기」 — 뜻마다 품사 · 자동사/타동사 · 다른 단어(예: ground의 「빻은」 = grind의 과거분사) 표시 */
+.eshom{margin-top:10px;padding:10px 12px;border-left:3px solid #ffd166;background:rgba(255,209,102,.06);border-radius:6px;font-size:.95em;line-height:1.6}
+.eshom .eshh{color:#ffd166;font-weight:700;margin-bottom:4px}
+.eshom .eshr{display:flex;gap:10px;align-items:baseline}
+.eshom .eshp{flex:0 0 62px;color:#8fd3ff;font-weight:700}
+.eshom .eshm{color:#e8ecff}
+.eshom .eshm small{color:#9aa7d0;margin-left:4px;font-size:.82em}
+.eshom .eshx{color:#ffe3a3}
+.eshom .eshx i{font-style:normal;font-size:.76em;margin-left:5px;padding:1px 6px;border:1px solid #ffd166;border-radius:8px;color:#ffd166}
+.eshom .eshn{margin-top:6px;color:#ffe3a3}
+.eshom .eshn b{color:#ffd166}
 </style>
 </head>
 <body>
@@ -3051,8 +3072,8 @@ var FR_AX={"223511":["demoralize","depress"],"225561":["norm"],"226451":["boring
 // 2027.01.87: 다른 표제어 쪽에 이 단어가 교재 동의어로 실려 있어서 뒤집혀 들어오는 정답 중, 이 문제의 뜻에는 없는 갈래의 것은 정답에서 뺀다
 //   (예: 1권 19강 elapse 「경과하다」의 동의어 go by → 1권 25강 go by 「~을 타고 가다 / ~에 따라 행동하다」 문제에 elapse가 정답으로 나오던 것).
 //   원래 방향(elapse 문제의 go by)은 그대로 두고, 뺀 것은 채점 뒤 답 정리 상자에 「다른 강에 동의어로 실림」 한 줄로 보여 준다 (채점 안 함).
-//   FR_RX = {표제어 id: [[뺀 단어, 실린 강, 그 표제어의 뜻 줄], ...]} — 후보를 하나씩 읽어 실제로 뜻이 어긋난 것만. 1권 25~30강 (229개 중 16개 — bevy→ground 는 잘못 옮겨 적힌 것이라 자료에서 지움) + 31~36강 (231개 중 11개)
-var FR_RX={"3075":[["hospitable","1권 28강","환대하는 / 친절한"],["obliging","1권 38강","친절한"]],"3166":[["deter","1권 16강","단념시키다"]],"3183":[["blaze","MVP2","번쩍거림, 광휘"]],"3188":[["blaze","MVP2","번쩍거림, 광휘"]],"3196":[["elapse","1권 19강","경과하다"]],"3255":[["crumb","MVP2","(보통 pl.) 작은 조각, 빵부스러기"]],"232961":[["rationale","1권 46강","이론적 근거"]],"3436":[["dense","1권 15강","밀집한 / 빽빽한"]],"3495":[["charter","2권 5강","대절하다"]],"3514":[["insist","MVP1","고집하다, 주장하다, 우기다"]],"3571":[["crouch","MVP2","쭈그리고 앉다, 웅크리다"],["cower","2권 6강","위축되다 / 움츠리다"]],"3590":[["expedition","MVP2","급속, 신속"]],"3847":[["acclivity","2권 1강","오르막길 / 치받이 경사"]],"3902":[["random","1권 46강","무작위의 / 되는 대로의"]],"4017":[["affectation","MVP2","가장, 꾸밈, 짐짓 꾸미는 태도"]],"4406":[["roost","MVP1","(새가) 나무에 앉다, 보금자리에 들다 / 자리에 앉다"]],"4418":[["lineal","MVP2","직계의, 정통의"]],"4446":[["trifle","MVP2","하찮은 것"]],"4467":[["trifle","MVP2","하찮은 것"]],"4493":[["bask","MVP2","(햇볕·열 등을) 쬐다, 일광욕하다"]],"4555":[["trifle","MVP2","하찮은 것"]],"4637":[["footage","MVP2","(특정한 사건을 담은) 장면, (영화·TV의) 특정 장면"]],"4655":[["cadence","2권 4강","율동적인 흐름 / 운율 / 박자"]],"4727":[["interact","1권 32강","상호 작용하다"]],"4732":[["nonage","MVP1","(법률상의) 미성년"]]};
+//   FR_RX = {표제어 id: [[뺀 단어, 실린 강, 그 표제어의 뜻 줄], ...]} — 후보를 하나씩 읽어 실제로 뜻이 어긋난 것만. 1권 25~30강 (229개 중 16개 — bevy→ground 는 잘못 옮겨 적힌 것이라 자료에서 지움) + 31~36강 (231개 중 11개) + 37~42강 (225개 중 사전으로도 확인된 128개는 두고 97개를 읽어 8개)
+var FR_RX={"3075":[["hospitable","1권 28강","환대하는 / 친절한"],["obliging","1권 38강","친절한"]],"3166":[["deter","1권 16강","단념시키다"]],"3183":[["blaze","MVP2","번쩍거림, 광휘"]],"3188":[["blaze","MVP2","번쩍거림, 광휘"]],"3196":[["elapse","1권 19강","경과하다"]],"3255":[["crumb","MVP2","(보통 pl.) 작은 조각, 빵부스러기"]],"232961":[["rationale","1권 46강","이론적 근거"]],"3436":[["dense","1권 15강","밀집한 / 빽빽한"]],"3495":[["charter","2권 5강","대절하다"]],"3514":[["insist","MVP1","고집하다, 주장하다, 우기다"]],"3571":[["crouch","MVP2","쭈그리고 앉다, 웅크리다"],["cower","2권 6강","위축되다 / 움츠리다"]],"3590":[["expedition","MVP2","급속, 신속"]],"3847":[["acclivity","2권 1강","오르막길 / 치받이 경사"]],"3902":[["random","1권 46강","무작위의 / 되는 대로의"]],"4017":[["affectation","MVP2","가장, 꾸밈, 짐짓 꾸미는 태도"]],"4406":[["roost","MVP1","(새가) 나무에 앉다, 보금자리에 들다 / 자리에 앉다"]],"4418":[["lineal","MVP2","직계의, 정통의"]],"4446":[["trifle","MVP2","하찮은 것"]],"4467":[["trifle","MVP2","하찮은 것"]],"4493":[["bask","MVP2","(햇볕·열 등을) 쬐다, 일광욕하다"]],"4555":[["trifle","MVP2","하찮은 것"]],"4637":[["footage","MVP2","(특정한 사건을 담은) 장면, (영화·TV의) 특정 장면"]],"4655":[["cadence","2권 4강","율동적인 흐름 / 운율 / 박자"]],"4727":[["interact","1권 32강","상호 작용하다"]],"4732":[["nonage","MVP1","(법률상의) 미성년"]],"4761":[["truant","MVP2","무단결석생"]],"4787":[["impulse","MVP1","(외부에서 작용하는) 충격, 자극"]],"4869":[["cast","MVP1","~에게 표를 던지다"]],"4942":[["backwater","1권 6강","침체된 곳"]],"4959":[["suggestion","MVP2","기미, 기색"]],"4968":[["whim","MVP2","변덕, 일시적 기분"]],"5143":[["tier","MVP2","(층이 진) 열, 단, 층"]],"5188":[["spasm","MVP2","경련, 쥐"]]};
 function frRxOf(w){ try{ return FR_RX[String(w && w.id)]||[]; }catch(e){ return []; } }
 function buildFr(w, opt){
   var q=buildEn(w, opt||{}); if(!q) return null;
@@ -3209,15 +3230,59 @@ function exqShow(q){
     var pick=[]; for(var k=0;k<Math.min(2, rows.length);k++) pick.push(rows[(q._exi+k)%rows.length]);   // 예문이 여러 개면 두 개까지 같이
     var box=document.createElement('div'); box.id='exq';
     box.innerHTML='<div class="exh">예문</div>'+pick.map(function(row){ return '<div class="exr"><div class="exs">'+exqMark(row[1], q.w.w)+'</div><div class="exk">'+String(row[2]||'').replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</div></div>'; }).join('');
-    if(ans[qi]!==null && ans[qi]!==undefined) box.classList.add('done');   // 채점 뒤에는 해석도 보인다
+    var _un=(ans[qi]===null || ans[qi]===undefined);
+    if(!_un) box.classList.add('done');   // 채점 뒤에는 해석도 보인다
+    box.insertAdjacentHTML('beforeend','<div class="exn">화면을 누르거나 Enter = 표제어 보기</div>');
     var qw=document.getElementById('qw'); if(qw && qw.parentNode) qw.parentNode.insertBefore(box, qw);
+    if(_un && !q._exSeen && !fin) document.body.classList.add('exst0');   // 처음에는 예문만
   });
 }
+function exStage0(){ return document.body.classList.contains('exst0'); }
+function exStageNext(){ document.body.classList.remove('exst0'); try{ if(Q[qi]) Q[qi]._exSeen=1; }catch(e){} }
 function exqTogUI(){ var t=document.getElementById('exqtog'); if(!t) return; t.textContent=EXQ ? '예문 켬' : '예문 끔'; t.classList.toggle('on', !!EXQ); }
 document.addEventListener('click', function(e){ var t=e.target.closest && e.target.closest('#exqtog'); if(!t) return;
   EXQ=!EXQ; try{ LS.setItem('voca_exq', EXQ?'1':'0'); }catch(x){} exqTogUI();
-  if(!EXQ){ var x=document.getElementById('exq'); if(x) x.remove(); } else { try{ exqShow(Q[qi]); }catch(x){} } });
-(function(){ var _r0=enRevealExtra; enRevealExtra=function(q,a){ var r=_r0.apply(this,arguments); try{ var x=document.getElementById('exq'); if(x) x.classList.add('done'); else exqShow(q); }catch(e){} return r; }; })();
+  if(!EXQ){ var x=document.getElementById('exq'); if(x) x.remove(); document.body.classList.remove('exst0'); } else { try{ exqShow(Q[qi]); }catch(x){} } });
+function homNote(w){ if(!w || w.dv) return ''; var r=String(w.r||''), i=r.indexOf('※'); if(i<0) return ''; var t=r.slice(i+1).trim();
+  return /과거분사|과거형|복수형|별개|다른 단어|다른 형용사|다른 동사|어원이 다른/.test(t) ? t : ''; }
+var MPOS_NOUN={'교양인':1,'기인':1,'내분비선':1,'대각선':1,'대리인':1,'민간인':1,'보석 세공인':1,'성인':1,'수령인':1,'수취인':1,'순간':1,'안내인':1,'외계인':1,'외국인':1,'원시인':1,'이방인':1,'자오선':1,'자외선':1,'적외선':1,'전진':1,'주인':1,'중재인':1,'지식인':1,'출발선':1,'판매 대리인':1,'하인':1,'현인':1,'스틸 사진':1,'자유 방임주의':1,'수의':1};
+var MPOS_ADV={'매우':1,'아주':1,'몹시':1,'다시':1,'곧':1,'지금 막':1,'모두 함께':1,'게다가':1,'까놓고':1,'최대한':1,'신분을 숨기고':1};
+var MPOS_NM={'명':'명사','동':'동사','형':'형용사','부':'부사','전':'전치사','접':'접속사','감':'감탄사','대':'대명사'};
+function mposClean(f){ return String(f).replace(/\([^)]*\)|\[[^\]]*\]/g,'').replace(/[.*]+$/,'').trim(); }
+// 뜻 조각 하나의 품사: 이미 조사해 둔 품사표(pos.json) · 자동사/타동사표(vtvi.json)를 쓰고, 그 단어의 품사 안에서 우리말 끝 모양으로 가른다. 확실하지 않으면 '' (표시 안 함)
+function mposOne(c, ps, vmap){
+  if(!c || /[;]/.test(c)) return '';
+  if(ps.length===1) return ps[0];
+  if(vmap[c]) return '동';
+  var g='명';
+  if(MPOS_ADV[c]) g='부'; else if(MPOS_NOUN[c]) g='명';
+  else if(/다$/.test(c)) g='동';
+  else if(/(하게|적으로|없이|같이|처럼|만큼|도록|히|으로|로|대로|에서|에|게|서)$/.test(c)) g='부';
+  else if(/(한|은|는|운|인|된|진|런|던|쓴|큰|긴|찬|난|든|선|린|힌|른|쁜|픈|랜|센|빈|의|간)$/.test(c)) g='형';
+  var cand=ps.filter(function(x){ return !(x==='동' && Object.keys(vmap).length); });
+  if(cand.indexOf(g)>=0) return g;
+  if(ps.indexOf(g)>=0 && g==='동') return g;
+  if((g==='형' || g==='부') && !/(하게|적으로|없이|같이|처럼|만큼|도록|적인|스러운|있는|없는|같은|하는|되는)$/.test(c) && cand.indexOf('명')>=0) return '명';   // 끝 글자만 비슷한 명사(자격 증명서 · 성인)
+  if(cand.length===1) return cand[0];
+  return '';
+}
+function mposGroups(w){
+  if(!w || w.dv || typeof WPOS==='undefined' || !WPOS) return null;
+  var p=String(WPOS[String(w.id)]||''), ps=[]; for(var i=0;i<p.length;i++){ if(MPOS_NM[p[i]] && ps.indexOf(p[i])<0) ps.push(p[i]); }
+  var note=homNote(w); if(ps.length<2 && !note) return null; if(!ps.length) return null;
+  var vmap={}; ((typeof VTVI!=='undefined' && VTVI && VTVI[String(w.id)])||[]).forEach(function(x){ vmap[mposClean(x[0])]=x[1]+(x[2]?' · '+x[2]:''); });
+  var hom={}; if(note){ (note.match(/'[^']+'/g)||[]).forEach(function(qt){ qt.replace(/'/g,'').split(/[,·]/).forEach(function(z){ z=mposClean(z); if(z) hom[z]=1; }); }); }
+  var G={}, order=[];
+  String(w.m||'').split(' / ').forEach(function(f){ var c=mposClean(f); if(!c) return; var k=mposOne(c, ps, vmap)||'?'; if(!G[k]){ G[k]=[]; order.push(k); } G[k].push({t:c, v:vmap[c]||'', h:!!hom[c]}); });
+  return {order:order, G:G, note:note};
+}
+function homShow(q){ try{ var es=document.getElementById('ensum'); if(!es || es.style.display==='none' || !q || !q.w) return; var old=es.querySelector('.eshom'); if(old) old.remove();
+  var M=mposGroups(q.w); if(!M) return;
+  var E2=function(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;'); };
+  var h='<div class="eshh">뜻 갈라 보기</div>'+M.order.map(function(k){ return '<div class="eshr"><span class="eshp">'+(MPOS_NM[k]||'그 밖')+'</span><span class="eshm">'+M.G[k].map(function(x){ return '<span class="'+(x.h?'eshx':'')+'">'+E2(x.t)+(x.v?'<small>'+E2(x.v)+'</small>':'')+(x.h?'<i>다른 단어</i>':'')+'</span>'; }).join(' · ')+'</span></div>'; }).join('');
+  if(M.note) h+='<div class="eshn"><b>다른 단어</b> · '+E2(M.note)+'</div>';
+  var d=document.createElement('div'); d.className='eshom'; d.innerHTML=h; es.appendChild(d); }catch(e){} }
+(function(){ var _r0=enRevealExtra; enRevealExtra=function(q,a){ var r=_r0.apply(this,arguments); try{ var x=document.getElementById('exq'); if(x) x.classList.add('done'); else exqShow(q); }catch(e){} homShow(q); return r; }; })();
 
 function enRevealExtra(q, a){
   if(!q || q.kind!=='en' || !a || !a.en) return;
@@ -5889,7 +5954,7 @@ setInterval(function(){
   }catch(e){}
 },1500);
 
-var APP_VER = '2027.01.94';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
+var APP_VER = '2027.01.98';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
 var VER = APP_VER;  // 데이터 URL 캐시 키. 배포 때만 바뀌므로 브라우저 캐시가 제대로 재사용됨
 function loadJ(p){
   // 데이터 파일은 URL에 버전(v=)이 붙어 캐시가 자동 갱신되므로 브라우저 캐시를 허용한다.
@@ -8846,7 +8911,9 @@ function ownSyns(w){
     });});
     if(o.length) return o;
   }
-  return (w.s||[]).slice();
+  // 2027.01.97: 뜻 줄이 파생어 줄뿐인 표제어(gut ← guts · gutsy)는 파생어의 동의어를 표제어 것으로 쓰지 않는다
+  var _dv={}; (w.p||[]).forEach(function(pr){ if(isDeriv(pr)) (pr.s||[]).forEach(function(t){ _dv[String(t).toLowerCase().trim()]=1; }); });
+  return (w.s||[]).filter(function(t){ return !_dv[String(t).toLowerCase().trim()]; });
 }
 // 이번 문제 선지에 나오지 않은 동의어를 답 공개 화면 맨 위에 모아 보여 준다.
 // (동의어가 많은 단어는 한 문제에 다 못 싣는다. 스크롤 안 해도 눈에 들어오게 맨 위)
@@ -9669,9 +9736,9 @@ function ohideApply(){
   try{ ohTogUI(); }catch(e){}
   b.classList.toggle('ohide', hide); h.classList.toggle('on', hide);
 }
-(function(){ var _d0=draw; draw=function(){ var r=_d0.apply(this,arguments); try{ ohideApply(); }catch(e){} try{ exqShow(Q[qi]); }catch(e){} return r; }; })();
-document.addEventListener('click', function(e){ if(!ohideOn()) return; var inq=e.target.closest && (e.target.closest('#ch') || e.target.closest('#ohint')); ohideReveal(); if(inq){ e.stopPropagation(); e.preventDefault(); } }, true);
-document.addEventListener('keydown', function(e){ if(!ohideOn()) return; if(e.key==='Shift'||e.key==='Control'||e.key==='Alt'||e.key==='Meta'||e.key==='Tab'||e.key==='Escape') return; var t=e.target; if(t && (t.tagName==='INPUT'||t.tagName==='TEXTAREA')) return; ohideReveal(); e.stopPropagation(); e.preventDefault(); }, true);
+(function(){ var _d0=draw; draw=function(){ document.body.classList.remove('exst0'); var r=_d0.apply(this,arguments); try{ ohideApply(); }catch(e){} try{ exqShow(Q[qi]); }catch(e){} return r; }; })();
+document.addEventListener('click', function(e){ if(exStage0()){ var _t=e.target.closest && (e.target.closest('#exqtog') || e.target.closest('#ohtog')); if(_t) return; exStageNext(); if(e.target.closest && e.target.closest('#ch')){ e.stopPropagation(); e.preventDefault(); } return; } if(!ohideOn()) return; var inq=e.target.closest && (e.target.closest('#ch') || e.target.closest('#ohint')); ohideReveal(); if(inq){ e.stopPropagation(); e.preventDefault(); } }, true);
+document.addEventListener('keydown', function(e){ var _s0=exStage0(); if(!_s0 && !ohideOn()) return; if(e.key==='Shift'||e.key==='Control'||e.key==='Alt'||e.key==='Meta'||e.key==='Tab'||e.key==='Escape') return; var t=e.target; if(t && (t.tagName==='INPUT'||t.tagName==='TEXTAREA')) return; if(_s0) exStageNext(); else ohideReveal(); e.stopPropagation(); e.preventDefault(); }, true);
 
 function ohTogUI(){ var t=document.getElementById('ohtog'); if(!t) return; t.textContent=OHIDE ? '보기 가리기 켬' : '보기 가리기 끔'; t.classList.toggle('on', !!OHIDE); }
 document.addEventListener('click', function(e){ var t=e.target.closest && e.target.closest('#ohtog'); if(!t) return;
