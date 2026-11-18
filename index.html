@@ -337,6 +337,7 @@ body.hasdock #qnav{display:none}
 @media(max-width:400px){.dgrid2{gap:5px}.dcell{padding:10px 3px}.dcell .dn{font-size:1.25em}.dcell .dl{font-size:.66em}.dmode{flex-direction:column}}
 
 .pinbtn{background:#16234a;border:1.5px solid #f0a500;color:#f0a500;border-radius:20px;padding:8px 18px;font-size:.9em;font-weight:600;cursor:pointer}
+#pinAskBox .pkbtn.pkon{background:#25395f;border-width:2.5px}#pinAskBox .pkbtn:not(.pkon) .pkst{opacity:.55}.pkbtn .pkst{margin-left:10px;font-weight:700}.pkbtn .pkd{display:block;font-size:12px;opacity:.7;margin-top:2px}.pkt .pksub{font-size:12px;opacity:.7;font-weight:400;margin-left:6px}
 .pinbtn.pinned{background:#2a2410;border-color:#4ecca3;color:#4ecca3}
 .pinbtn:active{transform:scale(.96)}
 
@@ -743,6 +744,7 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 }
 
 /* 정답 공개 후 단어 옆 뜻 */
+.bkonly{display:inline-block;margin-left:10px;padding:2px 9px;border:1px solid #6a3a35;border-radius:6px;background:#3a2222;color:#f0b3a8;font-size:.62em;font-weight:600;vertical-align:middle;white-space:nowrap}
 #qwmean{font-size:.46em;font-weight:500;color:#9fb4d6;margin-left:12px;
   letter-spacing:0;line-height:1.5;word-break:keep-all}
 @media(min-width:900px){ #qwmean{font-size:.42em} }
@@ -959,6 +961,7 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 .simrow{display:flex;align-items:baseline;gap:12px;padding:9px 12px;border-radius:9px;background:#16264a}
 .simrow.same{background:#1e2f14;border:1px solid #4a6b2a}
 .simrow .sw{font-weight:700;color:#e8f0fc;font-size:1.12em;min-width:130px}
+.simrow .sw.wtap{cursor:pointer;text-decoration:underline dotted #5a6f9a;text-underline-offset:4px}   /* 2027.02.22 초안: 누르면 뜻 · 어원 창 */
 .simrow.same .sw{color:#b6e88a}
 .simrow .sm{flex:1;color:#b9cbe6;font-size:.98em;word-break:keep-all;line-height:1.5}
 .simrow .su{color:#7f93b4;font-size:.85em;white-space:nowrap}
@@ -1654,7 +1657,29 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 .bank button.chkw{margin:0!important;padding:2px 7px!important;font-size:.76em!important}
 .chkrvh{margin:5px 0 0;font-size:.84em}
 .hrev{margin:0 0 8px;padding-top:7px}
+.ulbox{margin-top:9px;border-top:1px dashed #2a3c66;padding-top:7px}
+.ulh{display:flex;align-items:center;gap:8px;color:#cfe0f5;font-weight:700;font-size:.9em;margin-bottom:5px}
+.ulh small{color:#8fa8cc;font-weight:400;font-size:.85em}
+.bank .ulh button{margin:0 0 0 auto!important;padding:2px 9px!important;font-size:.78em!important;border-radius:6px!important;background:#1b2b50!important;color:#b9c9e0!important;border:1px solid #2f4270!important;min-height:0!important;flex:0 0 auto!important}
+.ultb{max-height:330px;overflow:auto;border:1px solid #24365c;border-radius:9px}
+.ulr{display:grid;grid-template-columns:1.1fr 1.1fr .8fr 1.5fr 190px;gap:6px;align-items:center;padding:6px 10px;border-bottom:1px dashed #24365c;font-size:.88em;color:#cfe0f5}
+.ulr:last-child{border-bottom:0}
+.ulr.ulhd{position:sticky;top:0;background:#16213e;cursor:default;color:#8fa8cc;font-size:.78em;border-bottom:1px solid #2a3c66;z-index:1}
+.ulr b{color:#fff}.ulr[data-rvu]{cursor:pointer}.ulr[data-rvu]:hover{background:#16264a}.ulr.open{background:#16264a}
+.ulr em{font-style:normal;font-weight:700;color:#ffd479}.ulr .ulb{display:flex;gap:5px;justify-content:flex-end}
+.bank .ulr button{margin:0!important;padding:3px 9px!important;font-size:.82em!important;border-radius:6px!important;min-height:0!important;flex:0 0 auto!important;width:auto!important;background:#1b2b50!important;color:#b9c9e0!important;border:1px solid #2f4270!important}
+.bank .ulr button.ulbg{background:#e94560!important;border-color:#e94560!important;color:#fff!important;font-weight:700!important}
+.lstrow.ulw{padding-left:22px;background:#0f1930}
+.ulr .uld{font-weight:700;color:#ffd479}.ulr .uld.d0{color:#7fe0c2}
+.ulr .uln{color:#8fa8cc}.ulr .ulw{color:#ff8fa0;font-weight:700}.ulr .ulz{color:#5d7299}
+.ulnote{color:#8fa8cc;font-size:.76em;margin-top:5px;line-height:1.5}
 .hrvh{font-size:.9em;margin-bottom:5px}.hrvh small{color:#8fa8cc;font-weight:400;font-size:.85em;margin-left:6px}
+/* 2027.02.20: 복습 한 번에 몇 개 */
+.hrvh{display:flex;align-items:center;flex-wrap:wrap;gap:2px 4px}
+.hrvn{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-weight:400;font-size:.9em;color:#8fa8cc}
+.hrvn .hrvng{display:inline-flex;border:1px solid #4a5a8a;border-radius:14px;overflow:hidden}
+#hRev .hrvn button,.bank .hrvn button{flex:0 0 auto!important;background:none!important;border:0!important;border-radius:0!important;color:#9fb0cc!important;padding:3px 11px!important;font-size:1em!important;min-height:0!important;font-weight:500!important;cursor:pointer;width:auto!important;margin:0!important}
+#hRev .hrvn button.on,.bank .hrvn button.on{background:#2e7d6a!important;color:#fff!important}
 .rvgrid{grid-template-columns:repeat(6,1fr);gap:5px}
 .rvt{padding:7px 8px;border-radius:9px;cursor:pointer;position:relative;gap:1px}
 .rvt:not(.zero):hover{border-color:#e94560}
@@ -1769,6 +1794,7 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 #frneedbar .fng button{background:none;border:0;color:#9fb0cc;padding:2px 9px;font-size:1em;cursor:pointer}
 #frneedbar .fng button.on{background:#2e7d6a;color:#fff}
 #frneedbar .fngap{display:inline-block;width:6px}
+#frneedbar .fni{display:inline-block;white-space:nowrap;margin:2px 0}   /* 2027.02.22 초안: 이름과 버튼이 줄이 갈려 떨어지지 않게 */
 #frneedbar .fnnote{margin-left:4px;color:#ffcf9a}
 #ch button.c.lkb{opacity:1!important;border-color:#3b7fae!important}
 .frlink{display:inline-block;margin:2px 0 8px;padding:2px 10px;border-radius:7px;background:#12304a;border:1px solid #2e7d6a;color:#7fe0c2;font-size:.88em}
@@ -1862,6 +1888,8 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 .sobox .soown{margin-top:4px;font-size:.86em;color:#9aa8c8}
 .sobox .sot{margin-top:3px;font-size:.92em;color:#d6dcec;line-height:1.6}
 /* 교재 표제어 뜻에는 없는 쓰임 — 갈래 뜻 뒤 작은 표식 + 교재 뜻 한 줄 */
+.sns .snhit{font-weight:inherit;color:inherit}.sns .snrest,.sns .snsep{color:#8f9bb3;font-weight:500}
+#ch button.c.tbopt.ok .sns .snrest,#ch button.c.tbopt.ok .sns .snsep{color:#c9d2e3!important}
 .sown{display:block;font-style:normal;font-size:.78em;color:#c3ad78;line-height:1.4}
 .sown:before{content:'';}
 .c .sown{flex:1 1 100%;margin:2px 0 0 0}
@@ -2035,7 +2063,14 @@ kbd.kk{font-family:inherit;font-size:.72em;font-weight:600;color:#9fb3cf;border:
 #exq .exs u{color:#ffd166;font-weight:700;text-underline-offset:4px}
 #exq .exk{margin-top:5px;color:#aab4d8;font-size:.96em;display:none}
 #exq.done .exk{display:block}
+#exq .exh .exc{margin-left:6px;font-size:.88em;color:#6f86b8}
 #exqtog.on{border-color:#4ecca3;color:#4ecca3}
+#ch button.c.ashowc{border-color:#4ecca3!important;background:#1d3b3a!important}#ch button.c.ashowc .otxt{color:#7fe0c2}
+#ch button.c .ashowtag{display:block;margin-top:4px}
+.ashowh{margin:4px 0 10px;color:#9fe3c9;font-size:.86em}
+#exq.fold{padding:8px 16px}#exq.fold .exr{display:none}#exq.fold .exh{margin:0;display:flex;align-items:center}
+#exq .exfoldb{margin-left:auto;background:none;border:1px solid #2a4a7a;color:#8fa3d8;border-radius:8px;padding:3px 10px;font-size:.92em;cursor:pointer}
+.ensum .esant .esal{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:6px}.ensum .esai{display:inline-flex;align-items:baseline;gap:5px}.ensum .esai b{color:#e8ecff}.ensum .esai small{color:#9fb0cc;font-size:.82em}
 
 /* 2027.01.95: 예문이 먼저 — 처음에는 예문만 크게(표제어 · 보기 없음) → Enter → 예문이 위로 올라가고 표제어 → Enter → 보기 */
 body.exst0 #exq ~ *{display:none!important}
@@ -2560,8 +2595,29 @@ var FRUNIT='unit';
 var FRNEED={k:1, s:2, a:2};
 try{ var _fn0=JSON.parse(LS.getItem('voca_frneed')||'null'); if(_fn0) ['k','s','a'].forEach(function(x){ if(_fn0[x]===1||_fn0[x]===2||_fn0[x]===3||_fn0[x]==='all'||(x==='a'&&(_fn0[x]==='off'||_fn0[x]==='show'))) FRNEED[x]=_fn0[x]; }); }catch(e){}
 // 2027.01.68: 반대말 「보기만」(FRNEED.a='show') — 반대말 칸을 풀지 않고, 다 채점한 뒤 요약 상자에 정답만 보여 준다
-function frAShowStrip(q){ if(!q || !q.fr || FRNEED.a!=='show' || !q.opts) return; if(!q.opts.some(function(o){ return o.sec==='a'; })) return;
-  q.opts=frHide(q, function(o){ return o.sec!=='a'; }); q.ashow=1; if(q.only) q.only=q.only.filter(function(x){ return x!=='a'; }); q._one=null; q._st1=null; }
+function frAShowStrip(q){ if(!q || !q.fr || FRNEED.a!=='show' || !q.opts) return;
+  // 2027.02.31 초안(재현님): 「보기만」 = 반대말 칸이 한 페이지로 그대로 나오고, 고르지 않아도 정답(반대말 전부)과 뜻이 바로 보인다 · 채점 안 함
+  var L=(q.aall&&q.aall.length) ? q.aall.slice() : q.opts.filter(function(o){ return o.sec==='a' && o.ok; }).map(function(o){ return o.t; });
+  if(!L.length && q.hid && q.hid.a) L=q.hid.a.map(function(o){ return o.t; });
+  if(!L.length) return;
+  var A=L.map(function(t){ return {t:t, ok:true, sec:'a', fr:'A', def:frDef(t)}; });
+  var rest=q.opts.filter(function(o){ return o.sec!=='a'; }), ci=-1;
+  rest.forEach(function(o,i){ if(ci<0 && o.sec==='c') ci=i; });
+  q.opts = ci<0 ? rest.concat(A) : rest.slice(0,ci).concat(A, rest.slice(ci));
+  if(q.hid && q.hid.a) delete q.hid.a;
+  if(q.only && q.only.indexOf('a')<0) q.only.push('a');
+  q.ashow=1; q.needA=0; q._one=null; q._st1=null; }
+// 보기만 칸: 반대말 보기를 모두 고른 상태로 두고, 정답 색 · 뜻을 채점 전부터 보여 준다
+function frAShowMark(q, root){
+  if(!q || !q.ashow || !root) return;
+  var bs=root.querySelectorAll('button.c');
+  q.opts.forEach(function(op,i){ if(op.sec!=='a') return; sel[i]=1; var b=bs[i]; if(!b) return;
+    b.classList.add('ashowc');
+    if(!b.querySelector('.stdef')){ var d=op.def||frDef(op.t)||''; if(d){ var e=document.createElement('span'); e.className='stdef'; e.textContent=d; b.appendChild(e); } }
+    if(!b.querySelector('.ashowtag')){ var g=(typeof hwTagHTML==='function') ? hwTagHTML(op.t, q.w && q.w.w) : ''; if(g){ var t=document.createElement('span'); t.className='ashowtag'; t.innerHTML=g; b.appendChild(t); } } });
+  var hd=root.querySelector('.ensec.ena .enh, .ensec.ena h4, .ensec.ena .enst');
+  var sec=root.querySelector('.ensec.ena'); if(sec && !sec.querySelector('.ashowh')){ var n=document.createElement('div'); n.className='ashowh'; n.textContent='보기만 — 고르지 않아도 돼요 · 채점 안 함 · Enter = 넘어가기'; sec.insertBefore(n, sec.children[1]||null); }
+}
 // 2027.01.45: 반대말 「안 침」(FRNEED.a='off') — 풀고 결과는 보지만 정답/오답 · 다시 나오기 · 복습에 안 넣는다
 function frAOff(q){ return !!(q && q.fr && FRNEED.a==='off'); }
 // 2027.01.45: 반대말 보기마다 뜻 켜기/끄기 (채점 전) — 켜면 33~36처럼 보기마다 그 단어 교재 뜻
@@ -2587,10 +2643,10 @@ function frNeedUI(){
   if(!q || !q.fr || q.kind!=='en'){ el.style.display='none'; return; }
   var NM={k:'뜻', s:'같은 뜻', a:'반대말'};
   el.innerHTML='맞힐 개수 '+['k','s','a'].map(function(sc){
-    return NM[sc]+'<span class="fng">'+(sc==='a'?[1,2,3,'all','off','show']:[1,2,3,'all']).map(function(v){ return '<button data-sc="'+sc+'" data-v="'+v+'" class="'+(FRNEED[sc]===v?'on':'')+'">'+(v==='all'?'전부':v==='off'?'안 침':v==='show'?'보기만':v)+'</button>'; }).join('')+'</span>';
+    return '<span class="fni">'+NM[sc]+'<span class="fng">'+(sc==='a'?[1,2,3,'all','off','show']:[1,2,3,'all']).map(function(v){ return '<button data-sc="'+sc+'" data-v="'+v+'" class="'+(FRNEED[sc]===v?'on':'')+'">'+(v==='all'?'전부':v==='off'?'안 침':v==='show'?'보기만':v)+'</button>'; }).join('')+'</span></span>';
   }).join('');
-  el.innerHTML+='<span class="fngap"></span>반대말 보기 뜻<span class="fng"><button data-adef="0" class="'+(FRADEF?'':'on')+'">끔</button><button data-adef="1" class="'+(FRADEF?'on':'')+'">켬</button></span>';   // 2027.01.45
-  el.innerHTML+='<span class="fngap"></span>보기<span class="fng"><button data-step="all" class="'+(FRSTEP==='all'?'on':'')+'">한꺼번에</button><button data-step="one" class="'+(FRSTEP==='one'?'on':'')+'">한 칸씩</button></span>';
+  el.innerHTML+='<span class="fngap"></span><span class="fni">반대말 보기 뜻<span class="fng"><button data-adef="0" class="'+(FRADEF?'':'on')+'">끔</button><button data-adef="1" class="'+(FRADEF?'on':'')+'">켬</button></span></span>';   // 2027.01.45
+  el.innerHTML+='<span class="fngap"></span><span class="fni">보기<span class="fng"><button data-step="all" class="'+(FRSTEP==='all'?'on':'')+'">한꺼번에</button><button data-step="one" class="'+(FRSTEP==='one'?'on':'')+'">한 칸씩</button></span></span>';
   el.style.display='';
 }
 function frNeedSet(sc, v){
@@ -2706,6 +2762,7 @@ function frStage1Render(q){
   try{ replay(); }catch(e){}
   finally{ _STAGE1=false; ans[qi]=null; }
   frStageApply(q, $('ch'), false);
+  try{ frAShowMark(q, $('ch')); }catch(e){}
 }
 function frHasStage(q){ return !!(q && q.fr && q.kind==='en' && q.opts && q.opts.some(function(o){ return o.sec==='a'; }) && q.opts.some(function(o){ return o.sec==='k'||o.sec==='s'; })); }
 function frStage1(q, chosen, wr){
@@ -2757,6 +2814,7 @@ function frOneApply(q, root){
   });
   // 2027.01.37: 반대말 보기에는 채점 전 뜻을 안 붙인다 (뜻은 칸 제목 옆에) · 2027.01.45: 「반대말 보기 뜻 켬」이면 붙인다
   if(cur==='a') frADefPut(q, root);
+  if(cur==='a' && q.ashow) frAShowMark(q, root);
   var NM={k:'뜻', s:'같은 뜻', n:'뉘앙스', a:'반대말'};
   var sub=root.querySelector('#sub'); if(sub){ sub.style.display=''; sub.textContent = o.graded ? '다음 칸 → '+NM[o.steps[o.i+1]]+' (Enter)' : (last ? '전체 채점 (Enter)' : NM[cur]+' 채점 (Enter)'); }
   try{ $('ask').textContent=(o.i+1)+' / '+o.steps.length+' 칸 · '+NM[cur]+(o.graded?' 채점 끝 — Enter = 다음 칸':' — 고르고 Enter')+' · ←→ 칸 이동'; }catch(e){}
@@ -3268,7 +3326,8 @@ function buildFr(w, opt){
   q.needS = nS ? Math.min(2, nS) : 0;
   // 반대말: 양쪽 사전 확인 쌍 3개까지 + 함정(같은 뜻 단어) 2개까지 + 관계없는 오답
   var A=[];
-  var al=shuf(((D.a||{})[key]||[]).filter(function(x){ return !(_ax && _ax.indexOf(x)>=0); })).slice(0,3);
+  q.aall=((D.a||{})[key]||[]).filter(function(x){ return !(_ax && _ax.indexOf(x)>=0); });   // 2027.02.31 초안: 「보기만」 정리 상자에 반대말 전부
+  var al=shuf(q.aall.slice()).slice(0,3);
   if(al.length){
     al.forEach(function(t){ A.push({t:t, ok:true, sec:'a', fr:'A', def:frDef(t)}); });
     var trap=shuf(S.filter(function(o){ return o.ok && al.indexOf(String(o.t).toLowerCase())<0; })).slice(0,2);
@@ -3330,7 +3389,8 @@ function enHidRow(q, sc, NM){
     else if(sc==='a') rest.push('<span class="eso">'+esc(o.t)+'<span class="est dc">사전</span></span>');
     else rest.push('<span class="eso">'+esc(o.t)+'</span>');
   });
-  if(sc==='a' && q.ashow) return '<div class="esr esold"><span class="esk na">· '+NM[sc]+'</span><span class="esv"><span class="esoldt">풀지 않고 보기만</span><br>'+tb.concat(mv, rest).join(' · ')+'</span></div>';
+  if(sc==='a' && q.ashow){ var _AL=(q.aall&&q.aall.length)?q.aall:L.map(function(o){ return o.t; });   // 2027.02.31 초안: 3개만 → 전부, 단어마다 뜻
+    return '<div class="esr esold esant"><span class="esk na">· '+NM[sc]+'</span><span class="esv"><span class="esoldt">풀지 않고 보기만 · '+_AL.length+'개</span><span class="esal">'+_AL.map(function(t){ var d=''; try{ d=frDef(t)||''; }catch(e){} return '<span class="esai"><b>'+esc(t)+'</b>'+(d?'<small>'+esc(d)+'</small>':'')+'</span>'; }).join('')+'</span></span></div>'; }
   return '<div class="esr esold"><span class="esk na">✓ '+NM[sc]+'</span><span class="esv"><span class="esoldt">지난번 맞힘 · 이번엔 안 나옴</span><br>정답 '+tb.concat(mv, rest).join(' · ')+'</span></div>';
 }
 // 정답 확인 뒤 (영어 → 뜻 · 최종 복습): 칸별 요약 상자 · 맞힌 칸 접기 · 문맥 칸 해석
@@ -3415,12 +3475,18 @@ function exqShow(q){
   exLoad().then(function(){
     if(Q[qi]!==q || document.getElementById('exq') || !EXQ) return;
     var rows=EXDATA && EXDATA[String(q.w.id)]; if(!rows || !rows.length) return;
-    if(q._exi===undefined) q._exi=Math.floor(Math.random()*rows.length);
-    var pick=[]; for(var k=0;k<Math.min(2, rows.length);k++) pick.push(rows[(q._exi+k)%rows.length]);   // 예문이 여러 개면 두 개까지 같이
+    var _un0=(ans[qi]===null || ans[qi]===undefined) && !q._exDone;   // 1차 채점(뜻 · 같은 뜻)에서도 채점 뒤로 본다
+    // 2027.02.22 초안: 풀기 전에는 한 문장만(복습할 때마다 다른 문장 — 지난번 다음 문장), 채점 뒤에는 남은 문장까지 전부 해석과 함께
+    //   예문 넷째 칸이 's'(동의어가 들어간 문장)이면 답이 미리 보이므로 풀기 전에는 안 고른다
+    if(q._exi===undefined){ var _pre=[]; rows.forEach(function(r,i){ if(r[3]!=='s') _pre.push(i); }); if(!_pre.length) _pre=[0];
+      var _L=exLastGet(q.w.id), _j=_pre.indexOf(_L); q._exi=_pre[(_j+1)%_pre.length]; exLastSet(q.w.id, q._exi); }
+    var pick=[rows[q._exi]];
+    if(!_un0){ for(var k=1;k<rows.length;k++) pick.push(rows[(q._exi+k)%rows.length]); }
     var box=document.createElement('div'); box.id='exq';
-    box.innerHTML='<div class="exh">예문</div>'+pick.map(function(row){ return '<div class="exr"><div class="exs">'+exqMark(row[1], q.w.w)+'</div><div class="exk">'+String(row[2]||'').replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</div></div>'; }).join('');
-    var _un=(ans[qi]===null || ans[qi]===undefined);
+    box.innerHTML='<div class="exh">예문'+(rows.length>1?' <span class="exc">'+(_un0?'1 / '+rows.length:'전체 '+rows.length+'문장')+'</span>':'')+'</div>'+pick.map(function(row){ return '<div class="exr"><div class="exs">'+exqMark(row[1], q.w.w)+'</div><div class="exk">'+String(row[2]||'').replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</div></div>'; }).join('');
+    var _un=_un0;
     if(!_un) box.classList.add('done');   // 채점 뒤에는 해석도 보인다
+    if(!_un && !q._exOpen){ box.classList.add('fold'); var _h=box.querySelector('.exh'); if(_h) _h.insertAdjacentHTML('beforeend','<button type="button" class="exfoldb">펼치기 ▾</button>'); }   // 2027.02.31 초안: 채점 뒤 예문은 접어 두고 정리 상자를 먼저
     box.insertAdjacentHTML('beforeend','<div class="exn">화면을 누르거나 Enter = 표제어 보기</div>');
     var qw=document.getElementById('qw'); if(qw && qw.parentNode) qw.parentNode.insertBefore(box, qw);
     if(_un && !q._exSeen && !fin) document.body.classList.add('exst0');   // 처음에는 예문만
@@ -3445,6 +3511,10 @@ function dicBoxUI(){
 (function(){ var t=0; function go(){ clearTimeout(t); t=setTimeout(dicBoxUI, 30); }
   function arm(){ var c=document.getElementById('ch'); if(!c){ setTimeout(arm, 500); return; } try{ new MutationObserver(go).observe(c, {childList:true, subtree:true, attributes:true, attributeFilter:['style','class']}); }catch(e){} }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', arm); else arm(); })();
+// 2027.02.22 초안: 문제(번호)마다 지난번에 처음 보여 준 예문 순번 — 다음 복습 때 다음 문장부터
+var EXLAST=null;
+function exLastGet(id){ if(!EXLAST){ try{ EXLAST=JSON.parse(LS.getItem('voca_exlast')||'{}')||{}; }catch(e){ EXLAST={}; } } var v=EXLAST[String(id)]; return (typeof v==='number')?v:-1; }
+function exLastSet(id, i){ if(!EXLAST) exLastGet(id); EXLAST[String(id)]=i; try{ LS.setItem('voca_exlast', JSON.stringify(EXLAST)); }catch(e){} }
 function exStage0(){ return document.body.classList.contains('exst0'); }
 function exStageNext(){ document.body.classList.remove('exst0'); try{ if(Q[qi]) Q[qi]._exSeen=1; }catch(e){} }
 // 2027.02.00: 작아진 예문 칸을 누르면 다시 예문만 크게 (화면을 누르거나 Enter 로 돌아온다)
@@ -3492,7 +3562,7 @@ function homShow(q){ try{ var es=document.getElementById('ensum'); if(!es || es.
   var h='<div class="eshh">뜻 갈라 보기</div>'+M.order.map(function(k){ return '<div class="eshr"><span class="eshp">'+(MPOS_NM[k]||'그 밖')+'</span><span class="eshm">'+M.G[k].map(function(x){ return '<span class="'+(x.h?'eshx':'')+'">'+E2(x.t)+(x.v?'<small>'+E2(x.v)+'</small>':'')+(x.h?'<i>다른 단어</i>':'')+'</span>'; }).join(' · ')+'</span></div>'; }).join('');
   if(M.note) h+='<div class="eshn"><b>다른 단어</b> · '+E2(M.note)+'</div>';
   var d=document.createElement('div'); d.className='eshom'; d.innerHTML=h; es.appendChild(d); }catch(e){} }
-(function(){ var _r0=enRevealExtra; enRevealExtra=function(q,a){ var r=_r0.apply(this,arguments); try{ var x=document.getElementById('exq'); if(x) x.classList.add('done'); else exqShow(q); }catch(e){} homShow(q); return r; }; })();
+(function(){ var _r0=enRevealExtra; enRevealExtra=function(q,a){ var r=_r0.apply(this,arguments); try{ q._exDone=1; var x=document.getElementById('exq'); if(x) x.remove(); exqShow(q); }catch(e){} homShow(q); return r; }; })();
 
 function enRevealExtra(q, a){
   if(!q || q.kind!=='en' || !a || !a.en) return;
@@ -5975,6 +6045,8 @@ function weakList(minCount){
 var EWRKEY='voca_ewr_v1', EWR={done:0};
 function ewrLoad(){ try{ var r=LS.getItem(EWRKEY); if(r) EWR=JSON.parse(r)||{done:0}; }catch(e){ EWR={done:0}; } }
 function ewrSave(){ lsSet(EWRKEY, JSON.stringify(EWR)); }
+// 2027.02.22 초안: 이번 3일 주기(EWR.cs부터)에 아직 안 푼 「한 번이라도 틀린 단어」 — 단어 기록의 ewd = 이 복습에서 마지막으로 푼 시각
+function ewrLeft(list){ list=list||everWrongList(); if(!EWR.cs) return list; return list.filter(function(r){ return !((r.ewd||0)>=EWR.cs); }); }
 function everWrongList(){
   var o=[];
   for(var k in STATS){ var r=STATS[k]; if(!r) continue;
@@ -6013,6 +6085,9 @@ function startEver(){
   recUse(recOfMode(st.mode));
   var list=everWrongList();
   if(!list.length){ msg('아직 틀린 단어가 없어요','err'); return; }
+  // 2027.02.22 초안: 이번 3일 주기에 이미 푼 단어는 빼고, 아직 안 푼 것에서 「한 번에」 개수만큼
+  if(!EWR.cs){ EWR.cs=Date.now(); ewrSave(); }
+  var _left=ewrLeft(list); if(_left.length) list=_left;
   if(st.mode!=='syn' && st.mode!=='en' && st.mode!=='fr'){ var mb=document.querySelector('#mseg button[data-m="syn"]'); if(mb) mb.click(); }
   FINRUN=false;
   msg('불러오는 중…','load');
@@ -6020,7 +6095,7 @@ function startEver(){
     if(POOL.all.length<4) throw new Error('선지를 만들 단어가 부족합니다');
     SRC='ewr';
     hide();
-    launch(shuf(list));
+    launch(rvCut(shuf(list)));
   }).catch(function(e){ msg('❌ '+e.message,'err'); });
 }
 // 3일마다 반복되는 달력 일정(.ics) — 아이패드 캘린더가 알림을 울린다
@@ -6165,7 +6240,7 @@ setInterval(function(){
   }catch(e){}
 },1500);
 
-var APP_VER = '2027.02.19';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
+var APP_VER = '2027.02.33';  // 이 파일의 버전. ver.json과 비교해 새 버전 감지
 var VER = APP_VER;  // 데이터 URL 캐시 키. 배포 때만 바뀌므로 브라우저 캐시가 제대로 재사용됨
 function loadJ(p){
   // 데이터 파일은 URL에 버전(v=)이 붙어 캐시가 자동 갱신되므로 브라우저 캐시를 허용한다.
@@ -6543,9 +6618,10 @@ var RV_KINDS=[   // 2027.01.67: 왼쪽부터 중요한 순 (한 번이라도 틀
   {k:'ewr',  nm:'한 번이라도 틀린 단어', why:'한 번이라도 틀린 모든 단어 · 3일마다 다시 풀어요 · 지워도 다시 틀리면 돌아와요', del:true},
   {k:'all',  nm:'전체 오답',          why:'모든 범위에서 틀리고 아직 못 맞힌 단어 · 다른 회차에서 처음 나왔을 때 맞히면 빠져요', del:true},
   {k:'weak', nm:'약점 단어',          why:'회차 끝 오답 목록에 여러 번 든 단어 · 지울 때까지 남아요', del:true},
-  {k:'pin',  nm:'담아둔 것',          why:'「복습에 담기」로 직접 넣은 단어 · 뺄 때까지 남아요', del:true}
+  {k:'pin',  nm:'계속 볼 목록',        why:'「복습에 담기」 2번으로 넣은 단어 · 맞혀도 안 빠지고 직접 뺄 때까지 남아요', del:true}
 ];
 function rvStart(k){
+  RVU_LAST=null;
   if(k==='due') startDue(); else if(k==='unit') startBank(true); else if(k==='all') startBank(false);
   else if(k==='ewr') startEver(); else if(k==='weak') startWeak(); else if(k==='pin') startPinned();
 }
@@ -6566,6 +6642,49 @@ function rvDel(k, w){
       statsSave(); }
   });
 }
+// ── (초안) 복습 종류마다 「목록」 = 강별 줄: 강 · 마지막으로 푼 날 · 며칠 전 · 이 목록에 든 것 / 강 전체 · 그 강만 풀기 · 단어 펼치기 ──
+var _RVUOPEN='\u0000', RVU_LAST=null;
+function rvUnitOf(r){
+  var k=unitKeyOf(r); if(k) return k;
+  try{ var e=HWIDX && HWIDX[String(r.w).toLowerCase().trim()]; if(e){ var a=(e[0] && typeof e[0]==='object') ? e : [e];
+    for(var i=0;i<a.length;i++){ if(a[i][2]===r.id || a.length===1){ var sc=a[i][3]; return sc==='M1' ? 'mvp1' : sc==='M2' ? 'mvp2' : (a[i][0] ? 'v'+a[i][0]+'d'+a[i][1] : ''); } } } }catch(x){}
+  return '';
+}
+// 강마다 마지막으로 푼 날: 그 강을 골라 푼 묶음 기록이 있는 날 · 그 강 단어를 처음 푼 날 · 그 강 단어를 절반 넘게 다시 푼 날 (지금 기록 기준)
+function rvUnitLast(){
+  var tot={}, last={}; (IDX||[]).forEach(function(d){ tot[d.key]=d.n|0; });
+  for(var dk in DAILY){ var D=DAILY[dk]; if(!D) continue; var hit={}, u;
+    for(u in (D.nu||{})){ if(D.nu[u]>0) hit[u]=1; }
+    for(var id in (D.ck||{})){ var a=id.split('|'); if(a.length>=8 && D.ck[id]>0) hit[a[3]]=1; }
+    for(u in (D.rv||{})){ if(tot[u] && D.rv[u]*2>tot[u]) hit[u]=1; }
+    for(u in hit){ if(!last[u] || dk>last[u]) last[u]=dk; } }
+  return {tot:tot, last:last};
+}
+function ulAgo(dk){
+  if(!dk) return {t:'', n:-1};
+  var p=dk.split('-'), a=new Date(+p[0], +p[1]-1, +p[2]).getTime(), n0=new Date(); n0.setHours(0,0,0,0);
+  var n=Math.round((n0.getTime()-a)/86400000);
+  return {t:(n<=0?'오늘':n===1?'어제':n+'일 전'), n:n, d:(+p[1])+'/'+(+p[2])+'('+'일월화수목금토'.charAt(new Date(a).getDay())+')'};
+}
+function rvUnitGroups(L){
+  var g={}, order=[]; (L||[]).forEach(function(r){ var k=rvUnitOf(r); if(!g[k]){ g[k]=[]; } g[k].push(r); });
+  (IDX||[]).forEach(function(d){ if(g[d.key]) order.push({key:d.key, label:d.label, list:g[d.key]}); });
+  if(g['']) order.push({key:'', label:'그 밖', list:g['']});
+  return order;
+}
+// 그 종류 목록에서 한 강 것만 풀기
+function rvStartUnit(k, key){
+  recUse(recOfMode(st.mode));
+  var d=rvData(), list=(d[k]||[]).filter(function(r){ return rvUnitOf(r)===key; });
+  if(!list.length){ msg('이 강에는 풀 것이 없어요','err'); return; }
+  if(st.mode!=='syn' && st.mode!=='en' && st.mode!=='fr'){ var mb=document.querySelector('#mseg button[data-m="syn"]'); if(mb) mb.click(); }
+  FINRUN=false; msg('불러오는 중…','load');
+  buildFullPool().then(function(){
+    if(POOL.all.length<4) throw new Error('선지를 만들 단어가 부족합니다');
+    SRC=(k==='due') ? 'due' : 'bank'; RVU_LAST={k:k, key:key};
+    hide(); launch(k==='due' ? list : shuf(list));
+  }).catch(function(e){ msg('❌ '+e.message,'err'); });
+}
 function rvUI(){
   var box=$('hRev'); if(!box) return;
   if(st.mode==='card' || st.mode==='browse' || st.mode==='roots' || st.mode==='conf'){ box.style.display='none'; return; }
@@ -6576,6 +6695,7 @@ function rvUI(){
   KS.forEach(function(K){
     var L=d[K.k]||[], n=L.length, sub=SHORT[K.k];
     if(K.k==='ewr' && n) sub = d.ewrDue ? '3일 지남 · 복습할 때예요' : (d.ewrNext ? '다음 복습 '+_md(d.ewrNext) : sub);
+    if(K.k==='ewr' && n){ var _el=0; try{ _el=recWith(recOfMode(st.mode), function(){ return EWR.cs ? ewrLeft().length : 0; }); }catch(e){} if(_el && _el<n) sub='이번 주기 남은 '+_el+' / '+n+' · 이어서 풀기'; }   // 기록(모드)마다 EWR이 따로라 그 기록 안에서 본다
     h+='<div class="rvt'+(n?'':' zero')+(K.k==='ewr' && d.ewrDue && n ? ' hot' : '')+(_RVOPEN===K.k?' open':'')+'"'+(n?' data-rvgo="'+K.k+'"':'')+'>'
       +'<div class="rvn">'+n+'</div><div class="rvl">'+K.nm+'</div><div class="rvw">'+esc(sub)+'</div>'
       +(n ? '<button class="hrvls'+(_RVOPEN===K.k?' on':'')+'" data-rvls="'+K.k+'">'+(_RVOPEN===K.k?'닫기':'목록')+'</button>' : '')
@@ -6586,23 +6706,35 @@ function rvUI(){
     var K=RV_KINDS.filter(function(x){ return x.k===_RVOPEN; })[0], L=(d[_RVOPEN]||[]);
     if(!K || !L.length){ _RVOPEN=''; }
     else {
-      var rows=recWith(recOfMode(st.mode), function(){ return L.map(function(r){
-        return '<div class="lstrow"><span class="lw">'+esc(r.w)+'</span><span class="lm">'+esc(String(r.m||'').split('/')[0].trim())+' · '+esc(rvInfo(_RVOPEN, r))+'</span>'
-          +(K.del ? '<button class="lstdel" data-rvdel="'+esc(r.w)+'">삭제</button>' : '')+'</div>'; }).join(''); });
+      var rows=recWith(recOfMode(st.mode), function(){
+        var UL=rvUnitLast(), G=rvUnitGroups(L);
+        var wrow=function(r){ return '<div class="lstrow ulw"><span class="lw">'+esc(r.w)+'</span><span class="lm">'+esc(String(r.m||'').split('/')[0].trim())+' · '+esc(rvInfo(_RVOPEN, r))+'</span>'
+          +(K.del ? '<button class="lstdel" data-rvdel="'+esc(r.w)+'">삭제</button>' : '')+'</div>'; };
+        var h2='<div class="ulr ulhd"><span>강</span><span>마지막으로 푼 날</span><span>며칠 전</span><span>이 목록에 든 것 / 강 전체</span><span></span></div>';
+        G.forEach(function(U){ var g=ulAgo(UL.last[U.key]), tt=UL.tot[U.key]||0, op=(_RVUOPEN===U.key);
+          h2+='<div class="ulr'+(op?' open':'')+'" data-rvu="'+esc(U.key)+'"><b>'+esc(U.label)+'</b>'
+            +'<span>'+(g.t ? g.d : '<i class="ulz">—</i>')+'</span>'
+            +'<span class="uld'+(g.n===0?' d0':'')+'">'+(g.t||'')+'</span>'
+            +'<span><em>'+U.list.length+'개</em>'+(tt ? ' <i class="uln">/ '+tt+'</i>' : '')+'</span>'
+            +'<span class="ulb"><button class="ulbw" data-rvuw="'+esc(U.key)+'">'+(op?'단어 접기':'단어')+'</button><button class="ulbg">이 강만 풀기</button></span></div>';
+          if(op) h2+=U.list.map(wrow).join(''); });
+        return h2; });
       var _whyT=(K.k==='due' && st.mode==='fr') ? '최종 복습에서 틀린 단어는 다음 날(새벽 4시 뒤)부터 떠요 · 복습에서 맞히면 3일 → 7일 → 15일 → 30일 뒤에 다시' : K.why;
       lst='<div class="hrvlist"><div class="lstrow"><span class="lm hrvwhy">'+K.nm+' '+L.length+'개 — '+esc(_whyT)+'</span>'
         +(_RVOPEN==='ewr' ? '<button class="lstclr hrvics" data-rvics="1">📅 3일마다 알림</button>' : '')
-        +(K.del ? '<button class="lstclr" data-rvall="1">전체 삭제</button>' : '')+'</div>'+rows+'</div>';
+        +(K.del ? '<button class="lstclr" data-rvall="1">전체 삭제</button>' : '')+'</div>'+rows+'<div class="ulnote">강 줄을 누르면 그 강 것만 풀어요 · 「단어」를 누르면 그 강 단어가 펼쳐져요 · 마지막으로 푼 날 = 그 강을 골라서 푼 날</div></div>';
     }
   }
-  box.innerHTML='<div class="hrvh">복습 <small>'+esc(rvModeName())+' 기록 · 칸을 누르면 바로 풀어요</small></div>'
+  box.innerHTML='<div class="hrvh">복습 <small>'+esc(rvModeName())+' 기록 · 칸을 누르면 바로 풀어요</small>'+rvnHTML()+'</div>'
     +'<div class="rvgrid">'+h+'</div>'+lst;
   box.style.display='';
 }
 document.addEventListener('click', function(e){
   var t=e.target; if(!t || !t.closest || !t.closest('#hRev')) return;
   var b;
-  if((b=t.closest('[data-rvls]'))){ var k=b.getAttribute('data-rvls'); _RVOPEN=(_RVOPEN===k)?'':k; rvUI(); return; }
+  if((b=t.closest('[data-rvuw]'))){ var uk=b.getAttribute('data-rvuw'); _RVUOPEN=(_RVUOPEN===uk)?'\u0000':uk; rvUI(); return; }
+  if((b=t.closest('[data-rvn]'))){ RVN=parseInt(b.getAttribute('data-rvn'),10)||0; try{ LS.setItem('voca_rvn', String(RVN)); }catch(x){} rvUI(); return; }
+  if((b=t.closest('[data-rvls]'))){ var k=b.getAttribute('data-rvls'); _RVOPEN=(_RVOPEN===k)?'':k; _RVUOPEN='\u0000'; rvUI(); return; }
   if((b=t.closest('[data-rvgo]'))){ rvStart(b.getAttribute('data-rvgo')); return; }
   if((b=t.closest('[data-rvdel]'))){ rvDel(_RVOPEN, b.getAttribute('data-rvdel')); rvAfter(); return; }
   if(t.closest('[data-rvics]')){ try{ ewrIcs(); }catch(x){} return; }
@@ -6612,6 +6744,7 @@ document.addEventListener('click', function(e){
     L.slice().forEach(function(r){ rvDel(_RVOPEN, r.w); });
     rvAfter(); return;
   }
+  if((b=t.closest('[data-rvu]'))){ rvStartUnit(_RVOPEN, b.getAttribute('data-rvu')); return; }
 });
 function rvAfter(){ try{ srsUI(); }catch(e){} try{ bankUI(); }catch(e){} try{ chunkUI(); }catch(e){} rvUI(); }
 // 이번 주 달력 7칸 (날짜마다 푼 시간 · 채점한 문제 · 누르면 큰 달력)
@@ -6656,6 +6789,10 @@ function homeTidy(){
 //   지금 차례 묶음 = 이어 풀 위치(ORDPOS). 홈에서 묶음을 눌러 바꾸고, 회차가 끝나면 「이 묶음 다시 · 틀린 것만 · 다음 묶음」.
 var CHUNK_LAST=null;
 try{ CHUNK_LAST=JSON.parse(LS.getItem('voca_chunklast')||'null'); }catch(e){ CHUNK_LAST=null; }
+// 2027.02.20: 복습을 한 번에 몇 개씩 풀지 (0 = 전부). 홈 「복습」 줄에서 고르고, 오늘 복습 · 오답 · 약점 · 담아둔 것 · 한 번이라도 틀린 단어에 똑같이 쓴다
+var RVN=0; try{ RVN=parseInt(LS.getItem('voca_rvn')||'0',10)||0; }catch(e){ RVN=0; }
+function rvCut(list){ return (RVN>0 && list && list.length>RVN) ? list.slice(0, RVN) : list; }
+function rvnHTML(){ return '<span class="hrvn">한 번에<span class="hrvng">'+[10,20,30,50,0].map(function(n){ return '<button type="button" data-rvn="'+n+'" class="'+(RVN===n?'on':'')+'">'+(n||'전부')+'</button>'; }).join('')+'</span></span>'; }
 function chunkOn(){ return (st.mode==='syn' || (st.mode==='fr' && FRUNIT==='unit')) && st.n>0; }
 function chunkPick(list, n){
   var k=ordKey(), at=ordGet(k);
@@ -6908,6 +7045,7 @@ function buildFullPool(){
 }
 
 function start(){
+  RVU_LAST=null;
   __lastAction='시작클릭(mode='+st.mode+',target='+st.target+',n='+st.n+',cum='+st.cum+')';
   recUse(recOfMode(st.mode));
   FINRUN = !!(FINMODE && st.mode==='syn');
@@ -7193,7 +7331,7 @@ function posPanelHTML(word){
   var h='<div class="pbox pink posbox"><div class="pbt" data-fk="posform">품사가 다른 같은 단어'
     +(me?' <span class="posme">'+esc(word)+' · '+esc(me)+'</span>':'')+'</div><div class="simlist">';
   rows.forEach(function(x){
-    h+='<div class="simrow"><span class="sw">'+esc(x[0])+'</span>'
+    h+='<div class="simrow"><span class="sw wtap" data-w="'+esc(x[0])+'">'+esc(x[0])+'</span>'
      + '<span class="cfd posk">'+esc(x[1])+'</span>'
      + '<span class="sm">'+mm(x[0], cfMeaning(x[0]))+'</span>'
      + '<span class="su">'+esc(hwTags(x[0]))+'</span></div>';
@@ -7493,7 +7631,7 @@ function simPanelHTML(word){
     var h='<div class="pbox pink"><div class="pbt">헷갈리는 철자</div><div class="simlist">';
     var note=false;
     rows.forEach(function(x){
-      h+='<div class="simrow"><span class="sw">'+esc(x[0])+'</span>'
+      h+='<div class="simrow"><span class="sw wtap" data-w="'+esc(x[0])+'">'+esc(x[0])+'</span>'
        + '<span class="cfd">'+esc(x[1])+'</span>'
        + '<span class="sm">'+mm(x[0], cfMeaning(x[0]))+'</span>'
        + '<span class="su">'+esc(hwTags(x[0]))+'</span></div>';
@@ -7509,7 +7647,7 @@ function simPanelHTML(word){
   var h2='<span class="crootlabel">비슷하게 생긴 단어</span><div class="simlist">';
   sims.forEach(function(it){
     h2+='<div class="simrow'+(it.same?' same':'')+'">'
-      +'<span class="sw">'+esc(it.w)+'</span><span class="sm">'+esc(it.m)+'</span>'
+      +'<span class="sw wtap" data-w="'+esc(it.w)+'">'+esc(it.w)+'</span><span class="sm">'+esc(it.m)+'</span>'
       +'<span class="su">'+(it.vol?it.vol+'권 '+it.day+'강':'')+(it.same?' · 이 강':'')+'</span></div>';
   });
   return h2+'</div>'+_pp;
@@ -8690,7 +8828,7 @@ function sessionSave(quiet){
       var _un=(ans[_ix]===null || ans[_ix]===undefined), _ps=null;
       if(_un && _ix===qi){ _ps=[]; for(var _k in sel) if(sel[_k]) _ps.push(+_k); if(!_ps.length) _ps=null; }
       return _slim({
-        hid:q.hid||null, ashow:q.ashow||null, short:q.short||null, one:(_un && q._one) ? JSON.parse(JSON.stringify(q._one)) : null, st1:(_un && q._st1) ? JSON.parse(JSON.stringify(q._st1)) : null, psel:_ps,
+        hid:q.hid||null, ashow:q.ashow||null, aall:(q.ashow&&q.aall)||null, short:q.short||null, one:(_un && q._one) ? JSON.parse(JSON.stringify(q._one)) : null, st1:(_un && q._st1) ? JSON.parse(JSON.stringify(q._st1)) : null, psel:_ps,
         wid: q.w.id, wkey: q.w.w,
         opts: q.opts.map(function(o){
           if(typeof o==='string') return o;
@@ -8857,6 +8995,7 @@ function _qdRestore(q, qd){
   if(qd.hid) q.hid=qd.hid;   // 2027.01.61: 이번엔 안 나온 칸의 정답
   if(qd.short) q.short=qd.short;
   if(qd.ashow) q.ashow=1;
+  if(qd.aall) q.aall=qd.aall;
   // 2027.01.52: 푸는 중이던 칸 상태 (번호가 보기 수를 넘으면 버린다)
   var _n=(q.opts||[]).length, _okI=function(a){ return !a || a.every(function(i){ return typeof i==='number' && i>=0 && i<_n; }); };
   if(qd.one && qd.one.steps && _okI(qd.one.chosen)) q._one=qd.one;
@@ -8944,7 +9083,7 @@ function startBank(unitOnly){
     if(POOL.all.length<4) throw new Error('선지를 만들 단어가 부족합니다');
     SRC='bank';
     $('bankGo').disabled=false;
-    launch(shuf(target));
+    launch(rvCut(shuf(target)));
   }).catch(function(e){
     $('bankGo').disabled=false;
     msg('❌ '+e.message,'err');
@@ -8964,7 +9103,7 @@ function startWeak(){
     SRC='bank';
     $('weakGo').disabled=false;
     hide();
-    launch(shuf(list));
+    launch(shuf(rvCut(list.slice().sort(function(x,y){ return (x.last||0)-(y.last||0); }))));   // 2027.02.22 초안: 오래 안 푼 단어부터 「한 번에」 개수만큼
   }).catch(function(e){
     $('weakGo').disabled=false;
     msg('❌ '+e.message,'err');
@@ -8984,7 +9123,7 @@ function startPinned(){
     SRC='bank';
     $('pinGo').disabled=false;
     hide();
-    launch(shuf(list));
+    launch(shuf(rvCut(list.slice().sort(function(x,y){ return (x.last||0)-(y.last||0); }))));   // 2027.02.22 초안: 오래 안 푼 단어부터 「한 번에」 개수만큼
   }).catch(function(e){
     $('pinGo').disabled=false;
     msg('❌ '+e.message,'err');
@@ -9011,7 +9150,7 @@ function startDue(){
     SRC='due';
     $('dueGo').disabled=false;
     hide();
-    launch(list);
+    launch(rvCut(list));
   }).catch(function(e){
     $('dueGo').disabled=false;
     msg('❌ '+e.message,'err');
@@ -9606,7 +9745,8 @@ function enSecStat(q, chosen, wr){
   R.k.ok = (!R.k.tot && q.fr && q.only) ? true : (R.k.wrong===0 && R.k.right>=Math.min(R.k.need, R.k.tot||R.k.need));   // 2027.01.36: 복습에서 뜻 칸을 뺀 문제
   R.s.ok = !R.s.tot ? true : (R.s.wrong===0 && !R.s.tbMiss && R.s.right>=Math.min(R.s.need, R.s.tot));   // 2027.01.42: 교재 동의어를 하나라도 놓치면 맞힐 개수와 상관없이 오답
   R.a.ok = !R.a.tot ? true : (R.a.wrong===0 && R.a.right>=Math.min(R.a.need, R.a.tot));
-  if(frAOff(q) && R.a.tot){ R.a.raw=R.a.ok; R.a.ok=true; R.a.off=1; }   // 2027.01.45: 반대말 안 침 — 결과만 보여 주고 정답/오답에는 안 넣는다
+  if(frAOff(q) && R.a.tot){ R.a.raw=R.a.ok; R.a.ok=true; R.a.off=1; }
+  if(q.ashow && R.a.tot){ R.a.raw=true; R.a.ok=true; R.a.off=1; R.a.show=1; }   // 2027.02.31 초안: 반대말 보기만 — 채점 안 함   // 2027.01.45: 반대말 안 침 — 결과만 보여 주고 정답/오답에는 안 넣는다
   R.n.ok = !R.n.tot ? true : (R.n.wrong===0 && R.n.right>=1);
   R.c.ok = true;   // 2027.01.25: 문맥 칸(기억용 예문)은 채점하지 않는다 — 무엇을 골라도 오답이 안 된다
   return R;
@@ -9968,8 +10108,8 @@ function ohideApply(){
   b.classList.toggle('ohide', hide); h.classList.toggle('on', hide);
 }
 (function(){ var _d0=draw; draw=function(){ document.body.classList.remove('exst0'); var r=_d0.apply(this,arguments); try{ ohideApply(); }catch(e){} try{ exqShow(Q[qi]); }catch(e){} return r; }; })();
-document.addEventListener('click', function(e){ if(exStage0()){ var _t=e.target.closest && (e.target.closest('#exqtog') || e.target.closest('#ohtog')); if(_t) return; exStageNext(); if(e.target.closest && (e.target.closest('#ch') || e.target.closest('#exq'))){ e.stopPropagation(); e.preventDefault(); } return; } if(e.target.closest && e.target.closest('#exq')){ exStageBack(); e.stopPropagation(); e.preventDefault(); return; } if(!ohideOn()) return; var inq=e.target.closest && (e.target.closest('#ch') || e.target.closest('#ohint')); ohideReveal(); if(inq){ e.stopPropagation(); e.preventDefault(); } }, true);
-document.addEventListener('keydown', function(e){ var _s0=exStage0(); if(!_s0 && !ohideOn()) return; if(e.key==='Shift'||e.key==='Control'||e.key==='Alt'||e.key==='Meta'||e.key==='Tab'||e.key==='Escape') return; var t=e.target; if(t && (t.tagName==='INPUT'||t.tagName==='TEXTAREA')) return; if(_s0) exStageNext(); else ohideReveal(); e.stopPropagation(); e.preventDefault(); }, true);
+document.addEventListener('click', function(e){ if(exStage0()){ var _t=e.target.closest && (e.target.closest('#exqtog') || e.target.closest('#ohtog')); if(_t) return; exStageNext(); if(e.target.closest && (e.target.closest('#ch') || e.target.closest('#exq'))){ e.stopPropagation(); e.preventDefault(); } return; } var _fb=e.target.closest && e.target.closest('#exq .exfoldb, #exq.fold'); if(_fb){ var _x=document.getElementById('exq'); if(_x){ var _o=_x.classList.toggle('fold'); try{ Q[qi]._exOpen=_o?0:1; }catch(x){} var _b=_x.querySelector('.exfoldb'); if(_b) _b.textContent=_o?'펼치기 ▾':'접기 ▴'; } e.stopPropagation(); e.preventDefault(); return; } if(e.target.closest && e.target.closest('#exq')){ exStageBack(); e.stopPropagation(); e.preventDefault(); return; } if(!ohideOn()) return; var inq=e.target.closest && (e.target.closest('#ch') || e.target.closest('#ohint')); ohideReveal(); if(inq){ e.stopPropagation(); e.preventDefault(); } }, true);
+document.addEventListener('keydown', function(e){ if(pinAskIsOpen()) return; var _s0=exStage0(); if(!_s0 && !ohideOn()) return; if(e.key==='Shift'||e.key==='Control'||e.key==='Alt'||e.key==='Meta'||e.key==='Tab'||e.key==='Escape') return; var t=e.target; if(t && (t.tagName==='INPUT'||t.tagName==='TEXTAREA')) return; if(_s0) exStageNext(); else ohideReveal(); e.stopPropagation(); e.preventDefault(); }, true);
 
 function ohTogUI(){ var t=document.getElementById('ohtog'); if(!t) return; t.textContent=OHIDE ? '보기 가리기 켬' : '보기 가리기 끔'; t.classList.toggle('on', !!OHIDE); }
 document.addEventListener('click', function(e){ var t=e.target.closest && e.target.closest('#ohtog'); if(!t) return;
@@ -10195,7 +10335,7 @@ function frMissUpdate(q, chosen, r){
   var mo=r.mo||{};
   q.opts.forEach(function(o,i){
     var sc=o.sec||'k'; if(!o.ok || (sc!=='k' && sc!=='s' && sc!=='a') || o.amb) return;
-    if(sc==='a' && frAOff(q)) return;   // 2027.01.45: 반대말 안 침이면 놓친 반대말은 기억 안 함
+    if(sc==='a' && (frAOff(q) || q.ashow)) return;   // 2027.01.45: 반대말 안 침이면 놓친 반대말은 기억 안 함
     var k=frMissKey(o);
     if(!pk[i]){ var c={}; ['t','sec','fr','fin','def','box','sense','n','lec'].forEach(function(f){ if(o[f]!==undefined) c[f]=o[f]; }); c.ok=true;
       mo[k]={o:c, ss:(sc==='s' ? (q.ssense||'') : ''), ok:0, t:Date.now(), c:((mo[k] && mo[k].c)||0)+1}; }   // c = 지금까지 놓친 횟수   // 놓침 → 기억 (연속 골라낸 횟수는 0부터)
@@ -10737,6 +10877,17 @@ function unwToggle(){
   replay(); try{ score(); }catch(e){} try{ sessionSave(); }catch(e){} try{ dockSync(); }catch(e){}
 }
 document.addEventListener('click', function(e){ var t=e.target; if(t && t.closest && t.closest('#unwBtn')) unwToggle(); });
+// 2027.02.22 초안: 교재(윤황보카 책)에는 실려 있는데 Merriam-Webster · Oxford 학습자 사전에는 그 뜻이 없는 표현 — 채점 뒤 뜻 옆에 표시
+//   (책 파일로 그 줄을 확인함 · 종이책 쪽수는 research/종이책_확인_목록.md)
+var BOOKONLY={
+  '3758':'in fast company — 사전의 fast company는 「행실이 나쁜 패거리」 (1권 231쪽)',
+  '8661':'breeze out — 사전에 없음 (2권 28쪽)',
+  '8810':'catch in — 사전에는 「~에 끼다, 걸리다」 뜻만 (2권 36쪽)',
+  '9706':'gain on — 사전에는 「따라붙다」 뜻만 (2권 80쪽)',
+  '10473':'let go with — 사전에 없음, let go는 「놓다」 (2권 117쪽)',
+  '10528':'look off — 사전에 없음 (2권 120쪽)',
+  '12427':'thump tubs — 이 꼴은 사전에 없음, tub-thumping 「큰 소리로 주장을 펴는」은 있음 (2권 214쪽)'
+};
 function _replay0(){
   // 정답이 공개되면 맨 위 단어 옆에 전체 뜻을 함께 표시
   (function(){
@@ -10745,6 +10896,7 @@ function _replay0(){
     else if(el && q0 && q0.w){
       if(q0.swap) el.innerHTML=' · '+esc(q0.swap.d)+'<span class="swapof">('+esc(q0.w.w)+'의 동의어)</span>';   // 자리 바꾼 문제: 그 줄 뜻 + 누구 동의어인지
       else el.innerHTML=((q0.kind==='syn'||q0.kind==='quiz'||q0.kind==='en') ? wposHTML(q0.w) : '')+' · '+esc(q0.w.m);   // 단어 옆에 품사 · 뜻
+      try{ var _bn=BOOKONLY[String(q0.w.id)]; if(_bn && !q0.swap) el.innerHTML+='<span class="bkonly" title="'+esc(_bn)+'">교재 뜻 · 사전엔 없음</span>'; }catch(e){}
       var ak=$('ask'); if(ak) ak.textContent='';  // 안내 문구는 비움
       // 동의어 매칭: 정답 공개 후 표제어 바로 밑에 어원 한 줄(→ 앞부분만, 조각은 누를 수 있음)
       try{ var _qe2=$('qety');
@@ -10809,7 +10961,7 @@ function _replay0(){
       var _mvo = _tbo && frSrcOf(q, o).mvp;   // 2027.01.57: MVP에서 온 것은 칸 색 없이 은색 「MVP」 표시만
       if(_tbo && !_mvo) bs[i].classList.add('tbopt');
       var body = (_tbo ? (_mvo ? '<span class="tbbadge mvp">MVP</span>' : '<span class="tbbadge">교재</span>') : '')+'<span class="otxt">'+esc(o.t)+'</span>'
-        + ((o.ok && o.sense) ? '<em class="sns">'+esc(fitSense(o.sense, o.t))+'</em>' : '')
+        + ((o.ok && o.sense) ? '<em class="sns">'+(senseFullHTML(o.t, fitSense(o.sense, o.t)) || esc(fitSense(o.sense, o.t)))+'</em>' : '')
         + (_own ? '<em class="sown">교재에 실린 '+esc(o.t)+' 뜻은 '+esc(_own)+'</em>' : '');
       var meta = (!o.ok && o.def) ? '<em class="od">'+mm(o.t, o.def)+'</em>' : '';
       // 어원은 선지 99.9%에 있어 표시할 값어치가 없다 → 표시 안 함 (누르면 나오는 건 그대로)
@@ -10882,7 +11034,7 @@ function _replay0(){
   $('fb').textContent = a.unw ? '➖ 오답에서 뺌 (정답 처리)' : a.ok ? (a.nu ? '✅ 정답 (비슷하지만 다른 단어를 골랐지만 뉘앙스 차이라 복습엔 안 넣어요)' : '✅ 정답!') : '❌ 오답';
   if(q.kind==='en' && a.en){
     $('fb').textContent += '  ·  뜻 '+(a.en.k?'✓':'✗')+(a.en.s===-1?'':'  ·  '+(q.fr?'같은 뜻':'동의어')+' '+(a.en.s?'✓':'✗'))
-      +((a.en.a===undefined||a.en.a===-1)?'':'  ·  반대말 '+(a.en.ao ? (a.en.ar?'✓':'✗')+' (채점 안 함)' : (a.en.a?'✓':'✗')))+((a.en.n===undefined||a.en.n===-1)?'':'  ·  뉘앙스 '+(a.en.n?'✓':'✗'))+((a.en.c===undefined||a.en.c===-1)?'':'  ·  문맥 '+(a.en.c?'✓':'✗'));
+      +((a.en.a===undefined||a.en.a===-1)?'':'  ·  반대말 '+(Q[qi]&&Q[qi].ashow ? '봄 (보기만)' : a.en.ao ? (a.en.ar?'✓':'✗')+' (채점 안 함)' : (a.en.a?'✓':'✗')))+((a.en.n===undefined||a.en.n===-1)?'':'  ·  뉘앙스 '+(a.en.n?'✓':'✗'))+((a.en.c===undefined||a.en.c===-1)?'':'  ·  문맥 '+(a.en.c?'✓':'✗'));
     try{ enRevealExtra(q, a); }catch(e){}
     try{ enTypedUI(q); }catch(e){}
   } else if(q.kind==='ko' && a.wr){ try{ enTypedUI(q); }catch(e){} }
@@ -10994,22 +11146,31 @@ function pinForReview(w, nowToo){
   if(typeof bankUI==='function') bankUI();
   return !!STATS[k].pinned;
 }
+// 2027.02.23 초안: 「지금 복습」(오답 목록 — 맞히면 빠짐)과 「계속 볼 목록」(뺄 때까지 남음)을 따로 켜고 끈다
+function inNow(w){ return !!(w && ((BANK.syn && BANK.syn[w.w]) || (BANK.quiz && BANK.quiz[w.w]))); }
+function setNow(w, on){
+  if(on){ bankAdd('syn', w); bankAdd('quiz', w); } else { bankDel('syn', w); bankDel('quiz', w); }
+  bankSave(); if(typeof bankUI==='function') bankUI();
+}
+function setKeep(w, on){
+  var k=w.w;
+  if(!STATS[k]) STATS[k]={w:w.w, m:w.m, s:w.s, p:w.p, r:w.r, id:w.id, vol:w.vol, day:w.day, type:w.type, pp:w.pp, ug:w.ug, uf:w.uf, wrong:0, right:0};
+  STATS[k].pinned=on?1:0; STATS[k].pinT=Date.now(); STATS[k].pinNow=0;   // 담기만 해서는 틀린 단어로 적지 않는다
+  statsSave(); if(typeof bankUI==='function') bankUI();
+}
 // 버튼 모양 갱신 (id를 넘겨받아 해당 화면 버튼만 건드림)
 function pinBtnUI(id, w){
   var b=$(id); if(!b||!w) return;
-  var on=isPinned(w);
-  var now=!!(STATS[w.w] && STATS[w.w].pinNow);
+  var keep=isPinned(w), now=inNow(w), on=keep||now;
+  var parts=[]; if(now) parts.push('지금 복습'); if(keep) parts.push('계속 볼 목록');
   b.className='pinbtn'+(on?' pinned':'');
-  b.textContent = on ? (now?'담김 · 오답에도 (누르면 빼기)':'담김 (누르면 빼기)') : '복습에 담기';
-  // 답지 안 버튼과 아래 바 버튼은 같은 단어를 가리키므로 함께 맞춘다
+  b.textContent = on ? ('담김 · '+parts.join(' · ')+' (누르면 고치기)') : '복습에 담기';
   var other=(id==='pinBtn')?$('dockPin'):(id==='dockPin'?$('pinBtn'):null);
   if(other){ other.className='pinbtn'+(on?' pinned':''); other.textContent=b.textContent; }
-  // 아래 바의 버튼은 자리가 좁아 짧은 글자로
-  var dp=$('dockPin'); if(dp && w) dp.innerHTML = (on ? ('담김'+(now?'·오답':'')+'<span class="dkx"> (빼기)</span>') : '복습에 담기')+' <kbd class="kk">₩</kbd>';   // 폰에선 (빼기)를 숨겨 아래 바가 화면 밖으로 안 넘치게
+  var dp=$('dockPin'); if(dp && w) dp.innerHTML = (on ? ('담김·'+(now&&keep?'둘 다':(now?'지금':'계속'))+'<span class="dkx"> (고치기)</span>') : '복습에 담기')+' <kbd class="kk">₩</kbd>';
 }
-// 담기 선택 팝업 (지금 오답에도 / 나중에만)
+// 담기 창: 1 = 지금 복습 켜기/끄기 · 2 = 계속 볼 목록 켜기/끄기 · Esc = 닫기 (두 곳에 동시에 담을 수 있음)
 function pinAsk(w, btnId){
-  if(isPinned(w)){ pinForReview(w); pinBtnUI(btnId, w); return; }   // 이미 담긴 건 바로 빼기
   var host=$('pinAskBox');
   if(!host){
     host=document.createElement('div');
@@ -11017,17 +11178,23 @@ function pinAsk(w, btnId){
     host.style.display='none';
     document.body.appendChild(host);
   }
-  host.innerHTML='<div class="pkwrap"><div class="pkbox">'
-    +'<div class="pkt">'+esc(w.w)+' 담기</div>'
-    +'<button class="pkbtn now" data-pk="now"><span class="pkk">1</span>지금 오답에도 넣기</button>'
-    +'<button class="pkbtn later" data-pk="later"><span class="pkk">2</span>담아둔 목록에만</button>'
-    +'<button class="pkbtn cancel" data-pk="cancel"><span class="pkk">Esc</span>취소</button>'
-    +'</div></div>';
+  var draw=function(){
+    var now=inNow(w), keep=isPinned(w);
+    host.innerHTML='<div class="pkwrap"><div class="pkbox">'
+      +'<div class="pkt">'+esc(w.w)+' 담기 <span class="pksub">두 곳에 같이 담을 수 있어요</span></div>'
+      +'<button class="pkbtn now'+(now?' pkon':'')+'" data-pk="now"><span class="pkk">1</span>지금 복습<span class="pkst">'+(now?'담김 ✓':'안 담김')+'</span><span class="pkd">「이 강 오답」·「전체 오답」에 들어가요 · 맞히면 빠져요</span></button>'
+      +'<button class="pkbtn later'+(keep?' pkon':'')+'" data-pk="later"><span class="pkk">2</span>계속 볼 목록<span class="pkst">'+(keep?'담김 ✓':'안 담김')+'</span><span class="pkd">맞혀도 안 빠지고, 직접 뺄 때까지 남아요</span></button>'
+      +'<button class="pkbtn cancel" data-pk="cancel"><span class="pkk">Esc</span>닫기</button>'
+      +'</div></div>';
+  };
+  draw();
   host.style.display='';
   _pinAskPick=function(v){
+    if(v==='now'){ setNow(w, !inNow(w)); draw(); pinBtnUI(btnId, w); return; }
+    if(v==='later'){ setKeep(w, !isPinned(w)); draw(); pinBtnUI(btnId, w); return; }
     _pinAskPick=null;
-    if(v!=='cancel'){ pinForReview(w, v==='now'); pinBtnUI(btnId, w); }
     host.style.display='none';
+    pinBtnUI(btnId, w);
     typingRefocus();
   };
   host.onclick=function(e){
@@ -11196,6 +11363,19 @@ function wposHTML(w){
   return '<span class="wpos">'+t.split('').map(function(c){ return '<i class="'+(WPOSCLS[c]||'e')+'">'+esc(c)+'</i>'; }).join('')+(t.indexOf('동')>=0 ? vtviHTML(w) : '')+'</span>';
 }
 // 정답 선지 노란 글씨: 뜻 줄 일부에만 맞는 동의어면 맞는 조각만 (nzfit.json). 어느 조각에도 안 맞는 단어는 줄 뜻 그대로.
+// 2027.02.30 초안: 정답 선지에 그 단어의 교재 뜻 전체를 적고, 이 문제에서 맞은 뜻만 노랗게 (재현님 2번안)
+//   교재 표제어가 아니거나, 맞은 뜻이 교재 뜻 안에 없거나, 뜻이 하나뿐이면 null → 지금처럼 맞은 뜻만
+function senseFullHTML(t, sense){
+  try{
+    var it=ghPoolFind(t); var m=String((it&&it.m)||'').trim(); if(!m) return null;
+    var parts=m.split(' / ').map(function(x){ return x.trim(); }).filter(Boolean);
+    if(parts.length<2) return null;
+    var want={}; String(sense||'').split(' / ').forEach(function(x){ x=x.trim(); if(x) want[x]=1; });
+    var hit=0; parts.forEach(function(x){ if(want[x]) hit++; });
+    if(!hit) return null;
+    return parts.map(function(x){ return want[x] ? '<b class="snhit">'+esc(x)+'</b>' : '<span class="snrest">'+esc(x)+'</span>'; }).join('<span class="snsep"> / </span>');
+  }catch(e){ return null; }
+}
 function fitSense(sense, t){
   try{
     var ft=NZFIT && NZFIT[sense] && NZFIT[sense][t];
@@ -12188,8 +12368,11 @@ function finish(){
     var pb=$('penGo2'); if(pb) pb.style.display='';
     var pb3=$('penbtn2'); if(pb3) pb3.style.display='none';   // 같은 이름 버튼은 하나만
   } else if(SRC==='ewr'){
-    try{ EWR.done=Date.now(); ewrSave(); if(typeof syncSoon==='function') syncSoon(); }catch(e){}
-    $('rm').textContent = '📕 틀린 단어 복습 완료 — 다음 복습 '+_md(ewrNext());
+    var _now=Date.now(), _lf=0;
+    try{ (Q||[]).forEach(function(x){ var r=x && x.w && STATS[x.w.w]; if(r) r.ewd=_now; }); statsSave(); _lf=ewrLeft().length; }catch(e){}
+    if(!_lf){ try{ EWR.done=_now; EWR.cs=0; ewrSave(); if(typeof syncSoon==='function') syncSoon(); }catch(e){}
+      $('rm').textContent = '📕 틀린 단어 복습 완료 — 다음 복습 '+_md(ewrNext()); }
+    else $('rm').textContent = '📕 이번 묶음 끝 — 이번 주기에 아직 안 푼 단어 '+_lf+'개 (다 풀면 다음 복습이 3일 뒤로)';
   } else if(SRC==='bank'){
     $('rm').textContent = '누적 오답 풀기 완료' + tail;
   } else if(SRC==='retry'){
@@ -12480,7 +12663,7 @@ $('prev').addEventListener('click',prev);
 $('retry').addEventListener('click',retryWrong);
 (function(){ var _d0=draw; draw=function(){ var r=_d0.apply(this, arguments); try{ frGivenUI(); frShortStageUI(); }catch(e){} return r; }; })();   // 2027.01.71:
 $('again').addEventListener('click',function(){
-  if(SRC==='bank') startBank(); else if(SRC==='ewr') startEver(); else start();
+  if(RVU_LAST && (SRC==='bank' || SRC==='due')) rvStartUnit(RVU_LAST.k, RVU_LAST.key); else if(SRC==='bank') startBank(); else if(SRC==='ewr') startEver(); else start();
 });
 $('wbtn').addEventListener('click',showWrong);
 $('home').addEventListener('click',function(){ bankUI(); statsUI(); resumeUI(); srsUI(); reqUI(); todayUI(); syncUI(); refreshUnitLabels(); show('setup'); });
@@ -12810,7 +12993,8 @@ document.addEventListener('click',function(e){
   if(!t) return;
   // 뜻은 그 줄(.pr) 전체 뒤에, 단어는 바로 뒤에 넣는다
   var anchor = t.classList.contains('nztap') ? (t.closest('.pr')||t)
-             : (t.closest('.rw') || t.closest('.cfrow') || t.closest('.cfh') || t.closest('.fmline') || t);
+             : (t.closest('.rw') || t.closest('.cfrow') || t.closest('.simrow') || t.closest('.cfh') || t.closest('.fmline') || t);
+  if(anchor.classList && anchor.classList.contains('simrow') && anchor.nextElementSibling && anchor.nextElementSibling.classList.contains('cfnote')) anchor=anchor.nextElementSibling;   // 2027.02.22 초안: 헷갈리는 철자 설명 줄 뒤에 연다
   var nx=anchor.nextElementSibling;
   var open = nx && nx.classList && (nx.classList.contains('nzpanel')||nx.classList.contains('wpanel'));
   if(open){ var _same=!nx.dataset.for || nx.dataset.for===t.getAttribute('data-w'); nx.remove(); (anchor.querySelectorAll?anchor.querySelectorAll('.tapon'):[]).forEach(function(x){ x.classList.remove('tapon'); }); t.classList.remove('tapon'); if(_same) return; }
